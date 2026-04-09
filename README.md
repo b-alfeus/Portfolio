@@ -1,7 +1,1 @@
-# Personal-Website
-
-This shall be my first personal project to develop my own website
-things to prepare for:
-- List of Projects
-- List of my Achievements
-- List of my Work Experience
+Hi! I'm Bryan Widjaya, a interdisciplinary designer, I do design for both physical and digital products. I believe an impactful design aren't necessarily shaped by metrics, it should be well intended through the craft and the human quality itself. If you are interested in working together or collaborating, feel free to say hi!
