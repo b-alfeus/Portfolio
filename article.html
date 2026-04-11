@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Article — Bryan Widjaya</title>
+        <link rel="stylesheet" href="styles.css">
+    </head>
+    <body>
+        <header>
+            <nav class="nav">
+                <a href="index.html">About</a>
+                <a href="journey.html">Journey</a>
+                <a href="work.html">Work</a>
+                <a href="article.html" class="active">Article</a>
+                <a href="contact.html">Contact</a>
+            </nav>
+            <div class="header-controls">
+                <select class="lang-select" id="langSelect" aria-label="Language">
+                    <option value="en">EN</option>
+                    <option value="id">ID</option>
+                    <option value="jp">JP</option>
+                    <option value="de">DE</option>
+                </select>
+                <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+                    <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
+                    <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+                </button>
+            </div>
+        </header>
+
+        <main>
+            <section class="page-header">
+                <h1 data-i18n="article.heading">Articles</h1>
+                <p data-i18n="article.intro">Thoughts on design, technology, and culture.</p>
+            </section>
+
+            <section class="article-list">
+                <article class="article-item">
+                    <time class="article-date">Mar 2025</time>
+                    <div class="article-details">
+                        <h3><a href="#">The Shape of Design</a></h3>
+                        <p>On the invisible structures that guide how we experience the web.</p>
+                    </div>
+                </article>
+                <article class="article-item">
+                    <time class="article-date">Jan 2025</time>
+                    <div class="article-details">
+                        <h3><a href="#">Tools for Thinking</a></h3>
+                        <p>How the software we use shapes the way we think and create.</p>
+                    </div>
+                </article>
+                <article class="article-item">
+                    <time class="article-date">Nov 2024</time>
+                    <div class="article-details">
+                        <h3><a href="#">Craft and Clarity</a></h3>
+                        <p>Why attention to detail matters more than ever in digital design.</p>
+                    </div>
+                </article>
+                <article class="article-item">
+                    <time class="article-date">Sep 2024</time>
+                    <div class="article-details">
+                        <h3><a href="#">Living with Constraints</a></h3>
+                        <p>Embracing limitations as a creative advantage.</p>
+                    </div>
+                </article>
+            </section>
+        </main>
+
+        <footer>
+            <p>&copy; 2026 Bryan Widjaya. All rights reserved.</p>
+            <p class="license">This work is licensed under <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" rel="noopener noreferrer">CC BY-NC-ND 4.0</a></p>
+        </footer>
+
+        <script src="shared.js"></script>
+    </body>
+</html>

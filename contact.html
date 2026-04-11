@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Contact — Bryan Widjaya</title>
+        <link rel="stylesheet" href="styles.css">
+    </head>
+    <body>
+        <header>
+            <nav class="nav">
+                <a href="index.html">About</a>
+                <a href="journey.html">Journey</a>
+                <a href="work.html">Work</a>
+                <a href="article.html">Article</a>
+                <a href="contact.html" class="active">Contact</a>
+            </nav>
+            <div class="header-controls">
+                <select class="lang-select" id="langSelect" aria-label="Language">
+                    <option value="en">EN</option>
+                    <option value="id">ID</option>
+                    <option value="jp">JP</option>
+                    <option value="de">DE</option>
+                </select>
+                <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+                    <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
+                    <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+                </button>
+            </div>
+        </header>
+
+        <main>
+            <section class="page-header">
+                <h1 data-i18n="contact.heading">Get in Touch</h1>
+                <p data-i18n="contact.intro">Have a project in mind or just want to say hello? I'd love to hear from you.</p>
+            </section>
+
+            <section class="contact">
+                <ul class="contact-list">
+                    <li class="contact-item">
+                        <span class="contact-label">Email</span>
+                        <a href="mailto:b.alfeus@gmail.com">b.alfeus@gmail.com</a>
+                    </li>
+                    <li class="contact-item">
+                        <span class="contact-label">LinkedIn</span>
+                        <a href="https://linkedin.com/in/bryanwidjaya" target="_blank" rel="noopener noreferrer">bryanwidjaya</a>
+                    </li>
+                    <li class="contact-item">
+                        <span class="contact-label">GitHub</span>
+                        <a href="https://github.com/bryanwidjaya" target="_blank" rel="noopener noreferrer">bryanwidjaya</a>
+                    </li>
+                </ul>
+            </section>
+        </main>
+
+        <footer>
+            <p>&copy; 2026 Bryan Widjaya. All rights reserved.</p>
+            <p class="license">This work is licensed under <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" rel="noopener noreferrer">CC BY-NC-ND 4.0</a></p>
+        </footer>
+
+        <script src="shared.js"></script>
+    </body>
+</html>

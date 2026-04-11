@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Journey — Bryan Widjaya</title>
+        <link rel="stylesheet" href="styles.css">
+    </head>
+    <body>
+        <header>
+            <nav class="nav">
+                <a href="index.html">About</a>
+                <a href="journey.html" class="active">Journey</a>
+                <a href="work.html">Work</a>
+                <a href="article.html">Article</a>
+                <a href="contact.html">Contact</a>
+            </nav>
+            <div class="header-controls">
+                <select class="lang-select" id="langSelect" aria-label="Language">
+                    <option value="en">EN</option>
+                    <option value="id">ID</option>
+                    <option value="jp">JP</option>
+                    <option value="de">DE</option>
+                </select>
+                <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+                    <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
+                    <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+                </button>
+            </div>
+        </header>
+
+        <main>
+            <section class="page-header">
+                <h1 data-i18n="journey.heading">Journey</h1>
+                <p data-i18n="journey.intro">A timeline of moments, milestones, and detours that shaped where I am today.</p>
+            </section>
+
+            <nav class="journey-jump" aria-label="Jump to year">
+                <ul class="journey-jump-list">
+                    <li><a href="#y2026" class="journey-jump-link">2026</a></li>
+                    <li><a href="#y2024" class="journey-jump-link">2024</a></li>
+                    <li><a href="#y2022" class="journey-jump-link">2022</a></li>
+                    <li><a href="#y2020" class="journey-jump-link">2020</a></li>
+                    <li><a href="#y2018" class="journey-jump-link">2018</a></li>
+                    <li><a href="#y2015" class="journey-jump-link">2015</a></li>
+                    <li><a href="#y2012" class="journey-jump-link">2012</a></li>
+                    <li><a href="#y1998" class="journey-jump-link">1998</a></li>
+                </ul>
+            </nav>
+
+            <section class="journey">
+                <ol class="timeline">
+                    <li class="timeline-group" id="y2026">
+                        <h2 class="timeline-year">2026</h2>
+                        <ul class="timeline-events">
+                            <li class="timeline-event">
+                                <time class="timeline-date">Feb 2026</time>
+                                <div class="timeline-content">
+                                    <h3>Lorem Ipsum Dolor</h3>
+                                    <p>Consectetur adipiscing elit. Donec vehicula lorem a nibh faucibus, ac vestibulum lectus tincidunt. Integer quis pharetra nulla.</p>
+                                </div>
+                            </li>
+                            <li class="timeline-event">
+                                <time class="timeline-date">Jan 2026</time>
+                                <div class="timeline-content">
+                                    <h3>Sit Amet Consectetur</h3>
+                                    <p>Proin efficitur, magna vitae tempus rhoncus, sapien nibh malesuada mauris, in pellentesque lacus lectus a quam.</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="timeline-group" id="y2024">
+                        <h2 class="timeline-year">2024</h2>
+                        <ul class="timeline-events">
+                            <li class="timeline-event">
+                                <time class="timeline-date">Sep 2024</time>
+                                <div class="timeline-content">
+                                    <h3>Aliquam Erat Volutpat</h3>
+                                    <p>Fusce id arcu non augue dictum venenatis. Suspendisse potenti. Nullam ac libero sed sem congue auctor vel id enim.</p>
+                                </div>
+                            </li>
+                            <li class="timeline-event">
+                                <time class="timeline-date">Apr 2024</time>
+                                <div class="timeline-content">
+                                    <h3>Curabitur Placerat</h3>
+                                    <p>Etiam at risus id neque posuere rutrum. Praesent facilisis, orci nec hendrerit convallis, lectus nisi tristique nisl.</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="timeline-group" id="y2022">
+                        <h2 class="timeline-year">2022</h2>
+                        <ul class="timeline-events">
+                            <li class="timeline-event">
+                                <time class="timeline-date">Nov 2022</time>
+                                <div class="timeline-content">
+                                    <h3>Vivamus Lacinia</h3>
+                                    <p>Donec euismod, nisi vel consectetur interdum, nisl nisi aliquet nisi, nec tincidunt nisl nisl sed nunc.</p>
+                                </div>
+                            </li>
+                            <li class="timeline-event">
+                                <time class="timeline-date">Jun 2022</time>
+                                <div class="timeline-content">
+                                    <h3>Nulla Facilisi Morbi</h3>
+                                    <p>Sed dignissim lacus a arcu gravida, ac tincidunt nisi dignissim. Mauris ut lectus eget tortor fermentum dignissim.</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="timeline-group" id="y2020">
+                        <h2 class="timeline-year">2020</h2>
+                        <ul class="timeline-events">
+                            <li class="timeline-event">
+                                <time class="timeline-date">Aug 2020</time>
+                                <div class="timeline-content">
+                                    <h3>Phasellus Convallis</h3>
+                                    <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam.</p>
+                                </div>
+                            </li>
+                            <li class="timeline-event">
+                                <time class="timeline-date">Mar 2020</time>
+                                <div class="timeline-content">
+                                    <h3>Ultricies Bibendum</h3>
+                                    <p>Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur velit dignissim.</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="timeline-group" id="y2018">
+                        <h2 class="timeline-year">2018</h2>
+                        <ul class="timeline-events">
+                            <li class="timeline-event">
+                                <time class="timeline-date">Oct 2018</time>
+                                <div class="timeline-content">
+                                    <h3>Maecenas Faucibus</h3>
+                                    <p>Mollis interdum. Nullam quis risus eget urna mollis ornare vel eu leo. Donec sed odio dui nibh ultricies vehicula.</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="timeline-group" id="y2015">
+                        <h2 class="timeline-year">2015</h2>
+                        <ul class="timeline-events">
+                            <li class="timeline-event">
+                                <time class="timeline-date">Jul 2015</time>
+                                <div class="timeline-content">
+                                    <h3>Integer Posuere Erat</h3>
+                                    <p>A ante venenatis dapibus posuere velit aliquet. Cum sociis natoque penatibus et magnis dis parturient montes.</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="timeline-group" id="y2012">
+                        <h2 class="timeline-year">2012</h2>
+                        <ul class="timeline-events">
+                            <li class="timeline-event">
+                                <time class="timeline-date">May 2012</time>
+                                <div class="timeline-content">
+                                    <h3>Nascetur Ridiculus Mus</h3>
+                                    <p>Vestibulum id ligula porta felis euismod semper. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="timeline-group" id="y1998">
+                        <h2 class="timeline-year">1998</h2>
+                        <ul class="timeline-events">
+                            <li class="timeline-event">
+                                <time class="timeline-date">Dec 1998</time>
+                                <div class="timeline-content">
+                                    <h3>In Principio</h3>
+                                    <p>Donec ullamcorper nulla non metus auctor fringilla. The very first chapter — lorem ipsum dolor sit amet.</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+                </ol>
+            </section>
+        </main>
+
+        <footer>
+            <p>&copy; 2026 Bryan Widjaya. All rights reserved.</p>
+            <p class="license">This work is licensed under <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" rel="noopener noreferrer">CC BY-NC-ND 4.0</a></p>
+        </footer>
+
+        <script src="shared.js"></script>
+    </body>
+</html>
