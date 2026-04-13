@@ -5,6 +5,35 @@ const LOCATION = {
     timezone: 'Asia/Jakarta'
 };
 
+// Hamburger nav (mobile)
+const headerEl = document.querySelector('header');
+const navEl = document.querySelector('.nav');
+if (headerEl && navEl) {
+    const btn = document.createElement('button');
+    btn.className = 'nav-toggle';
+    btn.setAttribute('aria-label', 'Toggle menu');
+    btn.setAttribute('aria-expanded', 'false');
+    btn.innerHTML = '<svg class="icon-menu" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/></svg><svg class="icon-close" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="6" y1="6" x2="18" y2="18"/><line x1="6" y1="18" x2="18" y2="6"/></svg>';
+    headerEl.insertBefore(btn, navEl);
+
+    const closeNav = () => {
+        headerEl.classList.remove('nav-open');
+        btn.setAttribute('aria-expanded', 'false');
+    };
+    btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const open = headerEl.classList.toggle('nav-open');
+        btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    navEl.querySelectorAll('a').forEach(a => a.addEventListener('click', closeNav));
+    document.addEventListener('click', (e) => {
+        if (headerEl.classList.contains('nav-open') && !headerEl.contains(e.target)) closeNav();
+    });
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') closeNav();
+    });
+}
+
 // Theme toggle
 const toggle = document.getElementById('themeToggle');
 const html = document.documentElement;
@@ -141,7 +170,8 @@ if (locationEl) {
         return offset.replace(/GMT([+-])0?(\d+)(?::00)?/, 'GMT$1$2');
     };
 
-    const emojiEl = document.getElementById('emoji');
+    const bmoEl = document.getElementById('bmo');
+    let bmoState = null; // track current state to avoid unnecessary src swaps
 
     const updateLocation = () => {
         const now = new Date();
@@ -154,17 +184,21 @@ if (locationEl) {
         });
         locationEl.textContent = `${LOCATION.city}, ${LOCATION.countryCode} ${getGmtOffset()} ${time}`;
 
-        // Mood emoji — yawning at 21:00, sleeping 22:00–04:59, smiling otherwise
-        if (emojiEl) {
+        // BMO state: awake 07:00–17:00, sleeping otherwise
+        if (bmoEl) {
             const hour = parseInt(now.toLocaleString('en-GB', {
                 timeZone: LOCATION.timezone,
                 hour: '2-digit',
                 hour12: false
             }), 10);
-            let mood = '\u{1F60A}'; // 😊 smile
-            if (hour === 21) mood = '\u{1F971}'; // 🥱 yawning
-            else if (hour >= 22 || hour < 5) mood = '\u{1F634}'; // 😴 sleeping
-            emojiEl.textContent = mood;
+            const awake = hour >= 7 && hour < 17;
+            const next = awake ? 'awake' : 'sleep';
+            if (next !== bmoState) {
+                bmoEl.src = `assets/bmo-${next}.gif`;
+                bmoEl.width = awake ? 21 : 23;
+                bmoEl.height = awake ? 28 : 23;
+                bmoState = next;
+            }
         }
     };
     updateLocation();
