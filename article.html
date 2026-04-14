@@ -3,17 +3,17 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Article — Bryan Widjaya</title>
+        <title>Posts — Bryan Widjaya</title>
         <link rel="stylesheet" href="styles.css">
     </head>
     <body>
         <header>
             <nav class="nav">
-                <a href="index.html">About</a>
-                <a href="journey.html">Journey</a>
-                <a href="work.html">Work</a>
-                <a href="article.html" class="active">Article</a>
-                <a href="contact.html">Contact</a>
+                <a href="index.html" data-i18n="nav.about">about</a>
+                <a href="journey.html" data-i18n="nav.journey">journey</a>
+                <a href="work.html" data-i18n="nav.work">work</a>
+                <a href="article.html" class="active" data-i18n="nav.posts">posts</a>
+                <a href="contact.html" data-i18n="nav.contact">contact</a>
             </nav>
             <div class="header-controls">
                 <select class="lang-select" id="langSelect" aria-label="Language">
@@ -31,45 +31,46 @@
 
         <main>
             <section class="page-header">
-                <h1 data-i18n="article.heading">Articles</h1>
-                <p data-i18n="article.intro">Thoughts on design, technology, and culture.</p>
+                <h1 data-i18n="article.heading">Posts</h1>
+                <p data-i18n="article.intro">Notes on design, process, and the things I find worth thinking about.</p>
+            </section>
+
+            <section class="article-featured">
+                <p class="article-section-label" data-i18n="article.featured">Featured</p>
+                <div class="carousel" data-carousel>
+                    <div class="carousel-viewport">
+                        <div class="carousel-track"></div>
+                    </div>
+                    <button type="button" class="carousel-btn carousel-prev" aria-label="Previous">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>
+                    </button>
+                    <button type="button" class="carousel-btn carousel-next" aria-label="Next">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
+                    </button>
+                    <div class="carousel-dots" role="tablist" aria-label="Featured posts"></div>
+                </div>
             </section>
 
             <section class="article-list">
-                <article class="article-item">
-                    <time class="article-date">Mar 2025</time>
-                    <div class="article-details">
-                        <h3><a href="#">The Shape of Design</a></h3>
-                        <p>On the invisible structures that guide how we experience the web.</p>
-                    </div>
-                </article>
-                <article class="article-item">
-                    <time class="article-date">Jan 2025</time>
-                    <div class="article-details">
-                        <h3><a href="#">Tools for Thinking</a></h3>
-                        <p>How the software we use shapes the way we think and create.</p>
-                    </div>
-                </article>
-                <article class="article-item">
-                    <time class="article-date">Nov 2024</time>
-                    <div class="article-details">
-                        <h3><a href="#">Craft and Clarity</a></h3>
-                        <p>Why attention to detail matters more than ever in digital design.</p>
-                    </div>
-                </article>
-                <article class="article-item">
-                    <time class="article-date">Sep 2024</time>
-                    <div class="article-details">
-                        <h3><a href="#">Living with Constraints</a></h3>
-                        <p>Embracing limitations as a creative advantage.</p>
-                    </div>
-                </article>
+                <div class="article-list-header">
+                    <p class="article-section-label" data-i18n="article.all">All Posts</p>
+                    <label class="article-search">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+                        <input type="search" id="articleSearch" autocomplete="off" spellcheck="false" data-i18n-placeholder="article.search.placeholder" placeholder="Search posts or #tags">
+                    </label>
+                </div>
+                <p class="article-empty" id="articleEmpty" hidden data-i18n="article.empty">No posts match your search.</p>
             </section>
         </main>
 
+        <a href="#top" class="back-to-top">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m18 15-6-6-6 6"/></svg>
+            <span data-i18n="back-to-top">Back to top</span>
+        </a>
+
         <footer>
-            <p>&copy; 2026 Bryan Widjaya. All rights reserved.</p>
-            <p class="license">This work is licensed under <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" rel="noopener noreferrer">CC BY-NC-ND 4.0</a></p>
+            <p>&copy; 2026 Bryan Widjaya. <span data-i18n="footer.rights">All rights reserved.</span></p>
+            <p class="license"><a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" rel="noopener noreferrer"><img src="https://mirrors.creativecommons.org/presskit/buttons/80x15/svg/by-nc-nd.svg" alt="CC BY-NC-ND 4.0" width="80" height="15"></a></p>
         </footer>
 
         <script src="shared.js"></script>

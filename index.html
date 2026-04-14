@@ -9,11 +9,11 @@
     <body>
         <header>
             <nav class="nav">
-                <a href="index.html" class="active">About</a>
-                <a href="journey.html">Journey</a>
-                <a href="work.html">Work</a>
-                <a href="article.html">Article</a>
-                <a href="contact.html">Contact</a>
+                <a href="index.html" class="active" data-i18n="nav.about">about</a>
+                <a href="journey.html" data-i18n="nav.journey">journey</a>
+                <a href="work.html" data-i18n="nav.work">work</a>
+                <a href="article.html" data-i18n="nav.posts">posts</a>
+                <a href="contact.html" data-i18n="nav.contact">contact</a>
             </nav>
             <div class="header-controls">
                 <select class="lang-select" id="langSelect" aria-label="Language">
@@ -31,16 +31,53 @@
 
         <main>
             <section class="hero">
-                <h1 data-i18n="hero.title">Bryan Widjaya </h1>
-                <p data-i18n="hero.subtitle">I believe to design is to create things that enrich human lives. Designing for both physical and digital product.</p>
+                <h1 data-i18n="hero.title">Bryan Widjaya</h1>
+                <p data-i18n="hero.subtitle">Interdisciplinary human designer. I work across product, brand, and the spaces in between.</p>
                 <p class="location"><img src="assets/bmo-sleep.gif" alt="BMO" class="bmo" id="bmo" width="23" height="23"> <span id="location"></span></p>
-                <a href="mailto:b.alfeus@gmail.com" class="btn"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg> Email Me</a>
+                <a href="mailto:b.alfeus@gmail.com" class="btn">
+                    <span class="btn-track">
+                        <span class="btn-default">
+                            <span data-i18n="btn.default">Get in Touch</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                        </span>
+                        <span class="btn-hover">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                            <span data-i18n="btn.email">Email Me</span>
+                        </span>
+                    </span>
+                </a>
+
+                <div class="hero-lists">
+                    <div class="hero-list-group">
+                        <p class="hero-list-label"><span class="hero-list-slash">//</span> <span data-i18n="hero.list.interests">interests</span></p>
+                        <ul class="hero-list">
+                            <li data-i18n="hero.interest.coffee">good coffees</li>
+                            <li data-i18n="hero.interest.food">comforting foods</li>
+                            <li data-i18n="hero.interest.banter">witty banters</li>
+                            <li data-i18n="hero.interest.music">jazz, funk, lofi beats</li>
+                            <li data-i18n="hero.interest.products">well-designed products</li>
+                            <li data-i18n="hero.interest.arsenal">arsenal fc</li>
+                            <li data-i18n="hero.interest.pop-cult">pop cultures</li>
+                        </ul>
+                    </div>
+                    <div class="hero-list-group">
+                        <p class="hero-list-label"><span class="hero-list-slash">//</span> <span data-i18n="hero.list.tools">tools</span></p>
+                        <ul class="hero-list">
+                            <li><a href="https://claude.ai" target="_blank" rel="noopener noreferrer">claude</a></li>
+                            <li><a href="https://figma.com" target="_blank" rel="noopener noreferrer">figma</a></li>
+                            <li><a href="https://paper.design" target="_blank" rel="noopener noreferrer">paper</a></li>
+                            <li><a href="https://pencil.dev" target="_blank" rel="noopener noreferrer">pencil</a></li>
+                            <li><a href="https://code.visualstudio.com" target="_blank" rel="noopener noreferrer">vscode</a></li>
+                            <li><a href="https://obsidian.md" target="_blank" rel="noopener noreferrer">obsidian</a></li>
+                        </ul>
+                    </div>
+                </div>
             </section>
         </main>
 
         <footer>
-            <p>&copy; 2026 Bryan Widjaya. All rights reserved.</p>
-            <p class="license">This work is licensed under <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" rel="noopener noreferrer">CC BY-NC-ND 4.0</a></p>
+            <p>&copy; 2026 Bryan Widjaya. <span data-i18n="footer.rights">All rights reserved.</span></p>
+            <p class="license"><a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" rel="noopener noreferrer"><img src="https://mirrors.creativecommons.org/presskit/buttons/80x15/svg/by-nc-nd.svg" alt="CC BY-NC-ND 4.0" width="80" height="15"></a></p>
         </footer>
 
         <script src="shared.js"></script>

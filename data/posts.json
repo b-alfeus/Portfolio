@@ -1,0 +1,80 @@
+[
+  {
+    "id": "seed-1",
+    "title": "On Designing Without a Brief",
+    "slug": "on-designing-without-a-brief",
+    "featured": true,
+    "date": "2025-03-01",
+    "dateDisplay": "Mar 2025",
+    "excerpt": "What happens when there are no constraints — and why that is harder than it sounds. A reflection on self-directed work, creative freedom, and the anxiety that comes with both.",
+    "tags": ["process", "reflection"],
+    "thumbnail": null,
+    "background": "#d6d4cf",
+    "link": "#"
+  },
+  {
+    "id": "seed-2",
+    "title": "Quiet Interfaces",
+    "slug": "quiet-interfaces",
+    "featured": true,
+    "date": "2025-02-01",
+    "dateDisplay": "Feb 2025",
+    "excerpt": "On designing tools that recede — surfaces that stop asking for attention so the work can take it. Restraint as a discipline, not an aesthetic.",
+    "tags": ["interfaces", "restraint"],
+    "thumbnail": null,
+    "background": "#c9c7c2",
+    "link": "#"
+  },
+  {
+    "id": "seed-3",
+    "title": "The Weight of Defaults",
+    "slug": "the-weight-of-defaults",
+    "featured": true,
+    "date": "2024-12-01",
+    "dateDisplay": "Dec 2024",
+    "excerpt": "Defaults are decisions. A look at the invisible authorship every product ships with — and the quiet power of choosing them well.",
+    "tags": ["product", "decisions"],
+    "thumbnail": null,
+    "background": "#bdbab4",
+    "link": "#"
+  },
+  {
+    "id": "seed-4",
+    "title": "The Tools We Work In Shape What We Make",
+    "slug": "the-tools-we-work-in",
+    "featured": false,
+    "date": "2025-01-01",
+    "dateDisplay": "Jan 2025",
+    "excerpt": "A reflection on how software defines the edges of our imagination.",
+    "tags": ["tools", "process", "software"],
+    "thumbnail": null,
+    "background": null,
+    "link": "#"
+  },
+  {
+    "id": "seed-5",
+    "title": "Notes on Visual Clarity",
+    "slug": "notes-on-visual-clarity",
+    "featured": false,
+    "date": "2024-11-01",
+    "dateDisplay": "Nov 2024",
+    "excerpt": "Reducing until only what matters remains.",
+    "tags": ["clarity", "visual", "reduction"],
+    "thumbnail": null,
+    "background": null,
+    "link": "#"
+  },
+  {
+    "id": "seed-6",
+    "title": "Designing for People I Will Never Meet",
+    "slug": "designing-for-people",
+    "featured": false,
+    "date": "2024-09-01",
+    "dateDisplay": "Sep 2024",
+    "excerpt": "Empathy at scale and the honest limits of user research.",
+    "tags": ["empathy", "research", "users"],
+    "thumbnail": null,
+    "background": null,
+    "link": "#"
+  }
+]

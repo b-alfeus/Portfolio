@@ -55,84 +55,140 @@ toggle.addEventListener('click', () => {
 // Translations
 const translations = {
     en: {
-        'hero.title': 'Bryan Widjaya ',
-        'hero.subtitle': 'I believe to design is to enrich human lives. Designing for both physical and digital product.',
+        'nav.about':       'about',
+        'nav.journey':     'journey',
+        'nav.work':        'work',
+        'nav.posts':       'posts',
+        'nav.contact':     'contact',
+        'hero.title':      'Bryan Widjaya',
+        'hero.subtitle':   'Interdisciplinary designer based in Jakarta. I work across product, brand, and the spaces in between.',
+        'btn.default':     'Get in Touch',
+        'btn.email':       'Email Me',
         'journey.heading': 'Journey',
-        'journey.intro': 'A timeline of moments, milestones, and detours that shaped where I am today.',
-        'work.heading': 'Recent Work',
-        'work.intro': 'A selection of projects I\'ve worked on over the years.',
-        'work.blog.title': 'Personal Blog',
-        'work.blog.desc': 'Writing about design, technology, and culture',
-        'work.design.title': 'Design System',
-        'work.design.desc': 'Building a comprehensive component library',
-        'work.brand.title': 'Brand Identity',
-        'work.brand.desc': 'Creating visual identity for emerging startups',
-        'work.app.title': 'Mobile App',
-        'work.app.desc': 'Designing intuitive interfaces for iOS and Android',
-        'article.heading': 'Articles',
-        'article.intro': 'Thoughts on design, technology, and culture.',
-        'contact.heading': 'Get in Touch',
-        'contact.intro': 'Have a project in mind or just want to say hello? I\'d love to hear from you.'
+        'journey.intro':   'A record of where I\'ve been — the milestones, pivots, and moments that shaped the work.',
+        'work.heading':    'Work',
+        'work.intro':      'Selected projects across product design, brand identity, and visual communication.',
+        'article.heading': 'Posts',
+        'article.intro':   'Notes on design, process, and the things I find worth thinking about.',
+        'article.featured':            'Featured',
+        'article.all':                 'All Posts',
+        'article.search.placeholder':  'Search posts or #tags',
+        'article.empty':               'No posts match your search.',
+        'contact.heading': 'Contact',
+        'contact.intro':   'Open to projects, collaborations, and conversations.',
+        'footer.rights':          'All rights reserved.',
+        'hero.list.interests':    'interests',
+        'hero.list.tools':        'tools',
+        'hero.interest.coffee':   'good coffees',
+        'hero.interest.food':     'comforting foods',
+        'hero.interest.banter':   'witty banters',
+        'hero.interest.music':    'jazz, funk, lofi beats',
+        'hero.interest.products': 'well-designed products',
+        'hero.interest.arsenal':  'arsenal fc',
+        'hero.interest.pop-cult': 'pop cultures',
+        'back-to-top':            'Back to top',
     },
     id: {
-        'hero.title': 'Halo, ',
-        'hero.subtitle': 'Saya membantu membuat berbagai hal untuk web, dari situs kecil hingga aplikasi besar. Pekerjaan saya berfokus pada keahlian, kejelasan, dan koneksi di antara kita.',
+        'nav.about':       'Tentang',
+        'nav.journey':     'Perjalanan',
+        'nav.work':        'Karya',
+        'nav.posts':       'Tulisan',
+        'nav.contact':     'Kontak',
+        'hero.title':      'Bryan Widjaya',
+        'hero.subtitle':   'Desainer interdisiplin berbasis di Jakarta. Saya bekerja di bidang produk, identitas merek, dan ruang di antaranya.',
+        'btn.default':     'Hubungi Saya',
+        'btn.email':       'Kirim Email',
         'journey.heading': 'Perjalanan',
-        'journey.intro': 'Garis waktu dari momen, pencapaian, dan jalan kecil yang membentuk saya hari ini.',
-        'work.heading': 'Karya Terbaru',
-        'work.intro': 'Pilihan proyek yang telah saya kerjakan selama bertahun-tahun.',
-        'work.blog.title': 'Blog Pribadi',
-        'work.blog.desc': 'Menulis tentang desain, teknologi, dan budaya',
-        'work.design.title': 'Sistem Desain',
-        'work.design.desc': 'Membangun pustaka komponen yang komprehensif',
-        'work.brand.title': 'Identitas Merek',
-        'work.brand.desc': 'Menciptakan identitas visual untuk startup baru',
-        'work.app.title': 'Aplikasi Mobile',
-        'work.app.desc': 'Mendesain antarmuka intuitif untuk iOS dan Android',
-        'article.heading': 'Artikel',
-        'article.intro': 'Pemikiran tentang desain, teknologi, dan budaya.',
-        'contact.heading': 'Hubungi Saya',
-        'contact.intro': 'Punya proyek atau ingin menyapa? Saya senang mendengar dari Anda.'
+        'journey.intro':   'Catatan perjalanan — tonggak, persimpangan, dan momen yang membentuk cara saya bekerja.',
+        'work.heading':    'Karya',
+        'work.intro':      'Proyek terpilih dalam desain produk, identitas merek, dan komunikasi visual.',
+        'article.heading': 'Tulisan',
+        'article.intro':   'Catatan tentang desain, proses, dan hal-hal yang menurut saya layak dipikirkan.',
+        'article.featured':            'Unggulan',
+        'article.all':                 'Semua Tulisan',
+        'article.search.placeholder':  'Cari tulisan atau #tag',
+        'article.empty':               'Tidak ada tulisan yang cocok.',
+        'contact.heading': 'Kontak',
+        'contact.intro':   'Terbuka untuk proyek, kolaborasi, dan percakapan.',
+        'footer.rights':          'Hak cipta dilindungi.',
+        'hero.list.interests':    'minat',
+        'hero.list.tools':        'alat',
+        'hero.interest.coffee':   'kopi enak',
+        'hero.interest.food':     'makanan favorit',
+        'hero.interest.banter':   'guyonan ringan',
+        'hero.interest.music':    'jazz, funk, lofi beats',
+        'hero.interest.products': 'produk yang dirancang apik',
+        'hero.interest.arsenal':  'arsenal fc',
+        'hero.interest.pop-cult': 'budaya pop',
+        'back-to-top':            'Kembali ke atas',
     },
     jp: {
-        'hero.title': '\u3053\u3093\u306b\u3061\u306f\u3001',
-        'hero.subtitle': '\u5c0f\u898f\u6a21\u306a\u30b5\u30a4\u30c8\u304b\u3089\u5927\u898f\u6a21\u306a\u30a2\u30d7\u30ea\u30b1\u30fc\u30b7\u30e7\u30f3\u307e\u3067\u3001\u30a6\u30a7\u30d6\u306e\u3082\u306e\u3065\u304f\u308a\u3092\u304a\u624b\u4f1d\u3044\u3057\u3066\u3044\u307e\u3059\u3002\u79c1\u306e\u4ed5\u4e8b\u306f\u3001\u5de5\u82b8\u3001\u660e\u5feb\u3055\u3001\u305d\u3057\u3066\u4eba\u3068\u306e\u3064\u306a\u304c\u308a\u306b\u7126\u70b9\u3092\u5f53\u3066\u3066\u3044\u307e\u3059\u3002',
-        'journey.heading': '\u3042\u3086\u307f',
-        'journey.intro': '\u4eca\u306e\u79c1\u3092\u5f62\u3065\u304f\u3063\u305f\u77ac\u9593\u3001\u7bc0\u76ee\u3001\u305d\u3057\u3066\u5bc4\u308a\u9053\u306e\u30bf\u30a4\u30e0\u30e9\u30a4\u30f3\u3002',
-        'work.heading': '\u6700\u8fd1\u306e\u4ed5\u4e8b',
-        'work.intro': '\u3053\u308c\u307e\u3067\u306b\u53d6\u308a\u7d44\u3093\u3060\u30d7\u30ed\u30b8\u30a7\u30af\u30c8\u306e\u4e00\u90e8\u3067\u3059\u3002',
-        'work.blog.title': '\u500b\u4eba\u30d6\u30ed\u30b0',
-        'work.blog.desc': '\u30c7\u30b6\u30a4\u30f3\u3001\u30c6\u30af\u30ce\u30ed\u30b8\u30fc\u3001\u6587\u5316\u306b\u3064\u3044\u3066\u57f7\u7b46',
-        'work.design.title': '\u30c7\u30b6\u30a4\u30f3\u30b7\u30b9\u30c6\u30e0',
-        'work.design.desc': '\u5305\u62ec\u7684\u306a\u30b3\u30f3\u30dd\u30fc\u30cd\u30f3\u30c8\u30e9\u30a4\u30d6\u30e9\u30ea\u306e\u69cb\u7bc9',
-        'work.brand.title': '\u30d6\u30e9\u30f3\u30c9\u30a2\u30a4\u30c7\u30f3\u30c6\u30a3\u30c6\u30a3',
-        'work.brand.desc': '\u65b0\u8208\u30b9\u30bf\u30fc\u30c8\u30a2\u30c3\u30d7\u306e\u30d3\u30b8\u30e5\u30a2\u30eb\u30a2\u30a4\u30c7\u30f3\u30c6\u30a3\u30c6\u30a3\u3092\u5275\u9020',
-        'work.app.title': '\u30e2\u30d0\u30a4\u30eb\u30a2\u30d7\u30ea',
-        'work.app.desc': 'iOS\u3068Android\u5411\u3051\u306e\u76f4\u611f\u7684\u306a\u30a4\u30f3\u30bf\u30fc\u30d5\u30a7\u30fc\u30b9\u3092\u30c7\u30b6\u30a4\u30f3',
-        'article.heading': '\u8a18\u4e8b',
-        'article.intro': '\u30c7\u30b6\u30a4\u30f3\u3001\u30c6\u30af\u30ce\u30ed\u30b8\u30fc\u3001\u6587\u5316\u306b\u3064\u3044\u3066\u306e\u8003\u3048\u3002',
-        'contact.heading': '\u304a\u554f\u3044\u5408\u308f\u305b',
-        'contact.intro': '\u30d7\u30ed\u30b8\u30a7\u30af\u30c8\u306e\u3054\u76f8\u8ac7\u3084\u3054\u6328\u62f6\u306a\u3069\u3001\u304a\u6c17\u8efd\u306b\u3054\u9023\u7d61\u304f\u3060\u3055\u3044\u3002'
+        'nav.about':       'について',
+        'nav.journey':     '歩み',
+        'nav.work':        '仕事',
+        'nav.posts':       '投稿',
+        'nav.contact':     '連絡',
+        'hero.title':      'Bryan Widjaya',
+        'hero.subtitle':   'ジャカルタを拠点とする学際的デザイナー。プロダクト、ブランド、そしてその間にある領域で活動しています。',
+        'btn.default':     'お問い合わせ',
+        'btn.email':       'メールを送る',
+        'journey.heading': '歩み',
+        'journey.intro':   'これまでの記録 — 仕事を形づくったマイルストーン、転換点、そして瞬間たち。',
+        'work.heading':    '仕事',
+        'work.intro':      'プロダクトデザイン、ブランドアイデンティティ、ビジュアルコミュニケーションにわたる厳選されたプロジェクト。',
+        'article.heading': '投稿',
+        'article.intro':   'デザイン、プロセス、そして考える価値があると感じたことについてのノート。',
+        'article.featured':            '注目',
+        'article.all':                 'すべての投稿',
+        'article.search.placeholder':  '投稿や#タグを検索',
+        'article.empty':               '一致する投稿はありません。',
+        'contact.heading': '連絡',
+        'contact.intro':   'プロジェクト、コラボレーション、対話のご相談をお待ちしています。',
+        'footer.rights':          '無断複製・転載を禁じます。',
+        'hero.list.interests':    '興味',
+        'hero.list.tools':        'ツール',
+        'hero.interest.coffee':   '美味しいコーヒー',
+        'hero.interest.food':     '心温まる料理',
+        'hero.interest.banter':   '機知に富んだ会話',
+        'hero.interest.music':    'ジャズ、ファンク、ローファイ',
+        'hero.interest.products': 'よく設計されたプロダクト',
+        'hero.interest.arsenal':  'アーセナルFC',
+        'hero.interest.pop-cult': 'ポップカルチャー',
+        'back-to-top':            'トップへ戻る',
     },
     de: {
-        'hero.title': 'Hallo, ',
-        'hero.subtitle': 'Ich helfe beim Erstellen von Webprojekten, von kleinen Seiten bis hin zu grossen Anwendungen. Meine Arbeit konzentriert sich auf Handwerk, Klarheit und die Verbindungen zwischen uns.',
+        'nav.about':       'Über',
+        'nav.journey':     'Werdegang',
+        'nav.work':        'Arbeiten',
+        'nav.posts':       'Beiträge',
+        'nav.contact':     'Kontakt',
+        'hero.title':      'Bryan Widjaya',
+        'hero.subtitle':   'Interdisziplinärer Designer in Jakarta. Ich arbeite an Produkten, Markenidentitäten und dem, was dazwischen liegt.',
+        'btn.default':     'Kontakt aufnehmen',
+        'btn.email':       'E-Mail schreiben',
         'journey.heading': 'Werdegang',
-        'journey.intro': 'Eine Zeitleiste von Momenten, Meilensteinen und Umwegen, die mich zu dem gemacht haben, wer ich heute bin.',
-        'work.heading': 'Aktuelle Arbeiten',
-        'work.intro': 'Eine Auswahl von Projekten, an denen ich gearbeitet habe.',
-        'work.blog.title': 'Pers\u00f6nlicher Blog',
-        'work.blog.desc': '\u00dcber Design, Technologie und Kultur schreiben',
-        'work.design.title': 'Designsystem',
-        'work.design.desc': 'Aufbau einer umfassenden Komponentenbibliothek',
-        'work.brand.title': 'Markenidentit\u00e4t',
-        'work.brand.desc': 'Visuelle Identit\u00e4t f\u00fcr aufstrebende Startups gestalten',
-        'work.app.title': 'Mobile App',
-        'work.app.desc': 'Intuitive Benutzeroberfl\u00e4chen f\u00fcr iOS und Android gestalten',
-        'article.heading': 'Artikel',
-        'article.intro': 'Gedanken \u00fcber Design, Technologie und Kultur.',
+        'journey.intro':   'Eine Aufzeichnung meines Weges — die Meilensteine, Wendepunkte und Momente, die meine Arbeit geprägt haben.',
+        'work.heading':    'Arbeiten',
+        'work.intro':      'Ausgewählte Projekte aus Produktdesign, Markenidentität und visueller Kommunikation.',
+        'article.heading': 'Beiträge',
+        'article.intro':   'Notizen über Design, Prozesse und Dinge, über die ich nachdenken möchte.',
+        'article.featured':            'Ausgewählt',
+        'article.all':                 'Alle Beiträge',
+        'article.search.placeholder':  'Beiträge oder #Tags suchen',
+        'article.empty':               'Keine Beiträge gefunden.',
         'contact.heading': 'Kontakt',
-        'contact.intro': 'Haben Sie ein Projekt im Sinn oder m\u00f6chten einfach Hallo sagen? Ich freue mich von Ihnen zu h\u00f6ren.'
+        'contact.intro':   'Offen für Projekte, Kooperationen und Gespräche.',
+        'footer.rights':          'Alle Rechte vorbehalten.',
+        'hero.list.interests':    'interessen',
+        'hero.list.tools':        'werkzeuge',
+        'hero.interest.coffee':   'guter Kaffee',
+        'hero.interest.food':     'Seelenfutter',
+        'hero.interest.banter':   'geistreiche Unterhaltungen',
+        'hero.interest.music':    'Jazz, Funk, Lo-Fi Beats',
+        'hero.interest.products': 'gut gestaltete Produkte',
+        'hero.interest.arsenal':  'Arsenal FC',
+        'hero.interest.pop-cult': 'Popkultur',
+        'back-to-top':            'Zurück nach oben',
     }
 };
 
@@ -140,11 +196,14 @@ const langSelect = document.getElementById('langSelect');
 
 function setLanguage(lang) {
     html.setAttribute('lang', lang === 'jp' ? 'ja' : lang);
+    const dict = translations[lang] || {};
     document.querySelectorAll('[data-i18n]').forEach(el => {
         const key = el.getAttribute('data-i18n');
-        if (translations[lang] && translations[lang][key]) {
-            el.textContent = translations[lang][key];
-        }
+        if (dict[key]) el.textContent = dict[key];
+    });
+    document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+        const key = el.getAttribute('data-i18n-placeholder');
+        if (dict[key]) el.placeholder = dict[key];
     });
     langSelect.value = lang;
     localStorage.setItem('lang', lang);
@@ -205,11 +264,258 @@ if (locationEl) {
     setInterval(updateLocation, 1000);
 }
 
-// Journey — highlight active year chip while scrolling + keep it in view
-const journeyJump = document.querySelector('.journey-jump');
-if (journeyJump) {
+// Button hover — mouseenter/mouseleave avoids flicker from layout shift on resize
+document.querySelectorAll('.btn').forEach(btn => {
+    btn.addEventListener('mouseenter', () => btn.classList.add('is-hovered'));
+    btn.addEventListener('mouseleave', () => btn.classList.remove('is-hovered'));
+});
+
+// Disable image dragging
+document.addEventListener('dragstart', (e) => {
+    if (e.target.tagName === 'IMG') {
+        e.preventDefault();
+    }
+});
+
+// ── Content from data/*.json (synced from Notion by GitHub Actions) ────────
+
+const el = (tag, props = {}, children = []) => {
+    const node = document.createElement(tag);
+    for (const [k, v] of Object.entries(props)) {
+        if (v == null) continue;
+        if (k === 'class') node.className = v;
+        else if (k === 'dataset') Object.assign(node.dataset, v);
+        else if (k === 'style') Object.assign(node.style, v);
+        else if (k in node) node[k] = v;
+        else node.setAttribute(k, v);
+    }
+    for (const c of [].concat(children)) {
+        if (c == null) continue;
+        node.append(c.nodeType ? c : document.createTextNode(c));
+    }
+    return node;
+};
+
+const thumbStyle = (item) => {
+    const s = {};
+    if (item.background) s.backgroundColor = item.background;
+    if (item.thumbnail) s.backgroundImage = `url("${item.thumbnail}")`;
+    return s;
+};
+
+async function loadJSON(path) {
+    try {
+        const res = await fetch(path, { cache: 'no-cache' });
+        if (!res.ok) throw new Error(res.statusText);
+        return await res.json();
+    } catch (err) {
+        console.warn(`[content] failed to load ${path}:`, err.message);
+        return null;
+    }
+}
+
+async function renderPosts() {
+    const featuredTrack = document.querySelector('.article-featured .carousel-track');
+    const listEl = document.querySelector('.article-list');
+    if (!featuredTrack && !listEl) return;
+
+    const posts = await loadJSON('data/posts.json');
+    if (!posts) return;
+
+    if (featuredTrack) {
+        featuredTrack.replaceChildren(
+            ...posts.filter(p => p.featured).map(p =>
+                el('a', {
+                    href: p.link || '#',
+                    class: 'article-featured-card carousel-slide',
+                }, [
+                    el('div', { class: 'article-featured-thumb', style: thumbStyle(p) }),
+                    el('div', { class: 'article-featured-body' }, [
+                        el('time', {}, p.dateDisplay || ''),
+                        el('h3', {}, p.title),
+                        el('p', {}, p.excerpt || ''),
+                    ]),
+                ])
+            )
+        );
+    }
+
+    if (listEl) {
+        const empty = listEl.querySelector('#articleEmpty');
+        // Remove any existing .article-item, keep header + empty state
+        listEl.querySelectorAll('.article-item').forEach(n => n.remove());
+
+        const items = posts.map(p =>
+            el('article', {
+                class: 'article-item',
+                dataset: { tags: (p.tags || []).join(',') },
+            }, [
+                el('time', { class: 'article-date' }, p.dateDisplay || ''),
+                el('div', { class: 'article-details' }, [
+                    el('h3', {}, el('a', { href: p.link || '#' }, p.title)),
+                    el('p', {}, p.excerpt || ''),
+                    (p.tags && p.tags.length)
+                        ? el('ul', { class: 'article-tags' }, p.tags.map(t => el('li', {}, `#${t}`)))
+                        : null,
+                ]),
+            ])
+        );
+        // Insert items before the empty-state paragraph so :last-of-type still works
+        if (empty) items.forEach(i => listEl.insertBefore(i, empty));
+        else listEl.append(...items);
+    }
+}
+
+async function renderWork() {
+    const grid = document.querySelector('.work-grid');
+    if (!grid) return;
+    const items = await loadJSON('data/work.json');
+    if (!items) return;
+
+    grid.replaceChildren(
+        ...items.map(w =>
+            el('li', { class: 'work-card' }, [
+                el('a', { href: w.link || '#' }, [
+                    el('div', { class: 'work-thumb', style: thumbStyle(w) }),
+                    el('div', { class: 'work-card-body' }, [
+                        el('h3', {}, w.title),
+                        el('p', {}, w.excerpt || ''),
+                    ]),
+                ]),
+            ])
+        )
+    );
+}
+
+async function renderJourney() {
+    const timeline = document.querySelector('.timeline');
+    const jumpList = document.querySelector('.journey-jump-list');
+    if (!timeline) return;
+
+    const groups = await loadJSON('data/journey.json');
+    if (!groups) return;
+
+    if (jumpList) {
+        jumpList.replaceChildren(
+            ...groups.map(g =>
+                el('li', {}, el('a', {
+                    href: `#y${g.year}`,
+                    class: 'journey-jump-link',
+                }, String(g.year)))
+            )
+        );
+    }
+
+    timeline.replaceChildren(
+        ...groups.map(g =>
+            el('li', { class: 'timeline-group', id: `y${g.year}` }, [
+                el('h2', { class: 'timeline-year' }, String(g.year)),
+                el('ul', { class: 'timeline-events' },
+                    g.events.map(ev =>
+                        el('li', { class: 'timeline-event' }, [
+                            el('time', { class: 'timeline-date' }, ev.dateDisplay || ''),
+                            el('div', { class: 'timeline-content' }, [
+                                el('h3', {}, ev.title),
+                                el('p', {}, ev.description || ''),
+                            ]),
+                        ])
+                    )
+                ),
+            ])
+        )
+    );
+}
+
+// ── Post-render initializers ──────────────────────────────────────────────
+
+function initCarousels() {
+    document.querySelectorAll('[data-carousel]').forEach(carousel => {
+        const track = carousel.querySelector('.carousel-track');
+        const slides = Array.from(track.children);
+        const prev = carousel.querySelector('.carousel-prev');
+        const next = carousel.querySelector('.carousel-next');
+        const dotsEl = carousel.querySelector('.carousel-dots');
+        if (!slides.length) return;
+
+        dotsEl.replaceChildren();
+        const dots = slides.map((_, i) => {
+            const d = document.createElement('button');
+            d.type = 'button';
+            d.className = 'carousel-dot';
+            d.setAttribute('role', 'tab');
+            d.setAttribute('aria-label', `Slide ${i + 1}`);
+            d.addEventListener('click', () => go(i));
+            dotsEl.appendChild(d);
+            return d;
+        });
+
+        let current = 0;
+        const setActive = (i) => {
+            current = i;
+            dots.forEach((d, di) => {
+                const active = di === i;
+                d.classList.toggle('active', active);
+                d.setAttribute('aria-selected', active ? 'true' : 'false');
+            });
+        };
+
+        const go = (i) => {
+            const target = (i + slides.length) % slides.length;
+            track.scrollTo({ left: slides[target].offsetLeft - track.offsetLeft, behavior: 'smooth' });
+            setActive(target);
+        };
+
+        prev.addEventListener('click', () => go(current - 1));
+        next.addEventListener('click', () => go(current + 1));
+
+        const io = new IntersectionObserver((entries) => {
+            entries.forEach(e => {
+                if (e.isIntersecting && e.intersectionRatio >= 0.6) {
+                    setActive(slides.indexOf(e.target));
+                }
+            });
+        }, { root: track, threshold: [0.6] });
+        slides.forEach(s => io.observe(s));
+
+        carousel.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft')  { e.preventDefault(); go(current - 1); }
+            if (e.key === 'ArrowRight') { e.preventDefault(); go(current + 1); }
+        });
+
+        setActive(0);
+    });
+}
+
+function initArticleSearch() {
+    const input = document.getElementById('articleSearch');
+    if (!input) return;
+    const empty = document.getElementById('articleEmpty');
+
+    const filter = () => {
+        const items = Array.from(document.querySelectorAll('.article-item'));
+        const q = input.value.trim().toLowerCase().replace(/^#/, '');
+        let visible = 0;
+        items.forEach(item => {
+            if (!q) { item.hidden = false; visible++; return; }
+            const text = (item.textContent || '').toLowerCase();
+            const tags = (item.dataset.tags || '').toLowerCase();
+            const match = text.includes(q) || tags.includes(q);
+            item.hidden = !match;
+            if (match) visible++;
+        });
+        if (empty) empty.hidden = visible > 0;
+    };
+
+    input.addEventListener('input', filter);
+}
+
+function initJourneyJump() {
+    const jump = document.querySelector('.journey-jump');
+    if (!jump) return;
     const groups = document.querySelectorAll('.timeline-group');
     const links = Array.from(document.querySelectorAll('.journey-jump-link'));
+    if (!groups.length || !links.length) return;
+
     const linkMap = new Map(links.map(a => [a.getAttribute('href').slice(1), a]));
 
     const setActive = (id) => {
@@ -231,9 +537,11 @@ if (journeyJump) {
     groups.forEach(g => observer.observe(g));
 }
 
-// Disable image dragging
-document.addEventListener('dragstart', (e) => {
-    if (e.target.tagName === 'IMG') {
-        e.preventDefault();
-    }
-});
+// ── Orchestrate ───────────────────────────────────────────────────────────
+
+(async () => {
+    await Promise.all([renderPosts(), renderWork(), renderJourney()]);
+    initCarousels();
+    initArticleSearch();
+    initJourneyJump();
+})();

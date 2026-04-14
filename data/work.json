@@ -1,0 +1,62 @@
+[
+  {
+    "id": "seed-1",
+    "title": "Fintech App Redesign",
+    "order": 1,
+    "excerpt": "End-to-end redesign of a consumer finance app, focused on clarity and trust.",
+    "category": "Product",
+    "thumbnail": null,
+    "background": "#d9c9b0",
+    "link": "project.html"
+  },
+  {
+    "id": "seed-2",
+    "title": "Design System",
+    "order": 2,
+    "excerpt": "Scalable component library built for a growing startup, from tokens to documentation.",
+    "category": "Product",
+    "thumbnail": null,
+    "background": "#c4b89d",
+    "link": "project.html"
+  },
+  {
+    "id": "seed-3",
+    "title": "Brand Identity",
+    "order": 3,
+    "excerpt": "Visual identity for an independent creative studio — mark, type, motion, and print.",
+    "category": "Brand",
+    "thumbnail": null,
+    "background": "#b8a98a",
+    "link": "project.html"
+  },
+  {
+    "id": "seed-4",
+    "title": "Editorial Design",
+    "order": 4,
+    "excerpt": "Layout and typographic system for a regional cultural magazine.",
+    "category": "Editorial",
+    "thumbnail": null,
+    "background": "#cfc0a3",
+    "link": "project.html"
+  },
+  {
+    "id": "seed-5",
+    "title": "Packaging",
+    "order": 5,
+    "excerpt": "Sustainable packaging line for a Jakarta-based specialty coffee roaster.",
+    "category": "Brand",
+    "thumbnail": null,
+    "background": "#e0d2b8",
+    "link": "project.html"
+  },
+  {
+    "id": "seed-6",
+    "title": "Web Direction",
+    "order": 6,
+    "excerpt": "Creative direction and front-end design for a nonprofit's digital presence.",
+    "category": "Product",
+    "thumbnail": null,
+    "background": "#a99a7a",
+    "link": "project.html"
+  }
+]

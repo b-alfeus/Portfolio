@@ -9,11 +9,11 @@
     <body>
         <header>
             <nav class="nav">
-                <a href="index.html">About</a>
-                <a href="journey.html">Journey</a>
-                <a href="work.html" class="active">Work</a>
-                <a href="article.html">Article</a>
-                <a href="contact.html">Contact</a>
+                <a href="index.html" data-i18n="nav.about">about</a>
+                <a href="journey.html" data-i18n="nav.journey">journey</a>
+                <a href="work.html" class="active" data-i18n="nav.work">work</a>
+                <a href="article.html" data-i18n="nav.posts">posts</a>
+                <a href="contact.html" data-i18n="nav.contact">contact</a>
             </nav>
             <div class="header-controls">
                 <select class="lang-select" id="langSelect" aria-label="Language">
@@ -34,41 +34,41 @@
                 <a href="work.html" class="project-back">&larr; Back to Work</a>
 
                 <header class="project-header">
-                    <p class="project-meta">Client · 2025 · Role</p>
-                    <h1>Lorem Ipsum Dolor Sit Amet</h1>
-                    <p class="project-lede">Consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua enim ad minim veniam.</p>
+                    <p class="project-meta">Studio / Client · Year · Role</p>
+                    <h1>Project Title</h1>
+                    <p class="project-lede">A one or two sentence summary of the project — what it was, who it was for, and why it mattered.</p>
                 </header>
 
                 <div class="project-cover" style="background-color: #d9c9b0;"></div>
 
                 <div class="project-body">
                     <h2>Overview</h2>
-                    <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
-                    <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.</p>
+                    <p>Describe the project context here — the client, the problem space, and the scope of work. What were the goals, and who was the audience? Give readers enough to understand why this project existed.</p>
+                    <p>Add any relevant background: constraints, timeline, team size, or the brief you were handed. This section sets the stage for everything that follows.</p>
 
                     <h2>The Challenge</h2>
-                    <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.</p>
+                    <p>What was the core problem to solve? Describe the tension — competing priorities, unclear requirements, technical limits, or a user need that wasn't being met. Be specific about what made this hard.</p>
 
                     <blockquote>
-                        <p>"A memorable quote or a stat that captures the heart of the project."</p>
+                        <p>"A quote, insight, or guiding principle that shaped the direction of this work."</p>
                     </blockquote>
 
                     <h2>Process</h2>
-                    <p>Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt.</p>
+                    <p>Walk through how you approached the work. What did you explore first? Where did the work change direction? Share the reasoning behind key decisions, not just the deliverables.</p>
                     <ul>
                         <li>Research and discovery</li>
-                        <li>Iterative prototyping</li>
-                        <li>User testing and refinement</li>
-                        <li>Final delivery and handoff</li>
+                        <li>Concept development and iteration</li>
+                        <li>Testing and refinement</li>
+                        <li>Delivery and handoff</li>
                     </ul>
 
                     <figure class="project-figure">
                         <div class="project-image" style="background-color: #c4b89d;"></div>
-                        <figcaption>A caption describing what this image shows.</figcaption>
+                        <figcaption>Caption — describe what this image shows and why it matters to the story.</figcaption>
                     </figure>
 
                     <h2>Outcome</h2>
-                    <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident.</p>
+                    <p>What did the work result in? Share the outcome — launched product, published identity, measurable impact, or qualitative feedback. Be honest about what worked and what you would do differently.</p>
 
                     <div class="project-image-row">
                         <div class="project-image" style="background-color: #b8a98a;"></div>
@@ -76,19 +76,19 @@
                     </div>
 
                     <h2>Reflection</h2>
-                    <p>Similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio.</p>
+                    <p>What did you learn from this project? Note anything surprising, a skill developed, a mistake made, or a perspective that shifted. This is the most honest part of a case study.</p>
                 </div>
 
                 <nav class="project-nav" aria-label="Project navigation">
-                    <a href="project.html" class="project-nav-prev">&larr; Previous Project</a>
-                    <a href="project.html" class="project-nav-next">Next Project &rarr;</a>
+                    <a href="project.html" class="project-nav-prev">&larr; Previous</a>
+                    <a href="project.html" class="project-nav-next">Next &rarr;</a>
                 </nav>
             </article>
         </main>
 
         <footer>
-            <p>&copy; 2026 Bryan Widjaya. All rights reserved.</p>
-            <p class="license">This work is licensed under <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" rel="noopener noreferrer">CC BY-NC-ND 4.0</a></p>
+            <p>&copy; 2026 Bryan Widjaya. <span data-i18n="footer.rights">All rights reserved.</span></p>
+            <p class="license"><a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" rel="noopener noreferrer"><img src="https://mirrors.creativecommons.org/presskit/buttons/80x15/svg/by-nc-nd.svg" alt="CC BY-NC-ND 4.0" width="80" height="15"></a></p>
         </footer>
 
         <script src="shared.js"></script>

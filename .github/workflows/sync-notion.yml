@@ -1,0 +1,42 @@
+name: Sync from Notion
+
+on:
+  schedule:
+    - cron: "*/15 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install deps
+        run: npm install --no-audit --no-fund
+
+      - name: Fetch from Notion
+        env:
+          NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
+          NOTION_POSTS_DB: ${{ secrets.NOTION_POSTS_DB }}
+          NOTION_WORK_DB: ${{ secrets.NOTION_WORK_DB }}
+          NOTION_JOURNEY_DB: ${{ secrets.NOTION_JOURNEY_DB }}
+        run: npm run sync
+
+      - name: Commit changes
+        run: |
+          git config user.name "notion-sync[bot]"
+          git config user.email "notion-sync[bot]@users.noreply.github.com"
+          git add data/
+          if git diff --cached --quiet; then
+            echo "No changes"
+          else
+            git commit -m "chore: sync content from Notion"
+            git push
+          fi

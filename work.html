@@ -9,11 +9,11 @@
     <body>
         <header>
             <nav class="nav">
-                <a href="index.html">About</a>
-                <a href="journey.html">Journey</a>
-                <a href="work.html" class="active">Work</a>
-                <a href="article.html">Article</a>
-                <a href="contact.html">Contact</a>
+                <a href="index.html" data-i18n="nav.about">about</a>
+                <a href="journey.html" data-i18n="nav.journey">journey</a>
+                <a href="work.html" class="active" data-i18n="nav.work">work</a>
+                <a href="article.html" data-i18n="nav.posts">posts</a>
+                <a href="contact.html" data-i18n="nav.contact">contact</a>
             </nav>
             <div class="header-controls">
                 <select class="lang-select" id="langSelect" aria-label="Language">
@@ -31,73 +31,23 @@
 
         <main>
             <section class="page-header">
-                <h1 data-i18n="work.heading">Recent Work</h1>
+                <h1 data-i18n="work.heading">Work</h1>
                 <p data-i18n="work.intro">A selection of projects I've worked on over the years.</p>
             </section>
 
             <section class="work">
-                <ul class="work-grid">
-                    <li class="work-card">
-                        <a href="project.html">
-                            <div class="work-thumb" style="background-color: #d9c9b0;"></div>
-                            <div class="work-card-body">
-                                <h3>Lorem Ipsum Dolor</h3>
-                                <p>Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.</p>
-                            </div>
-                        </a>
-                    </li>
-                    <li class="work-card">
-                        <a href="project.html">
-                            <div class="work-thumb" style="background-color: #c4b89d;"></div>
-                            <div class="work-card-body">
-                                <h3>Sit Amet Consectetur</h3>
-                                <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.</p>
-                            </div>
-                        </a>
-                    </li>
-                    <li class="work-card">
-                        <a href="project.html">
-                            <div class="work-thumb" style="background-color: #b8a98a;"></div>
-                            <div class="work-card-body">
-                                <h3>Aliquam Erat</h3>
-                                <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum.</p>
-                            </div>
-                        </a>
-                    </li>
-                    <li class="work-card">
-                        <a href="project.html">
-                            <div class="work-thumb" style="background-color: #cfc0a3;"></div>
-                            <div class="work-card-body">
-                                <h3>Curabitur Placerat</h3>
-                                <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia.</p>
-                            </div>
-                        </a>
-                    </li>
-                    <li class="work-card">
-                        <a href="project.html">
-                            <div class="work-thumb" style="background-color: #e0d2b8;"></div>
-                            <div class="work-card-body">
-                                <h3>Vivamus Lacinia</h3>
-                                <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium.</p>
-                            </div>
-                        </a>
-                    </li>
-                    <li class="work-card">
-                        <a href="project.html">
-                            <div class="work-thumb" style="background-color: #a99a7a;"></div>
-                            <div class="work-card-body">
-                                <h3>Nulla Facilisi</h3>
-                                <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit.</p>
-                            </div>
-                        </a>
-                    </li>
-                </ul>
+                <ul class="work-grid"></ul>
             </section>
         </main>
 
+        <a href="#top" class="back-to-top">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m18 15-6-6-6 6"/></svg>
+            <span data-i18n="back-to-top">Back to top</span>
+        </a>
+
         <footer>
-            <p>&copy; 2026 Bryan Widjaya. All rights reserved.</p>
-            <p class="license">This work is licensed under <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" rel="noopener noreferrer">CC BY-NC-ND 4.0</a></p>
+            <p>&copy; 2026 Bryan Widjaya. <span data-i18n="footer.rights">All rights reserved.</span></p>
+            <p class="license"><a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" rel="noopener noreferrer"><img src="https://mirrors.creativecommons.org/presskit/buttons/80x15/svg/by-nc-nd.svg" alt="CC BY-NC-ND 4.0" width="80" height="15"></a></p>
         </footer>
 
         <script src="shared.js"></script>

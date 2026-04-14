@@ -9,11 +9,11 @@
     <body>
         <header>
             <nav class="nav">
-                <a href="index.html">About</a>
-                <a href="journey.html">Journey</a>
-                <a href="work.html">Work</a>
-                <a href="article.html">Article</a>
-                <a href="contact.html" class="active">Contact</a>
+                <a href="index.html" data-i18n="nav.about">about</a>
+                <a href="journey.html" data-i18n="nav.journey">journey</a>
+                <a href="work.html" data-i18n="nav.work">work</a>
+                <a href="article.html" data-i18n="nav.posts">posts</a>
+                <a href="contact.html" class="active" data-i18n="nav.contact">contact</a>
             </nav>
             <div class="header-controls">
                 <select class="lang-select" id="langSelect" aria-label="Language">
@@ -32,7 +32,7 @@
         <main>
             <section class="page-header">
                 <h1 data-i18n="contact.heading">Get in Touch</h1>
-                <p data-i18n="contact.intro">Have a project in mind or just want to say hello? I'd love to hear from you.</p>
+                <p data-i18n="contact.intro">Open to projects, collaborations, and conversations.</p>
             </section>
 
             <section class="contact">
@@ -43,19 +43,19 @@
                     </li>
                     <li class="contact-item">
                         <span class="contact-label">LinkedIn</span>
-                        <a href="https://linkedin.com/in/bryanwidjaya" target="_blank" rel="noopener noreferrer">bryanwidjaya</a>
+                        <a href="https://www.linkedin.com/in/balfeus" target="_blank" rel="noopener noreferrer">balfeus</a>
                     </li>
                     <li class="contact-item">
                         <span class="contact-label">GitHub</span>
-                        <a href="https://github.com/bryanwidjaya" target="_blank" rel="noopener noreferrer">bryanwidjaya</a>
+                        <a href="https://github.com/b-alfeus" target="_blank" rel="noopener noreferrer">b-alfeus</a>
                     </li>
                 </ul>
             </section>
         </main>
 
         <footer>
-            <p>&copy; 2026 Bryan Widjaya. All rights reserved.</p>
-            <p class="license">This work is licensed under <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" rel="noopener noreferrer">CC BY-NC-ND 4.0</a></p>
+            <p>&copy; 2026 Bryan Widjaya. <span data-i18n="footer.rights">All rights reserved.</span></p>
+            <p class="license"><a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" rel="noopener noreferrer"><img src="https://mirrors.creativecommons.org/presskit/buttons/80x15/svg/by-nc-nd.svg" alt="CC BY-NC-ND 4.0" width="80" height="15"></a></p>
         </footer>
 
         <script src="shared.js"></script>
