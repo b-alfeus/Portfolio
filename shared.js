@@ -77,6 +77,9 @@ const translations = {
         'btn.email':       'Email Me',
         'journey.heading': 'Journey',
         'journey.intro':   'A record of where I\'ve been — the milestones, pivots, and moments that shaped the work.',
+        'filter.all':         'Everything',
+        'filter.career':      'Career',
+        'filter.achievement': 'Achievement',
         'work.heading':    'Work',
         'work.intro':      'Selected projects across product design, brand identity, and visual communication.',
         'article.heading': 'Posts',
@@ -116,6 +119,9 @@ const translations = {
         'btn.email':       'Kirim Email',
         'journey.heading': 'Perjalanan',
         'journey.intro':   'Catatan perjalanan — tonggak, persimpangan, dan momen yang membentuk cara saya bekerja.',
+        'filter.all':         'Semua',
+        'filter.career':      'Karier',
+        'filter.achievement': 'Pencapaian',
         'work.heading':    'Karya',
         'work.intro':      'Proyek terpilih dalam desain produk, identitas merek, dan komunikasi visual.',
         'article.heading': 'Tulisan',
@@ -155,6 +161,9 @@ const translations = {
         'btn.email':       'メールを送る',
         'journey.heading': '歩み',
         'journey.intro':   'これまでの記録 — 仕事を形づくったマイルストーン、転換点、そして瞬間たち。',
+        'filter.all':         'すべて',
+        'filter.career':      'キャリア',
+        'filter.achievement': '実績',
         'work.heading':    '仕事',
         'work.intro':      'プロダクトデザイン、ブランドアイデンティティ、ビジュアルコミュニケーションにわたる厳選されたプロジェクト。',
         'article.heading': '投稿',
@@ -194,6 +203,9 @@ const translations = {
         'btn.email':       'E-Mail schreiben',
         'journey.heading': 'Werdegang',
         'journey.intro':   'Eine Aufzeichnung meines Weges — die Meilensteine, Wendepunkte und Momente, die meine Arbeit geprägt haben.',
+        'filter.all':         'Alles',
+        'filter.career':      'Karriere',
+        'filter.achievement': 'Leistung',
         'work.heading':    'Arbeiten',
         'work.intro':      'Ausgewählte Projekte aus Produktdesign, Markenidentität und visueller Kommunikation.',
         'article.heading': 'Beiträge',
@@ -454,22 +466,10 @@ async function renderWork() {
 
 async function renderJourney() {
     const timeline = document.querySelector('.timeline');
-    const jumpList = document.querySelector('.journey-jump-list');
     if (!timeline) return;
 
     const groups = await loadJSON('data/journey.json');
     if (!groups) return;
-
-    if (jumpList) {
-        jumpList.replaceChildren(
-            ...groups.map(g =>
-                el('li', {}, el('a', {
-                    href: `#y${g.year}`,
-                    class: 'journey-jump-link',
-                }, String(g.year)))
-            )
-        );
-    }
 
     timeline.replaceChildren(
         ...groups.map(g =>
@@ -477,7 +477,10 @@ async function renderJourney() {
                 el('h2', { class: 'timeline-year' }, String(g.year)),
                 el('ul', { class: 'timeline-events' },
                     g.events.map(ev =>
-                        el('li', { class: 'timeline-event' }, [
+                        el('li', {
+                            class: 'timeline-event',
+                            dataset: { tags: (ev.tags || []).join(' ') },
+                        }, [
                             el('time', { class: 'timeline-date' }, ev.dateDisplay || ''),
                             el('div', { class: 'timeline-content' }, [
                                 el('h3', {}, ev.title),
@@ -644,32 +647,134 @@ function initArticleSearch() {
     input.addEventListener('input', filter);
 }
 
-function initJourneyJump() {
-    const jump = document.querySelector('.journey-jump');
-    if (!jump) return;
-    const groups = document.querySelectorAll('.timeline-group');
-    const links = Array.from(document.querySelectorAll('.journey-jump-link'));
-    if (!groups.length || !links.length) return;
+function initJourneyInteractions() {
+    const journey = document.querySelector('.journey');
+    const timeline = journey?.querySelector('.timeline');
+    if (!timeline) return;
+    const allEvents = Array.from(timeline.querySelectorAll('.timeline-event'));
+    if (!allEvents.length) return;
 
-    const linkMap = new Map(links.map(a => [a.getAttribute('href').slice(1), a]));
-
-    const setActive = (id) => {
-        links.forEach(a => a.classList.remove('active'));
-        const active = linkMap.get(id);
-        if (active) {
-            active.classList.add('active');
-            active.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
-        }
+    const chev = (d) => {
+        const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+        svg.setAttribute('width', '16');
+        svg.setAttribute('height', '16');
+        svg.setAttribute('viewBox', '0 0 24 24');
+        svg.setAttribute('fill', 'none');
+        svg.setAttribute('stroke', 'currentColor');
+        svg.setAttribute('stroke-width', '2');
+        svg.setAttribute('stroke-linecap', 'round');
+        svg.setAttribute('stroke-linejoin', 'round');
+        svg.setAttribute('aria-hidden', 'true');
+        const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+        path.setAttribute('d', d);
+        svg.appendChild(path);
+        return svg;
     };
 
-    const observer = new IntersectionObserver((entries) => {
-        const visible = entries
-            .filter(e => e.isIntersecting)
-            .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top)[0];
-        if (visible) setActive(visible.target.id);
-    }, { rootMargin: '-88px 0px -60% 0px', threshold: 0 });
+    // ── Filter bar ───────────────────────────────────────────────────────
+    const filters = [
+        { key: 'all',         i18n: 'filter.all',         label: 'Everything' },
+        { key: 'work',        i18n: 'filter.career',      label: 'Career' },
+        { key: 'achievement', i18n: 'filter.achievement', label: 'Achievement' },
+    ];
+    const filterBtns = filters.map(f =>
+        el('button', {
+            type: 'button',
+            class: 'journey-filter-btn',
+            'data-filter': f.key,
+            'data-i18n': f.i18n,
+        }, f.label)
+    );
+    const filterBar = el('div', { class: 'journey-filter', role: 'group', 'aria-label': 'Filter events' }, filterBtns);
+    journey.insertBefore(filterBar, timeline);
 
-    groups.forEach(g => observer.observe(g));
+    // ── Mobile navigator ─────────────────────────────────────────────────
+    const prevBtn  = el('button', { type: 'button', class: 'journey-mobile-btn journey-mobile-prev', 'aria-label': 'Previous event' }, chev('m15 18-6-6 6-6'));
+    const nextBtn  = el('button', { type: 'button', class: 'journey-mobile-btn journey-mobile-next', 'aria-label': 'Next event' }, chev('m9 18 6-6-6-6'));
+    const labelBtn = el('button', { type: 'button', class: 'journey-mobile-label', 'aria-haspopup': 'listbox', 'aria-expanded': 'false' }, '');
+    const list     = el('ul', { class: 'journey-mobile-list', role: 'listbox' });
+    list.hidden = true;
+    const nav = el('nav', { class: 'journey-mobile', 'aria-label': 'Event navigator' }, [
+        el('div', { class: 'journey-mobile-bar' }, [prevBtn, labelBtn, nextBtn]),
+        list,
+    ]);
+    journey.insertBefore(nav, timeline);
+
+    let currentFilter = 'all';
+    let visibleEvents = [];
+    let idx = 0;
+    let open = false;
+
+    const matchesFilter = (ev) => {
+        if (currentFilter === 'all') return true;
+        const tags = (ev.dataset.tags || '').split(/\s+/).filter(Boolean);
+        return tags.includes(currentFilter);
+    };
+
+    const rebuildList = () => {
+        list.replaceChildren(...visibleEvents.map((ev, i) => {
+            const time  = ev.querySelector('.timeline-date')?.textContent || '';
+            const title = ev.querySelector('h3')?.textContent || '';
+            const btn = el('button', { type: 'button', class: 'journey-mobile-item', role: 'option' }, [
+                el('span', { class: 'journey-mobile-item-date' }, time),
+                el('span', { class: 'journey-mobile-item-title' }, title),
+            ]);
+            btn.addEventListener('click', () => { setActive(i); closeList(); });
+            return el('li', {}, btn);
+        }));
+    };
+
+    const setActive = (i) => {
+        allEvents.forEach(e => e.classList.remove('active'));
+        if (!visibleEvents.length) {
+            labelBtn.textContent = '—';
+            return;
+        }
+        idx = (i + visibleEvents.length) % visibleEvents.length;
+        visibleEvents[idx].classList.add('active');
+        labelBtn.textContent = visibleEvents[idx].querySelector('.timeline-date')?.textContent || '';
+        const items = Array.from(list.querySelectorAll('.journey-mobile-item'));
+        items.forEach((it, j) => it.setAttribute('aria-selected', j === idx ? 'true' : 'false'));
+    };
+
+    const applyFilter = (key) => {
+        currentFilter = key;
+        journey.dataset.filter = key;
+        filterBtns.forEach(b => {
+            const active = b.dataset.filter === key;
+            b.classList.toggle('active', active);
+            b.setAttribute('aria-pressed', active ? 'true' : 'false');
+        });
+        visibleEvents = allEvents.filter(matchesFilter);
+        rebuildList();
+        setActive(0);
+    };
+
+    const closeList = () => {
+        open = false;
+        list.hidden = true;
+        labelBtn.setAttribute('aria-expanded', 'false');
+        nav.classList.remove('is-open');
+    };
+    const openList = () => {
+        if (!visibleEvents.length) return;
+        open = true;
+        list.hidden = false;
+        labelBtn.setAttribute('aria-expanded', 'true');
+        nav.classList.add('is-open');
+        const items = Array.from(list.querySelectorAll('.journey-mobile-item'));
+        const current = items[idx];
+        if (current) current.scrollIntoView({ block: 'nearest' });
+    };
+
+    filterBtns.forEach(b => b.addEventListener('click', () => applyFilter(b.dataset.filter)));
+    prevBtn.addEventListener('click', () => setActive(idx - 1));
+    nextBtn.addEventListener('click', () => setActive(idx + 1));
+    labelBtn.addEventListener('click', (e) => { e.stopPropagation(); open ? closeList() : openList(); });
+    document.addEventListener('click', (e) => { if (open && !nav.contains(e.target)) closeList(); });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && open) closeList(); });
+
+    applyFilter('all');
 }
 
 // ── Orchestrate ───────────────────────────────────────────────────────────
@@ -678,5 +783,5 @@ function initJourneyJump() {
     await Promise.all([renderPosts(), renderWork(), renderJourney(), renderPost()]);
     initCarousels();
     initArticleSearch();
-    initJourneyJump();
+    initJourneyInteractions();
 })();
