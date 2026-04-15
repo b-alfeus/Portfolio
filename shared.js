@@ -61,7 +61,7 @@ const translations = {
         'nav.posts':       'posts',
         'nav.contact':     'contact',
         'hero.title':      'Bryan Widjaya',
-        'hero.subtitle':   'Interdisciplinary designer based in Jakarta. I work across product, brand, and the spaces in between.',
+        'hero.subtitle.rest': 'designer based in Jakarta. I work across product, brand, and the spaces in between.',
         'btn.default':     'Get in Touch',
         'btn.email':       'Email Me',
         'journey.heading': 'Journey',
@@ -95,7 +95,7 @@ const translations = {
         'nav.posts':       'Tulisan',
         'nav.contact':     'Kontak',
         'hero.title':      'Bryan Widjaya',
-        'hero.subtitle':   'Desainer interdisiplin berbasis di Jakarta. Saya bekerja di bidang produk, identitas merek, dan ruang di antaranya.',
+        'hero.subtitle.rest': 'designer — berbasis di Jakarta, bekerja di bidang produk, merek, dan ruang di antaranya.',
         'btn.default':     'Hubungi Saya',
         'btn.email':       'Kirim Email',
         'journey.heading': 'Perjalanan',
@@ -129,7 +129,7 @@ const translations = {
         'nav.posts':       '投稿',
         'nav.contact':     '連絡',
         'hero.title':      'Bryan Widjaya',
-        'hero.subtitle':   'ジャカルタを拠点とする学際的デザイナー。プロダクト、ブランド、そしてその間にある領域で活動しています。',
+        'hero.subtitle.rest': 'デザイナー。ジャカルタを拠点に、プロダクト、ブランド、そしてその間にある領域で活動しています。',
         'btn.default':     'お問い合わせ',
         'btn.email':       'メールを送る',
         'journey.heading': '歩み',
@@ -163,7 +163,7 @@ const translations = {
         'nav.posts':       'Beiträge',
         'nav.contact':     'Kontakt',
         'hero.title':      'Bryan Widjaya',
-        'hero.subtitle':   'Interdisziplinärer Designer in Jakarta. Ich arbeite an Produkten, Markenidentitäten und dem, was dazwischen liegt.',
+        'hero.subtitle.rest': 'Designer in Jakarta. Ich arbeite an Produkten, Markenidentitäten und dem, was dazwischen liegt.',
         'btn.default':     'Kontakt aufnehmen',
         'btn.email':       'E-Mail schreiben',
         'journey.heading': 'Werdegang',
@@ -262,6 +262,39 @@ if (locationEl) {
     };
     updateLocation();
     setInterval(updateLocation, 1000);
+}
+
+// Hero subtitle — typing/erasing loop on the leading descriptor
+const cycleEl = document.querySelector('.hero-cycle');
+if (cycleEl) {
+    const words = ['Interdisciplinary', 'Human', 'Product', 'Service', 'Graphic', 'Brand'];
+    const TYPE_MS = 90, ERASE_MS = 45, HOLD_MS = 1400, PAUSE_MS = 300;
+    let wi = 0, ci = 0, deleting = false;
+
+    const tick = () => {
+        const w = words[wi];
+        if (!deleting) {
+            ci++;
+            cycleEl.textContent = w.slice(0, ci);
+            if (ci === w.length) {
+                deleting = true;
+                setTimeout(tick, HOLD_MS);
+                return;
+            }
+            setTimeout(tick, TYPE_MS);
+        } else {
+            ci--;
+            cycleEl.textContent = w.slice(0, ci);
+            if (ci === 0) {
+                deleting = false;
+                wi = (wi + 1) % words.length;
+                setTimeout(tick, PAUSE_MS);
+                return;
+            }
+            setTimeout(tick, ERASE_MS);
+        }
+    };
+    tick();
 }
 
 // Button hover — mouseenter/mouseleave avoids flicker from layout shift on resize
