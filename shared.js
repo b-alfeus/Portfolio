@@ -61,7 +61,8 @@ const translations = {
         'nav.posts':       'posts',
         'nav.contact':     'contact',
         'hero.title':      'Bryan Widjaya',
-        'hero.subtitle.rest': 'Designer based in Jakarta. I work across product, brand, and the spaces in between.',
+        'hero.subtitle.sr':   'Designer',
+        'hero.subtitle.rest': ' based in Jakarta. I work across product, brand, and the spaces in between.',
         'btn.default':     'Get in Touch',
         'btn.email':       'Email Me',
         'journey.heading': 'Journey',
@@ -87,6 +88,9 @@ const translations = {
         'hero.interest.arsenal':  'arsenal fc',
         'hero.interest.pop-cult': 'pop cultures',
         'back-to-top':            'Back to top',
+        'post.back':              '← Back to Posts',
+        'bmc.label':              'Buy me a coffee',
+        'bmc.tooltip':            'Enjoyed this? Fuel the next one.',
     },
     id: {
         'nav.about':       'Tentang',
@@ -95,7 +99,8 @@ const translations = {
         'nav.posts':       'Tulisan',
         'nav.contact':     'Kontak',
         'hero.title':      'Bryan Widjaya',
-        'hero.subtitle.rest': 'Desainer — berbasis di Jakarta, bekerja di bidang produk, merek, dan ruang di antaranya.',
+        'hero.subtitle.sr':   'Desainer',
+        'hero.subtitle.rest': ' — berbasis di Jakarta, bekerja di bidang produk, merek, dan ruang di antaranya.',
         'btn.default':     'Hubungi Saya',
         'btn.email':       'Kirim Email',
         'journey.heading': 'Perjalanan',
@@ -121,6 +126,9 @@ const translations = {
         'hero.interest.arsenal':  'arsenal fc',
         'hero.interest.pop-cult': 'budaya pop',
         'back-to-top':            'Kembali ke atas',
+        'post.back':              '← Kembali ke Tulisan',
+        'bmc.label':              'Traktir saya kopi',
+        'bmc.tooltip':            'Suka tulisan ini? Dukung tulisan berikutnya.',
     },
     jp: {
         'nav.about':       'について',
@@ -129,7 +137,8 @@ const translations = {
         'nav.posts':       '投稿',
         'nav.contact':     '連絡',
         'hero.title':      'Bryan Widjaya',
-        'hero.subtitle.rest': 'デザイナー。ジャカルタを拠点に、プロダクト、ブランド、そしてその間にある領域で活動しています。',
+        'hero.subtitle.sr':   'デザイナー',
+        'hero.subtitle.rest': '。ジャカルタを拠点に、プロダクト、ブランド、そしてその間にある領域で活動しています。',
         'btn.default':     'お問い合わせ',
         'btn.email':       'メールを送る',
         'journey.heading': '歩み',
@@ -155,6 +164,9 @@ const translations = {
         'hero.interest.arsenal':  'アーセナルFC',
         'hero.interest.pop-cult': 'ポップカルチャー',
         'back-to-top':            'トップへ戻る',
+        'post.back':              '← 投稿へ戻る',
+        'bmc.label':              'コーヒーをおごる',
+        'bmc.tooltip':            '気に入ったら、次の一杯のきっかけに。',
     },
     de: {
         'nav.about':       'Über',
@@ -163,7 +175,8 @@ const translations = {
         'nav.posts':       'Beiträge',
         'nav.contact':     'Kontakt',
         'hero.title':      'Bryan Widjaya',
-        'hero.subtitle.rest': 'Designer in Jakarta. Ich arbeite an Produkten, Markenidentitäten und dem, was dazwischen liegt.',
+        'hero.subtitle.sr':   'Designer',
+        'hero.subtitle.rest': ' in Jakarta. Ich arbeite an Produkten, Markenidentitäten und dem, was dazwischen liegt.',
         'btn.default':     'Kontakt aufnehmen',
         'btn.email':       'E-Mail schreiben',
         'journey.heading': 'Werdegang',
@@ -189,6 +202,9 @@ const translations = {
         'hero.interest.arsenal':  'Arsenal FC',
         'hero.interest.pop-cult': 'Popkultur',
         'back-to-top':            'Zurück nach oben',
+        'post.back':              '← Zurück zu den Beiträgen',
+        'bmc.label':              'Spendier mir einen Kaffee',
+        'bmc.tooltip':            'Hat dir gefallen? Finanzier den nächsten Beitrag mit.',
     }
 };
 
@@ -267,7 +283,7 @@ if (locationEl) {
 // Hero subtitle — typing/erasing loop on the leading descriptor
 const cycleEl = document.querySelector('.hero-cycle');
 if (cycleEl) {
-    const words = ['Interdisciplinary', 'Human', 'Product', 'Service', 'Graphic', 'Brand'];
+    const words = ['Interdisciplinary Designer', 'Human Designer', 'Interaction Designer', 'Product Designer', 'Service Designer', 'Graphic Designer', 'Brand Designer', 'Design Engineer'];
     const TYPE_MS = 90, ERASE_MS = 45, HOLD_MS = 1400, PAUSE_MS = 300;
     let wi = 0, ci = 0, deleting = false;
 
@@ -329,6 +345,9 @@ const el = (tag, props = {}, children = []) => {
     return node;
 };
 
+const postHref = (p) =>
+    p.slug ? `post.html?slug=${encodeURIComponent(p.slug)}` : (p.link || '#');
+
 const thumbStyle = (item) => {
     const s = {};
     if (item.background) s.backgroundColor = item.background;
@@ -359,7 +378,7 @@ async function renderPosts() {
         featuredTrack.replaceChildren(
             ...posts.filter(p => p.featured).map(p =>
                 el('a', {
-                    href: p.link || '#',
+                    href: postHref(p),
                     class: 'article-featured-card carousel-slide',
                 }, [
                     el('div', { class: 'article-featured-thumb', style: thumbStyle(p) }),
@@ -385,7 +404,7 @@ async function renderPosts() {
             }, [
                 el('time', { class: 'article-date' }, p.dateDisplay || ''),
                 el('div', { class: 'article-details' }, [
-                    el('h3', {}, el('a', { href: p.link || '#' }, p.title)),
+                    el('h3', {}, el('a', { href: postHref(p) }, p.title)),
                     el('p', {}, p.excerpt || ''),
                     (p.tags && p.tags.length)
                         ? el('ul', { class: 'article-tags' }, p.tags.map(t => el('li', {}, `#${t}`)))
@@ -457,6 +476,76 @@ async function renderJourney() {
             ])
         )
     );
+}
+
+async function renderPost() {
+    const root = document.querySelector('[data-post]');
+    if (!root) return;
+
+    const posts = await loadJSON('data/posts.json');
+    if (!posts) return;
+
+    const slug = new URLSearchParams(location.search).get('slug');
+    const idx = posts.findIndex(p => p.slug === slug);
+    const post = idx >= 0 ? posts[idx] : null;
+
+    const titleEl = document.getElementById('postTitle');
+    const metaEl  = document.getElementById('postMeta');
+    const ledeEl  = document.getElementById('postLede');
+    const tagsEl  = document.getElementById('postTags');
+    const coverEl = document.getElementById('postCover');
+    const bodyEl  = document.getElementById('postBody');
+    const prevEl  = document.getElementById('postPrev');
+    const nextEl  = document.getElementById('postNext');
+
+    if (!post) {
+        titleEl.textContent = 'Post not found';
+        ledeEl.textContent = 'The post you are looking for does not exist.';
+        coverEl.remove();
+        tagsEl.remove();
+        return;
+    }
+
+    document.title = `${post.title} — Bryan Widjaya`;
+    titleEl.textContent = post.title;
+    metaEl.textContent  = post.dateDisplay || '';
+    ledeEl.textContent  = post.excerpt || '';
+
+    if (post.background) coverEl.style.backgroundColor = post.background;
+    if (post.thumbnail)  coverEl.style.backgroundImage = `url("${post.thumbnail}")`;
+    if (!post.background && !post.thumbnail) coverEl.remove();
+
+    if (post.tags && post.tags.length) {
+        tagsEl.replaceChildren(...post.tags.map(t => el('li', {}, `#${t}`)));
+    } else {
+        tagsEl.remove();
+    }
+
+    const blocks = (post.body && post.body.length)
+        ? post.body
+        : [{ type: 'p', text: 'Full post coming soon.' }];
+
+    bodyEl.replaceChildren(
+        ...blocks.map(b => {
+            if (b.type === 'h2')    return el('h2', {}, b.text);
+            if (b.type === 'quote') return el('blockquote', {}, el('p', {}, b.text));
+            if (b.type === 'ul')    return el('ul', {}, (b.items || []).map(i => el('li', {}, i)));
+            return el('p', {}, b.text);
+        })
+    );
+
+    const prev = idx > 0 ? posts[idx - 1] : null;
+    const next = idx < posts.length - 1 ? posts[idx + 1] : null;
+    if (prev) {
+        prevEl.href = postHref(prev);
+        prevEl.textContent = `← ${prev.title}`;
+        prevEl.hidden = false;
+    }
+    if (next) {
+        nextEl.href = postHref(next);
+        nextEl.textContent = `${next.title} →`;
+        nextEl.hidden = false;
+    }
 }
 
 // ── Post-render initializers ──────────────────────────────────────────────
@@ -573,7 +662,7 @@ function initJourneyJump() {
 // ── Orchestrate ───────────────────────────────────────────────────────────
 
 (async () => {
-    await Promise.all([renderPosts(), renderWork(), renderJourney()]);
+    await Promise.all([renderPosts(), renderWork(), renderJourney(), renderPost()]);
     initCarousels();
     initArticleSearch();
     initJourneyJump();

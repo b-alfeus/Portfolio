@@ -10,7 +10,14 @@
     "tags": ["process", "reflection"],
     "thumbnail": null,
     "background": "#d6d4cf",
-    "link": "#"
+    "link": "#",
+    "body": [
+      { "type": "p", "text": "A brief is a cage that sets you free. When someone else defines the problem, the deadline, and the audience, your job is simply to execute well. Remove those walls and the work becomes something else entirely — a question of taste, of nerve, of knowing when to stop." },
+      { "type": "h2", "text": "The anxiety of the blank page" },
+      { "type": "p", "text": "Self-directed work asks you to be the client, the designer, and the critic all at once. The decisions feel heavier because nothing external justifies them." },
+      { "type": "quote", "text": "Freedom is only freedom if you know what to do with it." },
+      { "type": "p", "text": "What I've learned is that constraints don't disappear — they just move inside you. Your own taste, your own attention span, your own fear of being boring. The brief is still there. It's just written in a different hand." }
+    ]
   },
   {
     "id": "seed-2",
@@ -23,7 +30,13 @@
     "tags": ["interfaces", "restraint"],
     "thumbnail": null,
     "background": "#c9c7c2",
-    "link": "#"
+    "link": "#",
+    "body": [
+      { "type": "p", "text": "The best tools are the ones you stop noticing. A good pen disappears into the sentence. A good editor disappears into the code. An interface that keeps reminding you it exists is an interface that hasn't finished its job." },
+      { "type": "h2", "text": "Restraint is a verb" },
+      { "type": "p", "text": "Quiet design isn't minimalism as a style. It's the long, unglamorous work of removing everything that doesn't earn its place — and then removing a little more." },
+      { "type": "p", "text": "Attention is the scarcest resource on the screen. Every pixel that competes for it is a pixel taken from the work the person actually came to do." }
+    ]
   },
   {
     "id": "seed-3",
@@ -36,7 +49,13 @@
     "tags": ["product", "decisions"],
     "thumbnail": null,
     "background": "#bdbab4",
-    "link": "#"
+    "link": "#",
+    "body": [
+      { "type": "p", "text": "Most people never change the defaults. They inherit them, live with them, and eventually confuse them for reality. Which makes the default screen the most consequential screen in any product." },
+      { "type": "h2", "text": "Invisible authorship" },
+      { "type": "p", "text": "Every checkbox, every sort order, every pre-selected value carries an argument inside it. Ship it and you ship the argument — to everyone, forever, unless they notice." },
+      { "type": "p", "text": "Choosing defaults well is one of the quietest acts of authorship in design. Done carelessly, it shapes behavior at a scale you will never be held accountable for. Done thoughtfully, it's a gift." }
+    ]
   },
   {
     "id": "seed-4",
@@ -49,7 +68,11 @@
     "tags": ["tools", "process", "software"],
     "thumbnail": null,
     "background": null,
-    "link": "#"
+    "link": "#",
+    "body": [
+      { "type": "p", "text": "You can tell which tool someone learned first by looking at what they make. The grid of Figma, the layers of Photoshop, the nodes of a 3D editor — each one leaves fingerprints on the work." },
+      { "type": "p", "text": "This isn't a bad thing. But it's worth noticing. The tool is never neutral, and the further it fades into the background, the more it steers." }
+    ]
   },
   {
     "id": "seed-5",
@@ -62,7 +85,11 @@
     "tags": ["clarity", "visual", "reduction"],
     "thumbnail": null,
     "background": null,
-    "link": "#"
+    "link": "#",
+    "body": [
+      { "type": "p", "text": "Clarity isn't simplicity. Simple things can be confusing and complex things can be clear. Clarity is the property of a design where every element carries its own weight and nothing fights for the same job." },
+      { "type": "p", "text": "You get there by subtraction. Ship a draft, remove one thing, ship again. If the draft still works, that thing wasn't load-bearing." }
+    ]
   },
   {
     "id": "seed-6",
@@ -75,6 +102,10 @@
     "tags": ["empathy", "research", "users"],
     "thumbnail": null,
     "background": null,
-    "link": "#"
+    "link": "#",
+    "body": [
+      { "type": "p", "text": "The further the product scales, the further I am from the person using it. At some point the feedback loop gets long enough that I am designing for a statistical abstraction — a median user who doesn't quite exist." },
+      { "type": "p", "text": "Research closes some of that gap. It never closes all of it. The honest thing is to admit the distance and keep designing anyway, with as much care as the distance allows." }
+    ]
   }
 ]
