@@ -1107,6 +1107,10 @@ img {
         padding: 48px 0 64px;
     }
 
+    .hero-subtitle {
+        min-height: calc(1.7em * 4);
+    }
+
     .work-grid {
         grid-template-columns: 1fr;
         gap: 32px;
