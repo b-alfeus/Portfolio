@@ -1251,6 +1251,10 @@ img {
 }
 
 /* Typing/erasing loop on the hero subtitle's leading descriptor */
+.hero-subtitle {
+    min-height: calc(1.7em * 3);
+}
+
 .hero-cycle {
     color: var(--color-accent);
 }
