@@ -16,19 +16,28 @@ if (headerEl && navEl) {
     btn.innerHTML = '<svg class="icon-menu" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/></svg><svg class="icon-close" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="6" y1="6" x2="18" y2="18"/><line x1="6" y1="18" x2="18" y2="6"/></svg>';
     headerEl.insertBefore(btn, navEl);
 
-    const closeNav = () => {
-        headerEl.classList.remove('nav-open');
-        btn.setAttribute('aria-expanded', 'false');
+    const label = document.createElement('p');
+    label.className = 'nav-label';
+    label.setAttribute('data-i18n', 'nav.menu');
+    label.textContent = 'Navigation';
+    navEl.insertBefore(label, navEl.firstChild);
+
+    const backdrop = document.createElement('div');
+    backdrop.className = 'nav-backdrop';
+    headerEl.appendChild(backdrop);
+
+    const setOpen = (open) => {
+        headerEl.classList.toggle('nav-open', open);
+        document.body.classList.toggle('nav-locked', open);
+        btn.setAttribute('aria-expanded', open ? 'true' : 'false');
     };
+    const closeNav = () => setOpen(false);
     btn.addEventListener('click', (e) => {
         e.stopPropagation();
-        const open = headerEl.classList.toggle('nav-open');
-        btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+        setOpen(!headerEl.classList.contains('nav-open'));
     });
+    backdrop.addEventListener('click', closeNav);
     navEl.querySelectorAll('a').forEach(a => a.addEventListener('click', closeNav));
-    document.addEventListener('click', (e) => {
-        if (headerEl.classList.contains('nav-open') && !headerEl.contains(e.target)) closeNav();
-    });
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape') closeNav();
     });
@@ -60,6 +69,7 @@ const translations = {
         'nav.work':        'work',
         'nav.posts':       'posts',
         'nav.contact':     'contact',
+        'nav.menu':        'Navigation',
         'hero.title':      'Bryan Widjaya',
         'hero.subtitle.sr':   'Designer',
         'hero.subtitle.rest': ' based in Jakarta. I work across product, brand, and the spaces in between.',
@@ -98,6 +108,7 @@ const translations = {
         'nav.work':        'Karya',
         'nav.posts':       'Tulisan',
         'nav.contact':     'Kontak',
+        'nav.menu':        'Navigasi',
         'hero.title':      'Bryan Widjaya',
         'hero.subtitle.sr':   'Desainer',
         'hero.subtitle.rest': ' — berbasis di Jakarta, bekerja di bidang produk, merek, dan ruang di antaranya.',
@@ -136,6 +147,7 @@ const translations = {
         'nav.work':        '仕事',
         'nav.posts':       '投稿',
         'nav.contact':     '連絡',
+        'nav.menu':        'ナビゲーション',
         'hero.title':      'Bryan Widjaya',
         'hero.subtitle.sr':   'デザイナー',
         'hero.subtitle.rest': '。ジャカルタを拠点に、プロダクト、ブランド、そしてその間にある領域で活動しています。',
@@ -174,6 +186,7 @@ const translations = {
         'nav.work':        'Arbeiten',
         'nav.posts':       'Beiträge',
         'nav.contact':     'Kontakt',
+        'nav.menu':        'Navigation',
         'hero.title':      'Bryan Widjaya',
         'hero.subtitle.sr':   'Designer',
         'hero.subtitle.rest': ' in Jakarta. Ich arbeite an Produkten, Markenidentitäten und dem, was dazwischen liegt.',
