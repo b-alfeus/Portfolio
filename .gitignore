@@ -8,3 +8,6 @@ Thumbs.db
 .env
 .env.*
 !.env.example
+
+# Local font source files (fonts are embedded as base64 in styles.css)
+assets/fonts/

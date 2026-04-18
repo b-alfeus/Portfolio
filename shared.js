@@ -13,14 +13,8 @@ if (headerEl && navEl) {
     btn.className = 'nav-toggle';
     btn.setAttribute('aria-label', 'Toggle menu');
     btn.setAttribute('aria-expanded', 'false');
-    btn.innerHTML = '<svg class="icon-menu" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/></svg><svg class="icon-close" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="6" y1="6" x2="18" y2="18"/><line x1="6" y1="18" x2="18" y2="6"/></svg>';
+    btn.innerHTML = '<svg class="icon-menu" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 8 7 12 3 16"/><line x1="21" y1="12" x2="11" y2="12"/><line x1="21" y1="6" x2="11" y2="6"/><line x1="21" y1="18" x2="11" y2="18"/></svg><svg class="icon-close" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="7 8 3 12 7 16"/><line x1="21" y1="12" x2="11" y2="12"/><line x1="21" y1="6" x2="11" y2="6"/><line x1="21" y1="18" x2="11" y2="18"/></svg>';
     headerEl.insertBefore(btn, navEl);
-
-    const label = document.createElement('p');
-    label.className = 'nav-label';
-    label.setAttribute('data-i18n', 'nav.menu');
-    label.textContent = 'Navigation';
-    navEl.insertBefore(label, navEl.firstChild);
 
     const backdrop = document.createElement('div');
     backdrop.className = 'nav-backdrop';
@@ -69,10 +63,9 @@ const translations = {
         'nav.work':        'work',
         'nav.posts':       'posts',
         'nav.contact':     'contact',
-        'nav.menu':        'Navigation',
         'hero.title':      'Bryan Widjaya',
         'hero.subtitle.sr':   'Designer',
-        'hero.subtitle.rest': ' based in Jakarta. I work across product, brand, and the spaces in between.',
+        'hero.subtitle.rest': ' based in Jakarta. I work across brand, services, products and the spaces in between.',
         'btn.default':     'Get in Touch',
         'btn.email':       'Email Me',
         'journey.heading': 'Journey',
@@ -110,10 +103,9 @@ const translations = {
         'nav.work':        'Karya',
         'nav.posts':       'Tulisan',
         'nav.contact':     'Kontak',
-        'nav.menu':        'Navigasi',
         'hero.title':      'Bryan Widjaya',
         'hero.subtitle.sr':   'Desainer',
-        'hero.subtitle.rest': ' — berbasis di Jakarta, bekerja di bidang produk, merek, dan ruang di antaranya.',
+        'hero.subtitle.rest': ' — berbasis di Jakarta, bekerja di bidang merek, layanan, produk, dan ruang di antaranya.',
         'btn.default':     'Hubungi Saya',
         'btn.email':       'Kirim Email',
         'journey.heading': 'Perjalanan',
@@ -151,10 +143,9 @@ const translations = {
         'nav.work':        '仕事',
         'nav.posts':       '投稿',
         'nav.contact':     '連絡',
-        'nav.menu':        'ナビゲーション',
         'hero.title':      'Bryan Widjaya',
         'hero.subtitle.sr':   'デザイナー',
-        'hero.subtitle.rest': '。ジャカルタを拠点に、プロダクト、ブランド、そしてその間にある領域で活動しています。',
+        'hero.subtitle.rest': '。ジャカルタを拠点に、ブランド、サービス、プロダクト、そしてその間にある領域で活動しています。',
         'btn.default':     'お問い合わせ',
         'btn.email':       'メールを送る',
         'journey.heading': '歩み',
@@ -192,10 +183,9 @@ const translations = {
         'nav.work':        'Arbeiten',
         'nav.posts':       'Beiträge',
         'nav.contact':     'Kontakt',
-        'nav.menu':        'Navigation',
         'hero.title':      'Bryan Widjaya',
         'hero.subtitle.sr':   'Designer',
-        'hero.subtitle.rest': ' in Jakarta. Ich arbeite an Produkten, Markenidentitäten und dem, was dazwischen liegt.',
+        'hero.subtitle.rest': ' in Jakarta. Ich arbeite an Marken, Services, Produkten und dem, was dazwischen liegt.',
         'btn.default':     'Kontakt aufnehmen',
         'btn.email':       'E-Mail schreiben',
         'journey.heading': 'Werdegang',
