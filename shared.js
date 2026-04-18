@@ -77,7 +77,7 @@ const translations = {
         'btn.email':       'Email Me',
         'journey.heading': 'Journey',
         'journey.intro':   'A record of where I\'ve been — the milestones, pivots, and moments that shaped the work.',
-        'filter.all':         'Everything',
+        'filter.all':         'All',
         'filter.career':      'Career',
         'filter.achievement': 'Achievement',
         'work.heading':    'Work',
@@ -90,7 +90,6 @@ const translations = {
         'article.empty':               'No posts match your search.',
         'contact.heading': 'Contact',
         'contact.intro':   'Open to projects, collaborations, and conversations.',
-        'footer.rights':          'All rights reserved.',
         'hero.list.interests':    'interests',
         'hero.list.tools':        'tools',
         'hero.interest.coffee':   'good coffees',
@@ -132,7 +131,6 @@ const translations = {
         'article.empty':               'Tidak ada tulisan yang cocok.',
         'contact.heading': 'Kontak',
         'contact.intro':   'Terbuka untuk proyek, kolaborasi, dan percakapan.',
-        'footer.rights':          'Hak cipta dilindungi.',
         'hero.list.interests':    'minat',
         'hero.list.tools':        'alat',
         'hero.interest.coffee':   'kopi enak',
@@ -174,7 +172,6 @@ const translations = {
         'article.empty':               '一致する投稿はありません。',
         'contact.heading': '連絡',
         'contact.intro':   'プロジェクト、コラボレーション、対話のご相談をお待ちしています。',
-        'footer.rights':          '無断複製・転載を禁じます。',
         'hero.list.interests':    '興味',
         'hero.list.tools':        'ツール',
         'hero.interest.coffee':   '美味しいコーヒー',
@@ -216,7 +213,6 @@ const translations = {
         'article.empty':               'Keine Beiträge gefunden.',
         'contact.heading': 'Kontakt',
         'contact.intro':   'Offen für Projekte, Kooperationen und Gespräche.',
-        'footer.rights':          'Alle Rechte vorbehalten.',
         'hero.list.interests':    'interessen',
         'hero.list.tools':        'werkzeuge',
         'hero.interest.coffee':   'guter Kaffee',
@@ -270,9 +266,6 @@ if (locationEl) {
         return offset.replace(/GMT([+-])0?(\d+)(?::00)?/, 'GMT$1$2');
     };
 
-    const bmoEl = document.getElementById('bmo');
-    let bmoState = null; // track current state to avoid unnecessary src swaps
-
     const updateLocation = () => {
         const now = new Date();
         const time = now.toLocaleTimeString('en-GB', {
@@ -283,23 +276,6 @@ if (locationEl) {
             hour12: false
         });
         locationEl.textContent = `${LOCATION.city}, ${LOCATION.countryCode} ${getGmtOffset()} ${time}`;
-
-        // BMO state: awake 07:00–17:00, sleeping otherwise
-        if (bmoEl) {
-            const hour = parseInt(now.toLocaleString('en-GB', {
-                timeZone: LOCATION.timezone,
-                hour: '2-digit',
-                hour12: false
-            }), 10);
-            const awake = hour >= 7 && hour < 17;
-            const next = awake ? 'awake' : 'sleep';
-            if (next !== bmoState) {
-                bmoEl.src = `assets/bmo-${next}.gif`;
-                bmoEl.width = awake ? 21 : 23;
-                bmoEl.height = awake ? 28 : 23;
-                bmoState = next;
-            }
-        }
     };
     updateLocation();
     setInterval(updateLocation, 1000);
@@ -673,7 +649,7 @@ function initJourneyInteractions() {
 
     // ── Filter bar ───────────────────────────────────────────────────────
     const filters = [
-        { key: 'all',         i18n: 'filter.all',         label: 'Everything' },
+        { key: 'all',         i18n: 'filter.all',         label: 'All' },
         { key: 'work',        i18n: 'filter.career',      label: 'Career' },
         { key: 'achievement', i18n: 'filter.achievement', label: 'Achievement' },
     ];
