@@ -1306,6 +1306,17 @@ img {
         background-color: var(--color-border);
     }
 
+    /* Kill sticky :visited / tap-highlight on mobile for nav links and toggles */
+    .nav a,
+    .nav-toggle,
+    .theme-toggle {
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    .nav a:visited { color: var(--color-text-secondary); }
+    .nav a.active,
+    .nav a.active:visited { color: var(--color-text); }
+
     .hero {
         padding: 0 0 32px;
     }

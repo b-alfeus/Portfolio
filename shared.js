@@ -85,6 +85,7 @@ const translations = {
         'contact.intro':   'Open to projects, collaborations, and conversations.',
         'hero.list.interests':    'interests',
         'hero.list.tools':        'tools',
+        'hero.interest.polymath': 'being polymath & polyglot',
         'hero.interest.coffee':   'good coffees',
         'hero.interest.food':     'comforting foods',
         'hero.interest.banter':   'witty banters',
@@ -96,6 +97,7 @@ const translations = {
         'post.back':              '← Back to Posts',
         'bmc.label':              'Buy me a coffee',
         'bmc.tooltip':            'Enjoyed this? Fuel the next one.',
+        'footer.typeface':        '&copy; 2026. Typeface using <a href="https://usgraphics.com/products/berkeley-mono" target="_blank" rel="noopener noreferrer">Berkeley Mono</a> by <a href="https://usgraphics.com" target="_blank" rel="noopener noreferrer">U.S. Graphics</a>',
     },
     id: {
         'nav.about':       'Tentang',
@@ -125,6 +127,7 @@ const translations = {
         'contact.intro':   'Terbuka untuk proyek, kolaborasi, dan percakapan.',
         'hero.list.interests':    'minat',
         'hero.list.tools':        'alat',
+        'hero.interest.polymath': 'menjadi polymath & poliglot',
         'hero.interest.coffee':   'kopi enak',
         'hero.interest.food':     'makanan favorit',
         'hero.interest.banter':   'guyonan ringan',
@@ -136,6 +139,7 @@ const translations = {
         'post.back':              '← Kembali ke Tulisan',
         'bmc.label':              'Traktir saya kopi',
         'bmc.tooltip':            'Suka tulisan ini? Dukung tulisan berikutnya.',
+        'footer.typeface':        '&copy; 2026. Menggunakan huruf <a href="https://usgraphics.com/products/berkeley-mono" target="_blank" rel="noopener noreferrer">Berkeley Mono</a> dari <a href="https://usgraphics.com" target="_blank" rel="noopener noreferrer">U.S. Graphics</a>',
     },
     jp: {
         'nav.about':       'について',
@@ -165,6 +169,7 @@ const translations = {
         'contact.intro':   'プロジェクト、コラボレーション、対話のご相談をお待ちしています。',
         'hero.list.interests':    '興味',
         'hero.list.tools':        'ツール',
+        'hero.interest.polymath': 'ポリマス・ポリグロットであること',
         'hero.interest.coffee':   '美味しいコーヒー',
         'hero.interest.food':     '心温まる料理',
         'hero.interest.banter':   '機知に富んだ会話',
@@ -176,6 +181,7 @@ const translations = {
         'post.back':              '← 投稿へ戻る',
         'bmc.label':              'コーヒーをおごる',
         'bmc.tooltip':            '気に入ったら、次の一杯のきっかけに。',
+        'footer.typeface':        '&copy; 2026. 書体は <a href="https://usgraphics.com" target="_blank" rel="noopener noreferrer">U.S. Graphics</a> の <a href="https://usgraphics.com/products/berkeley-mono" target="_blank" rel="noopener noreferrer">Berkeley Mono</a> を使用',
     },
     de: {
         'nav.about':       'Über',
@@ -205,6 +211,7 @@ const translations = {
         'contact.intro':   'Offen für Projekte, Kooperationen und Gespräche.',
         'hero.list.interests':    'interessen',
         'hero.list.tools':        'werkzeuge',
+        'hero.interest.polymath': 'Polymath & Polyglott sein',
         'hero.interest.coffee':   'guter Kaffee',
         'hero.interest.food':     'Seelenfutter',
         'hero.interest.banter':   'geistreiche Unterhaltungen',
@@ -216,6 +223,7 @@ const translations = {
         'post.back':              '← Zurück zu den Beiträgen',
         'bmc.label':              'Spendier mir einen Kaffee',
         'bmc.tooltip':            'Hat dir gefallen? Finanzier den nächsten Beitrag mit.',
+        'footer.typeface':        '&copy; 2026. Schrift <a href="https://usgraphics.com/products/berkeley-mono" target="_blank" rel="noopener noreferrer">Berkeley Mono</a> von <a href="https://usgraphics.com" target="_blank" rel="noopener noreferrer">U.S. Graphics</a>',
     }
 };
 
@@ -227,6 +235,10 @@ function setLanguage(lang) {
     document.querySelectorAll('[data-i18n]').forEach(el => {
         const key = el.getAttribute('data-i18n');
         if (dict[key]) el.textContent = dict[key];
+    });
+    document.querySelectorAll('[data-i18n-html]').forEach(el => {
+        const key = el.getAttribute('data-i18n-html');
+        if (dict[key]) el.innerHTML = dict[key];
     });
     document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
         const key = el.getAttribute('data-i18n-placeholder');
