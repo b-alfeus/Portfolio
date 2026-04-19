@@ -13,7 +13,7 @@ if (headerEl && navEl) {
     btn.className = 'nav-toggle';
     btn.setAttribute('aria-label', 'Toggle menu');
     btn.setAttribute('aria-expanded', 'false');
-    btn.innerHTML = '<svg class="icon-menu" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 8 7 12 3 16"/><line x1="21" y1="12" x2="11" y2="12"/><line x1="21" y1="6" x2="11" y2="6"/><line x1="21" y1="18" x2="11" y2="18"/></svg><svg class="icon-close" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="7 8 3 12 7 16"/><line x1="21" y1="12" x2="11" y2="12"/><line x1="21" y1="6" x2="11" y2="6"/><line x1="21" y1="18" x2="11" y2="18"/></svg>';
+    btn.innerHTML = '<svg class="icon-menu" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 8 7 12 3 16"/><line x1="21" y1="12" x2="11" y2="12"/><line x1="21" y1="6" x2="11" y2="6"/><line x1="21" y1="18" x2="11" y2="18"/></svg><svg class="icon-close" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="7 8 3 12 7 16"/><line x1="21" y1="12" x2="11" y2="12"/><line x1="21" y1="6" x2="11" y2="6"/><line x1="21" y1="18" x2="11" y2="18"/></svg>';
     headerEl.insertBefore(btn, navEl);
 
     const backdrop = document.createElement('div');
@@ -48,12 +48,14 @@ if (savedTheme) {
     html.setAttribute('data-theme', 'dark');
 }
 
-toggle.addEventListener('click', () => {
-    const current = html.getAttribute('data-theme');
-    const next = current === 'dark' ? 'light' : 'dark';
-    html.setAttribute('data-theme', next);
-    localStorage.setItem('theme', next);
-});
+if (toggle) {
+    toggle.addEventListener('click', () => {
+        const current = html.getAttribute('data-theme');
+        const next = current === 'dark' ? 'light' : 'dark';
+        html.setAttribute('data-theme', next);
+        localStorage.setItem('theme', next);
+    });
+}
 
 // Translations
 const translations = {
@@ -96,7 +98,7 @@ const translations = {
         'back-to-top':            'Back to top',
         'post.back':              '← Back to Posts',
         'bmc.label':              'Buy me a coffee',
-        'bmc.tooltip':            'Enjoyed this? Fuel the next one.',
+        'bmc.tooltip':            'Fuel my next content?',
         'footer.typeface':        '&copy; 2026. Typeface using <a href="https://usgraphics.com/products/berkeley-mono" target="_blank" rel="noopener noreferrer">Berkeley Mono</a> by <a href="https://usgraphics.com" target="_blank" rel="noopener noreferrer">U.S. Graphics</a>',
     },
     id: {
@@ -138,7 +140,7 @@ const translations = {
         'back-to-top':            'Kembali ke atas',
         'post.back':              '← Kembali ke Tulisan',
         'bmc.label':              'Traktir saya kopi',
-        'bmc.tooltip':            'Suka tulisan ini? Dukung tulisan berikutnya.',
+        'bmc.tooltip':            'Dukung konten berikutnya?',
         'footer.typeface':        '&copy; 2026. Menggunakan huruf <a href="https://usgraphics.com/products/berkeley-mono" target="_blank" rel="noopener noreferrer">Berkeley Mono</a> dari <a href="https://usgraphics.com" target="_blank" rel="noopener noreferrer">U.S. Graphics</a>',
     },
     jp: {
@@ -180,7 +182,7 @@ const translations = {
         'back-to-top':            'トップへ戻る',
         'post.back':              '← 投稿へ戻る',
         'bmc.label':              'コーヒーをおごる',
-        'bmc.tooltip':            '気に入ったら、次の一杯のきっかけに。',
+        'bmc.tooltip':            '次のコンテンツを応援しますか？',
         'footer.typeface':        '&copy; 2026. 書体は <a href="https://usgraphics.com" target="_blank" rel="noopener noreferrer">U.S. Graphics</a> の <a href="https://usgraphics.com/products/berkeley-mono" target="_blank" rel="noopener noreferrer">Berkeley Mono</a> を使用',
     },
     de: {
@@ -222,7 +224,7 @@ const translations = {
         'back-to-top':            'Zurück nach oben',
         'post.back':              '← Zurück zu den Beiträgen',
         'bmc.label':              'Spendier mir einen Kaffee',
-        'bmc.tooltip':            'Hat dir gefallen? Finanzier den nächsten Beitrag mit.',
+        'bmc.tooltip':            'Nächsten Beitrag finanzieren?',
         'footer.typeface':        '&copy; 2026. Schrift <a href="https://usgraphics.com/products/berkeley-mono" target="_blank" rel="noopener noreferrer">Berkeley Mono</a> von <a href="https://usgraphics.com" target="_blank" rel="noopener noreferrer">U.S. Graphics</a>',
     }
 };
@@ -244,11 +246,11 @@ function setLanguage(lang) {
         const key = el.getAttribute('data-i18n-placeholder');
         if (dict[key]) el.placeholder = dict[key];
     });
-    langSelect.value = lang;
+    if (langSelect) langSelect.value = lang;
     localStorage.setItem('lang', lang);
 }
 
-langSelect.addEventListener('change', (e) => setLanguage(e.target.value));
+if (langSelect) langSelect.addEventListener('change', (e) => setLanguage(e.target.value));
 
 const savedLang = localStorage.getItem('lang');
 if (savedLang && translations[savedLang]) {

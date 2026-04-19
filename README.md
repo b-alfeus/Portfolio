@@ -1,65 +1,39 @@
-# Svelte library
+# Portfolio
 
-Everything you need to build a Svelte library, powered by [`sv`](https://npmjs.com/package/sv).
+Personal portfolio for Bryan Widjaya — static HTML/CSS/JS with content synced from Notion.
 
-Read more about creating a library [in the docs](https://svelte.dev/docs/kit/packaging).
+## Stack
 
-## Creating a project
+- Plain HTML, CSS, and JavaScript — no build step.
+- Content in `data/*.json`, rendered client-side by `shared.js`.
+- `scripts/sync-notion.mjs` refreshes `data/*.json` from Notion databases.
+- Berkeley Mono is embedded as base64 in `styles.css`; the woff2 sources in `assets/fonts/` are gitignored (paid license).
 
-If you're seeing this, you've probably already done this step. Congrats!
+## Pages
 
-```sh
-# create a new project in the current directory
-npx sv create
+| File | Purpose |
+|------|---------|
+| `index.html`   | About / hero |
+| `journey.html` | Timeline with Life / Career / Achievement filters |
+| `work.html`    | Project grid |
+| `project.html` | Single project template |
+| `article.html` | Post index with featured carousel and search |
+| `post.html`    | Single post, loaded by `?slug=` |
+| `contact.html` | Links |
 
-# create a new project in my-app
-npx sv create my-app
-```
+## Local development
 
-To recreate this project with the same configuration:
-
-```sh
-# recreate this project
-bun x sv@0.15.0 create --template library --types ts --add prettier eslint tailwindcss="plugins:typography,forms" better-auth="demo:password" mdsvex storybook mcp="ide:claude-code,vscode+setup:local" playwright vitest="usages:unit,component" sveltekit-adapter="adapter:vercel" drizzle="database:postgresql+postgresql:postgres.js+docker:yes" paraglide="languageTags:en, id, jp, de-ch+demo:yes" --install bun ./Documents/GitHub/Portfolio
-```
-
-## Developing
-
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+Any static server works. For example:
 
 ```sh
-npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
+npx serve .
 ```
 
-Everything inside `src/lib` is part of your library, everything inside `src/routes` can be used as a showcase or preview app.
-
-## Building
-
-To build your library:
+## Syncing content from Notion
 
 ```sh
-npm pack
+npm install
+NOTION_TOKEN=… NOTION_POSTS_DB=… NOTION_WORK_DB=… NOTION_JOURNEY_DB=… npm run sync
 ```
 
-To create a production version of your showcase app:
-
-```sh
-npm run build
-```
-
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
-
-## Publishing
-
-Go into the `package.json` and give your package the desired name through the `"name"` option. Also consider adding a `"license"` field and point it to a `LICENSE` file which you can create from a template (one popular option is the [MIT license](https://opensource.org/license/mit/)).
-
-To publish your library to [npm](https://www.npmjs.com):
-
-```sh
-npm publish
-```
+Only pages with `Published = true` are synced.
