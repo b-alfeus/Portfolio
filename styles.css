@@ -300,6 +300,23 @@ header.nav-open .nav-toggle .icon-close {
     max-width: 640px;
 }
 
+.hero-title {
+    container-type: inline-size;
+    max-width: 100%;
+    margin: 0;
+}
+
+.ascii-name {
+    display: block;
+    white-space: pre;
+    font-family: inherit;
+    font-weight: 500;
+    line-height: 1.05;
+    letter-spacing: 0;
+    color: var(--color-text);
+    font-size: min(1.2cqi, 10px);
+}
+
 .hero p {
     margin-top: 16px;
     font-size: var(--fs-17);
