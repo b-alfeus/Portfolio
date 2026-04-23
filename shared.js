@@ -97,6 +97,13 @@ const translations = {
         'hero.interest.pop-cult': 'pop cultures',
         'back-to-top':            'Back to top',
         'post.back':              '← Back to Posts',
+        'post.notfound.title':    'Post not found',
+        'post.notfound.body':     'The post you\'re looking for doesn\'t exist — it may have been renamed or moved.',
+        'post.notfound.cta':      'See all posts',
+        'error.404.title':        'Page not found',
+        'error.404.body':         'The page you\'re looking for doesn\'t exist — or has wandered off somewhere.',
+        'error.404.cta':          'Back to Home',
+        'error.load':             'Could not load content. Please try again.',
         'bmc.label':              'Buy me a coffee',
         'bmc.tooltip':            'Fuel my next content?',
         'footer.typeface':        '&copy; 2026. Typeface using <a href="https://usgraphics.com/products/berkeley-mono" target="_blank" rel="noopener noreferrer">Berkeley Mono</a> by <a href="https://usgraphics.com" target="_blank" rel="noopener noreferrer">U.S. Graphics</a>',
@@ -139,6 +146,13 @@ const translations = {
         'hero.interest.pop-cult': 'budaya pop',
         'back-to-top':            'Kembali ke atas',
         'post.back':              '← Kembali ke Tulisan',
+        'post.notfound.title':    'Tulisan tidak ditemukan',
+        'post.notfound.body':     'Tulisan yang kamu cari tidak ada — mungkin sudah dipindahkan atau diganti namanya.',
+        'post.notfound.cta':      'Lihat semua tulisan',
+        'error.404.title':        'Halaman tidak ditemukan',
+        'error.404.body':         'Halaman yang kamu cari tidak ada — atau mungkin tersesat di suatu tempat.',
+        'error.404.cta':          'Kembali ke Beranda',
+        'error.load':             'Tidak bisa memuat konten. Silakan coba lagi.',
         'bmc.label':              'Traktir saya kopi',
         'bmc.tooltip':            'Dukung konten berikutnya?',
         'footer.typeface':        '&copy; 2026. Menggunakan huruf <a href="https://usgraphics.com/products/berkeley-mono" target="_blank" rel="noopener noreferrer">Berkeley Mono</a> dari <a href="https://usgraphics.com" target="_blank" rel="noopener noreferrer">U.S. Graphics</a>',
@@ -181,6 +195,13 @@ const translations = {
         'hero.interest.pop-cult': 'ポップカルチャー',
         'back-to-top':            'トップへ戻る',
         'post.back':              '← 投稿へ戻る',
+        'post.notfound.title':    '投稿が見つかりません',
+        'post.notfound.body':     'お探しの投稿は存在しないようです — 名前が変わったか、移動された可能性があります。',
+        'post.notfound.cta':      'すべての投稿を見る',
+        'error.404.title':        'ページが見つかりません',
+        'error.404.body':         'お探しのページは存在しないか、どこかへ行ってしまったようです。',
+        'error.404.cta':          'ホームへ戻る',
+        'error.load':             'コンテンツを読み込めませんでした。もう一度お試しください。',
         'bmc.label':              'コーヒーをおごる',
         'bmc.tooltip':            '次のコンテンツを応援しますか？',
         'footer.typeface':        '&copy; 2026. 書体は <a href="https://usgraphics.com" target="_blank" rel="noopener noreferrer">U.S. Graphics</a> の <a href="https://usgraphics.com/products/berkeley-mono" target="_blank" rel="noopener noreferrer">Berkeley Mono</a> を使用',
@@ -223,6 +244,13 @@ const translations = {
         'hero.interest.pop-cult': 'Popkultur',
         'back-to-top':            'Zurück nach oben',
         'post.back':              '← Zurück zu den Beiträgen',
+        'post.notfound.title':    'Beitrag nicht gefunden',
+        'post.notfound.body':     'Der gesuchte Beitrag existiert nicht — er wurde womöglich umbenannt oder verschoben.',
+        'post.notfound.cta':      'Alle Beiträge ansehen',
+        'error.404.title':        'Seite nicht gefunden',
+        'error.404.body':         'Die gesuchte Seite existiert nicht — oder ist irgendwo verschwunden.',
+        'error.404.cta':          'Zurück zur Startseite',
+        'error.load':             'Inhalt konnte nicht geladen werden. Bitte erneut versuchen.',
         'bmc.label':              'Spendier mir einen Kaffee',
         'bmc.tooltip':            'Nächsten Beitrag finanzieren?',
         'footer.typeface':        '&copy; 2026. Schrift <a href="https://usgraphics.com/products/berkeley-mono" target="_blank" rel="noopener noreferrer">Berkeley Mono</a> von <a href="https://usgraphics.com" target="_blank" rel="noopener noreferrer">U.S. Graphics</a>',
@@ -231,7 +259,11 @@ const translations = {
 
 const langSelect = document.getElementById('langSelect');
 
+let currentLang = 'en';
+const t = (key) => translations[currentLang]?.[key] ?? translations.en[key] ?? key;
+
 function setLanguage(lang) {
+    currentLang = lang;
     html.setAttribute('lang', lang === 'jp' ? 'ja' : lang);
     const dict = translations[lang] || {};
     document.querySelectorAll('[data-i18n]').forEach(el => {
@@ -371,13 +403,28 @@ async function loadJSON(path) {
     }
 }
 
+function renderContentError(target) {
+    if (!target) return;
+    target.replaceChildren(el('p', { class: 'content-error' }, t('error.load')));
+}
+
 async function renderPosts() {
     const featuredTrack = document.querySelector('.article-featured .carousel-track');
     const listEl = document.querySelector('.article-list');
     if (!featuredTrack && !listEl) return;
 
     const posts = await loadJSON('data/posts.json');
-    if (!posts) return;
+    if (!posts) {
+        if (featuredTrack) renderContentError(featuredTrack.parentElement);
+        if (listEl) {
+            listEl.querySelectorAll('.article-item').forEach(n => n.remove());
+            const empty = listEl.querySelector('#articleEmpty');
+            const err = el('p', { class: 'content-error' }, t('error.load'));
+            if (empty) listEl.insertBefore(err, empty);
+            else listEl.append(err);
+        }
+        return;
+    }
 
     if (featuredTrack) {
         featuredTrack.replaceChildren(
@@ -427,7 +474,10 @@ async function renderWork() {
     const grid = document.querySelector('.work-grid');
     if (!grid) return;
     const items = await loadJSON('data/work.json');
-    if (!items) return;
+    if (!items) {
+        grid.replaceChildren(el('li', { class: 'content-error' }, t('error.load')));
+        return;
+    }
 
     grid.replaceChildren(
         ...items.map(w =>
@@ -449,7 +499,10 @@ async function renderJourney() {
     if (!timeline) return;
 
     const groups = await loadJSON('data/journey.json');
-    if (!groups) return;
+    if (!groups) {
+        timeline.replaceChildren(el('li', { class: 'content-error' }, t('error.load')));
+        return;
+    }
 
     timeline.replaceChildren(
         ...groups.map(g =>
@@ -474,16 +527,36 @@ async function renderJourney() {
     );
 }
 
+function renderPostNotFound(root) {
+    document.title = `${t('post.notfound.title')} — Bryan Widjaya`;
+    root.replaceChildren(
+        el('section', { class: 'error-page', 'aria-labelledby': 'post-error-title' }, [
+            el('p', { class: 'error-code', 'aria-hidden': 'true' }, '404'),
+            el('h1', { id: 'post-error-title' }, t('post.notfound.title')),
+            el('p', { class: 'error-lede' }, t('post.notfound.body')),
+            el('a', { href: 'article.html', class: 'btn' }, t('post.notfound.cta')),
+        ])
+    );
+}
+
 async function renderPost() {
     const root = document.querySelector('[data-post]');
     if (!root) return;
 
     const posts = await loadJSON('data/posts.json');
-    if (!posts) return;
+    if (!posts) {
+        renderPostNotFound(root);
+        return;
+    }
 
     const slug = new URLSearchParams(location.search).get('slug');
     const idx = posts.findIndex(p => p.slug === slug);
     const post = idx >= 0 ? posts[idx] : null;
+
+    if (!post) {
+        renderPostNotFound(root);
+        return;
+    }
 
     const titleEl = document.getElementById('postTitle');
     const metaEl  = document.getElementById('postMeta');
@@ -493,14 +566,6 @@ async function renderPost() {
     const bodyEl  = document.getElementById('postBody');
     const prevEl  = document.getElementById('postPrev');
     const nextEl  = document.getElementById('postNext');
-
-    if (!post) {
-        titleEl.textContent = 'Post not found';
-        ledeEl.textContent = 'The post you are looking for does not exist.';
-        coverEl.remove();
-        tagsEl.remove();
-        return;
-    }
 
     document.title = `${post.title} — Bryan Widjaya`;
     titleEl.textContent = post.title;

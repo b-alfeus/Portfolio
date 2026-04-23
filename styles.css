@@ -784,6 +784,79 @@ footer p {
     line-height: 1.7;
 }
 
+/* Error page (404 / fallback) */
+.error-page {
+    container-type: inline-size;
+    padding: 24px 0 64px;
+    text-align: center;
+}
+
+.error-code {
+    font-size: clamp(64px, 18cqi, 120px);
+    font-weight: 500;
+    line-height: 1;
+    letter-spacing: -2px;
+    color: var(--color-accent);
+    margin-bottom: 16px;
+}
+
+.error-page h1 {
+    font-size: var(--fs-28);
+    font-weight: 500;
+    letter-spacing: -0.3px;
+    margin-bottom: 12px;
+}
+
+.error-lede {
+    font-size: var(--fs-17);
+    color: var(--color-text-secondary);
+    line-height: 1.7;
+    max-width: 440px;
+    margin: 0 auto;
+}
+
+.error-page .btn {
+    margin-top: 32px;
+}
+
+.error-links {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 8px 20px;
+    margin-top: 48px;
+    padding-top: 24px;
+    border-top: 1px dotted var(--color-border);
+}
+
+.error-links a {
+    font-size: var(--fs-13);
+    color: var(--color-text-secondary);
+    text-decoration: none;
+    text-transform: lowercase;
+    transition: color 0.2s;
+}
+
+.error-links a:hover {
+    color: var(--color-accent);
+}
+
+/* Inline content-load failure (when data/*.json can't be fetched) */
+.content-error {
+    padding: 32px 16px;
+    font-size: var(--fs-14);
+    color: var(--color-text-secondary);
+    text-align: center;
+    border: 1px dotted var(--color-border);
+}
+
+.content-error::before {
+    content: "! ";
+    color: var(--color-accent);
+    font-weight: 700;
+}
+
 /* Article section label */
 .article-section-label {
     font-size: var(--fs-12);
