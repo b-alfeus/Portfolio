@@ -1,12 +1,11 @@
 # Portfolio
 
-Personal portfolio for Bryan Widjaya — static HTML/CSS/JS with content synced from Notion.
+Personal portfolio for Bryan Widjaya — static HTML/CSS/JS, no build step.
 
 ## Stack
 
-- Plain HTML, CSS, and JavaScript — no build step.
-- Content in `data/*.json`, rendered client-side by `shared.js`.
-- `scripts/sync-notion.mjs` refreshes `data/*.json` from Notion databases.
+- Plain HTML, CSS, and JavaScript.
+- Content lives in `data/*.json` and is rendered client-side by `shared.js`. Edit the JSON files directly to update content.
 - Berkeley Mono is embedded as base64 in `styles.css`; the woff2 sources in `assets/fonts/` are gitignored (paid license).
 
 ## Pages
@@ -28,12 +27,3 @@ Any static server works. For example:
 ```sh
 npx serve .
 ```
-
-## Syncing content from Notion
-
-```sh
-npm install
-NOTION_TOKEN=… NOTION_POSTS_DB=… NOTION_WORK_DB=… NOTION_JOURNEY_DB=… npm run sync
-```
-
-Only pages with `Published = true` are synced.
