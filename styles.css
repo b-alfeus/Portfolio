@@ -787,17 +787,33 @@ footer p {
 /* Error page (404 / fallback) */
 .error-page {
     container-type: inline-size;
-    padding: 24px 0 64px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 24px;
     text-align: center;
 }
 
 .error-code {
-    font-size: clamp(64px, 18cqi, 120px);
+    font-size: clamp(1rem, 4vw, 2rem);
     font-weight: 500;
-    line-height: 1;
+    line-height: 1.3;
     letter-spacing: -2px;
-    color: var(--color-accent);
     margin-bottom: 16px;
+    text-align: center;
+    font-family: monospace;
+}
+
+.error-code pre {
+    color: var(--color-text);
+    margin: 0;
+}
+
+.error-code .hash {
+    color: var(--color-accent);
+    font-weight: 700;
 }
 
 .error-page h1 {

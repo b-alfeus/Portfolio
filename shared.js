@@ -528,7 +528,7 @@ async function renderJourney() {
 }
 
 function renderPostNotFound(root) {
-    document.title = `${t('post.notfound.title')} — Bryan Widjaya`;
+    document.title = `Bryan Widjaya • ${t('post.notfound.title')}`;
     root.replaceChildren(
         el('section', { class: 'error-page', 'aria-labelledby': 'post-error-title' }, [
             el('p', { class: 'error-code', 'aria-hidden': 'true' }, '404'),
@@ -567,7 +567,7 @@ async function renderPost() {
     const prevEl  = document.getElementById('postPrev');
     const nextEl  = document.getElementById('postNext');
 
-    document.title = `${post.title} — Bryan Widjaya`;
+    document.title = `Bryan Widjaya • ${post.title}`;
     titleEl.textContent = post.title;
     metaEl.textContent  = post.dateDisplay || '';
     ledeEl.textContent  = post.excerpt || '';
