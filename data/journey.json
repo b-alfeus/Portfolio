@@ -30,6 +30,7 @@
   {
     "year": 2018,
     "events": [
+      { "id": "ux-mobile-masters-2018", "title": "UX Mobile Masters SEA", "date": "2018-01-01", "dateDisplay": "Jan 2018", "tags": ["work", "achievement"], "description": "Bhinneka's mobile design ranked 4th with an overall score of 87% in the ASEAN Mobile Sites Leaderboard for Retail & Commerce — report conducted by Google & Accenture Interactive." },
       { "id": "seed-9", "title": "First Design Internship", "date": "2018-10-01", "dateDisplay": "Oct 2018", "tags": ["work"], "description": "Interned at a branding agency called (cocinero) a design kitchen in Jakarta. Learned that real design work is 90% feedback and 10% the thing you were excited about." }
     ]
   },

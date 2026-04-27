@@ -12,29 +12,55 @@
     <body>
         <main>
             <section class="error-page" aria-labelledby="error-title">
-                <h1 class="error-code" id="error-title"><pre>##::::::::::'#####:::'##::::::::
- ##:::'##:::'##.. ##:: ##:::'##::
- ##::: ##::'##:::: ##: ##::: ##::
- ##::: ##:: ##:::: ##: ##::: ##::
- #########: ##:::: ##: #########:
-...... ##::. ##:: ##::...... ##::
-:::::: ##:::. #####::::::::: ##::
-::::::..:::::.....::::::::::..:::</pre></h1>
+                <div class="error-meta error-meta--tl" aria-hidden="true">
+                    <span>Status</span>
+                    <span class="error-meta-sep">·</span>
+                    <span class="error-meta-value">404</span>
+                </div>
+                <div class="error-meta error-meta--tr" aria-hidden="true">
+                    <span>Requested</span>
+                    <span class="error-meta-sep">·</span>
+                    <span class="error-meta-value" id="errorPath">/</span>
+                </div>
+
+                <div class="error-stage">
+                    <h1 class="error-numerals" id="error-title">
+                        <span class="error-numeral" aria-hidden="true">4</span><span class="error-numeral error-numeral--hollow" aria-hidden="true">0</span><span class="error-numeral" aria-hidden="true">4</span>
+                        <span class="visually-hidden" data-i18n="error.404.title">404 — Page not found</span>
+                    </h1>
+                    <div class="error-route" aria-hidden="true">
+                        <span class="error-route-line"></span>
+                        <span class="error-route-tip">×</span>
+                    </div>
+                </div>
+
                 <p class="error-lede" data-i18n="error.404.body">The page you're looking for doesn't exist — or has wandered off somewhere.</p>
-                <a href="index.html" class="btn" data-i18n="error.404.cta">Back to Home</a>
+
+                <a href="index.html" class="error-cta">
+                    <span class="error-cta-bracket" aria-hidden="true">[</span>
+                    <span class="error-cta-arrow" aria-hidden="true">←</span>
+                    <span data-i18n="error.404.cta">Back to Home</span>
+                    <span class="error-cta-bracket" aria-hidden="true">]</span>
+                </a>
+
+                <div class="error-meta error-meta--bl" aria-hidden="true">
+                    <span>B. Widjaya</span>
+                    <span class="error-meta-sep">·</span>
+                    <span>MMXXVI</span>
+                </div>
+                <div class="error-meta error-meta--br" aria-hidden="true">
+                    <span>(end of route)</span>
+                </div>
             </section>
         </main>
 
         <script src="shared.js"></script>
         <script>
-            // Highlight '#' characters in ASCII art
-            const errorCode = document.querySelector('.error-code pre');
-            if (errorCode) {
-                const text = errorCode.textContent;
-                const highlighted = text.replace(/#/g, '<span class="hash">#</span>');
-                errorCode.innerHTML = highlighted;
+            const pathEl = document.getElementById('errorPath');
+            if (pathEl) {
+                const path = window.location.pathname || '/';
+                pathEl.textContent = path.length > 32 ? path.slice(0, 30) + '…' : path;
             }
         </script>
     </body>
-</html>
 </html>
