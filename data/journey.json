@@ -2,54 +2,54 @@
   {
     "year": 2026,
     "events": [
-      { "id": "seed-1", "title": "Launched Portfolio", "date": "2026-02-01", "dateDisplay": "Feb 2026", "tags": ["work", "achievement"], "description": "Rebuilt and shipped my personal portfolio from scratch — a place to document the work, the thinking, and the journey." },
-      { "id": "seed-2", "title": "Started Independent Practice", "date": "2026-01-01", "dateDisplay": "Jan 2026", "tags": ["work"], "description": "Left full-time employment to work independently on design projects across branding, product, and editorial." }
+      { "id": "seed-1", "title": "Launched Portfolio", "date": "2026-02-01", "dateDisplay": "Feb 2026", "tags": ["work", "achievement"], "location": { "place": "Jakarta, ID", "lat": -6.2088, "lng": 106.8456 }, "description": "Rebuilt and shipped my personal portfolio from scratch — a place to document the work, the thinking, and the journey." },
+      { "id": "seed-2", "title": "Started Independent Practice", "date": "2026-01-01", "dateDisplay": "Jan 2026", "tags": ["work"], "location": { "place": "Jakarta, ID", "lat": -6.2088, "lng": 106.8456 }, "description": "Left full-time employment to work independently on design projects across branding, product, and editorial." }
     ]
   },
   {
     "year": 2024,
     "events": [
-      { "id": "seed-3", "title": "Design System Shipped", "date": "2024-09-01", "dateDisplay": "Sep 2024", "tags": ["work", "achievement"], "description": "Delivered a full design system for a Series A startup — component library, documentation, and contribution guidelines." },
-      { "id": "seed-4", "title": "Joined Studio as Lead Designer", "date": "2024-04-01", "dateDisplay": "Apr 2024", "tags": ["work"], "description": "Took on a lead design role at a Jakarta-based creative studio, overseeing projects across digital and print." }
+      { "id": "seed-3", "title": "Design System Shipped", "date": "2024-09-01", "dateDisplay": "Sep 2024", "tags": ["work", "achievement"], "location": { "place": "Jakarta, ID", "lat": -6.2088, "lng": 106.8456 }, "description": "Delivered a full design system for a Series A startup — component library, documentation, and contribution guidelines." },
+      { "id": "seed-4", "title": "Joined Studio as Lead Designer", "date": "2024-04-01", "dateDisplay": "Apr 2024", "tags": ["work"], "location": { "place": "Jakarta, ID", "lat": -6.2088, "lng": 106.8456 }, "description": "Took on a lead design role at a Jakarta-based creative studio, overseeing projects across digital and print." }
     ]
   },
   {
     "year": 2022,
     "events": [
-      { "id": "seed-5", "title": "First Solo Exhibition", "date": "2022-11-01", "dateDisplay": "Nov 2022", "tags": ["achievement"], "description": "Showed a series of illustration and print work at a small gallery in Jakarta — the first time I exhibited outside of school." },
-      { "id": "seed-6", "title": "Moved Back to Jakarta", "date": "2022-06-01", "dateDisplay": "Jun 2022", "tags": [], "description": "Returned home after studying abroad. Started re-rooting in the local design and creative community." }
+      { "id": "seed-5", "title": "First Solo Exhibition", "date": "2022-11-01", "dateDisplay": "Nov 2022", "tags": ["achievement"], "location": { "place": "Jakarta, ID", "lat": -6.2088, "lng": 106.8456 }, "description": "Showed a series of illustration and print work at a small gallery in Jakarta — the first time I exhibited outside of school." },
+      { "id": "seed-6", "title": "Moved Back to Jakarta", "date": "2022-06-01", "dateDisplay": "Jun 2022", "tags": [], "location": { "place": "Jakarta, ID", "lat": -6.2088, "lng": 106.8456 }, "description": "Returned home after studying abroad. Started re-rooting in the local design and creative community." }
     ]
   },
   {
     "year": 2020,
     "events": [
-      { "id": "seed-7", "title": "Graduated in Design", "date": "2020-08-01", "dateDisplay": "Aug 2020", "tags": ["achievement"], "description": "Completed my undergraduate degree in visual communication design. Graduated during a pandemic — ceremonies online, feelings very real." },
-      { "id": "seed-8", "title": "Went Fully Remote", "date": "2020-03-01", "dateDisplay": "Mar 2020", "tags": [], "description": "The world paused. I started learning front-end development, took on freelance work, and figured out how to make things from a bedroom." }
+      { "id": "seed-7", "title": "Graduated in Design", "date": "2020-08-01", "dateDisplay": "Aug 2020", "tags": ["achievement"], "location": { "place": "Jakarta, ID", "lat": -6.2088, "lng": 106.8456 }, "description": "Completed my undergraduate degree in visual communication design. Graduated during a pandemic — ceremonies online, feelings very real." },
+      { "id": "seed-8", "title": "Went Fully Remote", "date": "2020-03-01", "dateDisplay": "Mar 2020", "tags": [], "location": { "place": "Jakarta, ID", "lat": -6.2088, "lng": 106.8456 }, "description": "The world paused. I started learning front-end development, took on freelance work, and figured out how to make things from a bedroom." }
     ]
   },
   {
     "year": 2018,
     "events": [
-      { "id": "ux-mobile-masters-2018", "title": "UX Mobile Masters SEA", "date": "2018-01-01", "dateDisplay": "Jan 2018", "tags": ["work", "achievement"], "description": "Bhinneka's mobile design ranked 4th with an overall score of 87% in the ASEAN Mobile Sites Leaderboard for Retail & Commerce — report conducted by Google & Accenture Interactive." },
-      { "id": "seed-9", "title": "First Design Internship", "date": "2018-10-01", "dateDisplay": "Oct 2018", "tags": ["work"], "description": "Interned at a branding agency called (cocinero) a design kitchen in Jakarta. Learned that real design work is 90% feedback and 10% the thing you were excited about." }
+      { "id": "ux-mobile-masters-2018", "title": "UX Mobile Masters SEA", "date": "2018-01-01", "dateDisplay": "Jan 2018", "tags": ["work", "achievement"], "location": { "place": "Jakarta, ID", "lat": -6.2088, "lng": 106.8456 }, "description": "Bhinneka's mobile design ranked 4th with an overall score of 87% in the ASEAN Mobile Sites Leaderboard for Retail & Commerce — report conducted by Google & Accenture Interactive." },
+      { "id": "seed-9", "title": "First Design Internship", "date": "2018-10-01", "dateDisplay": "Oct 2018", "tags": ["work"], "location": { "place": "Jakarta, ID", "lat": -6.2088, "lng": 106.8456 }, "description": "Interned at a branding agency called (cocinero) a design kitchen in Jakarta. Learned that real design work is 90% feedback and 10% the thing you were excited about." }
     ]
   },
   {
     "year": 2015,
     "events": [
-      { "id": "seed-10", "title": "Discovered Design as a Practice", "date": "2015-07-01", "dateDisplay": "Jul 2015", "tags": [], "description": "Started reading about design intentionally — Dieter Rams, Frank Chimero, design history. Realised making things was something I could do seriously." }
+      { "id": "seed-10", "title": "Discovered Design as a Practice", "date": "2015-07-01", "dateDisplay": "Jul 2015", "tags": [], "location": { "place": "Perth, AU", "lat": -31.9505, "lng": 115.8605 }, "description": "Started reading about design intentionally — Dieter Rams, Frank Chimero, design history. Realised making things was something I could do seriously." }
     ]
   },
   {
     "year": 2012,
     "events": [
-      { "id": "seed-11", "title": "Started Drawing Seriously", "date": "2012-05-01", "dateDisplay": "May 2012", "tags": [], "description": "Filled my first sketchbook. Drew every day before school. Didn't know it was the beginning of anything — it just felt necessary." }
+      { "id": "seed-11", "title": "Started Drawing Seriously", "date": "2012-05-01", "dateDisplay": "May 2012", "tags": [], "location": { "place": "Jakarta, ID", "lat": -6.2088, "lng": 106.8456 }, "description": "Filled my first sketchbook. Drew every day before school. Didn't know it was the beginning of anything — it just felt necessary." }
     ]
   },
   {
     "year": 1990,
     "events": [
-      { "id": "seed-12", "title": "Born in Surabaya", "date": "1990-04-01", "dateDisplay": "Apr 1990", "tags": [], "description": "From a chinese-indonesian couple, who fell in love as penpals through a matchmaking ad from a local newspaper." }
+      { "id": "seed-12", "title": "Born in Surabaya", "date": "1990-04-01", "dateDisplay": "Apr 1990", "tags": [], "location": { "place": "Surabaya, ID", "lat": -7.2575, "lng": 112.7521 }, "description": "From a chinese-indonesian couple, who fell in love as penpals through a matchmaking ad from a local newspaper." }
     ]
   }
 ]

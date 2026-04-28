@@ -34,12 +34,32 @@
 
         <main>
             <section class="page-header">
+                <p class="page-header-label" aria-hidden="true">[ 02 / 04 ]</p>
                 <h1 data-i18n="journey.heading">Journey</h1>
                 <p data-i18n="journey.intro">A record of where I've been — the milestones, pivots, and moments that shaped the work.</p>
             </section>
 
             <section class="journey">
-                <ol class="timeline"></ol>
+                <div class="journey-layout">
+                    <aside class="journey-aside" aria-hidden="true">
+                        <div class="journey-map-wrap">
+                            <canvas class="journey-map" id="journeyMap"></canvas>
+                        </div>
+                        <div class="journey-map-readout">
+                            <div class="journey-map-readout-line">
+                                <span>Where</span>
+                                <span class="journey-map-readout-sep">·</span>
+                                <span class="journey-map-readout-value" id="mapPlace">Jakarta, ID</span>
+                            </div>
+                            <div class="journey-map-readout-line">
+                                <span>Coords</span>
+                                <span class="journey-map-readout-sep">·</span>
+                                <span class="journey-map-readout-value" id="mapCoords">-6.21, 106.85</span>
+                            </div>
+                        </div>
+                    </aside>
+                    <ol class="timeline"></ol>
+                </div>
             </section>
         </main>
 
@@ -49,5 +69,265 @@
         </footer>
 
         <script src="shared.js"></script>
+        <script type="module">
+            import { geoMercator, geoPath, geoInterpolate, geoDistance } from 'https://esm.sh/d3-geo@3';
+            import { feature } from 'https://esm.sh/topojson-client@3';
+
+            const canvas = document.getElementById('journeyMap');
+            const placeEl = document.getElementById('mapPlace');
+            const coordsEl = document.getElementById('mapCoords');
+            if (!canvas) { /* nothing to do */ } else {
+                const ctx = canvas.getContext('2d');
+                const dpr = Math.min(window.devicePixelRatio || 1, 2);
+                let cssW = 320, cssH = 320;
+
+                const fitCanvas = () => {
+                    const rect = canvas.getBoundingClientRect();
+                    cssW = Math.max(1, rect.width);
+                    cssH = Math.max(1, rect.height);
+                    canvas.width  = Math.round(cssW * dpr);
+                    canvas.height = Math.round(cssH * dpr);
+                };
+
+                let landDots = [];
+                const FIXED_SCALE = 1800; // city-region zoom on a ~320px viewport
+
+                let curLng = 106.8456, curLat = -6.2088;
+                let curScale = FIXED_SCALE;
+                let panFrom = [curLng, curLat];
+                let panTo   = [curLng, curLat];
+                let panInterp = null;
+                let panProgress = 1;   // 0 → 1 across the flight
+                let lineFade = 0;      // 1 during flight, fades after arrival
+                let pulse = 0;
+
+                const easeInOutCubic = (t) => t < 0.5 ? 4*t*t*t : 1 - Math.pow(-2*t + 2, 3) / 2;
+
+                const projection = geoMercator()
+                    .scale(FIXED_SCALE)
+                    .translate([0, 0]);
+
+                const isDark = () => document.documentElement.dataset.theme === 'dark';
+
+                function bakeLandDots(land) {
+                    const W = 2048, H = 1024;
+                    const off = document.createElement('canvas');
+                    off.width = W; off.height = H;
+                    const oc = off.getContext('2d');
+                    oc.fillStyle = '#000'; oc.fillRect(0, 0, W, H);
+                    oc.fillStyle = '#fff';
+                    const proj = geoMercator()
+                        .scale(W / (2 * Math.PI))
+                        .translate([W / 2, H / 2]);
+                    const pth = geoPath(proj, oc);
+                    oc.beginPath(); pth(land); oc.fill();
+                    const data = oc.getImageData(0, 0, W, H).data;
+                    const dots = [];
+                    const step = 2; // sample every 2 pixels at 2048×1024 → much denser coastlines
+                    for (let y = 0; y < H; y += step) {
+                        for (let x = 0; x < W; x += step) {
+                            if (data[(y * W + x) * 4] > 128) {
+                                const ll = proj.invert([x, y]);
+                                if (ll) dots.push(ll);
+                            }
+                        }
+                    }
+                    return dots;
+                }
+
+                function setTarget(lat, lng, place) {
+                    if (lng === panTo[0] && lat === panTo[1]) {
+                        if (placeEl && place) placeEl.textContent = place;
+                        return;
+                    }
+                    panFrom = [curLng, curLat];
+                    panTo = [lng, lat];
+                    panInterp = geoInterpolate(panFrom, panTo);
+                    panProgress = 0;
+                    lineFade = 1;
+                    if (placeEl && place) placeEl.textContent = place;
+                    if (coordsEl) coordsEl.textContent = `${lat.toFixed(2)}, ${lng.toFixed(2)}`;
+                }
+
+                function colors() {
+                    const dark = isDark();
+                    const cs = getComputedStyle(document.documentElement);
+                    const accent = cs.getPropertyValue('--color-accent').trim() || (dark ? '#64d2ff' : '#00838f');
+                    return {
+                        dot: dark ? 'rgba(255,255,255,0.34)' : 'rgba(0,0,0,0.32)',
+                        accent,
+                    };
+                }
+
+                function render() {
+                    const W = canvas.width, H = canvas.height;
+                    ctx.clearRect(0, 0, W, H);
+                    projection
+                        .center([curLng, curLat])
+                        .scale(curScale * dpr)
+                        .translate([W / 2, H / 2]);
+
+                    const { dot, accent } = colors();
+                    ctx.fillStyle = dot;
+                    const r = Math.max(1, Math.round(1.1 * dpr));
+                    const halfR = r / 2;
+                    for (let i = 0; i < landDots.length; i++) {
+                        const p = projection(landDots[i]);
+                        if (!p) continue;
+                        const px = p[0], py = p[1];
+                        if (px < -8 || px > W + 8 || py < -8 || py > H + 8) continue;
+                        ctx.fillRect(px - halfR, py - halfR, r, r);
+                    }
+
+                    // Connecting line: dashed great-circle from→to, visible during flight + brief fade
+                    if (lineFade > 0 && panInterp) {
+                        ctx.strokeStyle = accent;
+                        ctx.globalAlpha = lineFade * 0.65;
+                        ctx.lineWidth = 1.2 * dpr;
+                        ctx.setLineDash([3 * dpr, 4 * dpr]);
+                        ctx.beginPath();
+                        const N = 64;
+                        let started = false;
+                        for (let i = 0; i <= N; i++) {
+                            const ll = panInterp(i / N);
+                            const pj = projection(ll);
+                            if (!pj) continue;
+                            if (!started) { ctx.moveTo(pj[0], pj[1]); started = true; }
+                            else { ctx.lineTo(pj[0], pj[1]); }
+                        }
+                        ctx.stroke();
+                        ctx.setLineDash([]);
+
+                        // Endpoint dots
+                        const epFrom = projection(panFrom);
+                        const epTo = projection(panTo);
+                        ctx.fillStyle = accent;
+                        if (epFrom) {
+                            ctx.globalAlpha = lineFade * 0.5;
+                            ctx.beginPath();
+                            ctx.arc(epFrom[0], epFrom[1], 2.5 * dpr, 0, Math.PI * 2);
+                            ctx.fill();
+                        }
+                        if (epTo) {
+                            ctx.globalAlpha = lineFade * 0.85;
+                            ctx.beginPath();
+                            ctx.arc(epTo[0], epTo[1], 2.5 * dpr, 0, Math.PI * 2);
+                            ctx.fill();
+                        }
+                        ctx.globalAlpha = 1;
+                    }
+
+                    // Pulse marker at current camera position
+                    const m = projection([curLng, curLat]);
+                    if (m) {
+                        const haloR = (10 + Math.sin(pulse) * 4) * dpr;
+                        ctx.fillStyle = accent;
+                        ctx.globalAlpha = 0.18;
+                        ctx.beginPath();
+                        ctx.arc(m[0], m[1], haloR, 0, Math.PI * 2);
+                        ctx.fill();
+                        ctx.globalAlpha = 1;
+                        ctx.beginPath();
+                        ctx.arc(m[0], m[1], 4 * dpr, 0, Math.PI * 2);
+                        ctx.fill();
+                        ctx.strokeStyle = isDark() ? 'rgba(0,0,0,0.6)' : 'rgba(255,255,255,0.85)';
+                        ctx.lineWidth = 1.5 * dpr;
+                        ctx.stroke();
+                    }
+                }
+
+                function tick() {
+                    if (panInterp && panProgress < 1) {
+                        panProgress = Math.min(1, panProgress + 0.018);
+                        const eased = easeInOutCubic(panProgress);
+                        const p = panInterp(eased);
+                        curLng = p[0];
+                        curLat = p[1];
+
+                        // Dip the zoom out mid-flight so the line is actually visible for far hops
+                        const dist = geoDistance(panFrom, panTo); // radians
+                        if (dist > 0.05) {
+                            const fitScale = Math.max(180, FIXED_SCALE / (1 + dist * 6));
+                            const dip = Math.sin(panProgress * Math.PI); // 0 → 1 → 0
+                            curScale = FIXED_SCALE * (1 - dip) + fitScale * dip;
+                        } else {
+                            curScale = FIXED_SCALE;
+                        }
+                    } else {
+                        curScale = FIXED_SCALE;
+                        if (lineFade > 0) lineFade = Math.max(0, lineFade - 0.022);
+                    }
+                    pulse += 0.045;
+                    render();
+                    requestAnimationFrame(tick);
+                }
+
+                async function init() {
+                    fitCanvas();
+                    new ResizeObserver(() => { fitCanvas(); render(); }).observe(canvas);
+
+                    let world, journey;
+                    try {
+                        [world, journey] = await Promise.all([
+                            fetch('https://cdn.jsdelivr.net/npm/world-atlas@2/land-50m.json').then(r => r.json()),
+                            fetch('data/journey.json', { cache: 'no-cache' }).then(r => r.json()),
+                        ]);
+                    } catch { return; }
+
+                    const land = feature(world, world.objects.land);
+                    landDots = bakeLandDots(land);
+
+                    const events = journey.flatMap(g => g.events || []);
+                    const eventById = new Map(events.map(e => [e.id, e]));
+
+                    // Re-render on theme toggle (colors change)
+                    new MutationObserver(render)
+                        .observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+
+                    tick();
+
+                    let lastFocused = null;
+                    const setFocused = (target) => {
+                        if (target === lastFocused) return;
+                        if (lastFocused) lastFocused.classList.remove('is-focused');
+                        if (target) target.classList.add('is-focused');
+                        lastFocused = target;
+                        if (target) {
+                            const ev = eventById.get(target.dataset.eventId);
+                            if (ev?.location?.lat != null) {
+                                setTarget(ev.location.lat, ev.location.lng, ev.location.place || '');
+                            }
+                        }
+                    };
+
+                    const attach = () => {
+                        const items = document.querySelectorAll('.timeline-event');
+                        if (!items.length) return false;
+                        const io = new IntersectionObserver((entries) => {
+                            let best = null, bestDist = Infinity;
+                            entries.forEach(entry => {
+                                if (!entry.isIntersecting) return;
+                                const r = entry.boundingClientRect;
+                                const c = r.top + r.height / 2;
+                                const d = Math.abs(c - innerHeight / 2);
+                                if (d < bestDist) { bestDist = d; best = entry.target; }
+                            });
+                            if (best) setFocused(best);
+                        }, { rootMargin: '-35% 0px -35% 0px', threshold: 0 });
+                        items.forEach(it => io.observe(it));
+                        // Initial: focus the first event so something is anchored on load
+                        if (items[0]) setFocused(items[0]);
+                        return true;
+                    };
+
+                    if (!attach()) {
+                        const mo = new MutationObserver(() => { if (attach()) mo.disconnect(); });
+                        mo.observe(document.querySelector('.timeline'), { childList: true, subtree: true });
+                    }
+                }
+
+                init();
+            }
+        </script>
     </body>
 </html>

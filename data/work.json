@@ -7,6 +7,7 @@
     "category": "Product",
     "thumbnail": null,
     "background": "#d9c9b0",
+    "aspect": "4/5",
     "link": "project.html"
   },
   {
@@ -17,6 +18,7 @@
     "category": "Product",
     "thumbnail": null,
     "background": "#c4b89d",
+    "aspect": "1/1",
     "link": "project.html"
   },
   {
@@ -27,6 +29,7 @@
     "category": "Brand",
     "thumbnail": null,
     "background": "#b8a98a",
+    "aspect": "3/4",
     "link": "project.html"
   },
   {
@@ -37,6 +40,7 @@
     "category": "Editorial",
     "thumbnail": null,
     "background": "#cfc0a3",
+    "aspect": "4/3",
     "link": "project.html"
   },
   {
@@ -47,6 +51,7 @@
     "category": "Brand",
     "thumbnail": null,
     "background": "#e0d2b8",
+    "aspect": "2/3",
     "link": "project.html"
   },
   {
@@ -57,6 +62,7 @@
     "category": "Product",
     "thumbnail": null,
     "background": "#a99a7a",
+    "aspect": "1/1",
     "link": "project.html"
   }
 ]

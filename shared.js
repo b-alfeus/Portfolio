@@ -480,17 +480,27 @@ async function renderWork() {
     }
 
     grid.replaceChildren(
-        ...items.map(w =>
-            el('li', { class: 'work-card' }, [
-                el('a', { href: w.link || '#' }, [
-                    el('div', { class: 'work-thumb', style: thumbStyle(w) }),
-                    el('div', { class: 'work-card-body' }, [
-                        el('h3', {}, w.title),
-                        el('p', {}, w.excerpt || ''),
-                    ]),
-                ]),
-            ])
-        )
+        ...items.map(w => {
+            const aspect = (w.aspect || '4/3').replace('/', ' / ');
+            const thumb = w.thumbnail
+                ? el('img', {
+                    class: 'work-thumb',
+                    src: w.thumbnail,
+                    alt: w.title || '',
+                    loading: 'lazy',
+                    style: `aspect-ratio:${aspect};`,
+                  })
+                : el('div', {
+                    class: 'work-thumb work-thumb--block',
+                    style: `background:${w.background || 'var(--color-surface)'};aspect-ratio:${aspect};`,
+                  });
+            return el('li', { class: 'work-card' }, [
+                el('a', {
+                    href: w.link || '#',
+                    'aria-label': w.title || 'Project',
+                }, [thumb]),
+            ]);
+        })
     );
 }
 
@@ -509,18 +519,27 @@ async function renderJourney() {
             el('li', { class: 'timeline-group', id: `y${g.year}` }, [
                 el('h2', { class: 'timeline-year' }, String(g.year)),
                 el('ul', { class: 'timeline-events' },
-                    g.events.map(ev =>
-                        el('li', {
+                    g.events.map(ev => {
+                        const contentChildren = [
+                            el('h3', {}, ev.title),
+                            el('p', {}, ev.description || ''),
+                        ];
+                        if (ev.location?.place) {
+                            contentChildren.push(
+                                el('p', { class: 'timeline-location' }, [
+                                    el('span', { class: 'timeline-location-pin', 'aria-hidden': 'true' }, '◉'),
+                                    el('span', {}, ev.location.place),
+                                ])
+                            );
+                        }
+                        return el('li', {
                             class: 'timeline-event',
-                            dataset: { tags: (ev.tags || []).join(' ') },
+                            dataset: { tags: (ev.tags || []).join(' '), eventId: ev.id || '' },
                         }, [
                             el('time', { class: 'timeline-date' }, ev.dateDisplay || ''),
-                            el('div', { class: 'timeline-content' }, [
-                                el('h3', {}, ev.title),
-                                el('p', {}, ev.description || ''),
-                            ]),
-                        ])
-                    )
+                            el('div', { class: 'timeline-content' }, contentChildren),
+                        ]);
+                    })
                 ),
             ])
         )
@@ -731,7 +750,8 @@ function initJourneyInteractions() {
         }, f.label)
     );
     const filterBar = el('div', { class: 'journey-filter', role: 'group', 'aria-label': 'Filter events' }, filterBtns);
-    journey.insertBefore(filterBar, timeline);
+    const layoutNode = journey.querySelector('.journey-layout');
+    journey.insertBefore(filterBar, layoutNode || timeline);
 
     // ── Mobile navigator ─────────────────────────────────────────────────
     const prevBtn  = el('button', { type: 'button', class: 'journey-mobile-btn journey-mobile-prev', 'aria-label': 'Previous event' }, chev('m15 18-6-6 6-6'));
@@ -824,7 +844,27 @@ function initJourneyInteractions() {
 
 // ── Orchestrate ───────────────────────────────────────────────────────────
 
+function decorateFooter() {
+    const footer = document.querySelector('footer');
+    if (!footer || footer.querySelector('.footer-meta')) return;
+    const buildDate = (() => {
+        const d = new Date(document.lastModified);
+        if (isNaN(d.getTime())) return '—';
+        const p = n => String(n).padStart(2, '0');
+        return `${d.getFullYear()}·${p(d.getMonth() + 1)}·${p(d.getDate())}`;
+    })();
+    const meta = el('div', { class: 'footer-meta' }, [
+        el('span', { class: 'footer-meta-line' }, [
+            el('span', {}, 'BUILD'),
+            el('span', { class: 'footer-meta-sep' }, '·'),
+            el('span', { class: 'footer-meta-value' }, buildDate),
+        ]),
+    ]);
+    footer.insertBefore(meta, footer.firstChild);
+}
+
 (async () => {
+    decorateFooter();
     await Promise.all([renderPosts(), renderWork(), renderJourney(), renderPost()]);
     initCarousels();
     initArticleSearch();
