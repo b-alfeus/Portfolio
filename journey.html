@@ -34,7 +34,6 @@
 
         <main>
             <section class="page-header">
-                <p class="page-header-label" aria-hidden="true">[ 02 / 04 ]</p>
                 <h1 data-i18n="journey.heading">Journey</h1>
                 <p data-i18n="journey.intro">A record of where I've been — the milestones, pivots, and moments that shaped the work.</p>
             </section>
@@ -58,13 +57,15 @@
                             </div>
                         </div>
                     </aside>
-                    <ol class="timeline"></ol>
+                    <div class="journey-panel">
+                        <ol class="timeline"></ol>
+                    </div>
                 </div>
             </section>
         </main>
 
         <footer>
-            <p class="footer-font" data-i18n-html="footer.typeface">&copy; 2026. Typeface using <a href="https://usgraphics.com/products/berkeley-mono" target="_blank" rel="noopener noreferrer">Berkeley Mono</a> by <a href="https://usgraphics.com" target="_blank" rel="noopener noreferrer">U.S. Graphics</a></p>
+            <p class="footer-font" data-i18n-html="footer.typeface">&copy; MMXXVI. Typeface using <a href="https://usgraphics.com/products/berkeley-mono" target="_blank" rel="noopener noreferrer">Berkeley Mono</a> by <a href="https://usgraphics.com" target="_blank" rel="noopener noreferrer">U.S. Graphics</a></p>
             <p class="license"><a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" rel="noopener noreferrer"><img src="https://mirrors.creativecommons.org/presskit/buttons/80x15/svg/by-nc-nd.svg" alt="CC BY-NC-ND 4.0" width="80" height="15"></a></p>
         </footer>
 
@@ -123,7 +124,7 @@
                     oc.beginPath(); pth(land); oc.fill();
                     const data = oc.getImageData(0, 0, W, H).data;
                     const dots = [];
-                    const step = 2; // sample every 2 pixels at 2048×1024 → much denser coastlines
+                    const step = 1; // densest sampling — every land pixel of the 2048×1024 mask
                     for (let y = 0; y < H; y += step) {
                         for (let x = 0; x < W; x += step) {
                             if (data[(y * W + x) * 4] > 128) {
@@ -169,7 +170,7 @@
 
                     const { dot, accent } = colors();
                     ctx.fillStyle = dot;
-                    const r = Math.max(1, Math.round(1.1 * dpr));
+                    const r = Math.max(2, Math.round(2 * dpr));
                     const halfR = r / 2;
                     for (let i = 0; i < landDots.length; i++) {
                         const p = projection(landDots[i]);
@@ -179,60 +180,74 @@
                         ctx.fillRect(px - halfR, py - halfR, r, r);
                     }
 
-                    // Connecting line: dashed great-circle from→to, visible during flight + brief fade
+                    // Network-transfer curve: a thin great-circle line with marching dashes
                     if (lineFade > 0 && panInterp) {
+                        const N = 80;
                         ctx.strokeStyle = accent;
-                        ctx.globalAlpha = lineFade * 0.65;
-                        ctx.lineWidth = 1.2 * dpr;
-                        ctx.setLineDash([3 * dpr, 4 * dpr]);
+                        ctx.lineCap = 'butt';
+                        ctx.lineJoin = 'round';
+
+                        // Faint full path (preview of where the camera will go)
+                        ctx.lineWidth = 1.4 * dpr;
+                        ctx.globalAlpha = lineFade * 0.22;
                         ctx.beginPath();
-                        const N = 64;
                         let started = false;
                         for (let i = 0; i <= N; i++) {
-                            const ll = panInterp(i / N);
-                            const pj = projection(ll);
-                            if (!pj) continue;
-                            if (!started) { ctx.moveTo(pj[0], pj[1]); started = true; }
-                            else { ctx.lineTo(pj[0], pj[1]); }
+                            const p = projection(panInterp(i / N));
+                            if (!p) continue;
+                            if (!started) { ctx.moveTo(p[0], p[1]); started = true; }
+                            else { ctx.lineTo(p[0], p[1]); }
+                        }
+                        ctx.stroke();
+
+                        // Active flowing line up to the camera, with marching dashes
+                        ctx.globalAlpha = lineFade * 0.9;
+                        ctx.lineWidth = 2 * dpr;
+                        ctx.setLineDash([5 * dpr, 4 * dpr]);
+                        ctx.lineDashOffset = -performance.now() / 35;
+                        ctx.beginPath();
+                        started = false;
+                        const upto = Math.ceil(N * panProgress);
+                        for (let i = 0; i <= upto; i++) {
+                            const p = projection(panInterp(i / N));
+                            if (!p) continue;
+                            if (!started) { ctx.moveTo(p[0], p[1]); started = true; }
+                            else { ctx.lineTo(p[0], p[1]); }
                         }
                         ctx.stroke();
                         ctx.setLineDash([]);
 
-                        // Endpoint dots
-                        const epFrom = projection(panFrom);
-                        const epTo = projection(panTo);
-                        ctx.fillStyle = accent;
-                        if (epFrom) {
-                            ctx.globalAlpha = lineFade * 0.5;
-                            ctx.beginPath();
-                            ctx.arc(epFrom[0], epFrom[1], 2.5 * dpr, 0, Math.PI * 2);
-                            ctx.fill();
-                        }
-                        if (epTo) {
-                            ctx.globalAlpha = lineFade * 0.85;
-                            ctx.beginPath();
-                            ctx.arc(epTo[0], epTo[1], 2.5 * dpr, 0, Math.PI * 2);
-                            ctx.fill();
+                        // Tiny "packet" square right at the leading edge — sized like a map dot
+                        const head = projection(panInterp(panProgress));
+                        if (head) {
+                            const packet = Math.max(2, Math.round(2 * dpr));
+                            const ph = packet / 2;
+                            ctx.fillStyle = accent;
+                            ctx.globalAlpha = lineFade;
+                            ctx.fillRect(
+                                Math.round(head[0] - ph),
+                                Math.round(head[1] - ph),
+                                packet,
+                                packet
+                            );
                         }
                         ctx.globalAlpha = 1;
                     }
 
-                    // Pulse marker at current camera position
+                    // Blinking square marker at current camera position (terminal-cursor style)
                     const m = projection([curLng, curLat]);
                     if (m) {
-                        const haloR = (10 + Math.sin(pulse) * 4) * dpr;
-                        ctx.fillStyle = accent;
-                        ctx.globalAlpha = 0.18;
-                        ctx.beginPath();
-                        ctx.arc(m[0], m[1], haloR, 0, Math.PI * 2);
-                        ctx.fill();
-                        ctx.globalAlpha = 1;
-                        ctx.beginPath();
-                        ctx.arc(m[0], m[1], 4 * dpr, 0, Math.PI * 2);
-                        ctx.fill();
-                        ctx.strokeStyle = isDark() ? 'rgba(0,0,0,0.6)' : 'rgba(255,255,255,0.85)';
-                        ctx.lineWidth = 1.5 * dpr;
-                        ctx.stroke();
+                        const blinkOn = (Math.floor(performance.now() / 500) % 2) === 0;
+                        const sq = 9 * dpr;
+                        const half = sq / 2;
+                        if (blinkOn) {
+                            ctx.fillStyle = accent;
+                            ctx.fillRect(m[0] - half, m[1] - half, sq, sq);
+                        } else {
+                            ctx.strokeStyle = accent;
+                            ctx.lineWidth = 1.5 * dpr;
+                            ctx.strokeRect(m[0] - half, m[1] - half, sq, sq);
+                        }
                     }
                 }
 
@@ -286,37 +301,34 @@
 
                     tick();
 
-                    let lastFocused = null;
-                    const setFocused = (target) => {
-                        if (target === lastFocused) return;
-                        if (lastFocused) lastFocused.classList.remove('is-focused');
-                        if (target) target.classList.add('is-focused');
-                        lastFocused = target;
-                        if (target) {
-                            const ev = eventById.get(target.dataset.eventId);
-                            if (ev?.location?.lat != null) {
-                                setTarget(ev.location.lat, ev.location.lng, ev.location.place || '');
-                            }
+                    const syncFromEvent = (target) => {
+                        if (!target) return;
+                        const ev = eventById.get(target.dataset.eventId);
+                        if (ev?.location?.lat != null) {
+                            setTarget(ev.location.lat, ev.location.lng, ev.location.place || '');
                         }
                     };
 
                     const attach = () => {
                         const items = document.querySelectorAll('.timeline-event');
                         if (!items.length) return false;
-                        const io = new IntersectionObserver((entries) => {
-                            let best = null, bestDist = Infinity;
-                            entries.forEach(entry => {
-                                if (!entry.isIntersecting) return;
-                                const r = entry.boundingClientRect;
-                                const c = r.top + r.height / 2;
-                                const d = Math.abs(c - innerHeight / 2);
-                                if (d < bestDist) { bestDist = d; best = entry.target; }
-                            });
-                            if (best) setFocused(best);
-                        }, { rootMargin: '-35% 0px -35% 0px', threshold: 0 });
-                        items.forEach(it => io.observe(it));
-                        // Initial: focus the first event so something is anchored on load
-                        if (items[0]) setFocused(items[0]);
+
+                        // Initial: sync to whichever event the navigator marks focused
+                        const initial = document.querySelector('.timeline-event.is-focused') || items[0];
+                        syncFromEvent(initial);
+
+                        // Watch for the navigator (or any code) toggling .is-focused on events
+                        const mo = new MutationObserver((muts) => {
+                            for (const m of muts) {
+                                if (m.attributeName !== 'class') continue;
+                                const t = m.target;
+                                if (t.classList.contains('is-focused')) {
+                                    syncFromEvent(t);
+                                    break;
+                                }
+                            }
+                        });
+                        items.forEach(it => mo.observe(it, { attributes: true, attributeFilter: ['class'] }));
                         return true;
                     };
 

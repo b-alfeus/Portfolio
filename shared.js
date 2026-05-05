@@ -106,7 +106,7 @@ const translations = {
         'error.load':             'Could not load content. Please try again.',
         'bmc.label':              'Buy me a coffee',
         'bmc.tooltip':            'Fuel my next content?',
-        'footer.typeface':        '&copy; 2026. Typeface using <a href="https://usgraphics.com/products/berkeley-mono" target="_blank" rel="noopener noreferrer">Berkeley Mono</a> by <a href="https://usgraphics.com" target="_blank" rel="noopener noreferrer">U.S. Graphics</a>',
+        'footer.typeface':        '&copy; MMXXVI. Typeface using <a href="https://usgraphics.com/products/berkeley-mono" target="_blank" rel="noopener noreferrer">Berkeley Mono</a> by <a href="https://usgraphics.com" target="_blank" rel="noopener noreferrer">U.S. Graphics</a>',
     },
     id: {
         'nav.about':       'Tentang',
@@ -155,7 +155,7 @@ const translations = {
         'error.load':             'Tidak bisa memuat konten. Silakan coba lagi.',
         'bmc.label':              'Traktir saya kopi',
         'bmc.tooltip':            'Dukung konten berikutnya?',
-        'footer.typeface':        '&copy; 2026. Menggunakan huruf <a href="https://usgraphics.com/products/berkeley-mono" target="_blank" rel="noopener noreferrer">Berkeley Mono</a> dari <a href="https://usgraphics.com" target="_blank" rel="noopener noreferrer">U.S. Graphics</a>',
+        'footer.typeface':        '&copy; MMXXVI. Menggunakan huruf <a href="https://usgraphics.com/products/berkeley-mono" target="_blank" rel="noopener noreferrer">Berkeley Mono</a> dari <a href="https://usgraphics.com" target="_blank" rel="noopener noreferrer">U.S. Graphics</a>',
     },
     jp: {
         'nav.about':       'について',
@@ -204,7 +204,7 @@ const translations = {
         'error.load':             'コンテンツを読み込めませんでした。もう一度お試しください。',
         'bmc.label':              'コーヒーをおごる',
         'bmc.tooltip':            '次のコンテンツを応援しますか？',
-        'footer.typeface':        '&copy; 2026. 書体は <a href="https://usgraphics.com" target="_blank" rel="noopener noreferrer">U.S. Graphics</a> の <a href="https://usgraphics.com/products/berkeley-mono" target="_blank" rel="noopener noreferrer">Berkeley Mono</a> を使用',
+        'footer.typeface':        '&copy; MMXXVI. 書体は <a href="https://usgraphics.com" target="_blank" rel="noopener noreferrer">U.S. Graphics</a> の <a href="https://usgraphics.com/products/berkeley-mono" target="_blank" rel="noopener noreferrer">Berkeley Mono</a> を使用',
     },
     de: {
         'nav.about':       'Über',
@@ -253,7 +253,7 @@ const translations = {
         'error.load':             'Inhalt konnte nicht geladen werden. Bitte erneut versuchen.',
         'bmc.label':              'Spendier mir einen Kaffee',
         'bmc.tooltip':            'Nächsten Beitrag finanzieren?',
-        'footer.typeface':        '&copy; 2026. Schrift <a href="https://usgraphics.com/products/berkeley-mono" target="_blank" rel="noopener noreferrer">Berkeley Mono</a> von <a href="https://usgraphics.com" target="_blank" rel="noopener noreferrer">U.S. Graphics</a>',
+        'footer.typeface':        '&copy; MMXXVI. Schrift <a href="https://usgraphics.com/products/berkeley-mono" target="_blank" rel="noopener noreferrer">Berkeley Mono</a> von <a href="https://usgraphics.com" target="_blank" rel="noopener noreferrer">U.S. Graphics</a>',
     }
 };
 
@@ -520,24 +520,19 @@ async function renderJourney() {
                 el('h2', { class: 'timeline-year' }, String(g.year)),
                 el('ul', { class: 'timeline-events' },
                     g.events.map(ev => {
-                        const contentChildren = [
-                            el('h3', {}, ev.title),
-                            el('p', {}, ev.description || ''),
-                        ];
-                        if (ev.location?.place) {
-                            contentChildren.push(
-                                el('p', { class: 'timeline-location' }, [
-                                    el('span', { class: 'timeline-location-pin', 'aria-hidden': 'true' }, '◉'),
-                                    el('span', {}, ev.location.place),
-                                ])
-                            );
-                        }
                         return el('li', {
                             class: 'timeline-event',
-                            dataset: { tags: (ev.tags || []).join(' '), eventId: ev.id || '' },
+                            dataset: {
+                                tags: (ev.tags || []).join(' '),
+                                eventId: ev.id || '',
+                                year: String(g.year),
+                                date: ev.date || '',
+                            },
                         }, [
-                            el('time', { class: 'timeline-date' }, ev.dateDisplay || ''),
-                            el('div', { class: 'timeline-content' }, contentChildren),
+                            el('div', { class: 'timeline-content' }, [
+                                el('h3', {}, ev.title),
+                                el('p', {}, ev.description || ''),
+                            ]),
                         ]);
                     })
                 ),
@@ -750,20 +745,22 @@ function initJourneyInteractions() {
         }, f.label)
     );
     const filterBar = el('div', { class: 'journey-filter', role: 'group', 'aria-label': 'Filter events' }, filterBtns);
-    const layoutNode = journey.querySelector('.journey-layout');
-    journey.insertBefore(filterBar, layoutNode || timeline);
+    // Filter goes INSIDE the panel (above the navigator)
+    const panel = journey.querySelector('.journey-panel');
+    const target = panel || journey;
+    target.insertBefore(filterBar, target.firstChild);
 
-    // ── Mobile navigator ─────────────────────────────────────────────────
-    const prevBtn  = el('button', { type: 'button', class: 'journey-mobile-btn journey-mobile-prev', 'aria-label': 'Previous event' }, chev('m15 18-6-6 6-6'));
-    const nextBtn  = el('button', { type: 'button', class: 'journey-mobile-btn journey-mobile-next', 'aria-label': 'Next event' }, chev('m9 18 6-6-6-6'));
-    const labelBtn = el('button', { type: 'button', class: 'journey-mobile-label', 'aria-haspopup': 'listbox', 'aria-expanded': 'false' }, '');
-    const list     = el('ul', { class: 'journey-mobile-list', role: 'listbox' });
+    // ── Event navigator: prev / [jump-to label] / next ───────────────────
+    const prevBtn  = el('button', { type: 'button', class: 'journey-nav-btn journey-nav-prev', 'aria-label': 'Previous event' }, chev('m15 18-6-6 6-6'));
+    const nextBtn  = el('button', { type: 'button', class: 'journey-nav-btn journey-nav-next', 'aria-label': 'Next event' }, chev('m9 18 6-6-6-6'));
+    const labelBtn = el('button', { type: 'button', class: 'journey-nav-label', 'aria-haspopup': 'listbox', 'aria-expanded': 'false' }, '');
+    const list     = el('ul', { class: 'journey-nav-list', role: 'listbox' });
     list.hidden = true;
-    const nav = el('nav', { class: 'journey-mobile', 'aria-label': 'Event navigator' }, [
-        el('div', { class: 'journey-mobile-bar' }, [prevBtn, labelBtn, nextBtn]),
+    const nav = el('nav', { class: 'journey-nav', 'aria-label': 'Event navigator' }, [
+        el('div', { class: 'journey-nav-bar' }, [prevBtn, labelBtn, nextBtn]),
         list,
     ]);
-    journey.insertBefore(nav, timeline);
+    target.insertBefore(nav, timeline);
 
     let currentFilter = 'all';
     let visibleEvents = [];
@@ -777,29 +774,43 @@ function initJourneyInteractions() {
     };
 
     const rebuildList = () => {
-        list.replaceChildren(...visibleEvents.map((ev, i) => {
-            const time  = ev.querySelector('.timeline-date')?.textContent || '';
-            const title = ev.querySelector('h3')?.textContent || '';
-            const btn = el('button', { type: 'button', class: 'journey-mobile-item', role: 'option' }, [
-                el('span', { class: 'journey-mobile-item-date' }, time),
-                el('span', { class: 'journey-mobile-item-title' }, title),
+        // Year list: unique years from visible events, in their natural display order
+        const seen = new Set();
+        const years = [];
+        visibleEvents.forEach(ev => {
+            const y = ev.dataset.year;
+            if (y && !seen.has(y)) { seen.add(y); years.push(y); }
+        });
+        list.replaceChildren(...years.map(year => {
+            const btn = el('button', { type: 'button', class: 'journey-nav-item', role: 'option' }, [
+                el('span', { class: 'journey-nav-item-title' }, year),
             ]);
-            btn.addEventListener('click', () => { setActive(i); closeList(); });
+            btn.dataset.year = year;
+            btn.addEventListener('click', () => {
+                // Jump to the OLDEST event of that year (smallest ISO date)
+                const inYear = visibleEvents.filter(e => e.dataset.year === year);
+                inYear.sort((a, b) => (a.dataset.date || '').localeCompare(b.dataset.date || ''));
+                const target = inYear[0];
+                if (target) setActive(visibleEvents.indexOf(target));
+                closeList();
+            });
             return el('li', {}, btn);
         }));
     };
 
     const setActive = (i) => {
-        allEvents.forEach(e => e.classList.remove('active'));
+        allEvents.forEach(e => e.classList.remove('is-focused'));
         if (!visibleEvents.length) {
             labelBtn.textContent = '—';
             return;
         }
         idx = (i + visibleEvents.length) % visibleEvents.length;
-        visibleEvents[idx].classList.add('active');
-        labelBtn.textContent = visibleEvents[idx].querySelector('.timeline-date')?.textContent || '';
-        const items = Array.from(list.querySelectorAll('.journey-mobile-item'));
-        items.forEach((it, j) => it.setAttribute('aria-selected', j === idx ? 'true' : 'false'));
+        const current = visibleEvents[idx];
+        current.classList.add('is-focused');
+        const year = current.dataset.year || '';
+        labelBtn.textContent = year;
+        const items = Array.from(list.querySelectorAll('.journey-nav-item'));
+        items.forEach(it => it.setAttribute('aria-selected', it.dataset.year === year ? 'true' : 'false'));
     };
 
     const applyFilter = (key) => {
@@ -827,7 +838,7 @@ function initJourneyInteractions() {
         list.hidden = false;
         labelBtn.setAttribute('aria-expanded', 'true');
         nav.classList.add('is-open');
-        const items = Array.from(list.querySelectorAll('.journey-mobile-item'));
+        const items = Array.from(list.querySelectorAll('.journey-nav-item'));
         const current = items[idx];
         if (current) current.scrollIntoView({ block: 'nearest' });
     };
@@ -844,27 +855,7 @@ function initJourneyInteractions() {
 
 // ── Orchestrate ───────────────────────────────────────────────────────────
 
-function decorateFooter() {
-    const footer = document.querySelector('footer');
-    if (!footer || footer.querySelector('.footer-meta')) return;
-    const buildDate = (() => {
-        const d = new Date(document.lastModified);
-        if (isNaN(d.getTime())) return '—';
-        const p = n => String(n).padStart(2, '0');
-        return `${d.getFullYear()}·${p(d.getMonth() + 1)}·${p(d.getDate())}`;
-    })();
-    const meta = el('div', { class: 'footer-meta' }, [
-        el('span', { class: 'footer-meta-line' }, [
-            el('span', {}, 'BUILD'),
-            el('span', { class: 'footer-meta-sep' }, '·'),
-            el('span', { class: 'footer-meta-value' }, buildDate),
-        ]),
-    ]);
-    footer.insertBefore(meta, footer.firstChild);
-}
-
 (async () => {
-    decorateFooter();
     await Promise.all([renderPosts(), renderWork(), renderJourney(), renderPost()]);
     initCarousels();
     initArticleSearch();

@@ -329,40 +329,6 @@ header.nav-open .nav-toggle .icon-close {
     fill: var(--color-bg);
 }
 
-.status-dot {
-    display: inline-block;
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: var(--color-accent);
-    box-shadow: 0 0 0 0 var(--color-accent);
-    animation: statusPulse 2.4s ease-out infinite;
-    flex-shrink: 0;
-}
-
-@keyframes statusPulse {
-    0%   { box-shadow: 0 0 0 0 color-mix(in srgb, var(--color-accent) 60%, transparent); }
-    70%  { box-shadow: 0 0 0 10px color-mix(in srgb, var(--color-accent) 0%, transparent); }
-    100% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--color-accent) 0%, transparent); }
-}
-
-.hero .location .location-status {
-    font-size: 11px;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.16em;
-    color: var(--color-accent);
-    line-height: 1;
-}
-
-.hero .location .location-sep {
-    color: var(--color-text-secondary);
-    opacity: 0.6;
-}
-
-@media (prefers-reduced-motion: reduce) {
-    .status-dot { animation: none; }
-}
 
 .hero-lists {
     display: flex;
@@ -390,7 +356,7 @@ header.nav-open .nav-toggle .icon-close {
 
 .hero-list {
     list-style: none;
-    border-top: 2px dotted var(--color-border);
+    border-top: 1px solid var(--color-border);
     padding-top: 12px;
 }
 
@@ -798,65 +764,23 @@ footer p {
     opacity: 1;
 }
 
-/* Footer meta readouts (status/loc/build) */
-.footer-meta {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 14px;
-    align-items: baseline;
-    min-width: 0;
-}
-
-.footer-meta-line {
-    font-size: 10px;
-    font-weight: 500;
-    text-transform: uppercase;
-    letter-spacing: 0.14em;
-    color: var(--color-text-secondary);
-    display: inline-flex;
-    gap: 6px;
-    align-items: baseline;
-    line-height: 1;
-    white-space: nowrap;
-}
-
-.footer-meta-sep {
-    opacity: 0.5;
-}
-
-.footer-meta-value {
-    color: var(--color-text);
-    font-feature-settings: "tnum" 1;
-}
-
 /* Page header */
 .page-header {
-    padding: 0 0 32px;
-}
-
-.page-header-label {
-    font-size: 9px;
-    font-weight: 500;
-    text-transform: uppercase;
-    letter-spacing: 0.2em;
-    color: var(--color-text-secondary);
-    margin: 0 0 12px;
-    line-height: 1;
-    font-feature-settings: "tnum" 1;
+    padding: 0 0 24px;
 }
 
 .page-header h1 {
-    font-size: var(--fs-36);
+    font-size: clamp(20px, 1.8vw, 24px);
     font-weight: 500;
-    line-height: 1.25;
-    letter-spacing: -0.5px;
+    line-height: 1.3;
+    letter-spacing: -0.3px;
 }
 
 .page-header p {
-    margin-top: 16px;
-    font-size: var(--fs-17);
+    margin-top: 8px;
+    font-size: var(--fs-14);
     color: var(--color-text-secondary);
-    line-height: 1.7;
+    line-height: 1.6;
 }
 
 /* Error page (404 / fallback) */
@@ -1424,38 +1348,40 @@ footer p {
 /* Journey — sticky year jump nav */
 /* Journey filter btn-group */
 .journey-filter {
-    display: inline-flex;
-    margin: 0 0 32px;
+    display: flex;
+    width: 100%;
+    margin: 0;
 }
 
 .journey-filter-btn {
+    flex: 1;
     font: inherit;
     font-size: var(--fs-13);
     color: var(--color-text-secondary);
     background-color: var(--color-bg);
-    padding: 7px 14px;
+    padding: 8px 14px;
     border: 1px solid var(--color-border);
     border-radius: 0;
     cursor: pointer;
-    box-shadow: 2px 2px 0 var(--color-border);
-    transition: color 0.2s, border-color 0.2s, background-color 0.2s, box-shadow 0.2s, transform 0.2s;
+    transition: color 0.2s, border-color 0.2s, background-color 0.2s;
 }
 
 .journey-filter-btn + .journey-filter-btn {
     border-left: none;
 }
 
-.journey-filter-btn:hover {
-    color: var(--color-accent);
+.journey-filter-btn:hover,
+.journey-filter-btn:focus-visible {
+    color: var(--color-bg);
     border-color: var(--color-accent);
-    box-shadow: 2px 2px 0 var(--color-accent);
+    background-color: var(--color-accent);
+    outline: none;
 }
 
 .journey-filter-btn.active {
     color: var(--color-bg);
     border-color: var(--color-accent);
     background-color: var(--color-accent);
-    box-shadow: 2px 2px 0 var(--color-accent);
 }
 
 /* Filtering: hide events + empty year groups that don't match */
@@ -1477,8 +1403,8 @@ footer p {
 /* Journey two-column layout — sticky dotted-map aside on the left */
 .journey-layout {
     display: grid;
-    grid-template-columns: 320px minmax(0, 1fr);
-    gap: 56px;
+    grid-template-columns: minmax(280px, 360px) minmax(0, 1fr);
+    gap: 48px;
     align-items: start;
 }
 
@@ -1560,24 +1486,151 @@ footer p {
     }
     .journey-aside {
         position: static;
-        max-width: 360px;
-        width: 100%;
-        margin: 8px auto 16px;
+        max-width: none;
+        width: auto;
+        margin: 0 -16px 16px;
+        padding-bottom: 14px;
+        border-bottom: 1px solid var(--color-border);
+        gap: 10px;
+    }
+    .journey-map-wrap {
+        aspect-ratio: 5 / 2;
+        border-left: none;
+        border-right: none;
     }
     .journey-map-readout {
         align-items: center;
         text-align: center;
+        font-size: 9px;
+        padding: 0 16px;
+        border-top: none;
     }
 }
 
-/* Journey mobile navigator — off by default; revealed inside @media below */
-.journey-mobile {
-    display: none;
+/* Journey content panel — sits beside the map, holds filter + nav + the focused event */
+.journey-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    min-width: 0;
+}
+
+/* Event navigator: prev / [jump-to label] / next */
+.journey-nav {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.journey-nav-bar {
+    display: flex;
+    align-items: stretch;
+    gap: 8px;
+}
+
+.journey-nav-btn {
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    padding: 0;
+    border: 1px solid var(--color-border);
+    border-radius: 0;
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    cursor: pointer;
+    transition: border-color 0.2s, color 0.2s;
+}
+
+.journey-nav-btn:hover,
+.journey-nav-btn:focus-visible {
+    border-color: var(--color-accent);
+    color: var(--color-accent);
+    outline: none;
+}
+
+.journey-nav-label {
+    flex: 1;
+    min-width: 0;
+    padding: 9px 16px;
+    border: 1px solid var(--color-border);
+    border-radius: 0;
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    font: inherit;
+    font-size: var(--fs-13);
+    font-weight: 500;
+    text-align: center;
+    cursor: pointer;
+    transition: border-color 0.2s, color 0.2s;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.journey-nav-label:hover,
+.journey-nav.is-open .journey-nav-label {
+    border-color: var(--color-accent);
+    color: var(--color-accent);
+}
+
+.journey-nav-list {
+    list-style: none;
+    margin: 8px 0 0;
+    padding: 6px;
+    background-color: var(--color-bg);
+    border: 1px solid var(--color-border);
+    border-radius: 0;
+    max-height: 50vh;
+    overflow-y: auto;
+    box-shadow: 0 16px 32px rgba(0, 0, 0, 0.18);
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: 12;
+}
+
+.journey-nav-item {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    width: 100%;
+    text-align: left;
+    background: none;
+    border: none;
+    padding: 10px 12px;
+    color: var(--color-text);
+    font: inherit;
+    cursor: pointer;
+    border-radius: 0;
+    transition: background-color 0.15s, color 0.15s;
+}
+
+.journey-nav-item-date {
+    font-size: var(--fs-12);
+    color: var(--color-text-secondary);
+}
+
+.journey-nav-item-title {
+    font-size: var(--fs-14);
+}
+
+.journey-nav-item:hover,
+.journey-nav-item[aria-selected="true"] {
+    background-color: var(--color-border);
+    color: var(--color-accent);
+}
+
+.journey-nav-item[aria-selected="true"] .journey-nav-item-date {
+    color: var(--color-accent);
 }
 
 .timeline {
     list-style: none;
     position: relative;
+    margin: 0;
 }
 
 .timeline::before {
@@ -1600,94 +1653,53 @@ footer p {
     padding-bottom: 0;
 }
 
-.timeline-year {
-    font-size: var(--fs-14);
-    font-weight: 500;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    color: var(--color-text-secondary);
-    padding-left: 36px;
-    padding-top: 12px;
-    margin-bottom: 16px;
-    position: relative;
+/* Year headers and per-event rail dots are unused in single-event panel view */
+.timeline::before,
+.timeline-year,
+.timeline-year::before {
+    display: none;
 }
 
-.timeline-year::before {
-    content: "";
-    position: absolute;
-    left: 2px;
-    top: 14px;
-    width: 11px;
-    height: 11px;
-    border-radius: 0;
-    background-color: var(--color-accent);
-    box-shadow: 0 0 0 4px var(--color-bg);
+.timeline-group {
+    padding-bottom: 0;
 }
 
 .timeline-events {
     list-style: none;
 }
 
+/* Single-event panel view: only the focused event renders */
 .timeline-event {
+    display: none;
+    flex-direction: column;
+    gap: 6px;
+    padding: 0;
+    animation: eventReveal 320ms cubic-bezier(0.2, 0.8, 0.2, 1) backwards;
+}
+
+.timeline-event.is-focused {
     display: flex;
-    gap: 24px;
-    padding: 16px 0 16px 36px;
-    position: relative;
-    transition: opacity 220ms ease;
 }
 
-.timeline-event::before {
-    content: "";
-    position: absolute;
-    left: 3px;
-    top: 22px;
-    width: 9px;
-    height: 9px;
-    border: 1px solid var(--color-border);
-    background: var(--color-bg);
-    border-radius: 50%;
-    transition: background 220ms ease, border-color 220ms ease, transform 220ms ease;
+@keyframes eventReveal {
+    from { opacity: 0; transform: translateY(6px); }
+    to   { opacity: 1; transform: translateY(0); }
 }
 
-.timeline-event.is-focused::before {
-    background: var(--color-accent);
-    border-color: var(--color-accent);
-    transform: scale(1.25);
-    animation: timelinePulse 2.4s ease-out infinite;
-}
-
-@keyframes timelinePulse {
-    0%   { box-shadow: 0 0 0 0 color-mix(in srgb, var(--color-accent) 55%, transparent); }
-    70%  { box-shadow: 0 0 0 8px color-mix(in srgb, var(--color-accent) 0%, transparent); }
-    100% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--color-accent) 0%, transparent); }
-}
-
-.timeline:has(.timeline-event.is-focused) .timeline-event:not(.is-focused) {
-    opacity: 0.45;
-}
-
-.timeline-event.is-focused .timeline-content h3 {
-    color: var(--color-accent);
-}
-
-.timeline-date {
-    font-size: var(--fs-14);
-    color: var(--color-text-secondary);
-    flex-shrink: 0;
-    width: 88px;
-    padding-top: 2px;
-    transition: color 220ms ease;
-}
-
-.timeline-event.is-focused .timeline-date {
-    color: var(--color-text);
+/* Date label and geotag inside the focused event card are hidden — */
+/* the year is shown by the navigator label, and the geotag lives on the map. */
+.timeline-date,
+.timeline-content .timeline-location {
+    display: none;
 }
 
 .timeline-content h3 {
-    font-size: var(--fs-17);
+    font-size: clamp(18px, 1.8vw, 22px);
     font-weight: 500;
-    margin-bottom: 4px;
-    color: var(--color-accent);
+    color: var(--color-text);
+    margin: 0 0 10px;
+    letter-spacing: -0.3px;
+    line-height: 1.25;
 }
 
 .timeline-content p {
@@ -1697,7 +1709,7 @@ footer p {
 }
 
 @media (prefers-reduced-motion: reduce) {
-    .timeline-event.is-focused::before { animation: none; }
+    .timeline-event { animation: none; }
 }
 
 /* Prevent image dragging */
@@ -1793,10 +1805,10 @@ img {
     .btn,
     .lang-select,
     .journey-filter-btn,
-    .journey-mobile-btn,
-    .journey-mobile-label,
-    .journey-mobile-item,
-    .journey-mobile-item-title,
+    .journey-nav-btn,
+    .journey-nav-label,
+    .journey-nav-item,
+    .journey-nav-item-title,
     .bmc-badge,
     .back-to-top,
     .article-search,
@@ -1841,8 +1853,25 @@ img {
         flex-wrap: wrap;
     }
 
+    /* Tighten the gap above the page counter on landing pages
+       (journey/work/contact/article — the only pages with <section class="page-header">) */
+    body:has(.page-header) > header {
+        margin-bottom: 10px;
+    }
+
     .page-header {
-        padding: 0 0 24px;
+        padding: 0 0 20px;
+    }
+
+    .page-header h1 {
+        font-size: 22px;
+        letter-spacing: -0.3px;
+    }
+
+    .page-header p {
+        margin-top: 10px;
+        font-size: 14px;
+        line-height: 1.6;
     }
 
     .article-featured-card {
@@ -1894,166 +1923,15 @@ img {
         width: auto;
     }
 
-    .journey-filter {
-        display: flex;
-        width: 100%;
-    }
-
-    .journey-filter-btn {
-        flex: 1;
-    }
-
-    .timeline-event {
-        flex-direction: column;
-        gap: 4px;
-        padding-left: 28px;
-    }
-
-    .timeline-date {
-        width: auto;
-    }
-
-    .timeline-year {
-        padding-left: 28px;
-    }
-
-    .timeline::before {
-        left: 5px;
-    }
-
-    .timeline-year::before {
-        left: 0;
-    }
-
-    /* Single-event view on mobile */
-    .timeline::before,
-    .timeline-event::before,
-    .timeline-year,
-    .timeline-year::before {
-        display: none;
-    }
-
-    .timeline-group {
-        padding-bottom: 0;
-    }
-
-    .timeline-event {
-        display: none;
-    }
-
-    .timeline-event.active {
-        display: flex;
-        padding: 24px 0 0;
-    }
-
-    /* Sticky prev / date-label / next navigator */
-    .journey-mobile {
-        display: block;
+    /* Mobile sticks the navigator to the top of the panel for easy reach */
+    .journey-nav {
         position: sticky;
         top: 0;
         z-index: 10;
-        margin: 0 -16px;
-        padding: 12px 16px;
+        padding: 8px 0;
         background-color: color-mix(in srgb, var(--color-bg) 92%, transparent);
         backdrop-filter: saturate(140%) blur(8px);
         -webkit-backdrop-filter: saturate(140%) blur(8px);
-        border-bottom: 1px solid var(--color-border);
-    }
-
-    .journey-mobile-bar {
-        display: flex;
-        align-items: stretch;
-        gap: 8px;
-    }
-
-    .journey-mobile-btn {
-        flex-shrink: 0;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        width: 36px;
-        padding: 0;
-        border: 1px solid var(--color-border);
-        border-radius: 0;
-        background-color: var(--color-bg);
-        color: var(--color-text);
-        cursor: pointer;
-        transition: border-color 0.2s, color 0.2s;
-    }
-
-    .journey-mobile-btn:hover,
-    .journey-mobile-btn:focus-visible {
-        border-color: var(--color-accent);
-        color: var(--color-accent);
-    }
-
-    .journey-mobile-label {
-        flex: 1;
-        min-width: 0;
-        padding: 9px 16px;
-        border: 1px solid var(--color-border);
-        border-radius: 0;
-        background-color: var(--color-bg);
-        color: var(--color-text);
-        font: inherit;
-        font-size: var(--fs-14);
-        font-weight: 500;
-        text-align: center;
-        cursor: pointer;
-        transition: border-color 0.2s, color 0.2s;
-    }
-
-    .journey-mobile-label:hover,
-    .journey-mobile.is-open .journey-mobile-label {
-        border-color: var(--color-accent);
-        color: var(--color-accent);
-    }
-
-    .journey-mobile-list {
-        list-style: none;
-        margin: 10px 0 0;
-        padding: 6px;
-        background-color: var(--color-bg);
-        border: 1px solid var(--color-border);
-        border-radius: 0;
-        max-height: 60vh;
-        overflow-y: auto;
-        box-shadow: 0 16px 32px rgba(0, 0, 0, 0.2);
-    }
-
-    .journey-mobile-item {
-        display: flex;
-        flex-direction: column;
-        gap: 2px;
-        width: 100%;
-        text-align: left;
-        background: none;
-        border: none;
-        padding: 10px 12px;
-        color: var(--color-text);
-        font: inherit;
-        cursor: pointer;
-        border-radius: 0;
-        transition: background-color 0.15s, color 0.15s;
-    }
-
-    .journey-mobile-item-date {
-        font-size: var(--fs-12);
-        color: var(--color-text-secondary);
-    }
-
-    .journey-mobile-item-title {
-        font-size: var(--fs-14);
-    }
-
-    .journey-mobile-item:hover,
-    .journey-mobile-item[aria-selected="true"] {
-        background-color: var(--color-border);
-        color: var(--color-accent);
-    }
-
-    .journey-mobile-item[aria-selected="true"] .journey-mobile-item-date {
-        color: var(--color-accent);
     }
 }
 
