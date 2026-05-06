@@ -37,6 +37,52 @@ if (headerEl && navEl) {
     });
 }
 
+// Animated favicon — canvas-based (CSS animations don't run in browser tab SVGs)
+(function () {
+    const link = document.querySelector('link[rel="icon"]');
+    if (!link || typeof OffscreenCanvas === 'undefined' && typeof document === 'undefined') return;
+
+    const SIZE = 32, N = 11;
+    const CELL = SIZE / N;
+    const DOT = CELL - 0.5;
+    const PAD = (CELL - DOT) / 2;
+    const DURATION = 1280;
+    const R = 0x2d, G = 0xa9, B = 0xc8;
+
+    const canvas = document.createElement('canvas');
+    canvas.width = SIZE;
+    canvas.height = SIZE;
+    const ctx = canvas.getContext('2d');
+
+    function opacity(t) {
+        if (t < 0.2) return 0.44 + (0.1  - 0.44) * (t / 0.2);
+        if (t < 0.5) return 0.1  + (1.0  - 0.1)  * ((t - 0.2) / 0.3);
+        if (t < 0.8) return 1.0  + (0.44 - 1.0)  * ((t - 0.5) / 0.3);
+        return 0.44;
+    }
+
+    let last = 0;
+    function draw(ts) {
+        if (ts - last > 50) {
+            last = ts;
+            ctx.clearRect(0, 0, SIZE, SIZE);
+            for (let r = 0; r < N; r++) {
+                for (let c = 0; c < N; c++) {
+                    const dist = Math.abs(r - 5) + Math.abs(c - 5);
+                    const delay = (dist / 10) * DURATION;
+                    const phase = ((ts - delay) % DURATION + DURATION) % DURATION;
+                    const a = opacity(phase / DURATION);
+                    ctx.fillStyle = `rgba(${R},${G},${B},${a})`;
+                    ctx.fillRect(c * CELL + PAD, r * CELL + PAD, DOT, DOT);
+                }
+            }
+            link.href = canvas.toDataURL();
+        }
+        requestAnimationFrame(draw);
+    }
+    requestAnimationFrame(draw);
+})();
+
 // Theme toggle
 const toggle = document.getElementById('themeToggle');
 const html = document.documentElement;
