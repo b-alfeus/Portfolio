@@ -47,12 +47,18 @@ if (headerEl && navEl) {
     const DOT = CELL - 0.5;
     const PAD = (CELL - DOT) / 2;
     const DURATION = 1280;
-    const R = 0x2d, G = 0xa9, B = 0xc8;
 
     const canvas = document.createElement('canvas');
     canvas.width = SIZE;
     canvas.height = SIZE;
     const ctx = canvas.getContext('2d');
+
+    function accentRGB() {
+        const hex = getComputedStyle(document.documentElement)
+            .getPropertyValue('--color-accent').trim().replace('#', '');
+        const n = parseInt(hex, 16);
+        return [(n >> 16) & 255, (n >> 8) & 255, n & 255];
+    }
 
     function opacity(t) {
         if (t < 0.2) return 0.44 + (0.1  - 0.44) * (t / 0.2);
@@ -65,6 +71,7 @@ if (headerEl && navEl) {
     function draw(ts) {
         if (ts - last > 50) {
             last = ts;
+            const [R, G, B] = accentRGB();
             ctx.clearRect(0, 0, SIZE, SIZE);
             for (let r = 0; r < N; r++) {
                 for (let c = 0; c < N; c++) {
