@@ -488,15 +488,18 @@ async function renderWork() {
                     src: w.thumbnail,
                     alt: w.title || '',
                     loading: 'lazy',
-                    style: `aspect-ratio:${aspect};`,
+                    style: { aspectRatio: aspect },
                   })
                 : el('div', {
                     class: 'work-thumb work-thumb--block',
-                    style: `background:${w.background || 'var(--color-surface)'};aspect-ratio:${aspect};`,
+                    style: { backgroundColor: w.background || 'var(--color-surface)', aspectRatio: aspect },
                   });
+            const href = w.id
+                ? `project.html?id=${encodeURIComponent(w.id)}`
+                : (w.link || 'project.html');
             return el('li', { class: 'work-card' }, [
                 el('a', {
-                    href: w.link || '#',
+                    href,
                     'aria-label': w.title || 'Project',
                 }, [thumb]),
             ]);

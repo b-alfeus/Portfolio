@@ -2,6 +2,20 @@
 
 Personal portfolio for Bryan Widjaya. Static site, no build step. Deployed via GitHub Pages from `master`.
 
+## Project location
+
+This repo lives on the external SSD **`9100 PRO`**:
+
+```
+/Volumes/9100 PRO/Documents/GitHub/Portfolio
+```
+
+`~/Documents/GitHub/Portfolio/` on the internal disk is **empty** (only a `.DS_Store`) — don't be fooled by it. If `9100 PRO` isn't mounted, stop and ask before doing anything; the working files aren't on the laptop.
+
+## Session log
+
+A running journal of work across sessions lives in `Memory.MD` at the repo root. Read it for "what happened recently and where things stand." Append a new dated entry when you finish a session's worth of work, newest on top.
+
 ## Stack
 
 - Plain HTML files at the repo root (one per page).

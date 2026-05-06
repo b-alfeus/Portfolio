@@ -111,7 +111,7 @@
                 const isDark = () => document.documentElement.dataset.theme === 'dark';
 
                 function bakeLandDots(land) {
-                    const W = 2048, H = 1024;
+                    const W = 1024, H = 512;
                     const off = document.createElement('canvas');
                     off.width = W; off.height = H;
                     const oc = off.getContext('2d');
@@ -180,16 +180,17 @@
                         ctx.fillRect(px - halfR, py - halfR, r, r);
                     }
 
-                    // Network-transfer curve: a thin great-circle line with marching dashes
+                    // Network-transfer curve: dotted great-circle line
                     if (lineFade > 0 && panInterp) {
                         const N = 80;
                         ctx.strokeStyle = accent;
-                        ctx.lineCap = 'butt';
+                        ctx.lineCap = 'round';
                         ctx.lineJoin = 'round';
 
                         // Faint full path (preview of where the camera will go)
                         ctx.lineWidth = 1.4 * dpr;
                         ctx.globalAlpha = lineFade * 0.22;
+                        ctx.setLineDash([0, 5 * dpr]);
                         ctx.beginPath();
                         let started = false;
                         for (let i = 0; i <= N; i++) {
@@ -200,10 +201,10 @@
                         }
                         ctx.stroke();
 
-                        // Active flowing line up to the camera, with marching dashes
+                        // Active flowing dotted line up to the camera
                         ctx.globalAlpha = lineFade * 0.9;
                         ctx.lineWidth = 2 * dpr;
-                        ctx.setLineDash([5 * dpr, 4 * dpr]);
+                        ctx.setLineDash([0, 6 * dpr]);
                         ctx.lineDashOffset = -performance.now() / 35;
                         ctx.beginPath();
                         started = false;
@@ -338,7 +339,7 @@
                     }
                 }
 
-                init();
+                requestAnimationFrame(init);
             }
         </script>
     </body>

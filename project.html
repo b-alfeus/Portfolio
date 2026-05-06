@@ -95,5 +95,54 @@
         </footer>
 
         <script src="shared.js"></script>
+        <script>
+            (async function () {
+                const id = new URLSearchParams(location.search).get('id');
+                if (!id) return;
+
+                let items;
+                try {
+                    const r = await fetch('data/work.json', { cache: 'no-cache' });
+                    items = await r.json();
+                } catch { return; }
+
+                const idx = items.findIndex(w => w.id === id);
+                if (idx === -1) return;
+                const w = items[idx];
+
+                if (w.title) document.title = `Bryan Widjaya • ${w.title}`;
+
+                const h1 = document.querySelector('.project-header h1');
+                if (h1) h1.textContent = w.title || '';
+
+                const meta = document.querySelector('.project-meta');
+                if (meta) meta.textContent = w.category || '';
+
+                const lede = document.querySelector('.project-lede');
+                if (lede) lede.textContent = w.excerpt || '';
+
+                const cover = document.querySelector('.project-cover');
+                if (cover) {
+                    if (w.thumbnail) {
+                        cover.style.backgroundImage = `url(${w.thumbnail})`;
+                    } else {
+                        cover.style.backgroundColor = w.background || '';
+                    }
+                }
+
+                const prev = items[idx - 1];
+                const next = items[idx + 1];
+                const navPrev = document.querySelector('.project-nav-prev');
+                const navNext = document.querySelector('.project-nav-next');
+                if (navPrev) {
+                    if (prev) navPrev.href = `project.html?id=${encodeURIComponent(prev.id)}`;
+                    else navPrev.style.visibility = 'hidden';
+                }
+                if (navNext) {
+                    if (next) navNext.href = `project.html?id=${encodeURIComponent(next.id)}`;
+                    else navNext.style.visibility = 'hidden';
+                }
+            })();
+        </script>
     </body>
 </html>
