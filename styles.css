@@ -68,6 +68,7 @@
 
 html {
     scroll-behavior: smooth;
+    touch-action: manipulation;
 }
 
 ::selection {
@@ -87,7 +88,9 @@ body {
     max-width: 720px;
     margin: 0 auto;
     padding: 0 16px;
-    min-height: 100vh;
+    height: 100vh;
+    height: 100dvh;
+    overflow: hidden;
     display: flex;
     flex-direction: column;
     border-left: 1px solid var(--color-border);
@@ -95,7 +98,10 @@ body {
 }
 
 main {
-    flex: 1 0 auto;
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
+    scroll-behavior: smooth;
 }
 
 /* Header */
@@ -1356,10 +1362,10 @@ footer p {
 .journey-filter-btn {
     flex: 1;
     font: inherit;
-    font-size: var(--fs-13);
+    font-size: var(--fs-11);
     color: var(--color-text-secondary);
     background-color: var(--color-bg);
-    padding: 8px 14px;
+    padding: 5px 10px;
     border: 1px solid var(--color-border);
     border-radius: 0;
     cursor: pointer;
@@ -1421,6 +1427,7 @@ footer p {
     position: relative;
     width: 100%;
     aspect-ratio: 1 / 1;
+    min-height: 240px;
     overflow: hidden;
     border: 1px solid var(--color-border);
     background: var(--color-bg);
@@ -1495,6 +1502,7 @@ footer p {
     }
     .journey-map-wrap {
         aspect-ratio: 5 / 2;
+        min-height: 0;
         border-left: none;
         border-right: none;
     }
@@ -1758,7 +1766,7 @@ img {
         background-color: var(--color-bg);
         border-right: 1px solid var(--color-border);
         border-radius: 0;
-        padding: 72px 12px 24px;
+        padding: 56px 12px 12px;
         box-shadow: 8px 0 32px rgba(0, 0, 0, 0.25);
         z-index: 20;
         transform: translateX(-100%);
@@ -1771,10 +1779,18 @@ img {
         pointer-events: auto;
     }
 
+    .nav::before {
+        content: '';
+        display: block;
+        border-top: 1px solid var(--color-border);
+        margin: 0 -12px;
+    }
+
     .nav a {
         font-size: var(--fs-16);
         padding: 12px 16px;
         border-radius: 0;
+        border-bottom: 1px solid var(--color-border);
     }
 
     .nav a:hover {
@@ -1817,6 +1833,11 @@ img {
     select,
     textarea {
         font-size: 16px;
+    }
+
+    .journey-filter-btn {
+        font-size: 13px;
+        padding: 5px 10px;
     }
 
     .hero {
@@ -1975,7 +1996,15 @@ img {
     font-weight: 700;
 }
 
-/* Numbered nav links with colored dot on active */
+
+/* >  prompt prefix on interior page headers */
+.page-header h1::before {
+    content: "> ";
+    color: var(--color-accent);
+    opacity: 0.55;
+}
+
+/* Numbered nav links — counter prefix, accent color on active */
 .nav a::before {
     content: counter(nav-counter, decimal-leading-zero) " ";
     opacity: 0.35;
@@ -1987,16 +2016,9 @@ img {
 }
 
 .nav a.active::before {
-    content: "● " counter(nav-counter, decimal-leading-zero) " ";
+    content: counter(nav-counter, decimal-leading-zero) " ";
     color: var(--color-accent);
     opacity: 1;
-}
-
-/* >  prompt prefix on interior page headers */
-.page-header h1::before {
-    content: "> ";
-    color: var(--color-accent);
-    opacity: 0.55;
 }
 
 /* Scanlines overlay — dark mode only, fixed so it doesn't scroll */
