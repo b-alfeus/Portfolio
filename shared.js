@@ -40,7 +40,7 @@ if (headerEl && navEl) {
 // Animated favicon — canvas-based (CSS animations don't run in browser tab SVGs)
 (function () {
     const link = document.querySelector('link[rel="icon"]');
-    if (!link || typeof OffscreenCanvas === 'undefined' && typeof document === 'undefined') return;
+    if (!link) return;
 
     const SIZE = 32, N = 11;
     const CELL = SIZE / N;
@@ -408,13 +408,6 @@ if (cycleEl) {
 document.querySelectorAll('.btn').forEach(btn => {
     btn.addEventListener('mouseenter', () => btn.classList.add('is-hovered'));
     btn.addEventListener('mouseleave', () => btn.classList.remove('is-hovered'));
-});
-
-// Disable image dragging
-document.addEventListener('dragstart', (e) => {
-    if (e.target.tagName === 'IMG') {
-        e.preventDefault();
-    }
 });
 
 // ── Content from data/*.json (synced from Notion by GitHub Actions) ────────

@@ -17,7 +17,6 @@
                 <a href="index.html" data-i18n="nav.about">about</a>
                 <a href="journey.html" class="active" data-i18n="nav.journey">journey</a>
                 <a href="work.html" data-i18n="nav.work">work</a>
-                <!-- <a href="article.html" data-i18n="nav.posts">posts</a> -->
                 <a href="contact.html" data-i18n="nav.contact">contact</a>
             </nav>
             <div class="header-controls">
@@ -104,7 +103,6 @@
                 let panInterp = null;
                 let panProgress = 1;   // 0 → 1 across the flight
                 let lineFade = 0;      // 1 during flight, fades after arrival
-                let pulse = 0;
 
                 const easeInOutCubic = (t) => t < 0.5 ? 4*t*t*t : 1 - Math.pow(-2*t + 2, 3) / 2;
 
@@ -297,7 +295,6 @@
                         curScale = FIXED_SCALE;
                         if (lineFade > 0) lineFade = Math.max(0, lineFade - 0.022);
                     }
-                    pulse += 0.045;
                     render();
                     requestAnimationFrame(tick);
                 }
