@@ -5,11 +5,17 @@
       {
         "id": "born-surabaya-1990",
         "title": "Born in Surabaya",
+        "title_id": "Lahir di Surabaya",
+        "title_jp": "スラバヤで生まれる",
+        "title_de": "In Surabaya geboren",
         "date": "1990-01-01",
         "dateDisplay": "1990",
         "tags": [],
         "location": { "place": "Surabaya, ID", "lat": -7.2575, "lng": 112.7521 },
-        "description": "Born in Surabaya, to a Chinese-Indonesian couple who met as pen pals through a matchmaking ad in the local newspaper."
+        "description": "Born in Surabaya, to a Chinese-Indonesian couple who met as pen pals through a matchmaking ad in the local newspaper.",
+        "description_id": "Lahir di Surabaya, dari pasangan Tionghoa-Indonesia yang bertemu sebagai teman koresponden melalui iklan jodoh di koran lokal.",
+        "description_jp": "スラバヤで生まれる。地元紙の出会い広告を通じてペンフレンドとして出会った中国系インドネシア人カップルの子として。",
+        "description_de": "In Surabaya geboren, als Kind eines chinesisch-indonesischen Paares, das sich als Brieffreunde über eine Heiratsannonce in der lokalen Zeitung kennenlernte."
       }
     ]
   },
@@ -19,20 +25,32 @@
       {
         "id": "childhood-jakarta-1991",
         "title": "Childhood in Jakarta",
+        "title_id": "Masa Kecil di Jakarta",
+        "title_jp": "ジャカルタでの幼少期",
+        "title_de": "Kindheit in Jakarta",
         "date": "1991-01-01",
         "dateDisplay": "1991",
         "tags": [],
         "location": { "place": "Jakarta, ID", "lat": -6.2088, "lng": 106.8456 },
-        "description": "We moved to Jakarta. I was a quiet kid — found my peace in drawing and doodling, especially during Sunday cartoon marathons on local TV."
+        "description": "We moved to Jakarta. I was a quiet kid — found my peace in drawing and doodling, especially during Sunday cartoon marathons on local TV.",
+        "description_id": "Kami pindah ke Jakarta. Saya anak yang pendiam — menemukan ketenangan dalam menggambar dan mencoret-coret, terutama saat marathon kartun Minggu di TV lokal.",
+        "description_jp": "ジャカルタへ引っ越した。静かな子どもで、絵を描いたり落書きしたりすることに安らぎを見つけた。特に日曜日のローカルテレビのカートゥーンマラソンの時間が好きだった。",
+        "description_de": "Wir zogen nach Jakarta. Ich war ein ruhiges Kind — fand meinen Frieden im Zeichnen und Kritzeln, besonders während der Sonntagszeichentrickfilme im lokalen Fernsehen."
       },
       {
         "id": "befriending-tech-1991",
         "title": "Befriending Technology",
+        "title_id": "Bersahabat dengan Teknologi",
+        "title_jp": "テクノロジーとの出会い",
+        "title_de": "Freundschaft mit Technologie",
         "date": "1991-06-01",
         "dateDisplay": "1991–1999",
         "tags": [],
         "location": { "place": "Jakarta, ID", "lat": -6.2088, "lng": 106.8456 },
-        "description": "I wasn't much of a talker as a kid. My relatives filled the gap with books, toys, and video game consoles — probably the best thing they could've done. I got to try a lot of different hardware growing up, and that quiet time with machines shaped how I think about interactive things."
+        "description": "I wasn't much of a talker as a kid. My relatives filled the gap with books, toys, and video game consoles — probably the best thing they could've done. I got to try a lot of different hardware growing up, and that quiet time with machines shaped how I think about interactive things.",
+        "description_id": "Saya tidak banyak bicara waktu kecil. Saudara-saudara saya mengisi kekosongan itu dengan buku, mainan, dan konsol video game — mungkin hal terbaik yang bisa mereka lakukan. Saya berkesempatan mencoba banyak perangkat berbeda saat tumbuh dewasa, dan waktu tenang bersama mesin-mesin itu membentuk cara saya berpikir tentang hal-hal interaktif.",
+        "description_jp": "子どもの頃、あまり話す子ではなかった。親戚たちがその空白を本やおもちゃ、ゲーム機で埋めてくれた — おそらく彼らにできた最善のことだ。成長する中でさまざまなハードウェアを試す機会があり、機械と過ごした静かな時間が、インタラクティブなものへの考え方を形成した。",
+        "description_de": "Als Kind war ich kein großer Redner. Meine Verwandten füllten diese Lücke mit Büchern, Spielzeug und Videospielkonsolen — wahrscheinlich das Beste, was sie tun konnten. Aufgewachsen durfte ich viele verschiedene Geräte ausprobieren, und diese stille Zeit mit Maschinen hat geprägt, wie ich über interaktive Dinge denke."
       }
     ]
   },
@@ -42,11 +60,17 @@
       {
         "id": "dotcom-era-2000",
         "title": "The .com Era",
+        "title_id": "Era .com",
+        "title_jp": ".com時代",
+        "title_de": "Die .com-Ära",
         "date": "2000-01-01",
         "dateDisplay": "2000",
         "tags": [],
         "location": { "place": "Jakarta, ID", "lat": -6.2088, "lng": 106.8456 },
-        "description": "My uncle got me my first PC and my first taste of the internet. Myspace, Friendster, MSN, Winamp, Facebook — I picked up the basics just by messing around. That's still how I learn best."
+        "description": "My uncle got me my first PC and my first taste of the internet. Myspace, Friendster, MSN, Winamp, Facebook — I picked up the basics just by messing around. That's still how I learn best.",
+        "description_id": "Paman saya membelikan PC pertama saya dan memperkenalkan saya ke internet. Myspace, Friendster, MSN, Winamp, Facebook — saya mempelajari dasar-dasarnya hanya dengan mencoba-coba. Sampai sekarang, begitulah cara terbaik saya belajar.",
+        "description_jp": "叔父が初めてのパソコンとインターネットをプレゼントしてくれた。Myspace、Friendster、MSN、Winamp、Facebook — ただいじくり回すだけでネットの基本を覚えていった。今でもそれが一番の学び方だ。",
+        "description_de": "Mein Onkel besorgte mir meinen ersten PC und meinen ersten Internetzugang. Myspace, Friendster, MSN, Winamp, Facebook — ich lernte die Grundlagen einfach durch Herumprobieren. So lerne ich noch heute am besten."
       }
     ]
   },
@@ -56,11 +80,17 @@
       {
         "id": "moved-tangerang-2006",
         "title": "Moved to Tangerang",
+        "title_id": "Pindah ke Tangerang",
+        "title_jp": "タンゲランへ引っ越し",
+        "title_de": "Umzug nach Tangerang",
         "date": "2006-01-01",
         "dateDisplay": "2006",
         "tags": [],
         "location": { "place": "Tangerang, ID", "lat": -6.1781, "lng": 106.6298 },
-        "description": "We finally moved into a house we'd owned for a while but never lived in. Starting over with a new school and new people — again."
+        "description": "We finally moved into a house we'd owned for a while but never lived in. Starting over with a new school and new people — again.",
+        "description_id": "Kami akhirnya pindah ke rumah yang sudah kami miliki sejak lama tapi belum pernah ditempati. Memulai lagi dari nol dengan sekolah baru dan orang-orang baru — lagi.",
+        "description_jp": "しばらく所有していたが住んだことのなかった家にようやく引っ越した。新しい学校と新しい人間関係 — またも一からのやり直し。",
+        "description_de": "Wir zogen endlich in ein Haus, das wir schon eine Weile besessen, aber nie bewohnt hatten. Wieder von vorne anfangen — neue Schule, neue Menschen."
       }
     ]
   },
@@ -70,11 +100,17 @@
       {
         "id": "university-2009",
         "title": "Admission to University",
+        "title_id": "Masuk Universitas",
+        "title_jp": "大学入学",
+        "title_de": "Aufnahme ins Studium",
         "date": "2009-07-01",
         "dateDisplay": "2009",
         "tags": [],
         "location": { "place": "Jakarta, ID", "lat": -6.2088, "lng": 106.8456 },
-        "description": "Registered for Visual Communication Design at Bina Nusantara. Around the same time, my mom moved to Perth to work and help fund my studies. Also my first MacBook — and first real encounter with macOS."
+        "description": "Registered for Visual Communication Design at Bina Nusantara. Around the same time, my mom moved to Perth to work and help fund my studies. Also my first MacBook — and first real encounter with macOS.",
+        "description_id": "Mendaftar jurusan Desain Komunikasi Visual di Universitas Bina Nusantara. Sekitar waktu yang sama, ibu saya pindah ke Perth untuk bekerja dan membantu membiayai kuliah saya. Ini juga saat pertama saya memiliki MacBook — dan perkenalan pertama saya dengan macOS.",
+        "description_jp": "ビナ・ヌサンタラ大学のビジュアルコミュニケーションデザイン学科に入学。同じ頃、母は学費を工面するためパースへ移り働き始めた。初めてのMacBook — そしてmacOSとの初めての本格的な出会いでもあった。",
+        "description_de": "Einschreibung für Visual Communication Design an der Bina Nusantara University. Ungefähr zur gleichen Zeit zog meine Mutter nach Perth, um zu arbeiten und mein Studium zu finanzieren. Außerdem mein erstes MacBook — und die erste echte Begegnung mit macOS."
       }
     ]
   },
@@ -84,20 +120,32 @@
       {
         "id": "cocinero-intern-2013",
         "title": "Intern at (cocinero) a Design Kitchen",
+        "title_id": "Magang di (cocinero) a Design Kitchen",
+        "title_jp": "(cocinero) a Design Kitchenでのインターン",
+        "title_de": "Praktikum bei (cocinero) a Design Kitchen",
         "date": "2013-01-01",
         "dateDisplay": "2013",
         "tags": ["work"],
         "location": { "place": "Jakarta, ID", "lat": -6.2088, "lng": 106.8456 },
-        "description": "A lecturer from uni brought me into his branding consultancy as an intern. First time sitting across from a real client — working through briefs, running ideas, and delivering materials to actual companies."
+        "description": "A lecturer from uni brought me into his branding consultancy as an intern. First time sitting across from a real client — working through briefs, running ideas, and delivering materials to actual companies.",
+        "description_id": "Seorang dosen dari kampus mengajak saya bergabung di konsultan brandingnya sebagai intern. Pertama kali duduk berhadapan dengan klien sungguhan — mengerjakan brief, mengembangkan ide, dan mengirimkan materi ke perusahaan nyata.",
+        "description_jp": "大学の講師が自身のブランディングコンサルタント会社にインターンとして迎えてくれた。初めて本物のクライアントと向き合い、ブリーフをこなし、アイデアを展開し、実際の企業に成果物を届けた。",
+        "description_de": "Ein Dozent der Uni holte mich als Praktikanten in seine Branding-Agentur. Zum ersten Mal einem echten Kunden gegenübersitzen — Briefings durcharbeiten, Ideen entwickeln und Materialien an echte Unternehmen liefern."
       },
       {
         "id": "graduated-binus-2013",
         "title": "Graduated from Bina Nusantara University",
+        "title_id": "Lulus dari Universitas Bina Nusantara",
+        "title_jp": "ビナ・ヌサンタラ大学卒業",
+        "title_de": "Abschluss an der Bina Nusantara University",
         "date": "2013-08-01",
         "dateDisplay": "Aug 2013",
         "tags": ["achievement"],
         "location": { "place": "Jakarta, ID", "lat": -6.2088, "lng": 106.8456 },
-        "description": "Finished four years of Visual Communication Design. Came out with a handle on Photoshop, Illustrator, After Effects, InDesign, Dreamweaver, and Flash — and a clearer sense of what I wanted to do with it."
+        "description": "Finished four years of Visual Communication Design. Came out with a handle on Photoshop, Illustrator, After Effects, InDesign, Dreamweaver, and Flash — and a clearer sense of what I wanted to do with it.",
+        "description_id": "Menyelesaikan empat tahun studi Desain Komunikasi Visual. Keluar dengan kemampuan Photoshop, Illustrator, After Effects, InDesign, Dreamweaver, dan Flash — dan gambaran yang lebih jelas tentang apa yang ingin saya lakukan ke depannya.",
+        "description_jp": "4年間のビジュアルコミュニケーションデザインを修了。Photoshop、Illustrator、After Effects、InDesign、Dreamweaver、Flashを身につけ、自分がやりたいことへの見通しも明確になった。",
+        "description_de": "Vier Jahre Visual Communication Design abgeschlossen. Mit Kenntnissen in Photoshop, Illustrator, After Effects, InDesign, Dreamweaver und Flash — und einem klareren Bild davon, was ich damit machen wollte."
       }
     ]
   },
@@ -107,11 +155,17 @@
       {
         "id": "perth-2014",
         "title": "Lived in Perth",
+        "title_id": "Tinggal di Perth",
+        "title_jp": "パース生活",
+        "title_de": "Leben in Perth",
         "date": "2014-01-01",
         "dateDisplay": "2014",
         "tags": [],
         "location": { "place": "Perth, AU", "lat": -31.9505, "lng": 115.8605 },
-        "description": "Spent about a year in Australia visiting my mom. First time living in a developed economy — a slower, more deliberate pace of life that stuck with me."
+        "description": "Spent about a year in Australia visiting my mom. First time living in a developed economy — a slower, more deliberate pace of life that stuck with me.",
+        "description_id": "Menghabiskan sekitar setahun di Australia mengunjungi ibu saya. Pertama kali tinggal di negara ekonomi maju — ritme hidup yang lebih lambat dan teratur yang membekas sampai sekarang.",
+        "description_jp": "母を訪ねてオーストラリアで約1年を過ごした。先進国での生活は初めて — よりゆっくりと丁寧な暮らしのペースが、今も心に残っている。",
+        "description_de": "Etwa ein Jahr in Australien verbracht, bei meiner Mutter zu Besuch. Zum ersten Mal in einer entwickelten Wirtschaft gelebt — ein langsameres, bewussteres Lebenstempo, das mich geprägt hat."
       }
     ]
   },
@@ -121,11 +175,17 @@
       {
         "id": "weekend-inc-2015",
         "title": "UI/UX Designer at Weekend Inc.",
+        "title_id": "UI/UX Designer di Weekend Inc.",
+        "title_jp": "Weekend Inc.でのUI/UXデザイナー",
+        "title_de": "UI/UX Designer bei Weekend Inc.",
         "date": "2015-01-01",
         "dateDisplay": "2015",
         "tags": ["work"],
         "location": { "place": "Jakarta, ID", "lat": -6.2088, "lng": 106.8456 },
-        "description": "My first step into digital product work. A small agency that also ran early-stage local startups. This is where I started connecting the lines between graphic design and product thinking."
+        "description": "My first step into digital product work. A small agency that also ran early-stage local startups. This is where I started connecting the lines between graphic design and product thinking.",
+        "description_id": "Langkah pertama saya ke dunia produk digital. Sebuah agensi kecil yang juga mengelola startup lokal tahap awal. Di sinilah saya mulai menghubungkan titik-titik antara desain grafis dan pemikiran produk.",
+        "description_jp": "デジタルプロダクト制作への第一歩。初期段階のローカルスタートアップも手がける小さなエージェンシーだった。グラフィックデザインとプロダクト思考の点と点を結び始めたのがここだった。",
+        "description_de": "Mein erster Schritt in die digitale Produktarbeit. Eine kleine Agentur, die auch lokale Startups in der Frühphase begleitete. Hier begann ich, die Verbindung zwischen Grafikdesign und Produktdenken herzustellen."
       }
     ]
   },
@@ -135,20 +195,32 @@
       {
         "id": "bhinneka-pd-2018",
         "title": "Product Designer at Bhinneka",
+        "title_id": "Product Designer di Bhinneka",
+        "title_jp": "BhinnekaのProduct Designer",
+        "title_de": "Product Designer bei Bhinneka",
         "date": "2018-01-01",
         "dateDisplay": "Jan 2018",
         "tags": ["work"],
         "location": { "place": "Jakarta, ID", "lat": -6.2088, "lng": 106.8456 },
-        "description": "My first in-house role. Worked across iOS, Android, B2C and B2B web, and a handful of internal dashboards for Marketing, Logistics, and Inventory. Learned how to navigate corporate life and manage stakeholders in a bigger org."
+        "description": "My first in-house role. Worked across iOS, Android, B2C and B2B web, and a handful of internal dashboards for Marketing, Logistics, and Inventory. Learned how to navigate corporate life and manage stakeholders in a bigger org.",
+        "description_id": "Peran in-house pertama saya. Mengerjakan iOS, Android, web B2C dan B2B, serta beberapa dashboard internal untuk Marketing, Logistik, dan Inventaris. Belajar menavigasi kehidupan korporat dan mengelola stakeholder di organisasi yang lebih besar.",
+        "description_jp": "初めての社内ポジション。iOS、Android、B2C・B2BのWeb、そしてマーケティング・物流・在庫管理向けの社内ダッシュボードを担当。大きな組織での企業生活のナビゲートとステークホルダー管理を学んだ。",
+        "description_de": "Meine erste Inhouse-Rolle. Arbeit an iOS, Android, B2C- und B2B-Web sowie einigen internen Dashboards für Marketing, Logistik und Inventar. Gelernt, wie man das Unternehmensleben navigiert und Stakeholder in einer größeren Organisation managt."
       },
       {
         "id": "bhinneka-lead-2018",
         "title": "Lead Product Designer at Bhinneka",
+        "title_id": "Lead Product Designer di Bhinneka",
+        "title_jp": "BhinnekaのLead Product Designer",
+        "title_de": "Lead Product Designer bei Bhinneka",
         "date": "2018-06-01",
         "dateDisplay": "2018",
         "tags": ["work", "achievement"],
         "location": { "place": "Jakarta, ID", "lat": -6.2088, "lng": 106.8456 },
-        "description": "Grew into a lead role, managing a team of four designers. The work we shipped got featured by Google and Accenture Interactive in their Mobile UX Masters SEA report."
+        "description": "Grew into a lead role, managing a team of four designers. The work we shipped got featured by Google and Accenture Interactive in their Mobile UX Masters SEA report.",
+        "description_id": "Berkembang menjadi peran lead, mengelola tim empat desainer. Karya yang kami kirimkan mendapat sorotan dari Google dan Accenture Interactive dalam laporan Mobile UX Masters SEA mereka.",
+        "description_jp": "リードの役割へと成長し、4人のデザイナーのチームを率いた。私たちが世に出した仕事は、GoogleとAccenture InteractiveのMobile UX Masters SEAレポートで取り上げられた。",
+        "description_de": "Zur Führungsrolle gewachsen und ein Team von vier Designern geleitet. Die veröffentlichte Arbeit wurde von Google und Accenture Interactive in ihrem Mobile UX Masters SEA-Bericht vorgestellt."
       }
     ]
   },
@@ -158,11 +230,17 @@
       {
         "id": "loket-2020",
         "title": "Senior UI/UX at LOKÉT · Gojek Group",
+        "title_id": "Senior UI/UX di LOKÉT · Gojek Group",
+        "title_jp": "LOKÉT · Gojek GroupのSenior UI/UX",
+        "title_de": "Senior UI/UX bei LOKÉT · Gojek Group",
         "date": "2020-01-01",
         "dateDisplay": "2020",
         "tags": ["work"],
         "location": { "place": "Jakarta, ID", "lat": -6.2088, "lng": 106.8456 },
-        "description": "Wanted to see what a local startup looked like from the inside. LOKET was Indonesia's event ticketing platform. Revamped the website — drove a 7% traffic lift — and built out their live event feature for online broadcasting and creator monetization."
+        "description": "Wanted to see what a local startup looked like from the inside. LOKET was Indonesia's event ticketing platform. Revamped the website — drove a 7% traffic lift — and built out their live event feature for online broadcasting and creator monetization.",
+        "description_id": "Ingin tahu seperti apa startup lokal dari dalam. LOKET adalah platform tiket acara Indonesia. Merombak website — menghasilkan peningkatan traffic 7% — dan membangun fitur live event mereka untuk siaran online dan monetisasi kreator.",
+        "description_jp": "ローカルスタートアップの内側がどんなものか見てみたかった。LOKETはインドネシアのイベントチケットプラットフォーム。Webサイトをリニューアルしてトラフィックを7%向上させ、オンライン配信とクリエイターの収益化に向けたライブイベント機能を構築した。",
+        "description_de": "Wollte sehen, wie ein lokales Startup von innen aussieht. LOKET war Indonesiens Event-Ticketing-Plattform. Die Website überarbeitet — 7% mehr Traffic erzielt — und das Live-Event-Feature für Online-Streaming und Creator-Monetarisierung entwickelt."
       }
     ]
   },
@@ -172,20 +250,32 @@
       {
         "id": "traveloka-2021",
         "title": "Visual Designer at Traveloka",
+        "title_id": "Visual Designer di Traveloka",
+        "title_jp": "TravelokaのVisual Designer",
+        "title_de": "Visual Designer bei Traveloka",
         "date": "2021-01-01",
         "dateDisplay": "2021",
         "tags": ["work"],
         "location": { "place": "Tangerang, ID", "lat": -6.1781, "lng": 106.6298 },
-        "description": "Joined another unicorn — this time on Traveloka's Financial Services team, focused on Wealth Management. Worked mainly on the Gold and Mutual Fund products."
+        "description": "Joined another unicorn — this time on Traveloka's Financial Services team, focused on Wealth Management. Worked mainly on the Gold and Mutual Fund products.",
+        "description_id": "Bergabung dengan unicorn lain — kali ini di tim Financial Services Traveloka, berfokus pada Wealth Management. Mengerjakan terutama produk Gold dan Reksa Dana.",
+        "description_jp": "別のユニコーン企業へ — 今度はTravelokaのFinancial Servicesチーム、Wealth Management部門。主にGoldと投資信託のプロダクトを担当した。",
+        "description_de": "Einem weiteren Unicorn beigetreten — diesmal im Financial Services Team von Traveloka, mit Fokus auf Wealth Management. Hauptsächlich an den Gold- und Investmentfonds-Produkten gearbeitet."
       },
       {
         "id": "carevo-freelance-2021",
         "title": "Freelance at Carevo",
+        "title_id": "Freelance di Carevo",
+        "title_jp": "Carevoでのフリーランス",
+        "title_de": "Freiberuflich bei Carevo",
         "date": "2021-06-01",
         "dateDisplay": "2021",
         "tags": ["work"],
         "location": { "place": "Tangerang, ID (Remote)", "lat": -6.1781, "lng": 106.6298 },
-        "description": "A freelance project redesigning the website for a healthcare company."
+        "description": "A freelance project redesigning the website for a healthcare company.",
+        "description_id": "Proyek freelance mendesain ulang website untuk perusahaan layanan kesehatan.",
+        "description_jp": "ヘルスケア企業のウェブサイトをリデザインするフリーランス案件。",
+        "description_de": "Ein Freelance-Projekt zur Neugestaltung der Website für ein Gesundheitsunternehmen."
       }
     ]
   },
@@ -195,11 +285,17 @@
       {
         "id": "moladin-2022",
         "title": "Product Designer at Moladin",
+        "title_id": "Product Designer di Moladin",
+        "title_jp": "MoladinのProduct Designer",
+        "title_de": "Product Designer bei Moladin",
         "date": "2022-01-01",
         "dateDisplay": "2022",
         "tags": ["work"],
         "location": { "place": "Jakarta, ID", "lat": -6.2088, "lng": 106.8456 },
-        "description": "A new industry — Financing and Automotive Retail. Embedded in their Financing unit, learning the end-to-end flow of sourcing used cars for their own showroom network."
+        "description": "A new industry — Financing and Automotive Retail. Embedded in their Financing unit, learning the end-to-end flow of sourcing used cars for their own showroom network.",
+        "description_id": "Industri baru — Pembiayaan dan Retail Otomotif. Bergabung dalam unit Financing mereka, mempelajari alur end-to-end pengadaan mobil bekas untuk jaringan showroom mereka.",
+        "description_jp": "新しい業界 — ファイナンシングと自動車小売。ファイナンシング部門に入り、自社ショールームネットワークへの中古車調達のエンドツーエンドのフローを学んだ。",
+        "description_de": "Eine neue Branche — Finanzierung und Automobilhandel. Im Financing-Bereich eingebettet und den End-to-End-Ablauf der Beschaffung von Gebrauchtwagen für das eigene Showroom-Netzwerk kennengelernt."
       }
     ]
   },
@@ -209,11 +305,17 @@
       {
         "id": "erigo-freelance-2023",
         "title": "Freelance at ERIGO",
+        "title_id": "Freelance di ERIGO",
+        "title_jp": "ERIGOでのフリーランス",
+        "title_de": "Freiberuflich bei ERIGO",
         "date": "2023-01-01",
         "dateDisplay": "2023",
         "tags": ["work"],
         "location": { "place": "Jakarta, ID", "lat": -6.2088, "lng": 106.8456 },
-        "description": "Ran a design workshop and helped redesign the e-commerce website — working within their existing tech stack and constraints."
+        "description": "Ran a design workshop and helped redesign the e-commerce website — working within their existing tech stack and constraints.",
+        "description_id": "Menjalankan workshop desain dan membantu mendesain ulang website e-commerce — bekerja dalam batasan tech stack dan kendala yang ada.",
+        "description_jp": "デザインワークショップを実施し、既存のtech stackと制約の中でeコマースサイトのリデザインをサポートした。",
+        "description_de": "Einen Design-Workshop durchgeführt und beim Redesign der E-Commerce-Website geholfen — innerhalb des bestehenden Tech-Stacks und der gegebenen Einschränkungen."
       }
     ]
   },
@@ -223,11 +325,17 @@
       {
         "id": "workmate-2024",
         "title": "Product Designer at Workmate",
+        "title_id": "Product Designer di Workmate",
+        "title_jp": "WorkmateのProduct Designer",
+        "title_de": "Product Designer bei Workmate",
         "date": "2024-01-01",
         "dateDisplay": "2024",
         "tags": ["work"],
         "location": { "place": "Jakarta, ID", "lat": -6.2088, "lng": 106.8456 },
-        "description": "Rebuilt the brand direction, improved the Internal Operations System, ran a design workshop, reworked the Worker App, and put together a Growth Strategy deck for the company."
+        "description": "Rebuilt the brand direction, improved the Internal Operations System, ran a design workshop, reworked the Worker App, and put together a Growth Strategy deck for the company.",
+        "description_id": "Membangun kembali arah brand, meningkatkan Sistem Operasi Internal, menjalankan workshop desain, mengerjakan ulang Worker App, dan menyusun deck Growth Strategy untuk perusahaan.",
+        "description_jp": "ブランド方向性を再構築し、社内業務システムを改善し、デザインワークショップを実施し、Worker Appを作り直し、会社のGrowth Strategy資料をまとめた。",
+        "description_de": "Die Markenausrichtung neu aufgebaut, das interne Betriebssystem verbessert, einen Design-Workshop durchgeführt, die Worker App überarbeitet und ein Growth-Strategy-Deck für das Unternehmen erstellt."
       }
     ]
   },
@@ -237,11 +345,17 @@
       {
         "id": "persol-apac-2025",
         "title": "Product Designer at PERSOL APAC",
+        "title_id": "Product Designer di PERSOL APAC",
+        "title_jp": "PERSOL APACのProduct Designer",
+        "title_de": "Product Designer bei PERSOL APAC",
         "date": "2025-01-01",
         "dateDisplay": "2025",
         "tags": ["work"],
         "location": { "place": "Asia Pacific (Remote)", "lat": 1.3521, "lng": 103.8198 },
-        "description": "Helped migrate design work from a vendor, improved the experience for their Sourcing Dashboard, and put together a strategy deck for the team."
+        "description": "Helped migrate design work from a vendor, improved the experience for their Sourcing Dashboard, and put together a strategy deck for the team.",
+        "description_id": "Membantu migrasi pekerjaan desain dari vendor, meningkatkan pengalaman Sourcing Dashboard mereka, dan menyusun deck strategi untuk tim.",
+        "description_jp": "ベンダーからのデザイン作業の移行を支援し、Sourcing Dashboardの体験を改善し、チームのための戦略資料をまとめた。",
+        "description_de": "Bei der Migration von Designarbeiten von einem Anbieter geholfen, die Erfahrung für das Sourcing Dashboard verbessert und ein Strategie-Deck für das Team erstellt."
       }
     ]
   }

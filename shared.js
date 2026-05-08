@@ -333,6 +333,7 @@ function setLanguage(lang) {
     });
     if (langSelect) langSelect.value = lang;
     localStorage.setItem('lang', lang);
+    if (document.querySelector('.timeline')) renderJourney();
 }
 
 if (langSelect) langSelect.addEventListener('change', (e) => setLanguage(e.target.value));
@@ -560,22 +561,27 @@ async function renderWork() {
     );
 }
 
+let journeyCache = null;
+
 async function renderJourney() {
     const timeline = document.querySelector('.timeline');
     if (!timeline) return;
 
-    const groups = await loadJSON('data/journey.json');
-    if (!groups) {
+    if (!journeyCache) journeyCache = await loadJSON('data/journey.json');
+    if (!journeyCache) {
         timeline.replaceChildren(el('li', { class: 'content-error' }, t('error.load')));
         return;
     }
 
     timeline.replaceChildren(
-        ...groups.map(g =>
+        ...journeyCache.map(g =>
             el('li', { class: 'timeline-group', id: `y${g.year}` }, [
                 el('h2', { class: 'timeline-year' }, String(g.year)),
                 el('ul', { class: 'timeline-events' },
                     g.events.map(ev => {
+                        const lang = currentLang;
+                        const title = ev[`title_${lang}`] || ev.title;
+                        const desc  = ev[`description_${lang}`] || ev.description || '';
                         return el('li', {
                             class: 'timeline-event',
                             dataset: {
@@ -586,8 +592,8 @@ async function renderJourney() {
                             },
                         }, [
                             el('div', { class: 'timeline-content' }, [
-                                el('h3', {}, ev.title),
-                                el('p', {}, ev.description || ''),
+                                el('h3', {}, title),
+                                el('p', {}, desc),
                             ]),
                         ]);
                     })
