@@ -45,7 +45,6 @@
     --color-surface: #e5e5e7;
     --color-accent: #00838f;
     --color-accent-hover: #006874;
-    --color-theme-toggle-hover: #b8860b;
 }
 
 :root[data-theme="dark"] {
@@ -56,7 +55,6 @@
     --color-surface: #2c2c2e;
     --color-accent: #0AC5B3;
     --color-accent-hover: #0de0cc;
-    --color-theme-toggle-hover: #ffd60a;
 }
 
 /* Reset */
@@ -292,7 +290,7 @@ header.nav-open .nav-toggle .icon-close {
 }
 
 .theme-toggle:hover {
-    color: var(--color-theme-toggle-hover);
+    color: var(--color-accent);
 }
 
 /* Show/hide sun and moon icons based on theme */
