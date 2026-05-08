@@ -77,6 +77,16 @@ html {
     color: var(--color-bg);
 }
 
+body.sticky-footer {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+body.sticky-footer main {
+    flex: 1;
+}
+
 body {
     font-family: "Berkeley Mono", ui-monospace, "SF Mono", Menlo, monospace;
     font-optical-sizing: auto;
