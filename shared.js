@@ -601,6 +601,7 @@ async function renderJourney() {
             ])
         )
     );
+    timeline.dispatchEvent(new CustomEvent('journey:rendered', { bubbles: true }));
 }
 
 function renderPostNotFound(root) {
@@ -772,7 +773,7 @@ function initJourneyInteractions() {
     const journey = document.querySelector('.journey');
     const timeline = journey?.querySelector('.timeline');
     if (!timeline) return;
-    const allEvents = Array.from(timeline.querySelectorAll('.timeline-event'));
+    let allEvents = Array.from(timeline.querySelectorAll('.timeline-event'));
     if (!allEvents.length) return;
 
     const chev = (d) => {
@@ -915,6 +916,11 @@ function initJourneyInteractions() {
     document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && open) closeList(); });
 
     applyFilter('all');
+
+    timeline.addEventListener('journey:rendered', () => {
+        allEvents = Array.from(timeline.querySelectorAll('.timeline-event'));
+        applyFilter(currentFilter);
+    });
 }
 
 // ── Orchestrate ───────────────────────────────────────────────────────────

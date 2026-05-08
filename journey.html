@@ -359,16 +359,19 @@
                         }
                     };
 
+                    let attachMo = null;
                     const attach = () => {
                         const items = document.querySelectorAll('.timeline-event');
                         if (!items.length) return false;
 
-                        // Initial: sync to whichever event the navigator marks focused
+                        if (attachMo) attachMo.disconnect();
+
+                        // Sync to whichever event the navigator marks focused
                         const initial = document.querySelector('.timeline-event.is-focused') || items[0];
                         syncFromEvent(initial);
 
-                        // Watch for the navigator (or any code) toggling .is-focused on events
-                        const mo = new MutationObserver((muts) => {
+                        // Watch for the navigator toggling .is-focused on events
+                        attachMo = new MutationObserver((muts) => {
                             for (const m of muts) {
                                 if (m.attributeName !== 'class') continue;
                                 const t = m.target;
@@ -378,7 +381,7 @@
                                 }
                             }
                         });
-                        items.forEach(it => mo.observe(it, { attributes: true, attributeFilter: ['class'] }));
+                        items.forEach(it => attachMo.observe(it, { attributes: true, attributeFilter: ['class'] }));
                         return true;
                     };
 
@@ -386,6 +389,9 @@
                         const mo = new MutationObserver(() => { if (attach()) mo.disconnect(); });
                         mo.observe(document.querySelector('.timeline'), { childList: true, subtree: true });
                     }
+
+                    // Re-attach observers whenever the timeline is re-rendered (e.g. language switch)
+                    document.querySelector('.timeline')?.addEventListener('journey:rendered', attach);
                 }
 
                 requestAnimationFrame(init);
