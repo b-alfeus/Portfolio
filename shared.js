@@ -860,9 +860,11 @@ function initJourneyInteractions() {
             labelBtn.textContent = '—';
             return;
         }
-        idx = (i + visibleEvents.length) % visibleEvents.length;
+        idx = Math.max(0, Math.min(i, visibleEvents.length - 1));
         const current = visibleEvents[idx];
         current.classList.add('is-focused');
+        prevBtn.disabled = idx === 0;
+        nextBtn.disabled = idx === visibleEvents.length - 1;
         const year = current.dataset.year || '';
         labelBtn.textContent = year;
         const items = Array.from(list.querySelectorAll('.journey-nav-item'));

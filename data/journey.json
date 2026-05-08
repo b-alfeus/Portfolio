@@ -1,55 +1,248 @@
 [
   {
-    "year": 2026,
+    "year": 1990,
     "events": [
-      { "id": "seed-1", "title": "Launched Portfolio", "date": "2026-02-01", "dateDisplay": "Feb 2026", "tags": ["work", "achievement"], "location": { "place": "Jakarta, ID", "lat": -6.2088, "lng": 106.8456 }, "description": "Rebuilt and shipped my personal portfolio from scratch — a place to document the work, the thinking, and the journey." },
-      { "id": "seed-2", "title": "Started Independent Practice", "date": "2026-01-01", "dateDisplay": "Jan 2026", "tags": ["work"], "location": { "place": "Jakarta, ID", "lat": -6.2088, "lng": 106.8456 }, "description": "Left full-time employment to work independently on design projects across branding, product, and editorial." }
+      {
+        "id": "born-surabaya-1990",
+        "title": "Born in Surabaya",
+        "date": "1990-01-01",
+        "dateDisplay": "1990",
+        "tags": [],
+        "location": { "place": "Surabaya, ID", "lat": -7.2575, "lng": 112.7521 },
+        "description": "Born in Surabaya, to a Chinese-Indonesian couple who met as penpals through a matchmaking ad in the local newspaper."
+      }
     ]
   },
   {
-    "year": 2024,
+    "year": 1991,
     "events": [
-      { "id": "seed-3", "title": "Design System Shipped", "date": "2024-09-01", "dateDisplay": "Sep 2024", "tags": ["work", "achievement"], "location": { "place": "Jakarta, ID", "lat": -6.2088, "lng": 106.8456 }, "description": "Delivered a full design system for a Series A startup — component library, documentation, and contribution guidelines." },
-      { "id": "seed-4", "title": "Joined Studio as Lead Designer", "date": "2024-04-01", "dateDisplay": "Apr 2024", "tags": ["work"], "location": { "place": "Jakarta, ID", "lat": -6.2088, "lng": 106.8456 }, "description": "Took on a lead design role at a Jakarta-based creative studio, overseeing projects across digital and print." }
+      {
+        "id": "childhood-jakarta-1991",
+        "title": "Childhood in Jakarta",
+        "date": "1991-01-01",
+        "dateDisplay": "1991",
+        "tags": [],
+        "location": { "place": "Jakarta, ID", "lat": -6.2088, "lng": 106.8456 },
+        "description": "We moved to Jakarta. I was a quiet kid — found my peace in drawing and doodling, especially during Sunday cartoon marathons on local TV."
+      },
+      {
+        "id": "befriending-tech-1991",
+        "title": "Befriending Technology",
+        "date": "1991-06-01",
+        "dateDisplay": "1991–1999",
+        "tags": [],
+        "location": { "place": "Jakarta, ID", "lat": -6.2088, "lng": 106.8456 },
+        "description": "I wasn't much of a talker as a kid. My relatives filled the gap with books, toys, and video game consoles — probably the best thing they could've done. I got to try a lot of different hardware growing up, and that quiet time with machines shaped how I think about interactive things."
+      }
     ]
   },
   {
-    "year": 2022,
+    "year": 2000,
     "events": [
-      { "id": "seed-5", "title": "First Solo Exhibition", "date": "2022-11-01", "dateDisplay": "Nov 2022", "tags": ["achievement"], "location": { "place": "Jakarta, ID", "lat": -6.2088, "lng": 106.8456 }, "description": "Showed a series of illustration and print work at a small gallery in Jakarta — the first time I exhibited outside of school." },
-      { "id": "seed-6", "title": "Moved Back to Jakarta", "date": "2022-06-01", "dateDisplay": "Jun 2022", "tags": [], "location": { "place": "Jakarta, ID", "lat": -6.2088, "lng": 106.8456 }, "description": "Returned home after studying abroad. Started re-rooting in the local design and creative community." }
+      {
+        "id": "dotcom-era-2000",
+        "title": "The .com Era",
+        "date": "2000-01-01",
+        "dateDisplay": "2000",
+        "tags": [],
+        "location": { "place": "Jakarta, ID", "lat": -6.2088, "lng": 106.8456 },
+        "description": "My uncle got me my first PC and my first taste of the internet. Myspace, Friendster, MSN, Winamp, Facebook — I picked up the basics just by messing around. That's still how I learn best."
+      }
     ]
   },
   {
-    "year": 2020,
+    "year": 2006,
     "events": [
-      { "id": "seed-7", "title": "Graduated in Design", "date": "2020-08-01", "dateDisplay": "Aug 2020", "tags": ["achievement"], "location": { "place": "Jakarta, ID", "lat": -6.2088, "lng": 106.8456 }, "description": "Completed my undergraduate degree in visual communication design. Graduated during a pandemic — ceremonies online, feelings very real." },
-      { "id": "seed-8", "title": "Went Fully Remote", "date": "2020-03-01", "dateDisplay": "Mar 2020", "tags": [], "location": { "place": "Jakarta, ID", "lat": -6.2088, "lng": 106.8456 }, "description": "The world paused. I started learning front-end development, took on freelance work, and figured out how to make things from a bedroom." }
+      {
+        "id": "moved-tangerang-2006",
+        "title": "Moved to Tangerang",
+        "date": "2006-01-01",
+        "dateDisplay": "2006",
+        "tags": [],
+        "location": { "place": "Tangerang, ID", "lat": -6.1781, "lng": 106.6298 },
+        "description": "We finally moved into a house we'd owned for a while but never lived in. Starting over with a new school and new people — again."
+      }
     ]
   },
   {
-    "year": 2018,
+    "year": 2009,
     "events": [
-      { "id": "ux-mobile-masters-2018", "title": "UX Mobile Masters SEA", "date": "2018-01-01", "dateDisplay": "Jan 2018", "tags": ["work", "achievement"], "location": { "place": "Jakarta, ID", "lat": -6.2088, "lng": 106.8456 }, "description": "Bhinneka's mobile design ranked 4th with an overall score of 87% in the ASEAN Mobile Sites Leaderboard for Retail & Commerce — report conducted by Google & Accenture Interactive." },
-      { "id": "seed-9", "title": "First Design Internship", "date": "2018-10-01", "dateDisplay": "Oct 2018", "tags": ["work"], "location": { "place": "Jakarta, ID", "lat": -6.2088, "lng": 106.8456 }, "description": "Interned at a branding agency called (cocinero) a design kitchen in Jakarta. Learned that real design work is 90% feedback and 10% the thing you were excited about." }
+      {
+        "id": "university-2009",
+        "title": "Admission to University",
+        "date": "2009-07-01",
+        "dateDisplay": "2009",
+        "tags": [],
+        "location": { "place": "Jakarta, ID", "lat": -6.2088, "lng": 106.8456 },
+        "description": "Registered for Visual Communication Design at Bina Nusantara. Around the same time, my mom moved to Perth to work and help fund my studies. Also my first MacBook — and first real encounter with macOS."
+      }
+    ]
+  },
+  {
+    "year": 2013,
+    "events": [
+      {
+        "id": "cocinero-intern-2013",
+        "title": "Intern at (cocinero) a Design Kitchen",
+        "date": "2013-01-01",
+        "dateDisplay": "2013",
+        "tags": ["work"],
+        "location": { "place": "Jakarta, ID", "lat": -6.2088, "lng": 106.8456 },
+        "description": "A lecturer from uni brought me into his branding consultancy as an intern. First time sitting across from a real client — working through briefs, running ideas, and delivering materials to actual companies."
+      },
+      {
+        "id": "graduated-binus-2013",
+        "title": "Graduated from Bina Nusantara University",
+        "date": "2013-08-01",
+        "dateDisplay": "Aug 2013",
+        "tags": ["achievement"],
+        "location": { "place": "Jakarta, ID", "lat": -6.2088, "lng": 106.8456 },
+        "description": "Finished four years of Visual Communication Design. Came out with a handle on Photoshop, Illustrator, After Effects, InDesign, Dreamweaver, and Flash — and a clearer sense of what I wanted to do with it."
+      }
+    ]
+  },
+  {
+    "year": 2014,
+    "events": [
+      {
+        "id": "perth-2014",
+        "title": "Lived in Perth",
+        "date": "2014-01-01",
+        "dateDisplay": "2014",
+        "tags": [],
+        "location": { "place": "Perth, AU", "lat": -31.9505, "lng": 115.8605 },
+        "description": "Spent about a year in Australia visiting my mom. First time living in a developed economy — a slower, more deliberate pace of life that stuck with me."
+      }
     ]
   },
   {
     "year": 2015,
     "events": [
-      { "id": "seed-10", "title": "Discovered Design as a Practice", "date": "2015-07-01", "dateDisplay": "Jul 2015", "tags": [], "location": { "place": "Perth, AU", "lat": -31.9505, "lng": 115.8605 }, "description": "Started reading about design intentionally — Dieter Rams, Frank Chimero, design history. Realised making things was something I could do seriously." }
+      {
+        "id": "weekend-inc-2015",
+        "title": "UI/UX Designer at Weekend Inc.",
+        "date": "2015-01-01",
+        "dateDisplay": "2015",
+        "tags": ["work"],
+        "location": { "place": "Jakarta, ID", "lat": -6.2088, "lng": 106.8456 },
+        "description": "My first step into digital product work. A small agency that also ran early-stage local startups. This is where the lines between graphic design and product thinking started connecting."
+      }
     ]
   },
   {
-    "year": 2012,
+    "year": 2018,
     "events": [
-      { "id": "seed-11", "title": "Started Drawing Seriously", "date": "2012-05-01", "dateDisplay": "May 2012", "tags": [], "location": { "place": "Jakarta, ID", "lat": -6.2088, "lng": 106.8456 }, "description": "Filled my first sketchbook. Drew every day before school. Didn't know it was the beginning of anything — it just felt necessary." }
+      {
+        "id": "bhinneka-pd-2018",
+        "title": "Product Designer at Bhinneka",
+        "date": "2018-01-01",
+        "dateDisplay": "Jan 2018",
+        "tags": ["work"],
+        "location": { "place": "Jakarta, ID", "lat": -6.2088, "lng": 106.8456 },
+        "description": "My first in-house role. Worked across iOS, Android, B2C and B2B web, and a handful of internal dashboards for Marketing, Logistics, and Inventory. Learned how to navigate corporate life and manage stakeholders in a bigger org."
+      },
+      {
+        "id": "bhinneka-lead-2018",
+        "title": "Lead Product Designer at Bhinneka",
+        "date": "2018-06-01",
+        "dateDisplay": "2018",
+        "tags": ["work", "achievement"],
+        "location": { "place": "Jakarta, ID", "lat": -6.2088, "lng": 106.8456 },
+        "description": "Grew into a lead role, managing a team of four designers. The work we shipped got featured by Google and Accenture Interactive in their Mobile UX Masters SEA report."
+      }
     ]
   },
   {
-    "year": 1990,
+    "year": 2020,
     "events": [
-      { "id": "seed-12", "title": "Born in Surabaya", "date": "1990-04-01", "dateDisplay": "Apr 1990", "tags": [], "location": { "place": "Surabaya, ID", "lat": -7.2575, "lng": 112.7521 }, "description": "From a chinese-indonesian couple, who fell in love as penpals through a matchmaking ad from a local newspaper." }
+      {
+        "id": "loket-2020",
+        "title": "Senior UI/UX at LOKÉT · Gojek Group",
+        "date": "2020-01-01",
+        "dateDisplay": "2020",
+        "tags": ["work"],
+        "location": { "place": "Jakarta, ID", "lat": -6.2088, "lng": 106.8456 },
+        "description": "Wanted to see what a local startup looked like from the inside. LOKET was Indonesia's event ticketing platform. Revamped the website — drove a 7% traffic lift — and built out their live event feature for online broadcasting and creator monetization."
+      }
+    ]
+  },
+  {
+    "year": 2021,
+    "events": [
+      {
+        "id": "traveloka-2021",
+        "title": "Visual Designer at Traveloka",
+        "date": "2021-01-01",
+        "dateDisplay": "2021",
+        "tags": ["work"],
+        "location": { "place": "Tangerang, ID", "lat": -6.1781, "lng": 106.6298 },
+        "description": "Joined another unicorn — this time on Traveloka's Financial Services team, focused on Wealth Management. Worked mainly on the Gold and Mutual Fund products."
+      },
+      {
+        "id": "carevo-freelance-2021",
+        "title": "Freelance at Carevo",
+        "date": "2021-06-01",
+        "dateDisplay": "2021",
+        "tags": ["work"],
+        "location": { "place": "Tangerang, ID (Remote)", "lat": -6.1781, "lng": 106.6298 },
+        "description": "A freelance project redesigning the website for a healthcare company."
+      }
+    ]
+  },
+  {
+    "year": 2022,
+    "events": [
+      {
+        "id": "moladin-2022",
+        "title": "Product Designer at Moladin",
+        "date": "2022-01-01",
+        "dateDisplay": "2022",
+        "tags": ["work"],
+        "location": { "place": "Jakarta, ID", "lat": -6.2088, "lng": 106.8456 },
+        "description": "A new industry — Financing and Automotive Retail. Embedded in their Financing unit, learning the end-to-end flow of sourcing used cars for their own showroom network."
+      }
+    ]
+  },
+  {
+    "year": 2023,
+    "events": [
+      {
+        "id": "erigo-freelance-2023",
+        "title": "Freelance at ERIGO",
+        "date": "2023-01-01",
+        "dateDisplay": "2023",
+        "tags": ["work"],
+        "location": { "place": "Jakarta, ID", "lat": -6.2088, "lng": 106.8456 },
+        "description": "Ran a design workshop and helped redesign the e-commerce website — working within their existing tech stack and constraints."
+      }
+    ]
+  },
+  {
+    "year": 2024,
+    "events": [
+      {
+        "id": "workmate-2024",
+        "title": "Product Designer at Workmate",
+        "date": "2024-01-01",
+        "dateDisplay": "2024",
+        "tags": ["work"],
+        "location": { "place": "Jakarta, ID", "lat": -6.2088, "lng": 106.8456 },
+        "description": "Rebuilt the brand direction, improved the Internal Operations System, ran a design workshop, reworked the Worker App, and put together a Growth Strategy deck for the company."
+      }
+    ]
+  },
+  {
+    "year": 2025,
+    "events": [
+      {
+        "id": "persol-apac-2025",
+        "title": "Product Designer at PERSOL APAC",
+        "date": "2025-01-01",
+        "dateDisplay": "2025",
+        "tags": ["work"],
+        "location": { "place": "Asia Pacific (Remote)", "lat": 1.3521, "lng": 103.8198 },
+        "description": "Helped migrate design work from a vendor, improved the experience for their Sourcing Dashboard, and put together a strategy deck for the team."
+      }
     ]
   }
 ]
