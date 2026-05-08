@@ -925,9 +925,18 @@ function initJourneyInteractions() {
 
 // ── Orchestrate ───────────────────────────────────────────────────────────
 
+function initMailto() {
+    document.querySelectorAll('[data-mailto]').forEach(el => {
+        const addr = atob(el.dataset.mailto);
+        el.href = 'mailto:' + addr;
+        if ('mailtoText' in el.dataset) el.textContent = addr;
+    });
+}
+
 (async () => {
     await Promise.all([renderPosts(), renderWork(), renderJourney(), renderPost()]);
     initCarousels();
     initArticleSearch();
     initJourneyInteractions();
+    initMailto();
 })();
