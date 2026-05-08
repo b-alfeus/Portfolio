@@ -923,6 +923,27 @@ function initJourneyInteractions() {
     });
 }
 
+// ── Content protection ────────────────────────────────────────────────────
+
+function initContentProtection() {
+    // Block right-click context menu on images and canvas elements
+    document.addEventListener('contextmenu', (e) => {
+        if (e.target.closest('img, canvas')) e.preventDefault();
+    });
+
+    // Block drag-and-drop saving of images
+    document.addEventListener('dragstart', (e) => {
+        if (e.target.closest('img, canvas')) e.preventDefault();
+    });
+
+    // Prevent long-press save on touch devices
+    document.addEventListener('touchstart', (e) => {
+        if (e.target.closest('img, canvas')) {
+            e.target.addEventListener('touchend', (te) => te.preventDefault(), { once: true });
+        }
+    }, { passive: true });
+}
+
 // ── Orchestrate ───────────────────────────────────────────────────────────
 
 function initMailto() {
@@ -939,4 +960,5 @@ function initMailto() {
     initArticleSearch();
     initJourneyInteractions();
     initMailto();
+    initContentProtection();
 })();

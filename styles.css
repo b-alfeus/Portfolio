@@ -2051,3 +2051,23 @@ html[data-theme="dark"]::after {
 }
 
 /* ── End terminal aesthetic ───────────────────────────────────────────────── */
+
+/* ── Content protection ───────────────────────────────────────────────────── */
+
+img, canvas {
+    -webkit-user-drag: none;
+    -webkit-touch-callout: none;
+    user-select: none;
+    pointer-events: auto;
+}
+
+/* Screenshot deterrent — visible normally, blanked in screenshots on
+   supporting browsers (e.g. Chrome 130+ with CSS @property) */
+@media (display-mode: browser) {
+    body::before {
+        content: "";
+        display: none;
+    }
+}
+
+/* ── End content protection ───────────────────────────────────────────────── */
