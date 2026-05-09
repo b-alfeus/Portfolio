@@ -44,6 +44,10 @@
                     <aside class="journey-aside" aria-hidden="true">
                         <div class="journey-map-wrap">
                             <canvas class="journey-map" id="journeyMap"></canvas>
+                            <div class="journey-map-error" id="journeyMapError" hidden>
+                                <span>map unavailable</span>
+                                <button type="button" id="journeyMapRetry">↺ retry</button>
+                            </div>
                         </div>
                         <div class="journey-map-readout">
                             <div class="journey-map-readout-line">
@@ -78,6 +82,8 @@
             const canvas = document.getElementById('journeyMap');
             const placeEl = document.getElementById('mapPlace');
             const coordsEl = document.getElementById('mapCoords');
+            const errorEl = document.getElementById('journeyMapError');
+            const retryBtn = document.getElementById('journeyMapRetry');
             if (!canvas) { /* nothing to do */ } else {
                 const ctx = canvas.getContext('2d');
                 const dpr = Math.min(window.devicePixelRatio || 1, 2);
@@ -103,6 +109,7 @@
                 let panInterp = null;
                 let panProgress = 1;   // 0 → 1 across the flight
                 let lineFade = 0;      // 1 during flight, fades after arrival
+                let ticking = false;
 
                 const easeInOutCubic = (t) => t < 0.5 ? 4*t*t*t : 1 - Math.pow(-2*t + 2, 3) / 2;
 
@@ -275,6 +282,7 @@
                 }
 
                 function tick() {
+                    if (!ticking) return;
                     if (panInterp && panProgress < 1) {
                         panProgress = Math.min(1, panProgress + 0.035);
                         const eased = easeInOutCubic(panProgress);
@@ -300,7 +308,19 @@
                 }
 
                 async function init() {
-                    fitCanvas();
+                    if (errorEl) errorEl.hidden = true;
+
+                    // Wait for canvas to have real layout dimensions before sizing it.
+                    // rAF alone is skipped in hidden/background tabs on Safari; poll instead.
+                    await new Promise(resolve => {
+                        const check = () => {
+                            const rect = canvas.getBoundingClientRect();
+                            if (rect.width > 0) { fitCanvas(); resolve(); }
+                            else setTimeout(check, 50);
+                        };
+                        check();
+                    });
+
                     new ResizeObserver(() => { fitCanvas(); render(); }).observe(canvas);
 
                     let world, journey;
@@ -309,7 +329,10 @@
                             fetch('https://cdn.jsdelivr.net/npm/world-atlas@2/land-50m.json').then(r => r.json()),
                             fetch('data/journey.json', { cache: 'no-cache' }).then(r => r.json()),
                         ]);
-                    } catch { return; }
+                    } catch {
+                        if (errorEl) errorEl.hidden = false;
+                        return;
+                    }
 
                     const land = feature(world, world.objects.land);
                     landDots = bakeLandDots(land);
@@ -346,6 +369,7 @@
                     new MutationObserver(render)
                         .observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
 
+                    ticking = true;
                     tick();
 
                     const syncFromEvent = (target) => {
@@ -393,7 +417,9 @@
                     document.querySelector('.timeline')?.addEventListener('journey:rendered', attach);
                 }
 
-                requestAnimationFrame(init);
+                if (retryBtn) retryBtn.addEventListener('click', () => { ticking = false; init(); });
+
+                init();
             }
         </script>
     </body>
