@@ -1,11 +1,12 @@
 [
   {
     "id": "gedung-kesenian-jakarta",
-    "title": "Gedung Kesenian Jakarta",
+    "title": "Rebranding Gedung Kesenian Jakarta",
     "order": 1,
     "excerpt": "A new visual identity for Gedung Kesenian Jakarta — drawing from the theatre's ornamental colonial architecture to craft a mark that holds across business cards, event tickets, and printed stationery.",
-    "category": "Brand · Academic",
+    "client": "Gedung Kesenian Jakarta",
     "year": "2014",
+    "tags": ["Branding", "Academic"],
     "thumbnail": "assets/work/gedung-kesenian-jakarta.jpg",
     "background": "#c8b89a",
     "aspect": "1/1",
@@ -21,6 +22,10 @@
     "outcome": "A full identity system anchored by a monogram that doubles as a surface pattern. The mark reads cleanly as a standalone lockup on business card fronts and expands into a textile-like grid on collateral reverses — the same geometry earning its keep at both scales.",
     "images": [
       {
+        "src": "assets/work/gedung-kesenian-jakarta/theatre.jpg",
+        "caption": "The auditorium — red velvet seating, gilded balconies, a 1920s chandelier"
+      },
+      {
         "src": "assets/work/gedung-kesenian-jakarta/logo.jpg",
         "caption": "The full lockup — monogram and wordmark in oxidised gold and charcoal"
       },
@@ -29,8 +34,8 @@
         "caption": "Brand guidelines booklet — dark charcoal cover, monogram label"
       },
       {
-        "src": "assets/work/gedung-kesenian-jakarta/theatre.jpg",
-        "caption": "The auditorium — red velvet seating, gilded balconies, a 1920s chandelier"
+        "src": "assets/work/gedung-kesenian-jakarta/business-cards.jpg",
+        "caption": "Business cards — monogram front, pattern reverse in oxidised gold"
       },
       {
         "src": "assets/work/gedung-kesenian-jakarta/ticket.jpg",
@@ -43,9 +48,10 @@
     "title": "The Dharmawangsa Square",
     "order": 2,
     "excerpt": "Brand identity for The Dharmawangsa Square — a lifestyle mall in Kebayoran Baru whose mark draws from the Mahabharata, referencing Yudhisthira's trident and the bond of the five Pandavas.",
-    "category": "Brand · Commercial",
+    "client": "The Dharmawangsa Square",
     "year": "2014",
-    "thumbnail": "assets/work/dharmawangsa-square.jpg",
+    "tags": ["Branding", "Commercial"],
+    "thumbnail": "assets/work/dharmawangsa-square/uniform.jpg",
     "background": "#b8a888",
     "aspect": "1/1",
     "link": "project.html",
@@ -60,12 +66,16 @@
     "outcome": "A complete brand system deployed across exterior signage, interior wayfinding, staff uniforms, and carved frosted-glass entrance installations. The navy and gold palette reads as quiet authority — deliberately distinct from the louder retail identity conventions of the category.",
     "images": [
       {
-        "src": "assets/work/dharmawangsa-square/signage-carved.jpg",
-        "caption": "Carved logomark on frosted glass — entrance installation"
-      },
-      {
         "src": "assets/work/dharmawangsa-square/exterior.jpg",
         "caption": "The Dharmawangsa Square building exterior, Kebayoran Baru"
+      },
+      {
+        "src": "assets/work/dharmawangsa-square/logo.jpg",
+        "caption": "The Dharmawangsa Square — full logotype with crown-spear monogram"
+      },
+      {
+        "src": "assets/work/dharmawangsa-square/signage-carved.jpg",
+        "caption": "Carved logomark on wooden panel — entrance installation"
       },
       {
         "src": "assets/work/dharmawangsa-square/uniform.jpg",
@@ -78,25 +88,75 @@
     ]
   },
   {
-    "id": "seed-3",
-    "title": "Coming Soon",
+    "id": "weekend-inc-2015",
+    "title": "Various Work — Weekend Inc.",
     "order": 3,
-    "excerpt": "",
-    "category": "",
-    "thumbnail": null,
-    "background": "#d9cfc0",
-    "aspect": "3/4",
-    "link": "project.html"
+    "excerpt": "A collection of UI/UX and digital product work from Weekend Inc. — a small Jakarta agency running early-stage startups alongside client work for XL Axiata, HM Sampoerna, and KapanLagi Network.",
+    "client": "Weekend Inc.",
+    "year": "2015",
+    "tags": ["Product", "Commercial"],
+    "thumbnail": "assets/work/weekend-inc-2015/riseup.jpg",
+    "background": "#1e2330",
+    "aspect": "4/3",
+    "variant": "carousel",
+    "link": "project.html",
+    "overview": "Weekend Inc. was a small Jakarta agency that doubled as a startup incubator. During my time there I worked across a range of client briefs — from e-commerce platforms to consumer apps — while also contributing to the agency's own early-stage products. Clients included XL Axiata, HM Sampoerna, .NET Mediatama, and KapanLagi Network.",
+    "outcome": "A body of work spanning UI design, interaction flows, and visual communication across web and mobile — the foundation of my digital product practice.",
+    "images": [
+      {
+        "src": "assets/work/weekend-inc-2015/riseup.jpg",
+        "caption": "Rise Up! — typographic artwork, printed on t-shirts for our annual company gathering event."
+      },
+      {
+        "src": "assets/work/weekend-inc-2015/parley.jpg",
+        "caption": "Parley — registration screen. Dark UI with star-trail ambient background."
+      },
+      {
+        "src": "assets/work/weekend-inc-2015/voca.jpg",
+        "caption": "Voca — matched results screen. Interpreter marketplace UI."
+      }
+    ]
   },
   {
-    "id": "seed-4",
-    "title": "Coming Soon",
+    "id": "portfolio-2015-front",
+    "title": "\"End of the Horizon\" — 2015",
     "order": 4,
-    "excerpt": "",
-    "category": "",
-    "thumbnail": null,
-    "background": "#cfc0a8",
+    "excerpt": "Front cover of the 2015 printed portfolio — geometric orbital composition in monochrome.",
+    "tags": ["Artwork"],
+    "thumbnail": "assets/work/portfolio-2015/cover-front.jpg",
+    "background": "#e8e4de",
+    "aspect": "1025/1772",
+    "lightbox": true,
+    "lightboxSrc": "assets/work/portfolio-2015/cover-front.jpg",
+    "lightboxCaption": "Portfolio 2015 — Front cover. Geometric orbital composition, monochrome print."
+  },
+  {
+    "id": "portfolio-2015-back",
+    "title": "\"Stack\" — 2015",
+    "order": 5,
+    "excerpt": "Back cover of the 2015 printed portfolio — minimal dark field with a typographic barcode motif.",
+    "tags": ["Artwork"],
+    "thumbnail": "assets/work/portfolio-2015/cover-back.jpg",
+    "background": "#1e1e1e",
+    "aspect": "1181/1772",
+    "lightbox": true,
+    "lightboxSrc": "assets/work/portfolio-2015/cover-back.jpg",
+    "lightboxCaption": "Portfolio 2015 — Back cover. Dark field with typographic barcode motif."
+  },
+  {
+    "id": "bhinneka",
+    "title": "Bhinneka",
+    "tags": ["Product"],
+    "background": "#2a3a4a",
     "aspect": "4/3",
-    "link": "project.html"
+    "comingSoon": true
+  },
+  {
+    "id": "workmate",
+    "title": "Workmate",
+    "tags": ["Product"],
+    "background": "#1e2e22",
+    "aspect": "4/3",
+    "comingSoon": true
   }
 ]

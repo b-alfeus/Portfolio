@@ -35,15 +35,27 @@
 
         <main>
             <article class="project">
-                <a href="work.html" class="project-back">&larr; Back to Work</a>
+                <a href="work.html" class="project-back">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>
+                    <span>Back to Work</span>
+                </a>
 
                 <header class="project-header">
-                    <p class="project-meta">Studio / Client · Year · Role</p>
+                    <div class="project-attrs">
+                        <div class="project-attr project-attr--info">
+                            <span class="project-attr-label">Client</span>
+                            <span class="project-attr-value">—</span>
+                            <span class="project-attr-label">Year</span>
+                            <span class="project-attr-value">—</span>
+                        </div>
+                        <div class="project-attr project-attr--tags">
+                            <span class="project-attr-label">Tags</span>
+                            <div class="project-tags"></div>
+                        </div>
+                    </div>
                     <h1>Project Title</h1>
                     <p class="project-lede">A one or two sentence summary of the project — what it was, who it was for, and why it mattered.</p>
                 </header>
-
-                <div class="project-cover" style="background-color: #d9c9b0;"></div>
 
                 <div class="project-body">
                     <h2>Overview</h2>
@@ -84,8 +96,14 @@
                 </div>
 
                 <nav class="project-nav" aria-label="Project navigation">
-                    <a href="project.html" class="project-nav-prev">&larr; Previous</a>
-                    <a href="project.html" class="project-nav-next">Next &rarr;</a>
+                    <a href="project.html" class="project-nav-prev">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>
+                        <span>Previous</span>
+                    </a>
+                    <a href="project.html" class="project-nav-next">
+                        <span>Next</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 5 7 7-7 7"/><path d="M5 12h14"/></svg>
+                    </a>
                 </nav>
             </article>
         </main>
@@ -114,22 +132,65 @@
                 if (w.title) document.title = `Bryan Widjaya • ${w.title}`;
 
                 const h1 = document.querySelector('.project-header h1');
-                if (h1) h1.textContent = w.title || '';
+                if (h1) {
+                    if (w.variant === 'carousel') h1.remove();
+                    else h1.textContent = w.title || '';
+                }
 
-                const meta = document.querySelector('.project-meta');
-                if (meta) {
-                    const parts = [];
-                    if (w.year) parts.push(w.year);
-                    if (w.category) parts.push(w.category);
-                    meta.textContent = parts.join(' · ');
+                const attrsEl = document.querySelector('.project-attrs');
+                if (attrsEl && w.variant === 'carousel') {
+                    attrsEl.remove();
+                }
+                if (attrsEl && w.variant !== 'carousel') {
+                    attrsEl.innerHTML = '';
+
+                    const leftDiv = document.createElement('div');
+                    leftDiv.className = 'project-attr project-attr--info';
+                    const addBlock = (label, value) => {
+                        if (!value) return;
+                        const lbl = document.createElement('span');
+                        lbl.className = 'project-attr-label';
+                        lbl.textContent = label;
+                        const val = document.createElement('span');
+                        val.className = 'project-attr-value';
+                        val.textContent = value;
+                        leftDiv.appendChild(lbl);
+                        leftDiv.appendChild(val);
+                    };
+                    addBlock('Client', w.client);
+                    addBlock('Year', w.year);
+                    if (leftDiv.childElementCount > 0) attrsEl.appendChild(leftDiv);
+
+                    if (Array.isArray(w.tags) && w.tags.length > 0) {
+                        const rightDiv = document.createElement('div');
+                        rightDiv.className = 'project-attr project-attr--tags';
+                        const lbl = document.createElement('span');
+                        lbl.className = 'project-attr-label';
+                        lbl.textContent = 'Tags';
+                        const tagsRow = document.createElement('div');
+                        tagsRow.className = 'project-tags';
+                        w.tags.forEach(tag => {
+                            const span = document.createElement('span');
+                            span.className = 'project-tag';
+                            span.textContent = tag;
+                            tagsRow.appendChild(span);
+                        });
+                        rightDiv.appendChild(lbl);
+                        rightDiv.appendChild(tagsRow);
+                        attrsEl.appendChild(rightDiv);
+                    }
                 }
 
                 const lede = document.querySelector('.project-lede');
-                if (lede) lede.textContent = w.excerpt || '';
+                if (lede) {
+                    if (w.variant === 'carousel') lede.remove();
+                    else lede.textContent = w.excerpt || '';
+                }
 
                 const cover = document.querySelector('.project-cover');
                 if (cover) {
-                    if (w.thumbnail) cover.style.backgroundImage = `url(${w.thumbnail})`;
+                    const coverSrc = w.cover || w.thumbnail;
+                    if (coverSrc) cover.style.backgroundImage = `url(${coverSrc})`;
                     else cover.style.backgroundColor = w.background || '';
                 }
 
@@ -155,43 +216,110 @@
                         return fig;
                     };
 
-                    const nodes = [];
-
                     const imgs = w.images || [];
-                    if (imgs.length > 0) {
-                        nodes.push(figure(imgs[0].src, imgs[0].caption));
-                    }
 
-                    if (w.overview) {
-                        nodes.push(e('h2', null, ['Overview']));
-                        nodes.push(e('p', null, [w.overview]));
-                    }
-                    if (w.challenge) {
-                        nodes.push(e('h2', null, ['The Challenge']));
-                        nodes.push(e('p', null, [w.challenge]));
-                    }
+                    if (w.variant === 'carousel' && imgs.length > 0) {
+                        document.body.classList.add('is-carousel');
+                        const carousel = e('div', 'project-carousel', []);
 
-                    if (w.process) {
-                        nodes.push(e('h2', null, ['Process']));
-                        const list = e('ul', null, []);
-                        (Array.isArray(w.process) ? w.process : [w.process])
-                            .forEach(p => list.appendChild(e('li', null, [p])));
-                        nodes.push(list);
-                    }
-                    if (w.outcome) {
-                        nodes.push(e('h2', null, ['Outcome']));
-                        nodes.push(e('p', null, [w.outcome]));
-                    }
+                        const track = e('div', 'project-carousel-track', []);
+                        imgs.forEach((im, i) => {
+                            const slide = document.createElement('figure');
+                            slide.className = 'project-carousel-slide' + (i === 0 ? ' is-active' : '');
+                            const imgEl = document.createElement('img');
+                            imgEl.className = 'project-carousel-img';
+                            imgEl.src = im.src;
+                            imgEl.alt = im.caption || '';
+                            slide.appendChild(imgEl);
+                            if (im.caption) {
+                                const cap = e('figcaption', 'project-carousel-caption', [im.caption]);
+                                slide.appendChild(cap);
+                            }
+                            track.appendChild(slide);
+                        });
+                        carousel.appendChild(track);
 
-                    if (imgs.length === 2) {
-                        nodes.push(figure(imgs[1].src, imgs[1].caption));
-                    } else if (imgs.length > 2) {
-                        const gallery = e('div', 'project-gallery', []);
-                        imgs.slice(1).forEach(im => gallery.appendChild(figure(im.src, im.caption)));
-                        nodes.push(gallery);
-                    }
+                        const mkBtn = (cls, label, svgPath) => {
+                            const btn = document.createElement('button');
+                            btn.type = 'button';
+                            btn.className = 'project-carousel-btn ' + cls;
+                            btn.setAttribute('aria-label', label);
+                            btn.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${svgPath}</svg>`;
+                            return btn;
+                        };
+                        const prevBtn = mkBtn('project-carousel-btn--prev', 'Previous', '<path d="m12 19-7-7 7-7"/><path d="M19 12H5"/>');
+                        const nextBtn = mkBtn('project-carousel-btn--next', 'Next', '<path d="m12 5 7 7-7 7"/><path d="M5 12h14"/>');
+                        carousel.appendChild(prevBtn);
+                        carousel.appendChild(nextBtn);
 
-                    body.replaceChildren(...nodes);
+                        const dotsWrap = e('div', 'project-carousel-dots', []);
+                        imgs.forEach((_, i) => {
+                            const dot = document.createElement('button');
+                            dot.type = 'button';
+                            dot.className = 'project-carousel-dot' + (i === 0 ? ' is-active' : '');
+                            dot.setAttribute('aria-label', `Slide ${i + 1}`);
+                            dotsWrap.appendChild(dot);
+                        });
+                        carousel.appendChild(dotsWrap);
+
+                        let current = 0;
+                        const slides = track.querySelectorAll('.project-carousel-slide');
+                        const dots = dotsWrap.querySelectorAll('.project-carousel-dot');
+                        const goTo = (n) => {
+                            slides[current].classList.remove('is-active');
+                            dots[current].classList.remove('is-active');
+                            current = n;
+                            slides[current].classList.add('is-active');
+                            dots[current].classList.add('is-active');
+                            prevBtn.disabled = current === 0;
+                            nextBtn.disabled = current === slides.length - 1;
+                        };
+                        prevBtn.addEventListener('click', () => { if (current > 0) goTo(current - 1); });
+                        nextBtn.addEventListener('click', () => { if (current < slides.length - 1) goTo(current + 1); });
+                        dots.forEach((dot, i) => dot.addEventListener('click', () => goTo(i)));
+                        document.addEventListener('keydown', (ev) => {
+                            if (ev.key === 'ArrowLeft' && current > 0) goTo(current - 1);
+                            if (ev.key === 'ArrowRight' && current < slides.length - 1) goTo(current + 1);
+                        });
+                        goTo(0);
+
+                        body.replaceChildren(carousel);
+                    } else {
+                        const nodes = [];
+
+                        if (w.overview) {
+                            nodes.push(e('h2', null, ['Overview']));
+                            if (imgs.length > 0) nodes.push(figure(imgs[0].src, imgs[0].caption));
+                            nodes.push(e('p', null, [w.overview]));
+                        }
+                        if (w.challenge) {
+                            nodes.push(e('h2', null, ['The Challenge']));
+                            nodes.push(e('p', null, [w.challenge]));
+                        }
+                        if (w.process) {
+                            nodes.push(e('h2', null, ['Process']));
+                            const list = e('ul', null, []);
+                            (Array.isArray(w.process) ? w.process : [w.process])
+                                .forEach(p => list.appendChild(e('li', null, [p])));
+                            nodes.push(list);
+                        }
+                        if (w.outcome) {
+                            if (imgs.length > 1) nodes.push(figure(imgs[1].src, imgs[1].caption));
+                            nodes.push(e('h2', null, ['Outcome']));
+                            nodes.push(e('p', null, [w.outcome]));
+                        }
+
+                        const galleryImgs = imgs.slice(2);
+                        if (galleryImgs.length === 1) {
+                            nodes.push(figure(galleryImgs[0].src, galleryImgs[0].caption));
+                        } else if (galleryImgs.length > 1) {
+                            const gallery = e('div', 'project-gallery', []);
+                            galleryImgs.forEach(im => gallery.appendChild(figure(im.src, im.caption)));
+                            nodes.push(gallery);
+                        }
+
+                        body.replaceChildren(...nodes);
+                    }
                 }
 
                 const prev = items[idx - 1];

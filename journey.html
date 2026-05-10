@@ -48,17 +48,17 @@
                                 <span>map unavailable</span>
                                 <button type="button" id="journeyMapRetry">↺ retry</button>
                             </div>
-                        </div>
-                        <div class="journey-map-readout">
-                            <div class="journey-map-readout-line">
-                                <span>Where</span>
-                                <span class="journey-map-readout-sep">·</span>
-                                <span class="journey-map-readout-value" id="mapPlace">Surabaya, ID</span>
-                            </div>
-                            <div class="journey-map-readout-line">
-                                <span>Coords</span>
-                                <span class="journey-map-readout-sep">·</span>
-                                <span class="journey-map-readout-value" id="mapCoords">-7.26, 112.75</span>
+                            <div class="journey-map-readout">
+                                <div class="journey-map-readout-line">
+                                    <span>Where</span>
+                                    <span class="journey-map-readout-sep">·</span>
+                                    <span class="journey-map-readout-value" id="mapPlace">Surabaya, ID</span>
+                                </div>
+                                <div class="journey-map-readout-line">
+                                    <span>Coords</span>
+                                    <span class="journey-map-readout-sep">·</span>
+                                    <span class="journey-map-readout-value" id="mapCoords">-7.26, 112.75</span>
+                                </div>
                             </div>
                         </div>
                     </aside>
@@ -211,17 +211,17 @@
                             ctx.globalAlpha = 1;
                         }
 
-                        // Small square marker at each waypoint — no accent, neutral color
-                        const mq = Math.max(4, Math.round(4 * dpr));
-                        const mh = mq / 2;
-                        waypoints.forEach(([lng, lat]) => {
+                        // Dimmed square marker at each visited waypoint (same style as blinking cursor)
+                        const sq = Math.max(5, Math.round(5 * dpr));
+                        const sh = sq / 2;
+                        waypoints.forEach(([lng, lat], i) => {
                             const p = projection([lng, lat]);
                             if (!p) return;
                             const [px, py] = p;
-                            if (px < -mq || px > W + mq || py < -mq || py > H + mq) return;
-                            ctx.globalAlpha = 0.55;
-                            ctx.fillStyle = dot;
-                            ctx.fillRect(px - mh, py - mh, mq, mq);
+                            if (px < -sq || px > W + sq || py < -sq || py > H + sq) return;
+                            ctx.globalAlpha = 0.35;
+                            ctx.fillStyle = accent;
+                            ctx.fillRect(Math.round(px - sh), Math.round(py - sh), sq, sq);
                         });
                         ctx.globalAlpha = 1;
                     }
@@ -230,8 +230,8 @@
                     if (lineFade > 0 && panInterp) {
                         const N = 80;
                         ctx.strokeStyle = accent;
-                        ctx.lineCap = 'round';
-                        ctx.lineJoin = 'round';
+                        ctx.lineCap = 'butt';
+                        ctx.lineJoin = 'miter';
 
                         // Solid trail up to current camera position
                         ctx.globalAlpha = lineFade * 0.9;

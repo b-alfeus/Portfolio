@@ -37,58 +37,6 @@ if (headerEl && navEl) {
     });
 }
 
-// Animated favicon — canvas-based (CSS animations don't run in browser tab SVGs)
-(function () {
-    const link = document.querySelector('link[rel="icon"]');
-    if (!link) return;
-
-    const SIZE = 32, N = 11;
-    const CELL = SIZE / N;
-    const DOT = CELL - 0.5;
-    const PAD = (CELL - DOT) / 2;
-    const DURATION = 1280;
-
-    const canvas = document.createElement('canvas');
-    canvas.width = SIZE;
-    canvas.height = SIZE;
-    const ctx = canvas.getContext('2d');
-
-    function accentRGB() {
-        const hex = getComputedStyle(document.documentElement)
-            .getPropertyValue('--color-accent').trim().replace('#', '');
-        const n = parseInt(hex, 16);
-        return [(n >> 16) & 255, (n >> 8) & 255, n & 255];
-    }
-
-    function opacity(t) {
-        if (t < 0.2) return 0.44 + (0.1  - 0.44) * (t / 0.2);
-        if (t < 0.5) return 0.1  + (1.0  - 0.1)  * ((t - 0.2) / 0.3);
-        if (t < 0.8) return 1.0  + (0.44 - 1.0)  * ((t - 0.5) / 0.3);
-        return 0.44;
-    }
-
-    let last = 0;
-    function draw(ts) {
-        if (ts - last > 50) {
-            last = ts;
-            const [R, G, B] = accentRGB();
-            ctx.clearRect(0, 0, SIZE, SIZE);
-            for (let r = 0; r < N; r++) {
-                for (let c = 0; c < N; c++) {
-                    const dist = Math.abs(r - 5) + Math.abs(c - 5);
-                    const delay = (dist / 10) * DURATION;
-                    const phase = ((ts - delay) % DURATION + DURATION) % DURATION;
-                    const a = opacity(phase / DURATION);
-                    ctx.fillStyle = `rgba(${R},${G},${B},${a})`;
-                    ctx.fillRect(c * CELL + PAD, r * CELL + PAD, DOT, DOT);
-                }
-            }
-            link.href = canvas.toDataURL();
-        }
-        requestAnimationFrame(draw);
-    }
-    requestAnimationFrame(draw);
-})();
 
 // Theme toggle
 const toggle = document.getElementById('themeToggle');
@@ -526,6 +474,8 @@ async function renderWork() {
         return;
     }
 
+    items.sort((a, b) => (parseInt(b.year) || 0) - (parseInt(a.year) || 0));
+
     grid.replaceChildren(
         ...items.map(w => {
             const aspect = (w.aspect || '4/3').replace('/', ' / ');
@@ -541,17 +491,150 @@ async function renderWork() {
                     class: 'work-thumb work-thumb--block',
                     style: { backgroundColor: w.background || 'var(--color-surface)', aspectRatio: aspect },
                   });
-            const href = w.id
-                ? `project.html?id=${encodeURIComponent(w.id)}`
-                : (w.link || 'project.html');
+            const isLightbox = !!w.lightbox;
+            const isCarousel = w.variant === 'carousel';
+            const isComingSoon = !!w.comingSoon;
+
+            if (isComingSoon) {
+                const tags = Array.isArray(w.tags) && w.tags.length > 0
+                    ? el('div', { class: 'work-card-tags' },
+                        w.tags.map(tag => el('span', { class: 'project-tag' }, tag)))
+                    : null;
+                const label = el('div', { class: 'work-card-label' }, [
+                    tags,
+                    el('div', { class: 'work-card-title-row' }, [
+                        el('span', { class: 'work-card-title' }, w.title || ''),
+                        el('span', { class: 'work-card-soon' }, 'Soon'),
+                    ]),
+                ]);
+                return el('li', { class: 'work-card work-card--soon' }, [
+                    el('div', { class: 'work-card-inner' }, [thumb, label]),
+                ]);
+            }
+
+            const href = isLightbox
+                ? w.lightboxSrc
+                : isCarousel
+                ? '#'
+                : (w.id ? `project.html?id=${encodeURIComponent(w.id)}` : (w.link || 'project.html'));
+            const arrowSvg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+            arrowSvg.setAttribute('width', '16');
+            arrowSvg.setAttribute('height', '16');
+            arrowSvg.setAttribute('viewBox', '0 0 24 24');
+            arrowSvg.setAttribute('fill', 'none');
+            arrowSvg.setAttribute('stroke', 'currentColor');
+            arrowSvg.setAttribute('stroke-width', '2');
+            arrowSvg.setAttribute('stroke-linecap', 'round');
+            arrowSvg.setAttribute('stroke-linejoin', 'round');
+            arrowSvg.setAttribute('aria-hidden', 'true');
+            arrowSvg.innerHTML = '<path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>';
+
+            const tags = Array.isArray(w.tags) && w.tags.length > 0
+                ? el('div', { class: 'work-card-tags' },
+                    w.tags.map(tag => el('span', { class: 'project-tag' }, tag)))
+                : null;
+
+            const titleRow = el('div', { class: 'work-card-title-row' }, [
+                el('span', { class: 'work-card-title' }, w.title || ''),
+                arrowSvg,
+            ]);
+
+            const label = el('div', { class: 'work-card-label' }, [
+                tags,
+                titleRow,
+            ]);
+
+            const linkAttrs = isLightbox
+                ? { href, 'aria-label': w.title || 'Project', 'data-lightbox': w.lightboxSrc, 'data-caption': w.lightboxCaption || '' }
+                : isCarousel
+                ? { href, 'aria-label': w.title || 'Project', 'data-carousel': JSON.stringify(w.images || []) }
+                : { href, 'aria-label': w.title || 'Project' };
+
             return el('li', { class: 'work-card' }, [
-                el('a', {
-                    href,
-                    'aria-label': w.title || 'Project',
-                }, [thumb]),
+                el('a', linkAttrs, [thumb, label]),
             ]);
         })
     );
+
+    initLightbox();
+}
+
+function initLightbox() {
+    const overlay = document.getElementById('lightbox');
+    if (!overlay) return;
+    const img = overlay.querySelector('.lightbox-img');
+    const caption = overlay.querySelector('.lightbox-caption');
+    const close = overlay.querySelector('.lightbox-close');
+    const dotsWrap = overlay.querySelector('.lightbox-dots');
+    const prevBtn = overlay.querySelector('.lightbox-prev');
+    const nextBtn = overlay.querySelector('.lightbox-next');
+
+    let carouselImages = [];
+    let carouselIdx = 0;
+
+    const goTo = (n) => {
+        carouselIdx = (n + carouselImages.length) % carouselImages.length;
+        img.src = carouselImages[carouselIdx].src;
+        img.alt = carouselImages[carouselIdx].caption || '';
+        caption.textContent = carouselImages[carouselIdx].caption || '';
+        dotsWrap.querySelectorAll('.lightbox-dot').forEach((d, i) => d.classList.toggle('is-active', i === carouselIdx));
+    };
+
+    const openCarousel = (images) => {
+        carouselImages = images;
+        dotsWrap.innerHTML = '';
+        images.forEach((_, i) => {
+            const dot = document.createElement('button');
+            dot.type = 'button';
+            dot.className = 'lightbox-dot';
+            dot.setAttribute('aria-label', `Slide ${i + 1}`);
+            dot.addEventListener('click', () => goTo(i));
+            dotsWrap.appendChild(dot);
+        });
+        overlay.classList.add('is-open', 'is-carousel');
+        document.body.style.overflow = 'hidden';
+        goTo(0);
+        close.focus();
+    };
+
+    const closeLightbox = () => {
+        overlay.classList.remove('is-open', 'is-carousel');
+        document.body.style.overflow = '';
+        img.src = '';
+        carouselImages = [];
+    };
+
+    document.querySelectorAll('a[data-lightbox]').forEach(a => {
+        a.addEventListener('click', e => {
+            e.preventDefault();
+            img.src = a.dataset.lightbox;
+            caption.textContent = a.dataset.caption || '';
+            overlay.classList.add('is-open');
+            document.body.style.overflow = 'hidden';
+            close.focus();
+        });
+    });
+
+    document.querySelectorAll('a[data-carousel]').forEach(a => {
+        a.addEventListener('click', e => {
+            e.preventDefault();
+            openCarousel(JSON.parse(a.dataset.carousel));
+        });
+    });
+
+    prevBtn.addEventListener('click', () => goTo(carouselIdx - 1));
+    nextBtn.addEventListener('click', () => goTo(carouselIdx + 1));
+
+    close.addEventListener('click', closeLightbox);
+    overlay.addEventListener('click', e => { if (e.target === overlay) closeLightbox(); });
+    document.addEventListener('keydown', e => {
+        if (!overlay.classList.contains('is-open')) return;
+        if (e.key === 'Escape') closeLightbox();
+        if (overlay.classList.contains('is-carousel')) {
+            if (e.key === 'ArrowLeft') goTo(carouselIdx - 1);
+            if (e.key === 'ArrowRight') goTo(carouselIdx + 1);
+        }
+    });
 }
 
 let journeyCache = null;

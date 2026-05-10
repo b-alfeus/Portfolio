@@ -67,10 +67,10 @@
         "dateDisplay": "2000",
         "tags": [],
         "location": { "place": "Jakarta, ID", "lat": -6.2088, "lng": 106.8456 },
-        "description": "My uncle got me my first PC and my first taste of the internet. Myspace, Friendster, MSN, Winamp, Facebook — I picked up the basics just by messing around. That's still how I learn best.",
-        "description_id": "Paman saya membelikan PC pertama saya dan memperkenalkan saya ke internet. Myspace, Friendster, MSN, Winamp, Facebook — saya mempelajari dasar-dasarnya hanya dengan mencoba-coba. Sampai sekarang, begitulah cara terbaik saya belajar.",
-        "description_jp": "叔父が初めてのパソコンとインターネットをプレゼントしてくれた。Myspace、Friendster、MSN、Winamp、Facebook — ただいじくり回すだけでネットの基本を覚えていった。今でもそれが一番の学び方だ。",
-        "description_de": "Mein Onkel besorgte mir meinen ersten PC und meinen ersten Internetzugang. Myspace, Friendster, MSN, Winamp, Facebook — ich lernte die Grundlagen einfach durch Herumprobieren. So lerne ich noch heute am besten."
+        "description": "My uncle got me my first PC and my first taste of the internet. MySpace, Friendster, Windows Live Messenger, MSN, Winamp, Facebook — I picked up the basics just by messing around. That's still how I learn best.",
+        "description_id": "Paman saya membelikan PC pertama saya dan memperkenalkan saya ke internet. MySpace, Friendster, Windows Live Messenger, MSN, Winamp, Facebook — saya mempelajari dasar-dasarnya hanya dengan mencoba-coba. Sampai sekarang, begitulah cara terbaik saya belajar.",
+        "description_jp": "叔父が初めてのパソコンとインターネットをプレゼントしてくれた。MySpace、Friendster、MSN、Winamp、Facebook — ただいじくり回すだけでネットの基本を覚えていった。今でもそれが一番の学び方だ。",
+        "description_de": "Mein Onkel besorgte mir meinen ersten PC und meinen ersten Internetzugang. MySpace, Friendster, Windows Live Messenger, MSN, Winamp, Facebook — ich lernte die Grundlagen einfach durch Herumprobieren. So lerne ich noch heute am besten."
       }
     ]
   },
@@ -107,7 +107,7 @@
         "dateDisplay": "2009",
         "tags": [],
         "location": { "place": "Jakarta, ID", "lat": -6.2088, "lng": 106.8456 },
-        "description": "Registered for Visual Communication Design at Bina Nusantara. Around the same time, my mom moved to Perth to work and help fund my studies. Also my first MacBook — and first real encounter with macOS.",
+        "description": "Registering for Visual Communication Design major at Bina Nusantara University received my first MacBook thus my first time interacting with macOS.",
         "description_id": "Mendaftar jurusan Desain Komunikasi Visual di Universitas Bina Nusantara. Sekitar waktu yang sama, ibu saya pindah ke Perth untuk bekerja dan membantu membiayai kuliah saya. Ini juga saat pertama saya memiliki MacBook — dan perkenalan pertama saya dengan macOS.",
         "description_jp": "ビナ・ヌサンタラ大学のビジュアルコミュニケーションデザイン学科に入学。同じ頃、母は学費を工面するためパースへ移り働き始めた。初めてのMacBook — そしてmacOSとの初めての本格的な出会いでもあった。",
         "description_de": "Einschreibung für Visual Communication Design an der Bina Nusantara University. Ungefähr zur gleichen Zeit zog meine Mutter nach Perth, um zu arbeiten und mein Studium zu finanzieren. Außerdem mein erstes MacBook — und die erste echte Begegnung mit macOS."
@@ -142,16 +142,31 @@
         "dateDisplay": "Aug 2013",
         "tags": ["achievement"],
         "location": { "place": "Jakarta, ID", "lat": -6.2088, "lng": 106.8456 },
-        "description": "Finished four years of Visual Communication Design. Came out with a handle on Photoshop, Illustrator, After Effects, InDesign, Dreamweaver, and Flash — and a clearer sense of what I wanted to do with it.",
-        "description_id": "Menyelesaikan empat tahun studi Desain Komunikasi Visual. Keluar dengan kemampuan Photoshop, Illustrator, After Effects, InDesign, Dreamweaver, dan Flash — dan gambaran yang lebih jelas tentang apa yang ingin saya lakukan ke depannya.",
-        "description_jp": "4年間のビジュアルコミュニケーションデザインを修了。Photoshop、Illustrator、After Effects、InDesign、Dreamweaver、Flashを身につけ、自分がやりたいことへの見通しも明確になった。",
-        "description_de": "Vier Jahre Visual Communication Design abgeschlossen. Mit Kenntnissen in Photoshop, Illustrator, After Effects, InDesign, Dreamweaver und Flash — und einem klareren Bild davon, was ich damit machen wollte."
+        "description": "Finished four years of Visual Communication Design. Came out with a handle on Photoshop, Illustrator, Lightroom, After Effects, InDesign, Dreamweaver, and Flash — and a clearer sense of what I wanted to do with it.",
+        "description_id": "Menyelesaikan empat tahun studi Desain Komunikasi Visual. Keluar dengan kemampuan Photoshop, Illustrator, Lightroom, After Effects, InDesign, Dreamweaver, dan Flash — dan gambaran yang lebih jelas tentang apa yang ingin saya lakukan ke depannya.",
+        "description_jp": "4年間のビジュアルコミュニケーションデザインを修了。Photoshop、Illustrator、Lightroom、After Effects、InDesign、Dreamweaver、Flashを身につけ、自分がやりたいことへの見通しも明確になった。",
+        "description_de": "Vier Jahre Visual Communication Design abgeschlossen. Mit Kenntnissen in Photoshop, Illustrator, Lightroom, After Effects, InDesign, Dreamweaver und Flash — und einem klareren Bild davon, was ich damit machen wollte."
       }
     ]
   },
   {
     "year": 2014,
     "events": [
+      {
+        "id": "unilever-freelance-2014",
+        "title": "Freelance at Unilever",
+        "title_id": "Freelance di Unilever",
+        "title_jp": "Unileverでのフリーランス",
+        "title_de": "Freiberuflich bei Unilever",
+        "date": "2014-01-01",
+        "dateDisplay": "2014",
+        "tags": ["work"],
+        "location": { "place": "Jakarta, ID", "lat": -6.2088, "lng": 106.8456 },
+        "description": "Commissioned to conduct a Design Research study for Unilever as they introduced a new product to the Indonesian market — LivOpen, a mosquito net treated with a protective chemical layer that repels dangerous mosquitoes while remaining safe for people. Also designed some of the communication deliverables alongside Purpose & Kopernik for the market penetration initiative.",
+        "description_id": "Mendapat komisi untuk melakukan studi Design Research bagi Unilever dalam memperkenalkan produk baru ke pasar Indonesia — LivOpen, kelambu nyamuk yang dilapisi bahan kimia pelindung yang mengusir nyamuk berbahaya namun tetap aman bagi manusia.",
+        "description_jp": "Unileverがインドネシア市場に新製品を投入するにあたり、デザインリサーチを依頼された — LivOpen、有害な蚊を忌避しながら人体には安全な化学保護層を施した蚊帳。",
+        "description_de": "Auftrag für eine Design-Research-Studie für Unilever zur Einführung eines neuen Produkts auf dem indonesischen Markt — LivOpen, ein Moskitonetz mit einer schützenden Chemikalienschicht, die gefährliche Mücken fernhält und dabei für Menschen unbedenklich ist."
+      },
       {
         "id": "perth-2014",
         "title": "Lived in Perth",
@@ -182,10 +197,10 @@
         "dateDisplay": "2015",
         "tags": ["work"],
         "location": { "place": "Jakarta, ID", "lat": -6.2088, "lng": 106.8456 },
-        "description": "My first step into digital product work. A small agency that also ran early-stage local startups. This is where I started connecting the lines between graphic design and product thinking.",
-        "description_id": "Langkah pertama saya ke dunia produk digital. Sebuah agensi kecil yang juga mengelola startup lokal tahap awal. Di sinilah saya mulai menghubungkan titik-titik antara desain grafis dan pemikiran produk.",
-        "description_jp": "デジタルプロダクト制作への第一歩。初期段階のローカルスタートアップも手がける小さなエージェンシーだった。グラフィックデザインとプロダクト思考の点と点を結び始めたのがここだった。",
-        "description_de": "Mein erster Schritt in die digitale Produktarbeit. Eine kleine Agentur, die auch lokale Startups in der Frühphase begleitete. Hier begann ich, die Verbindung zwischen Grafikdesign und Produktdenken herzustellen."
+        "description": "My first step into digital product work — a small agency that also incubated early-stage local startups. This is where I started connecting the dots between graphic design and product thinking. Clients included .NET Mediatama, XL Axiata, HM Sampoerna, and KapanLagi Network.",
+        "description_id": "Langkah pertama saya ke dunia produk digital — agensi kecil yang juga menginkubasi startup lokal tahap awal. Di sinilah saya mulai menghubungkan titik-titik antara desain grafis dan pemikiran produk. Klien termasuk .NET Mediatama, XL Axiata, HM Sampoerna, dan KapanLagi Network.",
+        "description_jp": "デジタルプロダクト制作への第一歩 — 初期段階のローカルスタートアップも育てる小さなエージェンシー。グラフィックデザインとプロダクト思考の点と点を繋げ始めた場所。クライアントには.NET Mediatama、XL Axiata、HM Sampoerna、KapanLagi Networkが含まれる。",
+        "description_de": "Mein erster Schritt in die digitale Produktarbeit — eine kleine Agentur, die auch lokale Startups in der Frühphase inkubierte. Hier begann ich, die Verbindung zwischen Grafikdesign und Produktdenken herzustellen. Zu den Kunden zählten .NET Mediatama, XL Axiata, HM Sampoerna und KapanLagi Network."
       }
     ]
   },
@@ -256,8 +271,8 @@
         "date": "2021-01-01",
         "dateDisplay": "2021",
         "tags": ["work"],
-        "location": { "place": "Tangerang, ID", "lat": -6.1781, "lng": 106.6298 },
-        "description": "Joined another unicorn — this time on Traveloka's Financial Services team, focused on Wealth Management. Worked mainly on the Gold and Mutual Fund products.",
+        "location": { "place": "Tangerang, ID (Remote)", "lat": -6.1781, "lng": 106.6298 },
+        "description": "Joined another unicorn albeit very briefly — this time on Traveloka's Financial Services team, focused on Wealth Management. Worked mainly on the Gold and Mutual Fund products.",
         "description_id": "Bergabung dengan unicorn lain — kali ini di tim Financial Services Traveloka, berfokus pada Wealth Management. Mengerjakan terutama produk Gold dan Reksa Dana.",
         "description_jp": "別のユニコーン企業へ — 今度はTravelokaのFinancial Servicesチーム、Wealth Management部門。主にGoldと投資信託のプロダクトを担当した。",
         "description_de": "Einem weiteren Unicorn beigetreten — diesmal im Financial Services Team von Traveloka, mit Fokus auf Wealth Management. Hauptsächlich an den Gold- und Investmentfonds-Produkten gearbeitet."
@@ -272,7 +287,7 @@
         "dateDisplay": "2021",
         "tags": ["work"],
         "location": { "place": "Tangerang, ID (Remote)", "lat": -6.1781, "lng": 106.6298 },
-        "description": "A freelance project redesigning the website for a healthcare company.",
+        "description": "Doing a freelance work for a healthcare company, redesigning their website through referral of a connection that I've made.",
         "description_id": "Proyek freelance mendesain ulang website untuk perusahaan layanan kesehatan.",
         "description_jp": "ヘルスケア企業のウェブサイトをリデザインするフリーランス案件。",
         "description_de": "Ein Freelance-Projekt zur Neugestaltung der Website für ein Gesundheitsunternehmen."
