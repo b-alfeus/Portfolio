@@ -6,7 +6,7 @@
     "excerpt": "A new visual identity for Gedung Kesenian Jakarta — drawing from the theatre's ornamental colonial architecture to craft a mark that holds across business cards, event tickets, and printed stationery.",
     "client": "Gedung Kesenian Jakarta",
     "year": "2014",
-    "tags": ["Branding", "Academic"],
+    "tags": ["Academic", "Branding"],
     "thumbnail": "assets/work/gedung-kesenian-jakarta.jpg",
     "background": "#c8b89a",
     "aspect": "1/1",
@@ -50,7 +50,7 @@
     "excerpt": "Brand identity for The Dharmawangsa Square — a lifestyle mall in Kebayoran Baru whose mark draws from the Mahabharata, referencing Yudhisthira's trident and the bond of the five Pandavas.",
     "client": "The Dharmawangsa Square",
     "year": "2014",
-    "tags": ["Branding", "Commercial"],
+    "tags": ["Branding", "Consulting"],
     "thumbnail": "assets/work/dharmawangsa-square/uniform.jpg",
     "background": "#b8a888",
     "aspect": "1/1",
@@ -88,19 +88,61 @@
     ]
   },
   {
+    "id": "voca",
+    "title": "Voca — On-Demand Interpreter Platform",
+    "client": "BonAlpha Ltd. (HK)",
+    "year": "2015",
+    "tags": ["Branding", "Concept", "Consulting", "Product"],
+    "thumbnail": "assets/work/voca/search-results.jpg",
+    "thumbnailPosition": "center top",
+    "background": "#1e3a3a",
+    "aspect": "4/3",
+    "variant": "singlepage",
+    "excerpt": "An interpreter marketplace connecting travellers with on-demand language professionals — designed for BonAlpha Ltd. out of Hong Kong.",
+    "overview": "Voca was a concept product for BonAlpha Ltd., a Hong Kong-based startup exploring on-demand language services for travellers. The brief was to design a marketplace that could match users with qualified interpreters in real time — covering the full journey from inquiry to booking confirmation.",
+    "process": [
+      "Discovery and competitive analysis of language service platforms in the Asia-Pacific market",
+      "User flow mapping across three actor types: traveller, interpreter, and platform admin",
+      "UI design covering the full booking funnel — inquiry, matchmaking, profile review, checkout, and confirmation",
+      "Multiple checkout variants explored (Stripe and PayPal) to accommodate regional payment preferences"
+    ],
+    "outcome": "A complete end-to-end product design spanning 18 screens — from home and onboarding through to interpreter matching, checkout, and the user dashboard. The concept was developed as a design deliverable for BonAlpha Ltd. to support their product development roadmap.",
+    "outcomeImage": { "src": "assets/work/voca/logo.jpg", "caption": "Voca — overlapping speech-bubble logomark in coral and teal." },
+    "images": [
+      { "src": "assets/work/voca/home.jpg", "caption": "Home" },
+      { "src": "assets/work/voca/login-page.jpg", "caption": "Login" },
+      { "src": "assets/work/voca/register-page.jpg", "caption": "Register" },
+      { "src": "assets/work/voca/inquiries-step1.jpg", "caption": "Inquiries — Step 1" },
+      { "src": "assets/work/voca/inquiries-step2a.jpg", "caption": "Inquiries — Step 2A" },
+      { "src": "assets/work/voca/inquiries-step2b.jpg", "caption": "Inquiries — Step 2B" },
+      { "src": "assets/work/voca/inquiries-step3.jpg", "caption": "Inquiries — Step 3" },
+      { "src": "assets/work/voca/matchmaking-loading-screen.jpg", "caption": "Matchmaking — Loading" },
+      { "src": "assets/work/voca/search-results.jpg", "caption": "Search Results" },
+      { "src": "assets/work/voca/interpreters-profile.jpg", "caption": "Interpreter Profile" },
+      { "src": "assets/work/voca/checkout-page-a.jpg", "caption": "Checkout — Option A" },
+      { "src": "assets/work/voca/checkout-page-b.jpg", "caption": "Checkout — Option B" },
+      { "src": "assets/work/voca/checkout-page-stripe.jpg", "caption": "Checkout — Stripe" },
+      { "src": "assets/work/voca/checkout-page-paypal.jpg", "caption": "Checkout — PayPal" },
+      { "src": "assets/work/voca/payment-page-stripe.jpg", "caption": "Payment — Stripe" },
+      { "src": "assets/work/voca/payment-page-paypal.jpg", "caption": "Payment — PayPal" },
+      { "src": "assets/work/voca/booking-request-success-screen.jpg", "caption": "Booking Request — Success" },
+      { "src": "assets/work/voca/user-dashboard.jpg", "caption": "User Dashboard" }
+    ]
+  },
+  {
     "id": "weekend-inc-2015",
     "title": "Various Work — Weekend Inc.",
     "order": 3,
-    "excerpt": "A collection of UI/UX and digital product work from Weekend Inc. — a small Jakarta agency running early-stage startups alongside client work for XL Axiata, HM Sampoerna, and KapanLagi Network.",
+    "excerpt": "A collection of UI/UX and digital product work from Weekend Inc. — a small Jakarta agency running early-stage startups alongside client work for XL Prio, HM Sampoerna, and KapanLagi Network.",
     "client": "Weekend Inc.",
     "year": "2015",
-    "tags": ["Product", "Commercial"],
+    "tags": ["Concept"],
     "thumbnail": "assets/work/weekend-inc-2015/riseup.jpg",
     "background": "#1e2330",
     "aspect": "4/3",
     "variant": "carousel",
     "link": "project.html",
-    "overview": "Weekend Inc. was a small Jakarta agency that doubled as a startup incubator. During my time there I worked across a range of client briefs — from e-commerce platforms to consumer apps — while also contributing to the agency's own early-stage products. Clients included XL Axiata, HM Sampoerna, .NET Mediatama, and KapanLagi Network.",
+    "overview": "Weekend Inc. was a small Jakarta agency that doubled as a startup incubator. During my time there I worked across a range of client briefs — from e-commerce platforms to consumer apps — while also contributing to the agency's own early-stage products. Clients included XL Prio, HM Sampoerna, .NET Mediatama, and KapanLagi Network.",
     "outcome": "A body of work spanning UI design, interaction flows, and visual communication across web and mobile — the foundation of my digital product practice.",
     "images": [
       {
@@ -110,46 +152,89 @@
       {
         "src": "assets/work/weekend-inc-2015/parley.jpg",
         "caption": "Parley — registration screen. Dark UI with star-trail ambient background."
-      },
-      {
-        "src": "assets/work/weekend-inc-2015/voca.jpg",
-        "caption": "Voca — matched results screen. Interpreter marketplace UI."
       }
     ]
   },
   {
-    "id": "portfolio-2015-front",
-    "title": "\"End of the Horizon\" — 2015",
+    "id": "xl-prio",
+    "title": "XL Prio — Choose a Plan",
+    "client": "XL Prio",
+    "year": "2015",
+    "tags": ["Consulting", "Product"],
+    "thumbnail": "assets/work/weekend-inc-2015/xl-prio-thumb.jpg",
+    "background": "#1a2a3a",
+    "aspect": "4/3",
+    "variant": "singlepage",
+    "excerpt": "A multi-step web application for XL Prio's Prioritas service — guiding users through plan selection and registration in a clean, branded flow.",
+    "images": [
+      {
+        "src": "assets/work/weekend-inc-2015/xl-prio-1.jpg",
+        "caption": "XL Prio — Choose a Plan, step 1."
+      },
+      {
+        "src": "assets/work/weekend-inc-2015/xl-prio-2.jpg",
+        "caption": "XL Prio — Choose a Plan, step 2."
+      },
+      {
+        "src": "assets/work/weekend-inc-2015/xl-prio-3.jpg",
+        "caption": "XL Prio — Choose a Plan, step 3."
+      },
+      {
+        "src": "assets/work/weekend-inc-2015/xl-prio-4.jpg",
+        "caption": "XL Prio — Choose a Plan, step 4."
+      },
+      {
+        "src": "assets/work/weekend-inc-2015/xl-prio-5.jpg",
+        "caption": "XL Prio — Choose a Plan, step 5."
+      }
+    ]
+  },
+  {
+    "id": "portfolio-2015",
+    "title": "\"End of the Horizon\" / \"Stack\" — 2015",
     "order": 4,
-    "excerpt": "Front cover of the 2015 printed portfolio — geometric orbital composition in monochrome.",
     "tags": ["Artwork"],
     "thumbnail": "assets/work/portfolio-2015/cover-front.jpg",
     "background": "#e8e4de",
     "aspect": "1025/1772",
-    "lightbox": true,
-    "lightboxSrc": "assets/work/portfolio-2015/cover-front.jpg",
-    "lightboxCaption": "Portfolio 2015 — Front cover. Geometric orbital composition, monochrome print."
-  },
-  {
-    "id": "portfolio-2015-back",
-    "title": "\"Stack\" — 2015",
-    "order": 5,
-    "excerpt": "Back cover of the 2015 printed portfolio — minimal dark field with a typographic barcode motif.",
-    "tags": ["Artwork"],
-    "thumbnail": "assets/work/portfolio-2015/cover-back.jpg",
-    "background": "#1e1e1e",
-    "aspect": "1181/1772",
-    "lightbox": true,
-    "lightboxSrc": "assets/work/portfolio-2015/cover-back.jpg",
-    "lightboxCaption": "Portfolio 2015 — Back cover. Dark field with typographic barcode motif."
+    "variant": "carousel",
+    "images": [
+      {
+        "src": "assets/work/portfolio-2015/cover-front.jpg",
+        "caption": "\"End of the Horizon\" — Front cover. Geometric orbital composition, monochrome print."
+      },
+      {
+        "src": "assets/work/portfolio-2015/cover-back.jpg",
+        "caption": "\"Stack\" — Back cover. Dark field with typographic barcode motif."
+      }
+    ]
   },
   {
     "id": "bhinneka",
     "title": "Bhinneka",
+    "client": "Bhinneka.com",
+    "year": "2017–2018",
     "tags": ["Product"],
+    "thumbnail": "assets/work/bhinneka/homepage-alt-3.jpg",
+    "thumbnailPosition": "center top",
     "background": "#2a3a4a",
     "aspect": "4/3",
-    "comingSoon": true
+    "variant": "singlepage",
+    "excerpt": "From a single electronics shop to one of Indonesia's largest e-commerce platforms — serving consumers, businesses, and government alike.",
+    "imageGroups": [
+      {
+        "label": "B2C Homepage — Exploration",
+        "images": [
+          { "src": "assets/work/bhinneka/homepage-alt-3.jpg", "caption": "Homepage — Amazon Echo hero, Daily Deals, and category grid" },
+          { "src": "assets/work/bhinneka/homepage-alt-4.jpg", "caption": "Homepage — Nintendo Switch hero, 25th Anniversary promo" },
+          { "src": "assets/work/bhinneka/browse-menu.jpg", "caption": "Browse mega-menu — product categories with featured items" }
+        ]
+      }
+    ],
+    "images": [
+      { "src": "assets/work/bhinneka/flash-sale-filter.jpg", "caption": "Flash sale condition builder — promotional targeting rules" },
+      { "src": "assets/work/bhinneka/plankton.jpg", "caption": "Seller tool — multi-step product listing with SKU and media management" }
+    ]
   },
   {
     "id": "workmate",

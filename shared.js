@@ -233,8 +233,8 @@ const translations = {
         'article.empty':               'Keine Beiträge gefunden.',
         'contact.heading': 'Kontakt',
         'contact.intro':   'Offen für Projekte, Kooperationen und Gespräche.',
-        'hero.list.interests':    'interessen',
-        'hero.list.tools':        'werkzeuge',
+        'hero.list.interests':    'Interessen',
+        'hero.list.tools':        'Werkzeuge',
         'hero.interest.polymath': 'Polymath & Polyglott sein',
         'hero.interest.coffee':   'guter Kaffee',
         'hero.interest.food':     'Seelenfutter',
@@ -485,7 +485,7 @@ async function renderWork() {
                     src: w.thumbnail,
                     alt: w.title || '',
                     loading: 'lazy',
-                    style: { aspectRatio: aspect },
+                    style: { aspectRatio: aspect, objectPosition: w.thumbnailPosition || 'center' },
                   })
                 : el('div', {
                     class: 'work-thumb work-thumb--block',

@@ -662,6 +662,16 @@ header.nav-open .nav-toggle .icon-close {
     margin-top: 0;
 }
 
+.project-group-label {
+    font-size: var(--fs-14);
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--color-text-secondary);
+    margin-top: 40px;
+    margin-bottom: 16px;
+}
+
 .project-body p {
     font-size: var(--fs-17);
     line-height: 1.7;
@@ -763,7 +773,126 @@ body.is-carousel .project-back {
 }
 body.is-carousel .project-back:hover { color: #fff; }
 
+/* Inline carousel (singlepage variant) */
 .project-carousel {
+    position: relative;
+    margin: 0;
+}
+
+.project-carousel-track {
+    position: relative;
+    width: 100%;
+}
+
+.project-carousel-slide {
+    display: none;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+}
+
+.project-carousel-slide.is-active {
+    display: flex;
+}
+
+.project-carousel-img {
+    display: block;
+    width: 100%;
+    height: 50vh;
+    object-fit: cover;
+    object-position: top;
+    border: 1px solid var(--color-border);
+    cursor: zoom-in;
+}
+
+.project-carousel-img--group {
+    height: 30vh;
+}
+
+.project-carousel-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 16px;
+    margin-top: 12px;
+}
+
+.project-carousel-footer-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-shrink: 0;
+}
+
+.project-carousel-counter-current {
+    color: var(--color-accent);
+}
+
+.project-carousel-counter,
+.project-carousel-caption {
+    font-size: var(--fs-13);
+    font-family: var(--font-mono);
+    letter-spacing: 0.04em;
+    color: var(--color-text-secondary);
+}
+
+p.project-carousel-caption {
+    text-align: right;
+}
+
+.project-carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    background: var(--color-bg);
+    border: 1px solid var(--color-border);
+    color: var(--color-text);
+    cursor: pointer;
+    transition: border-color 0.15s, color 0.15s;
+    z-index: 1;
+}
+
+.project-carousel-btn:hover {
+    border-color: var(--color-accent);
+    color: var(--color-accent);
+}
+
+.project-carousel-btn:disabled {
+    opacity: 0.2;
+    cursor: not-allowed;
+}
+
+.project-carousel-btn--prev { left: -18px; }
+.project-carousel-btn--next { right: -18px; }
+
+.project-carousel-dots {
+    display: flex;
+    justify-content: flex-start;
+    gap: 8px;
+}
+
+.project-carousel-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 0;
+    background: var(--color-border);
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    transition: background 0.15s;
+}
+
+.project-carousel-dot.is-active {
+    background: var(--color-accent);
+}
+
+/* Fullscreen carousel override (body.is-carousel) */
+body.is-carousel .project-carousel {
     position: fixed;
     top: 57px;
     left: 0;
@@ -777,93 +906,57 @@ body.is-carousel .project-back:hover { color: #fff; }
     z-index: 50;
 }
 
-.project-carousel-track {
-    width: 100%;
+body.is-carousel .project-carousel-track {
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.project-carousel-slide {
-    display: none;
-    flex-direction: column;
+body.is-carousel .project-carousel-slide {
     align-items: center;
-    width: 100%;
     padding: 0 80px;
     box-sizing: border-box;
 }
 
-.project-carousel-slide.is-active {
-    display: flex;
-}
-
-.project-carousel-img {
-    display: block;
-    max-width: 100%;
+body.is-carousel .project-carousel-img {
     max-height: calc(100vh - 57px - 100px);
     width: auto;
-    height: auto;
-    object-fit: contain;
+    border: none;
 }
 
-.project-carousel-caption {
-    font-size: var(--fs-13);
+body.is-carousel .project-carousel-caption {
     color: rgba(255, 255, 255, 0.45);
     margin-top: 16px;
     text-align: center;
-    font-family: var(--font-mono);
     letter-spacing: 0.05em;
 }
 
-.project-carousel-btn {
+body.is-carousel .project-carousel-btn {
     position: fixed;
     top: 50%;
-    transform: translateY(-50%);
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 36px;
-    height: 36px;
     background: none;
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.2);
     color: rgba(255, 255, 255, 0.55);
-    cursor: pointer;
-    transition: border-color 0.15s, color 0.15s;
     z-index: 55;
 }
 
-.project-carousel-btn:hover {
+body.is-carousel .project-carousel-btn:hover {
     border-color: rgba(255, 255, 255, 0.7);
     color: #fff;
 }
 
-.project-carousel-btn:disabled {
-    opacity: 0.2;
-    cursor: not-allowed;
-}
+body.is-carousel .project-carousel-btn--prev { left: 24px; }
+body.is-carousel .project-carousel-btn--next { right: 24px; }
 
-.project-carousel-btn--prev { left: 24px; }
-.project-carousel-btn--next { right: 24px; }
-
-.project-carousel-dots {
-    display: flex;
-    justify-content: center;
-    gap: 8px;
+body.is-carousel .project-carousel-dots {
     margin-top: 20px;
 }
 
-.project-carousel-dot {
-    width: 6px;
-    height: 6px;
-    border-radius: 0;
+body.is-carousel .project-carousel-dot {
     background: rgba(255, 255, 255, 0.25);
-    border: none;
-    cursor: pointer;
-    padding: 0;
-    transition: background 0.15s;
 }
 
-.project-carousel-dot.is-active {
+body.is-carousel .project-carousel-dot.is-active {
     background: rgba(255, 255, 255, 0.85);
 }
 

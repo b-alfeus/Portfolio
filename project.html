@@ -9,7 +9,7 @@
         <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://esm.sh; connect-src 'self' https://cdn.jsdelivr.net; img-src 'self' https://mirrors.creativecommons.org data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self' data:; base-uri 'self'; form-action 'none';">
         <title>Bryan Widjaya • Project</title>
         <link rel="icon" type="image/svg+xml" href="assets/favicon.svg?v=2">
-        <link rel="stylesheet" href="styles.css?v=3">
+        <link rel="stylesheet" href="styles.css?v=4">
     </head>
     <body>
         <header>
@@ -57,43 +57,7 @@
                     <p class="project-lede">A one or two sentence summary of the project — what it was, who it was for, and why it mattered.</p>
                 </header>
 
-                <div class="project-body">
-                    <h2>Overview</h2>
-                    <p>Describe the project context here — the client, the problem space, and the scope of work. What were the goals, and who was the audience? Give readers enough to understand why this project existed.</p>
-                    <p>Add any relevant background: constraints, timeline, team size, or the brief you were handed. This section sets the stage for everything that follows.</p>
-
-                    <h2>The Challenge</h2>
-                    <p>What was the core problem to solve? Describe the tension — competing priorities, unclear requirements, technical limits, or a user need that wasn't being met. Be specific about what made this hard.</p>
-
-                    <blockquote>
-                        <p>"A quote, insight, or guiding principle that shaped the direction of this work."</p>
-                    </blockquote>
-
-                    <h2>Process</h2>
-                    <p>Walk through how you approached the work. What did you explore first? Where did the work change direction? Share the reasoning behind key decisions, not just the deliverables.</p>
-                    <ul>
-                        <li>Research and discovery</li>
-                        <li>Concept development and iteration</li>
-                        <li>Testing and refinement</li>
-                        <li>Delivery and handoff</li>
-                    </ul>
-
-                    <figure class="project-figure">
-                        <div class="project-image" style="background-color: #c4b89d;"></div>
-                        <figcaption>Caption — describe what this image shows and why it matters to the story.</figcaption>
-                    </figure>
-
-                    <h2>Outcome</h2>
-                    <p>What did the work result in? Share the outcome — launched product, published identity, measurable impact, or qualitative feedback. Be honest about what worked and what you would do differently.</p>
-
-                    <div class="project-image-row">
-                        <div class="project-image" style="background-color: #b8a98a;"></div>
-                        <div class="project-image" style="background-color: #cfc0a3;"></div>
-                    </div>
-
-                    <h2>Reflection</h2>
-                    <p>What did you learn from this project? Note anything surprising, a skill developed, a mistake made, or a perspective that shifted. This is the most honest part of a case study.</p>
-                </div>
+                <div class="project-body"></div>
 
                 <nav class="project-nav" aria-label="Project navigation">
                     <a href="project.html" class="project-nav-prev">
@@ -187,13 +151,6 @@
                     else lede.textContent = w.excerpt || '';
                 }
 
-                const cover = document.querySelector('.project-cover');
-                if (cover) {
-                    const coverSrc = w.cover || w.thumbnail;
-                    if (coverSrc) cover.style.backgroundImage = `url(${coverSrc})`;
-                    else cover.style.backgroundColor = w.background || '';
-                }
-
                 const body = document.querySelector('.project-body');
                 if (body && (w.overview || w.images)) {
                     const t = (s) => document.createTextNode(s);
@@ -218,7 +175,276 @@
 
                     const imgs = w.images || [];
 
-                    if (w.variant === 'carousel' && imgs.length > 0) {
+                    if (w.variant === 'singlepage' && imgs.length > 0) {
+                        // Inline carousel with click-to-fullscreen lightbox
+                        const wrap = e('div', 'project-carousel', []);
+                        const track = e('div', 'project-carousel-track', []);
+                        imgs.forEach((im, i) => {
+                            const slide = document.createElement('figure');
+                            slide.className = 'project-carousel-slide' + (i === 0 ? ' is-active' : '');
+                            const imgEl = document.createElement('img');
+                            imgEl.className = 'project-carousel-img';
+                            imgEl.src = im.src;
+                            imgEl.alt = im.caption || '';
+                            imgEl.style.cursor = 'zoom-in';
+                            slide.appendChild(imgEl);
+                            track.appendChild(slide);
+                        });
+                        wrap.appendChild(track);
+
+                        const counter = e('span', 'project-carousel-counter', []);
+                        const dotsWrap = e('div', 'project-carousel-dots', []);
+                        imgs.forEach((_, i) => {
+                            const dot = document.createElement('button');
+                            dot.type = 'button';
+                            dot.className = 'project-carousel-dot' + (i === 0 ? ' is-active' : '');
+                            dot.setAttribute('aria-label', `Slide ${i + 1}`);
+                            dotsWrap.appendChild(dot);
+                        });
+                        const sharedCap = e('p', 'project-carousel-caption', []);
+                        const footerLeft = e('div', 'project-carousel-footer-left', [counter, dotsWrap]);
+                        wrap.appendChild(e('div', 'project-carousel-footer', [footerLeft, sharedCap]));
+
+                        let cur = 0;
+                        const slides = track.querySelectorAll('.project-carousel-slide');
+                        const dots = dotsWrap.querySelectorAll('.project-carousel-dot');
+                        const goTo = (n) => {
+                            cur = (n + slides.length) % slides.length;
+                            slides.forEach((s, i) => s.classList.toggle('is-active', i === cur));
+                            dots.forEach((d, i) => d.classList.toggle('is-active', i === cur));
+                            counter.innerHTML = `<span class="project-carousel-counter-current">${cur + 1}</span>/${slides.length}`;
+                            sharedCap.textContent = imgs[cur].caption || '';
+                        };
+                        dots.forEach((d, i) => d.addEventListener('click', () => goTo(i)));
+                        let autoTimer = setInterval(() => goTo(cur + 1), 4000);
+                        wrap.addEventListener('mouseenter', () => clearInterval(autoTimer));
+                        wrap.addEventListener('mouseleave', () => { autoTimer = setInterval(() => goTo(cur + 1), 4000); });
+                        goTo(0);
+
+                        // Fullscreen lightbox overlay
+                        const overlay = document.createElement('div');
+                        overlay.className = 'lightbox';
+                        overlay.setAttribute('role', 'dialog');
+                        overlay.setAttribute('aria-modal', 'true');
+                        const lbClose = document.createElement('button');
+                        lbClose.className = 'lightbox-close';
+                        lbClose.setAttribute('aria-label', 'Close');
+                        lbClose.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>`;
+                        const lbImg = document.createElement('img');
+                        lbImg.className = 'lightbox-img';
+                        const lbCap = document.createElement('p');
+                        lbCap.className = 'lightbox-caption';
+                        const lbNav = e('div', 'lightbox-nav', []);
+                        const lbPrev = document.createElement('button');
+                        lbPrev.className = 'lightbox-prev';
+                        lbPrev.setAttribute('aria-label', 'Previous');
+                        lbPrev.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>`;
+                        const lbNext = document.createElement('button');
+                        lbNext.className = 'lightbox-next';
+                        lbNext.setAttribute('aria-label', 'Next');
+                        lbNext.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 5 7 7-7 7"/><path d="M5 12h14"/></svg>`;
+                        const lbDotsWrap = e('div', 'lightbox-dots', []);
+                        imgs.forEach((_, i) => {
+                            const dot = document.createElement('button');
+                            dot.type = 'button';
+                            dot.className = 'lightbox-dot';
+                            dot.setAttribute('aria-label', `Slide ${i + 1}`);
+                            lbDotsWrap.appendChild(dot);
+                        });
+                        lbNav.appendChild(lbPrev);
+                        lbNav.appendChild(lbDotsWrap);
+                        lbNav.appendChild(lbNext);
+                        overlay.appendChild(lbClose);
+                        overlay.appendChild(lbImg);
+                        overlay.appendChild(lbCap);
+                        overlay.appendChild(lbNav);
+                        document.body.appendChild(overlay);
+
+                        let lbCur = 0;
+                        const lbDots = lbDotsWrap.querySelectorAll('.lightbox-dot');
+                        const lbGoTo = (n) => {
+                            lbCur = (n + imgs.length) % imgs.length;
+                            lbImg.src = imgs[lbCur].src;
+                            lbImg.alt = imgs[lbCur].caption || '';
+                            lbCap.textContent = imgs[lbCur].caption || '';
+                            lbDots.forEach((d, i) => d.classList.toggle('is-active', i === lbCur));
+                        };
+                        const openLightbox = (startIdx) => {
+                            clearInterval(autoTimer);
+                            overlay.classList.add('is-open', 'is-carousel');
+                            document.body.style.overflow = 'hidden';
+                            lbGoTo(startIdx);
+                            lbClose.focus();
+                        };
+                        const closeLightbox = () => {
+                            overlay.classList.remove('is-open', 'is-carousel');
+                            document.body.style.overflow = '';
+                            autoTimer = setInterval(() => goTo(cur + 1), 4000);
+                        };
+                        slides.forEach((slide, i) => {
+                            slide.querySelector('img').addEventListener('click', () => openLightbox(i));
+                        });
+                        lbPrev.addEventListener('click', () => lbGoTo(lbCur - 1));
+                        lbNext.addEventListener('click', () => lbGoTo(lbCur + 1));
+                        lbDots.forEach((d, i) => d.addEventListener('click', () => lbGoTo(i)));
+                        lbClose.addEventListener('click', closeLightbox);
+                        overlay.addEventListener('click', ev => { if (ev.target === overlay) closeLightbox(); });
+                        document.addEventListener('keydown', ev => {
+                            if (!overlay.classList.contains('is-open')) return;
+                            if (ev.key === 'Escape') closeLightbox();
+                            if (ev.key === 'ArrowLeft') lbGoTo(lbCur - 1);
+                            if (ev.key === 'ArrowRight') lbGoTo(lbCur + 1);
+                        });
+
+                        const sections = [];
+                        if (w.overview) {
+                            sections.push(e('h2', null, ['Overview']));
+                            sections.push(e('p', null, [w.overview]));
+                        }
+                        if (w.process) {
+                            sections.push(e('h2', null, ['Process']));
+                            const list = e('ul', null, []);
+                            (Array.isArray(w.process) ? w.process : [w.process])
+                                .forEach(p => list.appendChild(e('li', null, [p])));
+                            sections.push(list);
+                        }
+                        if (w.outcomeImage) {
+                            sections.push(figure(w.outcomeImage.src, w.outcomeImage.caption));
+                        }
+                        if (w.outcome) {
+                            sections.push(e('h2', null, ['Outcome']));
+                            sections.push(e('p', null, [w.outcome]));
+                        }
+                        const buildGroupCarousel = (groupImages) => {
+                            const gWrap = e('div', 'project-carousel project-carousel--group', []);
+                            const gTrack = e('div', 'project-carousel-track', []);
+                            groupImages.forEach((im, i) => {
+                                const slide = document.createElement('figure');
+                                slide.className = 'project-carousel-slide' + (i === 0 ? ' is-active' : '');
+                                const imgEl = document.createElement('img');
+                                imgEl.className = 'project-carousel-img project-carousel-img--group';
+                                imgEl.src = im.src;
+                                imgEl.alt = im.caption || '';
+                                imgEl.style.cursor = 'zoom-in';
+                                slide.appendChild(imgEl);
+                                gTrack.appendChild(slide);
+                            });
+                            gWrap.appendChild(gTrack);
+                            const gCounter = e('span', 'project-carousel-counter', []);
+                            const gDotsWrap = e('div', 'project-carousel-dots', []);
+                            groupImages.forEach((_, i) => {
+                                const dot = document.createElement('button');
+                                dot.type = 'button';
+                                dot.className = 'project-carousel-dot' + (i === 0 ? ' is-active' : '');
+                                dot.setAttribute('aria-label', `Slide ${i + 1}`);
+                                gDotsWrap.appendChild(dot);
+                            });
+                            const gSharedCap = e('p', 'project-carousel-caption', []);
+                            const gFooterLeft = e('div', 'project-carousel-footer-left', [gCounter, gDotsWrap]);
+                            gWrap.appendChild(e('div', 'project-carousel-footer', [gFooterLeft, gSharedCap]));
+                            let gCur = 0;
+                            const gSlides = gTrack.querySelectorAll('.project-carousel-slide');
+                            const gDots = gDotsWrap.querySelectorAll('.project-carousel-dot');
+                            const gGoTo = (n) => {
+                                gCur = (n + gSlides.length) % gSlides.length;
+                                gSlides.forEach((s, i) => s.classList.toggle('is-active', i === gCur));
+                                gDots.forEach((d, i) => d.classList.toggle('is-active', i === gCur));
+                                gCounter.innerHTML = `<span class="project-carousel-counter-current">${gCur + 1}</span>/${gSlides.length}`;
+                                gSharedCap.textContent = groupImages[gCur].caption || '';
+                            };
+                            gDots.forEach((d, i) => d.addEventListener('click', () => gGoTo(i)));
+                            let gAutoTimer = setInterval(() => gGoTo(gCur + 1), 4000);
+                            gWrap.addEventListener('mouseenter', () => clearInterval(gAutoTimer));
+                            gWrap.addEventListener('mouseleave', () => { gAutoTimer = setInterval(() => gGoTo(gCur + 1), 4000); });
+                            gGoTo(0);
+
+                            // Fullscreen lightbox for group carousel
+                            const gOverlay = document.createElement('div');
+                            gOverlay.className = 'lightbox';
+                            gOverlay.setAttribute('role', 'dialog');
+                            gOverlay.setAttribute('aria-modal', 'true');
+                            const gLbClose = document.createElement('button');
+                            gLbClose.className = 'lightbox-close';
+                            gLbClose.setAttribute('aria-label', 'Close');
+                            gLbClose.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>`;
+                            const gLbImg = document.createElement('img');
+                            gLbImg.className = 'lightbox-img';
+                            const gLbCap = document.createElement('p');
+                            gLbCap.className = 'lightbox-caption';
+                            const gLbNav = e('div', 'lightbox-nav', []);
+                            const gLbPrev = document.createElement('button');
+                            gLbPrev.className = 'lightbox-prev';
+                            gLbPrev.setAttribute('aria-label', 'Previous');
+                            gLbPrev.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>`;
+                            const gLbNext = document.createElement('button');
+                            gLbNext.className = 'lightbox-next';
+                            gLbNext.setAttribute('aria-label', 'Next');
+                            gLbNext.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 5 7 7-7 7"/><path d="M5 12h14"/></svg>`;
+                            const gLbDotsWrap = e('div', 'lightbox-dots', []);
+                            groupImages.forEach((_, i) => {
+                                const dot = document.createElement('button');
+                                dot.type = 'button';
+                                dot.className = 'lightbox-dot';
+                                dot.setAttribute('aria-label', `Slide ${i + 1}`);
+                                gLbDotsWrap.appendChild(dot);
+                            });
+                            gLbNav.appendChild(gLbPrev);
+                            gLbNav.appendChild(gLbDotsWrap);
+                            gLbNav.appendChild(gLbNext);
+                            gOverlay.appendChild(gLbClose);
+                            gOverlay.appendChild(gLbImg);
+                            gOverlay.appendChild(gLbCap);
+                            gOverlay.appendChild(gLbNav);
+                            document.body.appendChild(gOverlay);
+
+                            let gLbCur = 0;
+                            const gLbDots = gLbDotsWrap.querySelectorAll('.lightbox-dot');
+                            const gLbGoTo = (n) => {
+                                gLbCur = (n + groupImages.length) % groupImages.length;
+                                gLbImg.src = groupImages[gLbCur].src;
+                                gLbImg.alt = groupImages[gLbCur].caption || '';
+                                gLbCap.textContent = groupImages[gLbCur].caption || '';
+                                gLbDots.forEach((d, i) => d.classList.toggle('is-active', i === gLbCur));
+                            };
+                            const gOpenLightbox = (startIdx) => {
+                                clearInterval(gAutoTimer);
+                                gOverlay.classList.add('is-open', 'is-carousel');
+                                document.body.style.overflow = 'hidden';
+                                gLbGoTo(startIdx);
+                                gLbClose.focus();
+                            };
+                            const gCloseLightbox = () => {
+                                gOverlay.classList.remove('is-open', 'is-carousel');
+                                document.body.style.overflow = '';
+                                gAutoTimer = setInterval(() => gGoTo(gCur + 1), 4000);
+                            };
+                            gSlides.forEach((slide, i) => {
+                                slide.querySelector('img').addEventListener('click', () => gOpenLightbox(i));
+                            });
+                            gLbPrev.addEventListener('click', () => gLbGoTo(gLbCur - 1));
+                            gLbNext.addEventListener('click', () => gLbGoTo(gLbCur + 1));
+                            gLbDots.forEach((d, i) => d.addEventListener('click', () => gLbGoTo(i)));
+                            gLbClose.addEventListener('click', gCloseLightbox);
+                            gOverlay.addEventListener('click', ev => { if (ev.target === gOverlay) gCloseLightbox(); });
+                            document.addEventListener('keydown', ev => {
+                                if (!gOverlay.classList.contains('is-open')) return;
+                                if (ev.key === 'Escape') gCloseLightbox();
+                                if (ev.key === 'ArrowLeft') gLbGoTo(gLbCur - 1);
+                                if (ev.key === 'ArrowRight') gLbGoTo(gLbCur + 1);
+                            });
+
+                            return gWrap;
+                        };
+
+                        if (Array.isArray(w.imageGroups)) {
+                            w.imageGroups.forEach(group => {
+                                if (group.label) sections.push(e('h3', 'project-group-label', [group.label]));
+                                sections.push(buildGroupCarousel(group.images || []));
+                            });
+                        }
+                        sections.push(wrap);
+                        body.replaceChildren(...sections);
+                    } else if (w.variant === 'carousel' && imgs.length > 0) {
                         document.body.classList.add('is-carousel');
                         const carousel = e('div', 'project-carousel', []);
 
@@ -268,18 +494,16 @@
                         const goTo = (n) => {
                             slides[current].classList.remove('is-active');
                             dots[current].classList.remove('is-active');
-                            current = n;
+                            current = (n + slides.length) % slides.length;
                             slides[current].classList.add('is-active');
                             dots[current].classList.add('is-active');
-                            prevBtn.disabled = current === 0;
-                            nextBtn.disabled = current === slides.length - 1;
                         };
-                        prevBtn.addEventListener('click', () => { if (current > 0) goTo(current - 1); });
-                        nextBtn.addEventListener('click', () => { if (current < slides.length - 1) goTo(current + 1); });
+                        prevBtn.addEventListener('click', () => goTo(current - 1));
+                        nextBtn.addEventListener('click', () => goTo(current + 1));
                         dots.forEach((dot, i) => dot.addEventListener('click', () => goTo(i)));
                         document.addEventListener('keydown', (ev) => {
-                            if (ev.key === 'ArrowLeft' && current > 0) goTo(current - 1);
-                            if (ev.key === 'ArrowRight' && current < slides.length - 1) goTo(current + 1);
+                            if (ev.key === 'ArrowLeft') goTo(current - 1);
+                            if (ev.key === 'ArrowRight') goTo(current + 1);
                         });
                         goTo(0);
 
@@ -322,8 +546,10 @@
                     }
                 }
 
-                const prev = items[idx - 1];
-                const next = items[idx + 1];
+                const navigable = items.filter(i => !i.comingSoon);
+                const navIdx = navigable.findIndex(i => i.id === w.id);
+                const prev = navigable[navIdx - 1];
+                const next = navigable[navIdx + 1];
                 const navPrev = document.querySelector('.project-nav-prev');
                 const navNext = document.querySelector('.project-nav-next');
                 if (navPrev) {
