@@ -929,9 +929,9 @@ function initContentProtection() {
         if (e.target.closest('img, canvas')) e.preventDefault();
     });
 
-    // Prevent long-press save on touch devices
+    // Prevent long-press save on touch devices (skip images inside links to preserve navigation)
     document.addEventListener('touchstart', (e) => {
-        if (e.target.closest('img, canvas')) {
+        if (e.target.closest('img, canvas') && !e.target.closest('a')) {
             e.target.addEventListener('touchend', (te) => te.preventDefault(), { once: true });
         }
     }, { passive: true });
