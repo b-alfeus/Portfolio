@@ -157,6 +157,11 @@
 
                     const nodes = [];
 
+                    const imgs = w.images || [];
+                    if (imgs.length > 0) {
+                        nodes.push(figure(imgs[0].src, imgs[0].caption));
+                    }
+
                     if (w.overview) {
                         nodes.push(e('h2', null, ['Overview']));
                         nodes.push(e('p', null, [w.overview]));
@@ -164,11 +169,6 @@
                     if (w.challenge) {
                         nodes.push(e('h2', null, ['The Challenge']));
                         nodes.push(e('p', null, [w.challenge]));
-                    }
-
-                    const imgs = w.images || [];
-                    if (imgs.length > 0) {
-                        nodes.push(figure(imgs[0].src, imgs[0].caption));
                     }
 
                     if (w.process) {
