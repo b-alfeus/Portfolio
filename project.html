@@ -191,11 +191,6 @@
                         nodes.push(gallery);
                     }
 
-                    if (w.reflection) {
-                        nodes.push(e('h2', null, ['Reflection']));
-                        nodes.push(e('p', null, [w.reflection]));
-                    }
-
                     body.replaceChildren(...nodes);
                 }
 
