@@ -44,7 +44,7 @@
                     <aside class="journey-aside" aria-hidden="true">
                         <div class="journey-map-wrap">
                             <canvas class="journey-map" id="journeyMap"></canvas>
-                            <div class="journey-map-error" id="journeyMapError" hidden>
+                            <div class="journey-map-error" id="journeyMapError">
                                 <span>map unavailable</span>
                                 <button type="button" id="journeyMapRetry">↺ retry</button>
                             </div>
@@ -308,7 +308,7 @@
                 }
 
                 async function init() {
-                    if (errorEl) errorEl.hidden = true;
+                    errorEl?.classList.remove('is-shown');
 
                     // Wait for canvas to have real layout dimensions before sizing it.
                     // rAF alone is skipped in hidden/background tabs on Safari; poll instead.
@@ -330,7 +330,7 @@
                             fetch('data/journey.json', { cache: 'no-cache' }).then(r => r.json()),
                         ]);
                     } catch {
-                        if (errorEl) errorEl.hidden = false;
+                        errorEl?.classList.add('is-shown');
                         return;
                     }
 
