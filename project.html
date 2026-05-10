@@ -117,18 +117,87 @@
                 if (h1) h1.textContent = w.title || '';
 
                 const meta = document.querySelector('.project-meta');
-                if (meta) meta.textContent = w.category || '';
+                if (meta) {
+                    const parts = [];
+                    if (w.year) parts.push(w.year);
+                    if (w.category) parts.push(w.category);
+                    meta.textContent = parts.join(' · ');
+                }
 
                 const lede = document.querySelector('.project-lede');
                 if (lede) lede.textContent = w.excerpt || '';
 
                 const cover = document.querySelector('.project-cover');
                 if (cover) {
-                    if (w.thumbnail) {
-                        cover.style.backgroundImage = `url(${w.thumbnail})`;
-                    } else {
-                        cover.style.backgroundColor = w.background || '';
+                    if (w.thumbnail) cover.style.backgroundImage = `url(${w.thumbnail})`;
+                    else cover.style.backgroundColor = w.background || '';
+                }
+
+                const body = document.querySelector('.project-body');
+                if (body && (w.overview || w.images)) {
+                    const t = (s) => document.createTextNode(s);
+                    const e = (tag, cls, children) => {
+                        const el = document.createElement(tag);
+                        if (cls) el.className = cls;
+                        (children || []).forEach(c => el.appendChild(typeof c === 'string' ? t(c) : c));
+                        return el;
+                    };
+                    const img = (src, alt) => {
+                        const i = document.createElement('img');
+                        i.className = 'project-image';
+                        i.src = src;
+                        i.alt = alt || '';
+                        i.loading = 'lazy';
+                        return i;
+                    };
+                    const figure = (src, caption) => {
+                        const fig = e('figure', 'project-figure', [img(src, caption)]);
+                        if (caption) fig.appendChild(e('figcaption', null, [caption]));
+                        return fig;
+                    };
+
+                    const nodes = [];
+
+                    if (w.overview) {
+                        nodes.push(e('h2', null, ['Overview']));
+                        nodes.push(e('p', null, [w.overview]));
                     }
+                    if (w.challenge) {
+                        nodes.push(e('h2', null, ['The Challenge']));
+                        nodes.push(e('p', null, [w.challenge]));
+                    }
+
+                    const imgs = w.images || [];
+                    if (imgs.length > 0) {
+                        nodes.push(figure(imgs[0].src, imgs[0].caption));
+                    }
+
+                    if (w.process) {
+                        nodes.push(e('h2', null, ['Process']));
+                        const list = e('ul', null, []);
+                        (Array.isArray(w.process) ? w.process : [w.process])
+                            .forEach(p => list.appendChild(e('li', null, [p])));
+                        nodes.push(list);
+                    }
+                    if (w.outcome) {
+                        nodes.push(e('h2', null, ['Outcome']));
+                        nodes.push(e('p', null, [w.outcome]));
+                    }
+
+                    if (imgs.length === 2) {
+                        nodes.push(figure(imgs[1].src, imgs[1].caption));
+                    } else if (imgs.length > 2) {
+                        const gallery = e('div', 'project-gallery', []);
+                        imgs.slice(1).forEach(im => gallery.appendChild(figure(im.src, im.caption)));
+                        nodes.push(gallery);
+                    }
+
+                    if (w.reflection) {
+                        nodes.push(e('h2', null, ['Reflection']));
+                        nodes.push(e('p', null, [w.reflection]));
+                    }
+
+                    body.replaceChildren(...nodes);
                 }
 
                 const prev = items[idx - 1];

@@ -586,6 +586,21 @@ header.nav-open .nav-toggle .icon-close {
     border: 1px dotted var(--color-border);
     background-size: cover;
     background-position: center;
+    display: block;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+.project-gallery {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin: 24px 0;
+}
+
+.project-gallery .project-figure {
+    margin: 0;
 }
 
 .project-image-row {
