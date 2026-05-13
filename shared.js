@@ -75,7 +75,6 @@ const translations = {
         'journey.intro':   'A record of where I\'ve been — the milestones, pivots, and moments that shaped the work.',
         'filter.all':         'All',
         'filter.career':      'Career',
-        'filter.travel': 'Travel',
         'work.heading':    'Work',
         'work.intro':      'Selected projects across product design, brand identity, and visual communication.',
         'article.heading': 'Posts',
@@ -124,7 +123,6 @@ const translations = {
         'journey.intro':   'Catatan perjalanan — tonggak, persimpangan, dan momen yang membentuk cara saya bekerja.',
         'filter.all':         'Semua',
         'filter.career':      'Karier',
-        'filter.travel': 'Perjalanan',
         'work.heading':    'Karya',
         'work.intro':      'Proyek terpilih dalam desain produk, identitas merek, dan komunikasi visual.',
         'article.heading': 'Tulisan',
@@ -173,7 +171,6 @@ const translations = {
         'journey.intro':   'これまでの記録 — 仕事を形づくったマイルストーン、転換点、そして瞬間たち。',
         'filter.all':         'すべて',
         'filter.career':      'キャリア',
-        'filter.travel': '旅行',
         'work.heading':    '仕事',
         'work.intro':      'プロダクトデザイン、ブランドアイデンティティ、ビジュアルコミュニケーションにわたる厳選されたプロジェクト。',
         'article.heading': '投稿',
@@ -222,7 +219,6 @@ const translations = {
         'journey.intro':   'Eine Aufzeichnung meines Weges — die Meilensteine, Wendepunkte und Momente, die meine Arbeit geprägt haben.',
         'filter.all':         'Alles',
         'filter.career':      'Karriere',
-        'filter.travel': 'Reise',
         'work.heading':    'Arbeiten',
         'work.intro':      'Ausgewählte Projekte aus Produktdesign, Markenidentität und visueller Kommunikation.',
         'article.heading': 'Beiträge',
@@ -872,9 +868,8 @@ function initJourneyInteractions() {
 
     // ── Filter bar ───────────────────────────────────────────────────────
     const filters = [
-        { key: 'all',         i18n: 'filter.all',         label: 'All' },
-        { key: 'work',        i18n: 'filter.career',      label: 'Career' },
-        { key: 'travel', i18n: 'filter.travel', label: 'Travel' },
+        { key: 'all',  i18n: 'filter.all',    label: 'All' },
+        { key: 'work', i18n: 'filter.career', label: 'Career' },
     ];
     const filterBtns = filters.map(f =>
         el('button', {

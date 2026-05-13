@@ -189,9 +189,7 @@
         "title_de": "Reise nach Phuket, Thailand",
         "date": "2013-09-01",
         "dateDisplay": "2013",
-        "tags": [
-          "travel"
-        ],
+        "tags": [],
         "location": {
           "place": "Phuket, TH",
           "lat": 7.8804,
@@ -210,9 +208,7 @@
         "title_de": "Reise nach Bangkok, Thailand",
         "date": "2013-09-01",
         "dateDisplay": "2013",
-        "tags": [
-          "travel"
-        ],
+        "tags": [],
         "location": {
           "place": "Bangkok, TH",
           "lat": 13.7563,
@@ -231,9 +227,7 @@
         "title_de": "Reise nach Kuala Lumpur, Malaysia",
         "date": "2013-09-01",
         "dateDisplay": "2013",
-        "tags": [
-          "travel"
-        ],
+        "tags": [],
         "location": {
           "place": "Kuala Lumpur, MY",
           "lat": 3.139,
@@ -257,9 +251,7 @@
         "title_de": "Wanderung — Mt. Bromo",
         "date": "2014-01-01",
         "dateDisplay": "2014",
-        "tags": [
-          "travel"
-        ],
+        "tags": [],
         "location": {
           "place": "Probolinggo, ID",
           "lat": -7.9425,
@@ -278,9 +270,7 @@
         "title_de": "Wanderung — Ijen-Krater",
         "date": "2014-01-01",
         "dateDisplay": "2014",
-        "tags": [
-          "travel"
-        ],
+        "tags": [],
         "location": {
           "place": "Banyuwangi, ID",
           "lat": -8.0583,
@@ -299,9 +289,7 @@
         "title_de": "Wanderung — Mt. Prau",
         "date": "2014-01-01",
         "dateDisplay": "2014",
-        "tags": [
-          "travel"
-        ],
+        "tags": [],
         "location": {
           "place": "Wonosobo, ID",
           "lat": -7.2053,
@@ -341,9 +329,7 @@
         "title_de": "Leben in Perth",
         "date": "2014-09-01",
         "dateDisplay": "2014",
-        "tags": [
-          "travel"
-        ],
+        "tags": [],
         "location": {
           "place": "Perth, AU",
           "lat": -31.9505,
@@ -440,9 +426,7 @@
         "title_de": "Reise nach Tokio, Japan",
         "date": "2019-01-01",
         "dateDisplay": "2019",
-        "tags": [
-          "travel"
-        ],
+        "tags": [],
         "location": {
           "place": "Tokyo, JP",
           "lat": 35.6762,
@@ -461,9 +445,7 @@
         "title_de": "Reise nach Osaka, Japan",
         "date": "2019-01-01",
         "dateDisplay": "2019",
-        "tags": [
-          "travel"
-        ],
+        "tags": [],
         "location": {
           "place": "Osaka, JP",
           "lat": 34.6937,
@@ -482,9 +464,7 @@
         "title_de": "Reise nach Kyoto, Japan",
         "date": "2019-01-01",
         "dateDisplay": "2019",
-        "tags": [
-          "travel"
-        ],
+        "tags": [],
         "location": {
           "place": "Kyoto, JP",
           "lat": 35.0116,
@@ -623,9 +603,7 @@
         "title_de": "Transitflug nach Singapur",
         "date": "2022-01-01",
         "dateDisplay": "2022",
-        "tags": [
-          "travel"
-        ],
+        "tags": [],
         "location": {
           "place": "Singapore, SG",
           "lat": 1.3521,
@@ -644,9 +622,7 @@
         "title_de": "Wieder zurück in Perth",
         "date": "2022-01-01",
         "dateDisplay": "2022",
-        "tags": [
-          "travel"
-        ],
+        "tags": [],
         "location": {
           "place": "Perth, AU",
           "lat": -31.9505,
