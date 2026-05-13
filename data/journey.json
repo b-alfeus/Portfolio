@@ -504,6 +504,31 @@
     ]
   },
   {
+    "year": 2020,
+    "events": [
+      {
+        "id": "covid-wfh-2020",
+        "title": "COVID-19 — Locked Down",
+        "title_id": "COVID-19 — Karantina",
+        "title_jp": "COVID-19 — ロックダウン",
+        "title_de": "COVID-19 — Lockdown",
+        "date": "2020-03-01",
+        "dateDisplay": "Mar 2020",
+        "tags": [],
+        "era": "covid",
+        "location": {
+          "place": "Jakarta, ID",
+          "lat": -6.2088,
+          "lng": 106.8456
+        },
+        "description": "The pandemic hit and everything stopped. Travel grounded, offices closed. Moved to fully remote almost overnight — the outside world reduced to a window and a screen.",
+        "description_id": "Pandemi melanda dan segalanya terhenti. Perjalanan dihentikan, kantor ditutup. Beralih ke full remote hampir dalam semalam — dunia luar menyusut menjadi jendela dan layar.",
+        "description_jp": "パンデミックが到来し、すべてが止まった。移動は禁止され、オフィスは閉鎖された。ほぼ一夜にしてフルリモートへ移行 — 外の世界は窓と画面だけになった。",
+        "description_de": "Die Pandemie traf und alles kam zum Stillstand. Reisen eingestellt, Büros geschlossen. Fast über Nacht auf vollständig remote umgestellt — die Außenwelt auf ein Fenster und einen Bildschirm reduziert."
+      }
+    ]
+  },
+  {
     "year": 2021,
     "events": [
       {

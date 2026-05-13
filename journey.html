@@ -44,9 +44,10 @@
                     <aside class="journey-aside" aria-hidden="true">
                         <div class="journey-map-wrap" id="journeyMapWrap">
                             <canvas class="journey-map" id="journeyMap"></canvas>
+                            <div class="journey-map-overlay" id="journeyMapOverlay" aria-hidden="true"></div>
                             <div class="journey-map-warning" id="journeyMapWarning" aria-hidden="true">
                                 <span class="journey-map-warning-dot"></span>
-                                <span>Travel Restriction</span>
+                                <span>SARS-CoV-2</span>
                             </div>
                             <div class="journey-map-error" id="journeyMapError">
                                 <span>map unavailable</span>
@@ -551,6 +552,7 @@
 
                     const mapWrap    = document.getElementById('journeyMapWrap');
                     const mapWarning = document.getElementById('journeyMapWarning');
+                    const mapOverlay = document.getElementById('journeyMapOverlay');
 
                     const syncFromEvent = (target) => {
                         if (!target) return;
@@ -563,6 +565,7 @@
                         const isCovid = ev?.era === 'covid';
                         mapWrap?.classList.toggle('has-warning', isCovid);
                         if (mapWarning) mapWarning.setAttribute('aria-hidden', String(!isCovid));
+                        if (mapOverlay) mapOverlay.setAttribute('aria-hidden', String(!isCovid));
                     };
 
                     let attachMo = null;

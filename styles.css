@@ -1892,6 +1892,20 @@ footer p {
     opacity: 1;
 }
 
+.journey-map-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(220, 38, 38, 0.08);
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    z-index: 1;
+}
+
+.journey-map-wrap.has-warning .journey-map-overlay {
+    opacity: 1;
+}
+
 .journey-map-warning {
     position: absolute;
     top: 10px;
@@ -1911,6 +1925,7 @@ footer p {
     pointer-events: none;
     opacity: 0;
     transition: opacity 0.3s ease;
+    z-index: 2;
 }
 
 .journey-map-wrap.has-warning .journey-map-warning {
