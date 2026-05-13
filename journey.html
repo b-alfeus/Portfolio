@@ -396,27 +396,12 @@
                         drawArc(segInterp, 48, 0.7 * pathAlpha, 0.03);
                     }
 
-                    // Pin markers at each inactive waypoint
+                    // White outlined circle markers at each inactive waypoint
                     if (waypoints.length > 1 && settled > 0) {
-                        const pinR = Math.max(4, Math.round(3.5 * dpr));
-                        const dist = pinR * 2.5;
-                        const θ    = Math.asin(pinR / dist);
-                        const drawPin = (px, py) => {
-                            const headY = py - dist;
-                            // White teardrop body
-                            ctx.beginPath();
-                            ctx.arc(px, headY, pinR, Math.PI / 2 + θ, Math.PI / 2 - θ);
-                            ctx.lineTo(px, py);
-                            ctx.closePath();
-                            ctx.fillStyle = '#ffffff';
-                            ctx.fill();
-                            // Red circular head
-                            ctx.beginPath();
-                            ctx.arc(px, headY, pinR, 0, Math.PI * 2);
-                            ctx.fillStyle = '#e53535';
-                            ctx.fill();
-                        };
+                        const pinR = Math.max(3, Math.round(3 * dpr));
                         ctx.globalAlpha = pathAlpha;
+                        ctx.strokeStyle = '#ffffff';
+                        ctx.lineWidth = 1.5 * dpr;
                         waypoints.forEach(([wlng, wlat]) => {
                             const atActive = Math.abs(wlng - curEventLoc[0]) < 0.001 && Math.abs(wlat - curEventLoc[1]) < 0.001;
                             const atRemote = remoteTarget && Math.abs(wlng - remoteTarget.lng) < 0.001 && Math.abs(wlat - remoteTarget.lat) < 0.001;
@@ -424,8 +409,10 @@
                             const p = projection([wlng, wlat]);
                             if (!p) return;
                             const [px, py] = p;
-                            if (px < -pinR * 2 || px > W + pinR * 2 || py < -pinR * 5 || py > H + pinR * 2) return;
-                            drawPin(Math.round(px), Math.round(py));
+                            if (px < -pinR * 2 || px > W + pinR * 2 || py < -pinR * 2 || py > H + pinR * 2) return;
+                            ctx.beginPath();
+                            ctx.arc(Math.round(px), Math.round(py), pinR, 0, Math.PI * 2);
+                            ctx.stroke();
                         });
                         ctx.globalAlpha = 1;
                     }
