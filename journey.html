@@ -562,10 +562,11 @@
                             if (wi !== undefined) curWaypointIdx = wi;
                             setTarget(ev.location.lat, ev.location.lng, ev.location.place || '', ev.locationTo || null);
                         }
-                        const isCovid = ev?.era === 'covid';
-                        mapWrap?.classList.toggle('has-warning', isCovid);
-                        if (mapWarning) mapWarning.setAttribute('aria-hidden', String(!isCovid));
-                        if (mapOverlay) mapOverlay.setAttribute('aria-hidden', String(!isCovid));
+                        const era = ev?.era || '';
+                        mapWrap?.classList.toggle('has-warning',       era === 'covid');
+                        mapWrap?.classList.toggle('has-warning-easing', era === 'covid-easing');
+                        if (mapWarning) mapWarning.setAttribute('aria-hidden', String(!era.startsWith('covid')));
+                        if (mapOverlay) mapOverlay.setAttribute('aria-hidden', String(!era.startsWith('covid')));
                     };
 
                     let attachMo = null;

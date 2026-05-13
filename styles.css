@@ -1904,6 +1904,12 @@ footer p {
 
 .journey-map-wrap.has-warning .journey-map-overlay {
     opacity: 1;
+    background: rgba(220, 38, 38, 0.08);
+}
+
+.journey-map-wrap.has-warning-easing .journey-map-overlay {
+    opacity: 1;
+    background: rgba(234, 130, 30, 0.08);
 }
 
 .journey-map-warning {
@@ -1928,15 +1934,22 @@ footer p {
     z-index: 2;
 }
 
-.journey-map-wrap.has-warning .journey-map-warning {
+.journey-map-wrap.has-warning .journey-map-warning,
+.journey-map-wrap.has-warning-easing .journey-map-warning {
     opacity: 1;
+}
+
+.journey-map-wrap.has-warning-easing .journey-map-warning {
+    background: rgba(234, 130, 30, 0.15);
+    border-color: rgba(234, 130, 30, 0.4);
+    color: #ea821e;
 }
 
 .journey-map-warning-dot {
     width: 6px;
     height: 6px;
     border-radius: 50%;
-    background: #dc2626;
+    background: currentColor;
     animation: warning-pulse 1.8s ease-in-out infinite;
     flex-shrink: 0;
 }
