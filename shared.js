@@ -73,7 +73,7 @@ const translations = {
         'btn.email':       'Email Me',
         'journey.heading': 'Journey',
         'journey.intro':   'A record of where I\'ve been — the milestones, pivots, and moments that shaped the work.',
-        'filter.all':         'All',
+        'filter.all':         'Life',
         'filter.career':      'Career',
         'work.heading':    'Work',
         'work.intro':      'Selected projects across product design, brand identity, and visual communication.',
@@ -121,7 +121,7 @@ const translations = {
         'btn.email':       'Kirim Email',
         'journey.heading': 'Perjalanan',
         'journey.intro':   'Catatan perjalanan — tonggak, persimpangan, dan momen yang membentuk cara saya bekerja.',
-        'filter.all':         'Semua',
+        'filter.all':         'Hidup',
         'filter.career':      'Karier',
         'work.heading':    'Karya',
         'work.intro':      'Proyek terpilih dalam desain produk, identitas merek, dan komunikasi visual.',
@@ -169,7 +169,7 @@ const translations = {
         'btn.email':       'メールを送る',
         'journey.heading': '歩み',
         'journey.intro':   'これまでの記録 — 仕事を形づくったマイルストーン、転換点、そして瞬間たち。',
-        'filter.all':         'すべて',
+        'filter.all':         '人生',
         'filter.career':      'キャリア',
         'work.heading':    '仕事',
         'work.intro':      'プロダクトデザイン、ブランドアイデンティティ、ビジュアルコミュニケーションにわたる厳選されたプロジェクト。',
@@ -217,7 +217,7 @@ const translations = {
         'btn.email':       'E-Mail schreiben',
         'journey.heading': 'Werdegang',
         'journey.intro':   'Eine Aufzeichnung meines Weges — die Meilensteine, Wendepunkte und Momente, die meine Arbeit geprägt haben.',
-        'filter.all':         'Alles',
+        'filter.all':         'Leben',
         'filter.career':      'Karriere',
         'work.heading':    'Arbeiten',
         'work.intro':      'Ausgewählte Projekte aus Produktdesign, Markenidentität und visueller Kommunikation.',
@@ -868,7 +868,7 @@ function initJourneyInteractions() {
 
     // ── Filter bar ───────────────────────────────────────────────────────
     const filters = [
-        { key: 'all',  i18n: 'filter.all',    label: 'All' },
+        { key: 'all',  i18n: 'filter.all',    label: 'Life' },
         { key: 'work', i18n: 'filter.career', label: 'Career' },
     ];
     const filterBtns = filters.map(f =>
