@@ -42,8 +42,12 @@
             <section class="journey">
                 <div class="journey-layout">
                     <aside class="journey-aside" aria-hidden="true">
-                        <div class="journey-map-wrap">
+                        <div class="journey-map-wrap" id="journeyMapWrap">
                             <canvas class="journey-map" id="journeyMap"></canvas>
+                            <div class="journey-map-warning" id="journeyMapWarning" aria-hidden="true">
+                                <span class="journey-map-warning-dot"></span>
+                                <span>Travel Restriction</span>
+                            </div>
                             <div class="journey-map-error" id="journeyMapError">
                                 <span>map unavailable</span>
                                 <button type="button" id="journeyMapRetry">↺ retry</button>
@@ -545,6 +549,9 @@
                     tick();
                     canvas.classList.add('is-ready');
 
+                    const mapWrap    = document.getElementById('journeyMapWrap');
+                    const mapWarning = document.getElementById('journeyMapWarning');
+
                     const syncFromEvent = (target) => {
                         if (!target) return;
                         const ev = eventById.get(target.dataset.eventId);
@@ -553,6 +560,9 @@
                             if (wi !== undefined) curWaypointIdx = wi;
                             setTarget(ev.location.lat, ev.location.lng, ev.location.place || '', ev.locationTo || null);
                         }
+                        const isCovid = ev?.era === 'covid';
+                        mapWrap?.classList.toggle('has-warning', isCovid);
+                        if (mapWarning) mapWarning.setAttribute('aria-hidden', String(!isCovid));
                     };
 
                     let attachMo = null;

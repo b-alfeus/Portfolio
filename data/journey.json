@@ -525,7 +525,8 @@
         "description": "Joined another unicorn albeit very briefly — this time on Traveloka's Financial Services team, focused on Wealth Management. Worked mainly on the Gold and Mutual Fund products.",
         "description_id": "Bergabung dengan unicorn lain — kali ini di tim Financial Services Traveloka, berfokus pada Wealth Management. Mengerjakan terutama produk Gold dan Reksa Dana.",
         "description_jp": "別のユニコーン企業へ — 今度はTravelokaのFinancial Servicesチーム、Wealth Management部門。主にGoldと投資信託のプロダクトを担当した。",
-        "description_de": "Einem weiteren Unicorn beigetreten — diesmal im Financial Services Team von Traveloka, mit Fokus auf Wealth Management. Hauptsächlich an den Gold- und Investmentfonds-Produkten gearbeitet."
+        "description_de": "Einem weiteren Unicorn beigetreten — diesmal im Financial Services Team von Traveloka, mit Fokus auf Wealth Management. Hauptsächlich an den Gold- und Investmentfonds-Produkten gearbeitet.",
+        "era": "covid"
       },
       {
         "id": "carevo-freelance-2021",
@@ -546,7 +547,8 @@
         "description": "Doing a freelance work for a healthcare company, redesigning their website through referral of a connection that I've made.",
         "description_id": "Proyek freelance mendesain ulang website untuk perusahaan layanan kesehatan.",
         "description_jp": "ヘルスケア企業のウェブサイトをリデザインするフリーランス案件。",
-        "description_de": "Ein Freelance-Projekt zur Neugestaltung der Website für ein Gesundheitsunternehmen."
+        "description_de": "Ein Freelance-Projekt zur Neugestaltung der Website für ein Gesundheitsunternehmen.",
+        "era": "covid"
       },
       {
         "id": "purwadhika-mentor-2021",
@@ -567,7 +569,8 @@
         "description": "An old contact reached out with an offer — casual mentoring at a local bootcamp. Spent time guiding students eager to break into the startup scene, and occasionally stepped in as a Guest Examiner during their final assessments.",
         "description_id": "Koneksi lama menghubungi dengan tawaran — menjadi mentor kasual di bootcamp lokal. Membimbing para siswa yang ingin masuk ke dunia startup, dan sesekali berperan sebagai Guest Examiner di penilaian akhir mereka.",
         "description_jp": "旧知のつながりからオファーが届いた — 地元のブートキャンプでのカジュアルなメンタリング。スタートアップ業界への参入を目指す学生たちを指導し、ときには最終審査でゲスト審査員も務めた。",
-        "description_de": "Ein alter Kontakt meldete sich mit einem Angebot — lockeres Mentoring an einem lokalen Bootcamp. Zeit damit verbracht, Studierende zu begleiten, die in die Startup-Szene einsteigen wollten, und gelegentlich als Gastprüfer bei ihren Abschlussprüfungen aufgetreten."
+        "description_de": "Ein alter Kontakt meldete sich mit einem Angebot — lockeres Mentoring an einem lokalen Bootcamp. Zeit damit verbracht, Studierende zu begleiten, die in die Startup-Szene einsteigen wollten, und gelegentlich als Gastprüfer bei ihren Abschlussprüfungen aufgetreten.",
+        "era": "covid"
       },
       {
         "id": "moladin-2022",
@@ -588,7 +591,8 @@
         "description": "A new industry — Financing and Automotive Retail. Embedded in their Financing unit, learning the end-to-end flow of sourcing used cars for their own showroom network.",
         "description_id": "Industri baru — Pembiayaan dan Retail Otomotif. Bergabung dalam unit Financing mereka, mempelajari alur end-to-end pengadaan mobil bekas untuk jaringan showroom mereka.",
         "description_jp": "新しい業界 — ファイナンシングと自動車小売。ファイナンシング部門に入り、自社ショールームネットワークへの中古車調達のエンドツーエンドのフローを学んだ。",
-        "description_de": "Eine neue Branche — Finanzierung und Automobilhandel. Im Financing-Bereich eingebettet und den End-to-End-Ablauf der Beschaffung von Gebrauchtwagen für das eigene Showroom-Netzwerk kennengelernt."
+        "description_de": "Eine neue Branche — Finanzierung und Automobilhandel. Im Financing-Bereich eingebettet und den End-to-End-Ablauf der Beschaffung von Gebrauchtwagen für das eigene Showroom-Netzwerk kennengelernt.",
+        "era": "covid"
       }
     ]
   },

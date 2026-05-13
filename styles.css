@@ -1892,6 +1892,45 @@ footer p {
     opacity: 1;
 }
 
+.journey-map-warning {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 8px 4px 6px;
+    border-radius: 4px;
+    background: rgba(220, 38, 38, 0.15);
+    border: 1px solid rgba(220, 38, 38, 0.4);
+    color: #dc2626;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.journey-map-wrap.has-warning .journey-map-warning {
+    opacity: 1;
+}
+
+.journey-map-warning-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #dc2626;
+    animation: warning-pulse 1.8s ease-in-out infinite;
+    flex-shrink: 0;
+}
+
+@keyframes warning-pulse {
+    0%, 100% { opacity: 1; }
+    50%       { opacity: 0.3; }
+}
+
 .journey-map-error {
     display: none;
     position: absolute;
