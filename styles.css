@@ -1841,12 +1841,12 @@ footer p {
 
 /* Filtering: hide events + empty year groups that don't match */
 .journey[data-filter="work"] .timeline-event:not([data-tags~="work"]),
-.journey[data-filter="achievement"] .timeline-event:not([data-tags~="achievement"]) {
+.journey[data-filter="travel"] .timeline-event:not([data-tags~="travel"]) {
     display: none;
 }
 
 .journey[data-filter="work"] .timeline-group:not(:has(.timeline-event[data-tags~="work"])),
-.journey[data-filter="achievement"] .timeline-group:not(:has(.timeline-event[data-tags~="achievement"])) {
+.journey[data-filter="travel"] .timeline-group:not(:has(.timeline-event[data-tags~="travel"])) {
     display: none;
 }
 
