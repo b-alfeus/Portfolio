@@ -369,7 +369,7 @@
     ]
   },
   {
-    "year": 2018,
+    "year": 2017,
     "events": [
       {
         "id": "bhinneka-pd-2018",
@@ -377,8 +377,8 @@
         "title_id": "Product Designer di Bhinneka",
         "title_jp": "BhinnekaのProduct Designer",
         "title_de": "Product Designer bei Bhinneka",
-        "date": "2018-01-01",
-        "dateDisplay": "Jan 2018",
+        "date": "2017-01-01",
+        "dateDisplay": "Jan 2017",
         "tags": [
           "work"
         ],
@@ -391,7 +391,12 @@
         "description_id": "Peran in-house pertama saya. Mengerjakan iOS, Android, web B2C dan B2B, serta beberapa dashboard internal untuk Marketing, Logistik, dan Inventaris. Belajar menavigasi kehidupan korporat dan mengelola stakeholder di organisasi yang lebih besar.",
         "description_jp": "初めての社内ポジション。iOS、Android、B2C・B2BのWeb、そしてマーケティング・物流・在庫管理向けの社内ダッシュボードを担当。大きな組織での企業生活のナビゲートとステークホルダー管理を学んだ。",
         "description_de": "Meine erste Inhouse-Rolle. Arbeit an iOS, Android, B2C- und B2B-Web sowie einigen internen Dashboards für Marketing, Logistik und Inventar. Gelernt, wie man das Unternehmensleben navigiert und Stakeholder in einer größeren Organisation managt."
-      },
+      }
+    ]
+  },
+  {
+    "year": 2018,
+    "events": [
       {
         "id": "bhinneka-lead-2018",
         "title": "Lead Product Designer at Bhinneka",
