@@ -500,20 +500,15 @@
         "description_id": "Setelah perjalanan ke Jepang, saya mengambil waktu sekitar setahun — jeda karier yang disengaja untuk menyegarkan diri. Kembali lagi, saya ingin tahu seperti apa startup lokal dari dalam. LOKET adalah platform tiket acara Indonesia. Merombak website — menghasilkan peningkatan traffic 7% — dan membangun fitur live event mereka untuk siaran online dan monetisasi kreator.",
         "description_jp": "日本旅行の後、約一年間意図的なキャリアブレイクを取り、リセットした。戻ってきたとき、ローカルスタートアップの内側がどんなものか見てみたかった。LOKETはインドネシアのイベントチケットプラットフォーム。Webサイトをリニューアルしてトラフィックを7%向上させ、オンライン配信とクリエイターの収益化に向けたライブイベント機能を構築した。",
         "description_de": "Nach der Japan-Reise nahm ich mir etwa ein Jahr Auszeit — eine bewusste Karrierepause zum Neustart. Als ich zurückkam, wollte ich sehen, wie ein lokales Startup von innen aussieht. LOKET war Indonesiens Event-Ticketing-Plattform. Die Website überarbeitet — 7% mehr Traffic erzielt — und das Live-Event-Feature für Online-Streaming und Creator-Monetarisierung entwickelt."
-      }
-    ]
-  },
-  {
-    "year": 2020,
-    "events": [
+      },
       {
         "id": "covid-wfh-2020",
         "title": "COVID-19 — Locked Down",
         "title_id": "COVID-19 — Karantina",
         "title_jp": "COVID-19 — ロックダウン",
         "title_de": "COVID-19 — Lockdown",
-        "date": "2020-03-01",
-        "dateDisplay": "Mar 2020",
+        "date": "2019-12-01",
+        "dateDisplay": "Dec 2019",
         "tags": [],
         "era": "covid",
         "location": {
