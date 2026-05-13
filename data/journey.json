@@ -412,20 +412,15 @@
         "description_id": "Berkembang menjadi peran lead, mengelola tim empat desainer. Karya yang kami kirimkan mendapat sorotan dari Google dan Accenture Interactive dalam laporan Mobile UX Masters SEA mereka.",
         "description_jp": "リードの役割へと成長し、4人のデザイナーのチームを率いた。私たちが世に出した仕事は、GoogleとAccenture InteractiveのMobile UX Masters SEAレポートで取り上げられた。",
         "description_de": "Zur Führungsrolle gewachsen und ein Team von vier Designern geleitet. Die veröffentlichte Arbeit wurde von Google und Accenture Interactive in ihrem Mobile UX Masters SEA-Bericht vorgestellt."
-      }
-    ]
-  },
-  {
-    "year": 2019,
-    "events": [
+      },
       {
-        "id": "travel-tokyo-2019",
+        "id": "travel-tokyo-2018",
         "title": "Travel to Tokyo, Japan",
         "title_id": "Perjalanan ke Tokyo, Jepang",
         "title_jp": "東京旅行",
         "title_de": "Reise nach Tokio, Japan",
-        "date": "2019-01-01",
-        "dateDisplay": "2019",
+        "date": "2018-09-01",
+        "dateDisplay": "2018",
         "tags": [],
         "location": {
           "place": "Tokyo, JP",
@@ -438,13 +433,13 @@
         "description_de": "Das erste Mal in Japan — sofort beeindruckt davon, wie mühelos das Alte und das Neue denselben Raum teilten. Alles wirkte durchdacht und auf eine stille Art außergewöhnlich."
       },
       {
-        "id": "travel-osaka-2019",
+        "id": "travel-osaka-2018",
         "title": "Travel to Osaka, Japan",
         "title_id": "Perjalanan ke Osaka, Jepang",
         "title_jp": "大阪旅行",
         "title_de": "Reise nach Osaka, Japan",
-        "date": "2019-01-01",
-        "dateDisplay": "2019",
+        "date": "2018-09-01",
+        "dateDisplay": "2018",
         "tags": [],
         "location": {
           "place": "Osaka, JP",
@@ -457,28 +452,28 @@
         "description_de": "Weiter nach Osaka — eine andere Energie, bodenständiger und lebendiger. Leichter, das Tempo zu drosseln, gut zu essen und ohne Plan umherzuschlendern."
       },
       {
-        "id": "travel-kyoto-2019",
+        "id": "travel-kyoto-2018",
         "title": "Travel to Kyoto, Japan",
         "title_id": "Perjalanan ke Kyoto, Jepang",
         "title_jp": "京都旅行",
         "title_de": "Reise nach Kyoto, Japan",
-        "date": "2019-01-01",
-        "dateDisplay": "2019",
+        "date": "2018-09-01",
+        "dateDisplay": "2018",
         "tags": [],
         "location": {
           "place": "Kyoto, JP",
           "lat": 35.0116,
           "lng": 135.7681
         },
-        "description": "The last stop — Kyoto, the cultural core of Japan. Temples and shrines at every turn, and a quietness that Tokyo and Osaka didn't have.",
-        "description_id": "Pemberhentian terakhir — Kyoto, jantung budaya Jepang. Kuil dan tempat suci di setiap sudut, dan keheningan yang tidak dimiliki Tokyo maupun Osaka.",
-        "description_jp": "最後の目的地 — 京都、日本の文化的な核心。いたるところに寺社があり、東京や大阪にはなかった静けさが漂っていた。",
-        "description_de": "Der letzte Halt — Kyoto, das kulturelle Herzstück Japans. Tempel und Schreine an jeder Ecke, und eine Stille, die Tokio und Osaka nicht hatten."
+        "description": "Ended the trip in Kyoto — shrines, narrow lanes, and a pace that made time feel elastic. Hard to leave.",
+        "description_id": "Mengakhiri perjalanan di Kyoto — kuil-kuil, gang-gang sempit, dan ritme yang membuat waktu terasa elastis. Susah untuk pergi.",
+        "description_jp": "旅の終わりは京都で — 神社、細い路地、時間が伸縮するような空気感。なかなか離れられなかった。",
+        "description_de": "Die Reise in Kyoto beendet — Schreine, schmale Gassen und ein Tempo, das die Zeit dehnbar wirken ließ. Schwer loszulassen."
       }
     ]
   },
   {
-    "year": 2020,
+    "year": 2019,
     "events": [
       {
         "id": "loket-2020",
@@ -486,8 +481,8 @@
         "title_id": "Senior UI/UX di LOKÉT · Gojek Group",
         "title_jp": "LOKÉT · Gojek GroupのSenior UI/UX",
         "title_de": "Senior UI/UX bei LOKÉT · Gojek Group",
-        "date": "2020-01-01",
-        "dateDisplay": "2020",
+        "date": "2019-01-01",
+        "dateDisplay": "2019",
         "tags": [
           "work"
         ],
