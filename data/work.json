@@ -51,7 +51,7 @@
     "client": "The Dharmawangsa Square",
     "year": "2014",
     "tags": ["Branding", "Consulting"],
-    "thumbnail": "assets/work/dharmawangsa-square/uniform.jpg",
+    "thumbnail": "assets/work/dharmawangsa-square/thumbnail.jpg",
     "background": "#b8a888",
     "aspect": "1/1",
     "link": "project.html",
@@ -93,8 +93,7 @@
     "client": "BonAlpha Ltd. (HK)",
     "year": "2015",
     "tags": ["Branding", "Concept", "Consulting", "Product"],
-    "thumbnail": "assets/work/voca/search-results.jpg",
-    "thumbnailPosition": "center top",
+    "thumbnail": "assets/work/voca/thumbnail.jpg",
     "background": "#1e3a3a",
     "aspect": "4/3",
     "variant": "singlepage",
@@ -108,6 +107,32 @@
     ],
     "outcome": "A complete end-to-end product design spanning 18 screens — from home and onboarding through to interpreter matching, checkout, and the user dashboard. The concept was developed as a design deliverable for BonAlpha Ltd. to support their product development roadmap.",
     "outcomeImage": { "src": "assets/work/voca/logo.jpg", "caption": "Voca — overlapping speech-bubble logomark in coral and teal." },
+    "processGroups": [
+      {
+        "label": "Interpreting Business — Research Deck",
+        "images": [
+          { "src": "assets/work/voca/deck-01.jpg", "caption": "Research — title slide" },
+          { "src": "assets/work/voca/deck-02.jpg", "caption": "" },
+          { "src": "assets/work/voca/deck-03.jpg", "caption": "" },
+          { "src": "assets/work/voca/deck-04.jpg", "caption": "" },
+          { "src": "assets/work/voca/deck-05.jpg", "caption": "" },
+          { "src": "assets/work/voca/deck-06.jpg", "caption": "" },
+          { "src": "assets/work/voca/deck-07.jpg", "caption": "" },
+          { "src": "assets/work/voca/deck-08.jpg", "caption": "" },
+          { "src": "assets/work/voca/deck-09.jpg", "caption": "" },
+          { "src": "assets/work/voca/deck-10.jpg", "caption": "" }
+        ]
+      },
+      {
+        "label": "User's Journeys",
+        "images": [
+          { "src": "assets/work/voca/journey-01.jpg", "caption": "User's Journeys — actor overview" },
+          { "src": "assets/work/voca/journey-02.jpg", "caption": "" },
+          { "src": "assets/work/voca/journey-03.jpg", "caption": "" },
+          { "src": "assets/work/voca/journey-04.jpg", "caption": "" }
+        ]
+      }
+    ],
     "images": [
       { "src": "assets/work/voca/home.jpg", "caption": "Home" },
       { "src": "assets/work/voca/login-page.jpg", "caption": "Login" },
@@ -158,7 +183,7 @@
   {
     "id": "xl-prio",
     "title": "XL Prio — Choose a Plan",
-    "client": "XL Prio",
+    "client": "<a href=\"https://www.xl.co.id/\" target=\"_blank\" rel=\"noopener noreferrer\">XL Prio</a>",
     "year": "2015",
     "tags": ["Consulting", "Product"],
     "thumbnail": "assets/work/weekend-inc-2015/xl-prio-thumb.jpg",
@@ -214,27 +239,97 @@
     "title": "Bhinneka",
     "client": "Bhinneka.com",
     "year": "2017–2018",
-    "tags": ["Product"],
-    "thumbnail": "assets/work/bhinneka/homepage-alt-3.jpg",
-    "thumbnailPosition": "center top",
+    "tags": ["Branding", "Product"],
+    "thumbnail": "assets/work/bhinneka/thumbnail.svg",
     "background": "#2a3a4a",
     "aspect": "4/3",
     "variant": "singlepage",
-    "excerpt": "From a single electronics shop to one of Indonesia's largest e-commerce platforms — serving consumers, businesses, and government alike.",
+    "excerpt": "From a single electronics shop to one of Indonesia's largest distributors of official brands — serving consumers, businesses, and government alike.",
     "imageGroups": [
+      { "section": "Design System" },
       {
-        "label": "B2C Homepage — Exploration",
+        "label": "Tunggal — Design Language System",
+        "objectPosition": "left",
         "images": [
-          { "src": "assets/work/bhinneka/homepage-alt-3.jpg", "caption": "Homepage — Amazon Echo hero, Daily Deals, and category grid" },
-          { "src": "assets/work/bhinneka/homepage-alt-4.jpg", "caption": "Homepage — Nintendo Switch hero, 25th Anniversary promo" },
-          { "src": "assets/work/bhinneka/browse-menu.jpg", "caption": "Browse mega-menu — product categories with featured items" }
+          { "src": "assets/work/bhinneka/ds-intro.jpg",      "caption": "Tunggal — Bhinneka's design language system overview" },
+          { "src": "assets/work/bhinneka/ds-colors.jpg",     "caption": "Design elements — colour palette across all product surfaces" },
+          { "src": "assets/work/bhinneka/ds-typography.jpg", "caption": "Design elements — type scale, weights, and typeface specimens" },
+          { "src": "assets/work/bhinneka/ds-buttons.jpg",    "caption": "UI components — button variants, states, and size scale" },
+          { "src": "assets/work/bhinneka/ds-inputs.jpg",     "caption": "UI components — input fields, search, add-ons, and label variants" },
+          { "src": "assets/work/bhinneka/ds-radios.jpg",     "caption": "UI components — radios, checkboxes, and toggle switches" },
+          { "src": "assets/work/bhinneka/ds-sliders.jpg",    "caption": "UI components — sliders and range sliders" },
+          { "src": "assets/work/bhinneka/ds-elevations.jpg", "caption": "UI components — containers and elevation levels" }
+        ]
+      },
+      { "section": "Consumer-facing App" },
+      {
+        "columns": [
+          {
+            "label": "B2C Homepage — Exploration",
+            "images": [
+              { "src": "assets/work/bhinneka/homepage-alt-3.jpg", "caption": "Homepage — Amazon Echo hero, Daily Deals, and category grid" },
+              { "src": "assets/work/bhinneka/homepage-alt-4.jpg", "caption": "Homepage — Nintendo Switch hero, 25th Anniversary promo" },
+              { "src": "assets/work/bhinneka/browse-menu.jpg", "caption": "Browse mega-menu — product categories with featured items" }
+            ]
+          },
+          {
+            "label": "B2C Mobile App",
+            "images": [
+              { "src": "assets/work/bhinneka/home.jpg",                                 "caption": "Home" },
+              { "src": "assets/work/bhinneka/category-alt01.jpg",                       "caption": "Category" },
+              { "src": "assets/work/bhinneka/category-alt02-lv1.jpg",                   "caption": "Category — level 1" },
+              { "src": "assets/work/bhinneka/brand-page-with-banner.jpg",               "caption": "Brand page — with banner" },
+              { "src": "assets/work/bhinneka/merchant-page.jpg",                        "caption": "Merchant page" },
+              { "src": "assets/work/bhinneka/merchant-page-information.jpg",            "caption": "Merchant page — information" },
+              { "src": "assets/work/bhinneka/product-list-add-wishlist.jpg",            "caption": "Product list — add to wishlist" },
+              { "src": "assets/work/bhinneka/product-details-overview-new.jpg",         "caption": "Product details — overview" },
+              { "src": "assets/work/bhinneka/product-details-product-exploration_b.jpg","caption": "Product details — exploration" },
+              { "src": "assets/work/bhinneka/cart-ideal-error-message.jpg",             "caption": "Cart — error state" },
+              { "src": "assets/work/bhinneka/membership-account.jpg",                   "caption": "Membership — account" },
+              { "src": "assets/work/bhinneka/membership-wishlist.jpg",                  "caption": "Membership — wishlist" },
+              { "src": "assets/work/bhinneka/membership-wishlist-empty.jpg",            "caption": "Membership — wishlist empty" },
+              { "src": "assets/work/bhinneka/sign-in-email-with.jpg",                   "caption": "Sign in" },
+              { "src": "assets/work/bhinneka/information.jpg",                          "caption": "Information" },
+              { "src": "assets/work/bhinneka/contact-us.jpg",                           "caption": "Contact us" }
+            ]
+          }
+        ]
+      },
+      { "section": "Operational Dashboards" },
+      {
+        "columns": [
+          {
+            "label": "Seller Tools",
+            "images": [
+              { "src": "assets/work/bhinneka/flash-sale-filter.jpg", "caption": "Flash sale condition builder — promotional targeting rules" },
+              { "src": "assets/work/bhinneka/plankton.jpg", "caption": "Seller tool — multi-step product listing with SKU and media management" }
+            ]
+          },
+          {
+            "label": "Vendor Management",
+            "images": [
+              { "src": "assets/work/bhinneka/vendor_list.jpg",              "caption": "Vendor list" },
+              { "src": "assets/work/bhinneka/vendor_detail_overview.jpg",   "caption": "Vendor detail — overview" },
+              { "src": "assets/work/bhinneka/vendor_detail_product.jpg",    "caption": "Vendor detail — products" },
+              { "src": "assets/work/bhinneka/vendor-detail_product-table.jpg", "caption": "Vendor detail — product table" },
+              { "src": "assets/work/bhinneka/merge_vendor.jpg",             "caption": "Merge vendor" },
+              { "src": "assets/work/bhinneka/merge_vendor_data.jpg",        "caption": "Merge vendor — data review" },
+              { "src": "assets/work/bhinneka/PO_List.jpg",                  "caption": "Purchase order list" },
+              { "src": "assets/work/bhinneka/create_PO.jpg",                "caption": "Create purchase order" },
+              { "src": "assets/work/bhinneka/dropdown_details.jpg",         "caption": "Dropdown details" },
+              { "src": "assets/work/bhinneka/modal_request-sku.jpg",        "caption": "Modal — request SKU" },
+              { "src": "assets/work/bhinneka/modal_request-sku-interaction.jpg", "caption": "Modal — request SKU interaction" },
+              { "src": "assets/work/bhinneka/status_map.jpg",               "caption": "Status map" },
+              { "src": "assets/work/bhinneka/all_case_on_admin.jpg",        "caption": "All cases — admin view" },
+              { "src": "assets/work/bhinneka/RO_all_tickets_superior.jpg",  "caption": "RO — all tickets (superior)" },
+              { "src": "assets/work/bhinneka/RO_Mytickets.jpg",             "caption": "RO — my tickets" },
+              { "src": "assets/work/bhinneka/RO_Request_TO.jpg",            "caption": "RO — request transfer order" }
+            ]
+          }
         ]
       }
     ],
-    "images": [
-      { "src": "assets/work/bhinneka/flash-sale-filter.jpg", "caption": "Flash sale condition builder — promotional targeting rules" },
-      { "src": "assets/work/bhinneka/plankton.jpg", "caption": "Seller tool — multi-step product listing with SKU and media management" }
-    ]
+    "images": []
   },
   {
     "id": "workmate",

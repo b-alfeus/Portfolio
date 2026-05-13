@@ -63,7 +63,7 @@
                         </div>
                     </aside>
                     <div class="journey-panel">
-                        <ol class="timeline"></ol>
+                        <ol class="timeline" id="journey-timeline"></ol>
                     </div>
                 </div>
             </section>
@@ -76,7 +76,7 @@
 
         <script src="shared.js"></script>
         <script type="module">
-            import { geoMercator, geoPath, geoInterpolate, geoDistance } from 'https://esm.sh/d3-geo@3';
+            import { geoMercator, geoPath, geoInterpolate, geoDistance, geoContains, geoCentroid, geoCircle } from 'https://esm.sh/d3-geo@3';
             import { feature } from 'https://esm.sh/topojson-client@3';
 
             const canvas = document.getElementById('journeyMap');
@@ -97,21 +97,39 @@
                     canvas.height = Math.round(cssH * dpr);
                 };
 
-                let landDots = [];
+                let countryFeatures = [];
+                let countryById     = new Map();
+                let highlightFeatures = [];
+                let admin1Features  = [];
+                let admin1Centroids = [];
                 let waypoints = []; // [lng, lat] in chronological order, consecutive dupes removed
                 let curWaypointIdx = 0;
                 const FIXED_SCALE = 1800; // city-region zoom on a ~320px viewport
 
                 let curLng = 112.7521, curLat = -7.2575;
-                let curScale = FIXED_SCALE;
+                let curEventLoc = [112.7521, -7.2575]; // primary event dot (≠ camera when dual-loc)
+                let remoteTarget = null;               // { lat, lng } for remote-work dual-location
+                let targetScale   = FIXED_SCALE;
+                let curScale      = FIXED_SCALE;
+                let panStartScale = FIXED_SCALE; // scale at start of current pan
+                let panMidScale   = FIXED_SCALE; // scale at mid-flight (dip for cross-country)
+                let panEndScale   = FIXED_SCALE; // scale to reach at pan end
+                let curAlpha2     = 'ID';        // country code of current location
                 let panFrom = [112.7521, -7.2575];
                 let panTo   = [112.7521, -7.2575];
                 let panInterp = null;
+                let arcInterp = null;  // arc strictly between event dots (independent of camera path)
                 let panProgress = 1;   // 0 → 1 across the flight
                 let lineFade = 0;      // 1 during flight, fades after arrival
                 let ticking = false;
 
                 const easeInOutCubic = (t) => t < 0.5 ? 4*t*t*t : 1 - Math.pow(-2*t + 2, 3) / 2;
+
+                const alpha2ToId = { ID: 360, TH: 764, MY: 458, AU: 36, JP: 392, SG: 702, DE: 276 };
+                const extractCountryId = (place) => {
+                    const m = (place || '').match(/,\s*([A-Z]{2})\b/);
+                    return m ? (alpha2ToId[m[1]] ?? null) : null;
+                };
 
                 const projection = geoMercator()
                     .scale(FIXED_SCALE)
@@ -119,40 +137,115 @@
 
                 const isDark = () => document.documentElement.dataset.theme === 'dark';
 
-                function bakeLandDots(land) {
-                    const W = 2048, H = 1024;
-                    const off = document.createElement('canvas');
-                    off.width = W; off.height = H;
-                    const oc = off.getContext('2d');
-                    oc.fillStyle = '#000'; oc.fillRect(0, 0, W, H);
-                    oc.fillStyle = '#fff';
-                    const proj = geoMercator()
-                        .scale(W / (2 * Math.PI))
-                        .translate([W / 2, H / 2]);
-                    const pth = geoPath(proj, oc);
-                    oc.beginPath(); pth(land); oc.fill();
-                    const data = oc.getImageData(0, 0, W, H).data;
-                    const dots = [];
-                    const step = 1; // densest sampling — every land pixel of the 2048×1024 mask
-                    for (let y = 0; y < H; y += step) {
-                        for (let x = 0; x < W; x += step) {
-                            if (data[(y * W + x) * 4] > 128) {
-                                const ll = proj.invert([x, y]);
-                                if (ll) dots.push(ll);
+                function setTarget(lat, lng, place, locTo) {
+                    const prevEventLoc = curEventLoc;
+                    curEventLoc = [lng, lat];
+                    remoteTarget = locTo || null;
+
+                    highlightFeatures = [];
+                    const addHighlight = (hlPlace, hlLng, hlLat) => {
+                        if (hlLng == null || hlLat == null) return;
+                        const alpha2 = (hlPlace || '').match(/,\s*([A-Z]{2})\b/)?.[1];
+                        // Admin-1: exact containment, then nearest centroid within country
+                        if (admin1Features.length && alpha2) {
+                            const pool = admin1Features.filter(f => f.properties.iso_a2 === alpha2);
+                            if (pool.length) {
+                                let match = pool.find(f => geoContains(f, [hlLng, hlLat]));
+                                if (!match) {
+                                    let bestDist = Infinity;
+                                    pool.forEach(f => {
+                                        const [cx, cy] = admin1Centroids[admin1Features.indexOf(f)];
+                                        const d = (cx - hlLng) ** 2 + (cy - hlLat) ** 2;
+                                        if (d < bestDist) { bestDist = d; match = f; }
+                                    });
+                                }
+                                if (match) { highlightFeatures.push(match); return; }
+                            }
+                        }
+                        // No admin-1 data for this country: no highlight
+                    };
+                    addHighlight(place, lng, lat);
+                    if (locTo?.place) addHighlight(locTo.place, locTo.lng, locTo.lat);
+
+                    const toAlpha2 = (place || '').match(/,\s*([A-Z]{2})\b/)?.[1] || '';
+
+                    let destLng = lng, destLat = lat;
+                    panStartScale = curScale;
+
+                    if (locTo) {
+                        const toRad = Math.PI / 180;
+                        const mercY = φ => Math.log(Math.tan(Math.PI / 4 + φ * toRad / 2));
+                        const mid = geoInterpolate([lng, lat], [locTo.lng, locTo.lat])(0.5);
+                        destLng = mid[0]; destLat = mid[1];
+                        const xSpan = Math.max(
+                            Math.abs((lng       - destLng) * toRad),
+                            Math.abs((locTo.lng - destLng) * toRad)
+                        );
+                        const midMY = mercY(destLat);
+                        const ySpan = Math.max(
+                            Math.abs(mercY(lat)       - midMY),
+                            Math.abs(mercY(locTo.lat) - midMY)
+                        );
+                        const pad = 0.65;
+                        const fitX = xSpan > 0 ? (cssW * pad) / (2 * xSpan) : Infinity;
+                        const fitY = ySpan > 0 ? (cssH * pad) / (2 * ySpan) : Infinity;
+                        panEndScale  = Math.max(60, Math.min(fitX, fitY));
+                        panMidScale  = Math.max(60, Math.min(panStartScale, panEndScale) * 0.6);
+                        targetScale  = panEndScale;
+                    } else if (toAlpha2 && toAlpha2 !== curAlpha2) {
+                        // Cross-country: dip zoom mid-flight then restore
+                        const dist = geoDistance([curLng, curLat], [lng, lat]); // radians
+                        panEndScale = curScale;
+                        panMidScale = Math.max(200, curScale / (1 + dist * 5));
+                        targetScale = panEndScale;
+                    } else {
+                        // Same country/island: smooth pan, no zoom change
+                        panEndScale = curScale;
+                        panMidScale = curScale;
+                        targetScale = curScale;
+                    }
+
+                    curAlpha2 = toAlpha2;
+
+                    // Zoom in if highlight would cover < 30% of the canvas at panEndScale
+                    if (highlightFeatures.length && !locTo) {
+                        const hf = highlightFeatures[0];
+                        const geom = hf.geometry || hf;
+                        const coords = [];
+                        const collectC = g => {
+                            if (g.type === 'Polygon') g.coordinates.forEach(r => coords.push(...r));
+                            else if (g.type === 'MultiPolygon') g.coordinates.forEach(p => p.forEach(r => coords.push(...r)));
+                        };
+                        collectC(geom);
+                        if (coords.length) {
+                            let minLo = Infinity, maxLo = -Infinity, minLa = Infinity, maxLa = -Infinity;
+                            for (const [lo, la] of coords) {
+                                if (lo < minLo) minLo = lo; if (lo > maxLo) maxLo = lo;
+                                if (la < minLa) minLa = la; if (la > maxLa) maxLa = la;
+                            }
+                            const tr = Math.PI / 180;
+                            const mY = φ => Math.log(Math.tan(Math.PI / 4 + φ * tr / 2));
+                            const xR = (maxLo - minLo) * tr;
+                            const yM = Math.abs(mY(maxLa) - mY(minLa));
+                            const fraction = (panEndScale * panEndScale * xR * yM) / (cssW * cssH);
+                            if (fraction < 0.30 && xR > 0 && yM > 0) {
+                                panEndScale = Math.min(Math.sqrt(0.35 * cssW * cssH / (xR * yM)), 4000);
+                                panMidScale = Math.min(panMidScale, panEndScale);
+                                targetScale = panEndScale;
+                                destLng = (minLo + maxLo) / 2;
+                                destLat = (minLa + maxLa) / 2;
                             }
                         }
                     }
-                    return dots;
-                }
 
-                function setTarget(lat, lng, place) {
-                    if (lng === panTo[0] && lat === panTo[1]) {
+                    if (destLng === panTo[0] && destLat === panTo[1]) {
                         if (placeEl && place) placeEl.textContent = place;
                         return;
                     }
                     panFrom = [curLng, curLat];
-                    panTo = [lng, lat];
+                    panTo = [destLng, destLat];
                     panInterp = geoInterpolate(panFrom, panTo);
+                    arcInterp  = geoInterpolate(prevEventLoc, [lng, lat]);
                     panProgress = 0;
                     lineFade = 1;
                     if (placeEl && place) placeEl.textContent = place;
@@ -164,7 +257,10 @@
                     const cs = getComputedStyle(document.documentElement);
                     const accent = cs.getPropertyValue('--color-accent').trim() || (dark ? '#64d2ff' : '#00838f');
                     return {
-                        dot: dark ? 'rgba(255,255,255,0.34)' : 'rgba(0,0,0,0.32)',
+                        land:      dark ? 'rgba(255,255,255,0.06)' : 'rgba(0,0,0,0.05)',
+                        border:    dark ? 'rgba(255,255,255,0.18)' : 'rgba(0,0,0,0.15)',
+                        highlight:       dark ? 'rgba(255,255,255,0.22)' : 'rgba(0,0,0,0.16)',
+                        highlightBorder: dark ? 'rgba(255,255,255,0.55)' : 'rgba(0,0,0,0.45)',
                         accent,
                     };
                 }
@@ -179,104 +275,190 @@
                         .scale(curScale * dpr)
                         .translate([W / 2, H / 2]);
 
-                    const { dot, accent } = colors();
-                    ctx.fillStyle = dot;
-                    const r = Math.max(2, Math.round(2 * dpr));
-                    const halfR = r / 2;
-                    for (let i = 0; i < landDots.length; i++) {
-                        const p = projection(landDots[i]);
-                        if (!p) continue;
-                        const px = p[0], py = p[1];
-                        if (px < -8 || px > W + 8 || py < -8 || py > H + 8) continue;
-                        ctx.fillRect(px - halfR, py - halfR, r, r);
+                    const { land, border, highlight, highlightBorder, accent } = colors();
+                    const path = geoPath(projection, ctx);
+                    const now  = performance.now();
+
+                    // ── Country outlines ──────────────────────────────────────────────
+                    if (countryFeatures.length) {
+                        ctx.globalAlpha = 1;
+                        ctx.fillStyle   = land;
+                        ctx.strokeStyle = border;
+                        ctx.lineWidth   = 0.5 * dpr;
+                        countryFeatures.forEach(f => { ctx.beginPath(); path(f); ctx.fill(); ctx.stroke(); });
                     }
 
-                    // Permanent journey path + location markers
-                    if (waypoints.length > 1) {
-                        // Accent segment: previous waypoint → current
-                        if (curWaypointIdx > 0) {
-                            const segInterp = geoInterpolate(waypoints[curWaypointIdx - 1], waypoints[curWaypointIdx]);
-                            ctx.strokeStyle = accent;
-                            ctx.lineWidth = 1.5 * dpr;
-                            ctx.globalAlpha = 0.85;
-                            ctx.beginPath();
-                            let started = false;
-                            for (let j = 0; j <= 48; j++) {
-                                const p = projection(segInterp(j / 48));
-                                if (!p) continue;
-                                if (!started) { ctx.moveTo(p[0], p[1]); started = true; }
-                                else ctx.lineTo(p[0], p[1]);
-                            }
-                            ctx.stroke();
-                            ctx.globalAlpha = 1;
-                        }
+                    // ── Admin-1 province/state lines (ID + AU) ───────────────────────
+                    if (admin1Features.length) {
+                        ctx.globalAlpha = 0.5;
+                        ctx.strokeStyle = border;
+                        ctx.lineWidth   = 0.3 * dpr;
+                        admin1Features.forEach(f => { ctx.beginPath(); path(f); ctx.stroke(); });
+                        ctx.globalAlpha = 1;
+                    }
 
-                        // Dimmed square marker at each visited waypoint (same style as blinking cursor)
-                        const sq = Math.max(5, Math.round(5 * dpr));
-                        const sh = sq / 2;
-                        waypoints.forEach(([lng, lat], i) => {
-                            const p = projection([lng, lat]);
+                    // Highlighted region: province/state — fill + outline overlay
+                    if (highlightFeatures.length) {
+                        ctx.globalAlpha = 1;
+                        ctx.fillStyle   = highlight;
+                        ctx.strokeStyle = highlightBorder;
+                        ctx.lineWidth   = 1 * dpr;
+                        highlightFeatures.forEach(f => {
+                            ctx.beginPath(); path(f); ctx.fill(); ctx.stroke();
+                        });
+                    }
+
+                    // City sonar: expanding rings pulsing outward from the event location
+                    const SONAR_PERIOD = 2400; // ms per cycle
+                    const SONAR_MAX_R  = 52 * dpr;
+                    const SONAR_RINGS  = 3;
+                    const drawSonar = (loc) => {
+                        const p = projection(loc);
+                        if (!p) return;
+                        ctx.strokeStyle = accent;
+                        ctx.lineWidth   = 1.5 * dpr;
+                        for (let i = 0; i < SONAR_RINGS; i++) {
+                            const phase = ((now + i * (SONAR_PERIOD / SONAR_RINGS)) % SONAR_PERIOD) / SONAR_PERIOD;
+                            const r     = phase * SONAR_MAX_R;
+                            const alpha = (1 - phase) * 0.7;
+                            ctx.globalAlpha = alpha;
+                            ctx.beginPath();
+                            ctx.arc(p[0], p[1], r, 0, Math.PI * 2);
+                            ctx.stroke();
+                        }
+                        ctx.globalAlpha = 1;
+                    };
+                    drawSonar(curEventLoc);
+                    if (remoteTarget) drawSonar([remoteTarget.lng, remoteTarget.lat]);
+
+                    // ── Helper: draw an animated dotted arc ───────────────────────────
+                    // interp  — geoInterpolate result
+                    // steps   — resolution (number of segments along the arc)
+                    // alpha   — overall opacity
+                    // speed   — dot-march speed in px/ms (visual)
+                    const DOT_GAP = 6 * dpr;  // gap between dots (screen px)
+                    const DOT_R   = 1.5 * dpr; // dot radius
+                    function drawArc(interp, steps, alpha, speed = 0.04) {
+                        // Collect projected screen points
+                        const pts = [];
+                        for (let i = 0; i <= steps; i++) {
+                            const p = projection(interp(i / steps));
+                            if (p) pts.push(p);
+                        }
+                        if (pts.length < 2) return;
+
+                        // Build cumulative arc lengths in screen space
+                        const lens = [0];
+                        for (let i = 1; i < pts.length; i++) {
+                            const dx = pts[i][0] - pts[i-1][0];
+                            const dy = pts[i][1] - pts[i-1][1];
+                            lens.push(lens[i-1] + Math.sqrt(dx*dx + dy*dy));
+                        }
+                        const totalLen = lens[lens.length - 1];
+                        if (totalLen < 1) return;
+
+                        // Animated phase offset — dots march along the arc
+                        const phase = (now * speed) % DOT_GAP;
+
+                        ctx.globalAlpha = alpha;
+                        ctx.fillStyle   = accent;
+
+                        // Walk along the arc and place dots at regular intervals
+                        for (let d = phase; d <= totalLen; d += DOT_GAP) {
+                            // Binary-search for the segment containing distance d
+                            let lo = 0, hi = lens.length - 1;
+                            while (lo < hi - 1) {
+                                const mid = (lo + hi) >> 1;
+                                if (lens[mid] <= d) lo = mid; else hi = mid;
+                            }
+                            const t   = (d - lens[lo]) / (lens[hi] - lens[lo]);
+                            const px  = pts[lo][0] + t * (pts[hi][0] - pts[lo][0]);
+                            const py  = pts[lo][1] + t * (pts[hi][1] - pts[lo][1]);
+                            ctx.beginPath();
+                            ctx.arc(px, py, DOT_R, 0, Math.PI * 2);
+                            ctx.fill();
+                        }
+                        ctx.globalAlpha = 1;
+                    }
+
+                    // ── Travel arc (strictly dot-to-dot, camera pan is separate) ─────
+                    if (lineFade > 0 && arcInterp) {
+                        const partial = (t) => arcInterp(t * panProgress);
+                        drawArc(partial, Math.ceil(80 * panProgress) || 1, lineFade * 0.9, 0.05);
+                    }
+
+                    // ── Permanent journey arc + waypoint markers ──────────────────────
+                    // Fades in as travel arc fades out to avoid overlapping lines
+                    const settled = 1 - lineFade;
+                    const pathAlpha = settled * (remoteTarget ? 0.18 : 1);
+                    if (waypoints.length > 1 && curWaypointIdx > 0 && settled > 0) {
+                        const segInterp = geoInterpolate(waypoints[curWaypointIdx - 1], waypoints[curWaypointIdx]);
+                        drawArc(segInterp, 48, 0.7 * pathAlpha, 0.03);
+                    }
+
+                    // Pin markers at each inactive waypoint
+                    if (waypoints.length > 1 && settled > 0) {
+                        const pinR = Math.max(4, Math.round(3.5 * dpr));
+                        const dist = pinR * 2.5;
+                        const θ    = Math.asin(pinR / dist);
+                        const drawPin = (px, py) => {
+                            const headY = py - dist;
+                            // White teardrop body
+                            ctx.beginPath();
+                            ctx.arc(px, headY, pinR, Math.PI / 2 + θ, Math.PI / 2 - θ);
+                            ctx.lineTo(px, py);
+                            ctx.closePath();
+                            ctx.fillStyle = '#ffffff';
+                            ctx.fill();
+                            // Red circular head
+                            ctx.beginPath();
+                            ctx.arc(px, headY, pinR, 0, Math.PI * 2);
+                            ctx.fillStyle = '#e53535';
+                            ctx.fill();
+                        };
+                        ctx.globalAlpha = pathAlpha;
+                        waypoints.forEach(([wlng, wlat]) => {
+                            const atActive = Math.abs(wlng - curEventLoc[0]) < 0.001 && Math.abs(wlat - curEventLoc[1]) < 0.001;
+                            const atRemote = remoteTarget && Math.abs(wlng - remoteTarget.lng) < 0.001 && Math.abs(wlat - remoteTarget.lat) < 0.001;
+                            if (atActive || atRemote) return;
+                            const p = projection([wlng, wlat]);
                             if (!p) return;
                             const [px, py] = p;
-                            if (px < -sq || px > W + sq || py < -sq || py > H + sq) return;
-                            ctx.globalAlpha = 0.35;
-                            ctx.fillStyle = accent;
-                            ctx.fillRect(Math.round(px - sh), Math.round(py - sh), sq, sq);
+                            if (px < -pinR * 2 || px > W + pinR * 2 || py < -pinR * 5 || py > H + pinR * 2) return;
+                            drawPin(Math.round(px), Math.round(py));
                         });
                         ctx.globalAlpha = 1;
                     }
 
-                    // Network-transfer curve: dotted great-circle line
-                    if (lineFade > 0 && panInterp) {
-                        const N = 80;
-                        ctx.strokeStyle = accent;
-                        ctx.lineCap = 'butt';
-                        ctx.lineJoin = 'miter';
-
-                        // Solid trail up to current camera position
-                        ctx.globalAlpha = lineFade * 0.9;
-                        ctx.lineWidth = 2 * dpr;
+                    // ── Solid circle marker: primary event location ─────────────────
+                    const m = projection(curEventLoc);
+                    if (m) {
+                        const r = 5 * dpr;
                         ctx.beginPath();
-                        let started = false;
-                        const upto = Math.ceil(N * panProgress);
-                        for (let i = 0; i <= upto; i++) {
-                            const p = projection(panInterp(i / N));
-                            if (!p) continue;
-                            if (!started) { ctx.moveTo(p[0], p[1]); started = true; }
-                            else { ctx.lineTo(p[0], p[1]); }
-                        }
-                        ctx.stroke();
-
-                        // Tiny "packet" square right at the leading edge — sized like a map dot
-                        const head = projection(panInterp(panProgress));
-                        if (head) {
-                            const packet = Math.max(2, Math.round(2 * dpr));
-                            const ph = packet / 2;
-                            ctx.fillStyle = accent;
-                            ctx.globalAlpha = lineFade;
-                            ctx.fillRect(
-                                Math.round(head[0] - ph),
-                                Math.round(head[1] - ph),
-                                packet,
-                                packet
-                            );
-                        }
-                        ctx.globalAlpha = 1;
+                        ctx.arc(m[0], m[1], r, 0, Math.PI * 2);
+                        ctx.fillStyle = accent;
+                        ctx.fill();
                     }
 
-                    // Blinking square marker at current camera position (terminal-cursor style)
-                    const m = projection([curLng, curLat]);
-                    if (m) {
-                        const blinkOn = (Math.floor(performance.now() / 500) % 2) === 0;
-                        const sq = 9 * dpr;
-                        const half = sq / 2;
-                        if (blinkOn) {
-                            ctx.fillStyle = accent;
-                            ctx.fillRect(m[0] - half, m[1] - half, sq, sq);
-                        } else {
-                            ctx.strokeStyle = accent;
-                            ctx.lineWidth = 1.5 * dpr;
-                            ctx.strokeRect(m[0] - half, m[1] - half, sq, sq);
+                    // ── Remote-work: animated arc + blinking secondary marker ─────────
+                    if (remoteTarget) {
+                        const arcInterp = geoInterpolate(curEventLoc, [remoteTarget.lng, remoteTarget.lat]);
+                        drawArc(arcInterp, 60, 0.85, 0.04);
+
+                        const m2 = projection([remoteTarget.lng, remoteTarget.lat]);
+                        if (m2) {
+                            const blinkOn2 = (Math.floor(now / 500) % 2) === 0;
+                            const r2 = 5 * dpr;
+                            ctx.beginPath();
+                            ctx.arc(Math.round(m2[0]), Math.round(m2[1]), r2, 0, Math.PI * 2);
+                            if (blinkOn2) {
+                                ctx.fillStyle = accent;
+                                ctx.fill();
+                            } else {
+                                ctx.strokeStyle = accent;
+                                ctx.lineWidth = 1.5 * dpr;
+                                ctx.stroke();
+                            }
                         }
                     }
                 }
@@ -290,17 +472,11 @@
                         curLng = p[0];
                         curLat = p[1];
 
-                        // Dip the zoom out mid-flight so the line is actually visible for far hops
-                        const dist = geoDistance(panFrom, panTo); // radians
-                        if (dist > 0.05) {
-                            const fitScale = Math.max(180, FIXED_SCALE / (1 + dist * 6));
-                            const dip = Math.sin(panProgress * Math.PI); // 0 → 1 → 0
-                            curScale = FIXED_SCALE * (1 - dip) + fitScale * dip;
-                        } else {
-                            curScale = FIXED_SCALE;
-                        }
+                        // Quadratic bezier: start → mid (dip) → end
+                        const t = panProgress;
+                        curScale = (1-t)*(1-t)*panStartScale + 2*t*(1-t)*panMidScale + t*t*panEndScale;
                     } else {
-                        curScale = FIXED_SCALE;
+                        curScale = targetScale;
                         if (lineFade > 0) lineFade = Math.max(0, lineFade - 0.022);
                     }
                     render();
@@ -323,19 +499,28 @@
 
                     new ResizeObserver(() => { fitCanvas(); render(); }).observe(canvas);
 
-                    let world, journey;
+                    let world, journey, admin1Raw;
                     try {
-                        [world, journey] = await Promise.all([
-                            fetch('https://cdn.jsdelivr.net/npm/world-atlas@2/land-50m.json').then(r => r.json()),
+                        [world, journey, admin1Raw] = await Promise.all([
+                            fetch('https://cdn.jsdelivr.net/npm/world-atlas@2/countries-50m.json').then(r => r.json()),
                             fetch('data/journey.json', { cache: 'no-cache' }).then(r => r.json()),
+                            fetch('data/admin1.json', { cache: 'no-cache' }).then(r => r.json()).catch(() => null),
                         ]);
                     } catch {
                         errorEl?.classList.add('is-shown');
                         return;
                     }
 
-                    const land = feature(world, world.objects.land);
-                    landDots = bakeLandDots(land);
+                    const countries = feature(world, world.objects.countries);
+                    countryFeatures = countries.features;
+                    countryById = new Map(countryFeatures.map(f => {
+                        const id = typeof f.id === 'string' ? parseInt(f.id, 10) : f.id;
+                        return [id, f];
+                    }));
+                    if (admin1Raw) {
+                        admin1Features  = admin1Raw.features || [];
+                        admin1Centroids = admin1Features.map(f => geoCentroid(f));
+                    }
 
                     // Build ordered waypoints, removing consecutive duplicates
                     const allLocs = journey
@@ -371,6 +556,7 @@
 
                     ticking = true;
                     tick();
+                    canvas.classList.add('is-ready');
 
                     const syncFromEvent = (target) => {
                         if (!target) return;
@@ -378,7 +564,7 @@
                         if (ev?.location?.lat != null) {
                             const wi = eventToWpIdx.get(ev.id);
                             if (wi !== undefined) curWaypointIdx = wi;
-                            setTarget(ev.location.lat, ev.location.lng, ev.location.place || '');
+                            setTarget(ev.location.lat, ev.location.lng, ev.location.place || '', ev.locationTo || null);
                         }
                     };
 

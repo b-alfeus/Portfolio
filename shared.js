@@ -365,6 +365,7 @@ const el = (tag, props = {}, children = []) => {
     for (const [k, v] of Object.entries(props)) {
         if (v == null) continue;
         if (k === 'class') node.className = v;
+        else if (k === 'html') node.innerHTML = v;
         else if (k === 'dataset') Object.assign(node.dataset, v);
         else if (k === 'style') Object.assign(node.style, v);
         else if (k in node) node[k] = v;
@@ -669,7 +670,7 @@ async function renderJourney() {
                         }, [
                             el('div', { class: 'timeline-content' }, [
                                 el('h3', {}, title),
-                                el('p', {}, desc),
+                                el('p', { html: desc }),
                             ]),
                         ]);
                     })
@@ -890,14 +891,16 @@ function initJourneyInteractions() {
     target.insertBefore(filterBar, target.firstChild);
 
     // ── Event navigator: prev / [jump-to label] / next ───────────────────
-    const prevBtn  = el('button', { type: 'button', class: 'journey-nav-btn journey-nav-prev', 'aria-label': 'Previous event' }, chev('m15 18-6-6 6-6'));
-    const nextBtn  = el('button', { type: 'button', class: 'journey-nav-btn journey-nav-next', 'aria-label': 'Next event' }, chev('m9 18 6-6-6-6'));
+    const prevBtn  = el('button', { type: 'button', class: 'journey-nav-btn journey-nav-prev', 'aria-label': 'Previous event', 'aria-controls': 'journey-timeline' }, chev('m15 18-6-6 6-6'));
+    const nextBtn  = el('button', { type: 'button', class: 'journey-nav-btn journey-nav-next', 'aria-label': 'Next event',     'aria-controls': 'journey-timeline' }, chev('m9 18 6-6-6-6'));
     const labelBtn = el('button', { type: 'button', class: 'journey-nav-label', 'aria-haspopup': 'listbox', 'aria-expanded': 'false' }, '');
     const list     = el('ul', { class: 'journey-nav-list', role: 'listbox' });
     list.hidden = true;
-    const nav = el('nav', { class: 'journey-nav', 'aria-label': 'Event navigator' }, [
+    const announcer = el('div', { class: 'sr-only', 'aria-live': 'polite', 'aria-atomic': 'true' });
+    const nav = el('nav', { class: 'journey-nav', 'aria-label': 'Event navigator', 'aria-controls': 'journey-timeline' }, [
         el('div', { class: 'journey-nav-bar' }, [prevBtn, labelBtn, nextBtn]),
         list,
+        announcer,
     ]);
     target.insertBefore(nav, timeline);
 
@@ -938,20 +941,24 @@ function initJourneyInteractions() {
     };
 
     const setActive = (i) => {
-        allEvents.forEach(e => e.classList.remove('is-focused'));
+        allEvents.forEach(e => { e.classList.remove('is-focused'); e.removeAttribute('aria-current'); });
         if (!visibleEvents.length) {
             labelBtn.textContent = '—';
+            announcer.textContent = '';
             return;
         }
         idx = Math.max(0, Math.min(i, visibleEvents.length - 1));
         const current = visibleEvents[idx];
         current.classList.add('is-focused');
+        current.setAttribute('aria-current', 'step');
         prevBtn.disabled = idx === 0;
         nextBtn.disabled = idx === visibleEvents.length - 1;
         const year = current.dataset.year || '';
         labelBtn.textContent = year;
         const items = Array.from(list.querySelectorAll('.journey-nav-item'));
         items.forEach(it => it.setAttribute('aria-selected', it.dataset.year === year ? 'true' : 'false'));
+        const title = current.querySelector('h3')?.textContent || '';
+        announcer.textContent = title ? `${title}, ${year}` : year;
     };
 
     const applyFilter = (key) => {
@@ -990,6 +997,25 @@ function initJourneyInteractions() {
     labelBtn.addEventListener('click', (e) => { e.stopPropagation(); open ? closeList() : openList(); });
     document.addEventListener('click', (e) => { if (open && !nav.contains(e.target)) closeList(); });
     document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && open) closeList(); });
+
+    nav.addEventListener('keydown', (e) => {
+        if (open) {
+            if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+                e.preventDefault();
+                const items = Array.from(list.querySelectorAll('.journey-nav-item'));
+                const focused = items.indexOf(document.activeElement);
+                const next = e.key === 'ArrowDown'
+                    ? Math.min(focused + 1, items.length - 1)
+                    : Math.max(focused - 1, 0);
+                items[next]?.focus();
+            }
+            return;
+        }
+        if (e.key === 'ArrowLeft')  { e.preventDefault(); setActive(idx - 1); }
+        if (e.key === 'ArrowRight') { e.preventDefault(); setActive(idx + 1); }
+        if (e.key === 'Home')       { e.preventDefault(); setActive(0); }
+        if (e.key === 'End')        { e.preventDefault(); setActive(visibleEvents.length - 1); }
+    });
 
     applyFilter('all');
 

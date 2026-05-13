@@ -9,7 +9,7 @@
         <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://esm.sh; connect-src 'self' https://cdn.jsdelivr.net; img-src 'self' https://mirrors.creativecommons.org data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self' data:; base-uri 'self'; form-action 'none';">
         <title>Bryan Widjaya • Project</title>
         <link rel="icon" type="image/svg+xml" href="assets/favicon.svg?v=2">
-        <link rel="stylesheet" href="styles.css?v=4">
+        <link rel="stylesheet" href="styles.css">
     </head>
     <body>
         <header>
@@ -117,7 +117,7 @@
                         lbl.textContent = label;
                         const val = document.createElement('span');
                         val.className = 'project-attr-value';
-                        val.textContent = value;
+                        val.innerHTML = value;
                         leftDiv.appendChild(lbl);
                         leftDiv.appendChild(val);
                     };
@@ -175,9 +175,11 @@
 
                     const imgs = w.images || [];
 
-                    if (w.variant === 'singlepage' && imgs.length > 0) {
+                    if (w.variant === 'singlepage') {
+                        let wrap = null;
+                        if (imgs.length > 0) {
                         // Inline carousel with click-to-fullscreen lightbox
-                        const wrap = e('div', 'project-carousel', []);
+                        wrap = e('div', 'project-carousel', []);
                         const track = e('div', 'project-carousel-track', []);
                         imgs.forEach((im, i) => {
                             const slide = document.createElement('figure');
@@ -193,29 +195,30 @@
                         wrap.appendChild(track);
 
                         const counter = e('span', 'project-carousel-counter', []);
-                        const dotsWrap = e('div', 'project-carousel-dots', []);
-                        imgs.forEach((_, i) => {
-                            const dot = document.createElement('button');
-                            dot.type = 'button';
-                            dot.className = 'project-carousel-dot' + (i === 0 ? ' is-active' : '');
-                            dot.setAttribute('aria-label', `Slide ${i + 1}`);
-                            dotsWrap.appendChild(dot);
-                        });
+                        const prevBtn = document.createElement('button');
+                        prevBtn.type = 'button';
+                        prevBtn.className = 'project-group-nav-btn';
+                        prevBtn.setAttribute('aria-label', 'Previous');
+                        prevBtn.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>`;
+                        const nextBtn = document.createElement('button');
+                        nextBtn.type = 'button';
+                        nextBtn.className = 'project-group-nav-btn';
+                        nextBtn.setAttribute('aria-label', 'Next');
+                        nextBtn.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 5 7 7-7 7"/><path d="M5 12h14"/></svg>`;
                         const sharedCap = e('p', 'project-carousel-caption', []);
-                        const footerLeft = e('div', 'project-carousel-footer-left', [counter, dotsWrap]);
-                        wrap.appendChild(e('div', 'project-carousel-footer', [footerLeft, sharedCap]));
+                        const footerRight = e('div', 'project-carousel-footer-right', [prevBtn, counter, nextBtn]);
+                        wrap.appendChild(e('div', 'project-carousel-footer', [sharedCap, footerRight]));
 
                         let cur = 0;
                         const slides = track.querySelectorAll('.project-carousel-slide');
-                        const dots = dotsWrap.querySelectorAll('.project-carousel-dot');
                         const goTo = (n) => {
                             cur = (n + slides.length) % slides.length;
                             slides.forEach((s, i) => s.classList.toggle('is-active', i === cur));
-                            dots.forEach((d, i) => d.classList.toggle('is-active', i === cur));
                             counter.innerHTML = `<span class="project-carousel-counter-current">${cur + 1}</span>/${slides.length}`;
                             sharedCap.textContent = imgs[cur].caption || '';
                         };
-                        dots.forEach((d, i) => d.addEventListener('click', () => goTo(i)));
+                        prevBtn.addEventListener('click', () => goTo(cur - 1));
+                        nextBtn.addEventListener('click', () => goTo(cur + 1));
                         let autoTimer = setInterval(() => goTo(cur + 1), 4000);
                         wrap.addEventListener('mouseenter', () => clearInterval(autoTimer));
                         wrap.addEventListener('mouseleave', () => { autoTimer = setInterval(() => goTo(cur + 1), 4000); });
@@ -295,10 +298,12 @@
                             if (ev.key === 'ArrowLeft') lbGoTo(lbCur - 1);
                             if (ev.key === 'ArrowRight') lbGoTo(lbCur + 1);
                         });
+                        } // end if (imgs.length > 0)
 
                         const sections = [];
                         if (w.overview) {
                             sections.push(e('h2', null, ['Overview']));
+                            if (w.outcomeImage) sections.push(figure(w.outcomeImage.src, w.outcomeImage.caption));
                             sections.push(e('p', null, [w.overview]));
                         }
                         if (w.process) {
@@ -308,14 +313,21 @@
                                 .forEach(p => list.appendChild(e('li', null, [p])));
                             sections.push(list);
                         }
-                        if (w.outcomeImage) {
-                            sections.push(figure(w.outcomeImage.src, w.outcomeImage.caption));
+                        if (Array.isArray(w.processGroups) && w.processGroups.length > 0) {
+                            const groupRow = e('div', 'project-group-row', []);
+                            w.processGroups.forEach(group => {
+                                const col = e('div', 'project-group-col', []);
+                                if (group.label) col.appendChild(e('h3', 'project-group-label', [group.label]));
+                                col.appendChild(buildGroupCarousel(group.images || [], group.objectPosition));
+                                groupRow.appendChild(col);
+                            });
+                            sections.push(groupRow);
                         }
                         if (w.outcome) {
                             sections.push(e('h2', null, ['Outcome']));
                             sections.push(e('p', null, [w.outcome]));
                         }
-                        const buildGroupCarousel = (groupImages) => {
+                        function buildGroupCarousel(groupImages, objectPosition) {
                             const gWrap = e('div', 'project-carousel project-carousel--group', []);
                             const gTrack = e('div', 'project-carousel-track', []);
                             groupImages.forEach((im, i) => {
@@ -326,33 +338,35 @@
                                 imgEl.src = im.src;
                                 imgEl.alt = im.caption || '';
                                 imgEl.style.cursor = 'zoom-in';
+                                if (objectPosition) imgEl.style.objectPosition = objectPosition;
                                 slide.appendChild(imgEl);
                                 gTrack.appendChild(slide);
                             });
                             gWrap.appendChild(gTrack);
                             const gCounter = e('span', 'project-carousel-counter', []);
-                            const gDotsWrap = e('div', 'project-carousel-dots', []);
-                            groupImages.forEach((_, i) => {
-                                const dot = document.createElement('button');
-                                dot.type = 'button';
-                                dot.className = 'project-carousel-dot' + (i === 0 ? ' is-active' : '');
-                                dot.setAttribute('aria-label', `Slide ${i + 1}`);
-                                gDotsWrap.appendChild(dot);
-                            });
+                            const gPrevBtn = document.createElement('button');
+                            gPrevBtn.type = 'button';
+                            gPrevBtn.className = 'project-group-nav-btn';
+                            gPrevBtn.setAttribute('aria-label', 'Previous');
+                            gPrevBtn.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>`;
+                            const gNextBtn = document.createElement('button');
+                            gNextBtn.type = 'button';
+                            gNextBtn.className = 'project-group-nav-btn';
+                            gNextBtn.setAttribute('aria-label', 'Next');
+                            gNextBtn.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 5 7 7-7 7"/><path d="M5 12h14"/></svg>`;
                             const gSharedCap = e('p', 'project-carousel-caption', []);
-                            const gFooterLeft = e('div', 'project-carousel-footer-left', [gCounter, gDotsWrap]);
-                            gWrap.appendChild(e('div', 'project-carousel-footer', [gFooterLeft, gSharedCap]));
+                            const gFooterRight = e('div', 'project-carousel-footer-right', [gPrevBtn, gCounter, gNextBtn]);
+                            gWrap.appendChild(e('div', 'project-carousel-footer', [gSharedCap, gFooterRight]));
                             let gCur = 0;
                             const gSlides = gTrack.querySelectorAll('.project-carousel-slide');
-                            const gDots = gDotsWrap.querySelectorAll('.project-carousel-dot');
                             const gGoTo = (n) => {
                                 gCur = (n + gSlides.length) % gSlides.length;
                                 gSlides.forEach((s, i) => s.classList.toggle('is-active', i === gCur));
-                                gDots.forEach((d, i) => d.classList.toggle('is-active', i === gCur));
                                 gCounter.innerHTML = `<span class="project-carousel-counter-current">${gCur + 1}</span>/${gSlides.length}`;
                                 gSharedCap.textContent = groupImages[gCur].caption || '';
                             };
-                            gDots.forEach((d, i) => d.addEventListener('click', () => gGoTo(i)));
+                            gPrevBtn.addEventListener('click', () => gGoTo(gCur - 1));
+                            gNextBtn.addEventListener('click', () => gGoTo(gCur + 1));
                             let gAutoTimer = setInterval(() => gGoTo(gCur + 1), 4000);
                             gWrap.addEventListener('mouseenter', () => clearInterval(gAutoTimer));
                             gWrap.addEventListener('mouseleave', () => { gAutoTimer = setInterval(() => gGoTo(gCur + 1), 4000); });
@@ -434,15 +448,28 @@
                             });
 
                             return gWrap;
-                        };
+                        }
 
                         if (Array.isArray(w.imageGroups)) {
                             w.imageGroups.forEach(group => {
-                                if (group.label) sections.push(e('h3', 'project-group-label', [group.label]));
-                                sections.push(buildGroupCarousel(group.images || []));
+                                if (group.section) {
+                                    sections.push(e('h2', null, [group.section]));
+                                } else if (group.columns) {
+                                    const row = e('div', 'project-group-row', []);
+                                    group.columns.forEach(col => {
+                                        const col_el = e('div', 'project-group-col', []);
+                                        if (col.label) col_el.appendChild(e('h3', 'project-group-label', [col.label]));
+                                        if (col.images && col.images.length > 0) col_el.appendChild(buildGroupCarousel(col.images, col.objectPosition));
+                                        row.appendChild(col_el);
+                                    });
+                                    sections.push(row);
+                                } else {
+                                    if (group.label) sections.push(e('h3', 'project-group-label', [group.label]));
+                                    if (group.images && group.images.length > 0) sections.push(buildGroupCarousel(group.images, group.objectPosition));
+                                }
                             });
                         }
-                        sections.push(wrap);
+                        if (imgs.length > 0) sections.push(wrap);
                         body.replaceChildren(...sections);
                     } else if (w.variant === 'carousel' && imgs.length > 0) {
                         document.body.classList.add('is-carousel');
