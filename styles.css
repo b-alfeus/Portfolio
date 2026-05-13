@@ -2221,11 +2221,14 @@ footer p {
 
 .timeline-content p a {
     color: var(--color-accent);
-    text-decoration: none;
+    text-decoration: underline;
+    text-decoration-color: color-mix(in srgb, var(--color-accent) 50%, transparent);
+    text-underline-offset: 2px;
 }
 
 .timeline-content p a:hover {
     color: var(--color-accent-hover);
+    text-decoration-color: var(--color-accent-hover);
 }
 
 @media (prefers-reduced-motion: reduce) {
