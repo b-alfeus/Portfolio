@@ -568,20 +568,15 @@
         "description_id": "Koneksi lama menghubungi dengan tawaran — menjadi mentor kasual di bootcamp lokal. Membimbing para siswa yang ingin masuk ke dunia startup, dan sesekali berperan sebagai Guest Examiner di penilaian akhir mereka.",
         "description_jp": "旧知のつながりからオファーが届いた — 地元のブートキャンプでのカジュアルなメンタリング。スタートアップ業界への参入を目指す学生たちを指導し、ときには最終審査でゲスト審査員も務めた。",
         "description_de": "Ein alter Kontakt meldete sich mit einem Angebot — lockeres Mentoring an einem lokalen Bootcamp. Zeit damit verbracht, Studierende zu begleiten, die in die Startup-Szene einsteigen wollten, und gelegentlich als Gastprüfer bei ihren Abschlussprüfungen aufgetreten."
-      }
-    ]
-  },
-  {
-    "year": 2022,
-    "events": [
+      },
       {
         "id": "moladin-2022",
         "title": "Product Designer at Moladin",
         "title_id": "Product Designer di Moladin",
         "title_jp": "MoladinのProduct Designer",
         "title_de": "Product Designer bei Moladin",
-        "date": "2022-01-01",
-        "dateDisplay": "2022",
+        "date": "2021-01-01",
+        "dateDisplay": "2021",
         "tags": [
           "work"
         ],
@@ -594,7 +589,12 @@
         "description_id": "Industri baru — Pembiayaan dan Retail Otomotif. Bergabung dalam unit Financing mereka, mempelajari alur end-to-end pengadaan mobil bekas untuk jaringan showroom mereka.",
         "description_jp": "新しい業界 — ファイナンシングと自動車小売。ファイナンシング部門に入り、自社ショールームネットワークへの中古車調達のエンドツーエンドのフローを学んだ。",
         "description_de": "Eine neue Branche — Finanzierung und Automobilhandel. Im Financing-Bereich eingebettet und den End-to-End-Ablauf der Beschaffung von Gebrauchtwagen für das eigene Showroom-Netzwerk kennengelernt."
-      },
+      }
+    ]
+  },
+  {
+    "year": 2022,
+    "events": [
       {
         "id": "transit-singapore-2022",
         "title": "Transit Flight to Singapore",
