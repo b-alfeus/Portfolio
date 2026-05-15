@@ -77,6 +77,7 @@ const translations = {
         'filter.career':      'Career',
         'work.heading':    'Work',
         'work.intro':      'Selected projects across product design, brand identity, and visual communication.',
+        'work.archive':    'Archive',
         'article.heading': 'Posts',
         'article.intro':   'Notes on design, process, and the things I find worth thinking about.',
         'article.featured':            'Featured',
@@ -125,6 +126,7 @@ const translations = {
         'filter.career':      'Karier',
         'work.heading':    'Karya',
         'work.intro':      'Proyek terpilih dalam desain produk, identitas merek, dan komunikasi visual.',
+        'work.archive':    'Arsip',
         'article.heading': 'Tulisan',
         'article.intro':   'Catatan tentang desain, proses, dan hal-hal yang menurut saya layak dipikirkan.',
         'article.featured':            'Unggulan',
@@ -173,6 +175,7 @@ const translations = {
         'filter.career':      'キャリア',
         'work.heading':    '仕事',
         'work.intro':      'プロダクトデザイン、ブランドアイデンティティ、ビジュアルコミュニケーションにわたる厳選されたプロジェクト。',
+        'work.archive':    'アーカイブ',
         'article.heading': '投稿',
         'article.intro':   'デザイン、プロセス、そして考える価値があると感じたことについてのノート。',
         'article.featured':            '注目',
@@ -221,6 +224,7 @@ const translations = {
         'filter.career':      'Karriere',
         'work.heading':    'Arbeiten',
         'work.intro':      'Ausgewählte Projekte aus Produktdesign, Markenidentität und visueller Kommunikation.',
+        'work.archive':    'Archiv',
         'article.heading': 'Beiträge',
         'article.intro':   'Notizen über Design, Prozesse und Dinge, über die ich nachdenken möchte.',
         'article.featured':            'Ausgewählt',
@@ -473,8 +477,11 @@ async function renderWork() {
 
     items.sort((a, b) => (parseInt(b.year) || 0) - (parseInt(a.year) || 0));
 
+    const active   = items.filter(w => !w.archived);
+    const archived = items.filter(w =>  w.archived);
+
     grid.replaceChildren(
-        ...items.map(w => {
+        ...active.map(w => {
             const aspect = (w.aspect || '4/3').replace('/', ' / ');
             const thumb = w.thumbnail
                 ? el('img', {
@@ -554,6 +561,34 @@ async function renderWork() {
     );
 
     initLightbox();
+
+    // Archive section
+    const archiveSection = document.getElementById('workArchive');
+    const archiveList    = document.getElementById('workArchiveList');
+    const archiveToggle  = document.getElementById('workArchiveToggle');
+    if (archiveSection && archiveList && archived.length) {
+        archiveSection.hidden = false;
+        archiveList.replaceChildren(
+            ...archived.map(w => {
+                const href = w.id ? `project.html?id=${encodeURIComponent(w.id)}` : (w.link || 'project.html');
+                const year = w.year ? el('span', { class: 'work-archive-year' }, String(w.year)) : null;
+                const tags = Array.isArray(w.tags) && w.tags.length
+                    ? el('div', { class: 'work-card-tags' }, w.tags.map(tag => el('span', { class: 'project-tag' }, tag)))
+                    : null;
+                return el('li', { class: 'work-archive-item' }, [
+                    el('a', { href, class: 'work-archive-link' }, [
+                        el('span', { class: 'work-archive-title' }, w.title || ''),
+                        el('div', { class: 'work-archive-meta' }, [year, tags].filter(Boolean)),
+                    ]),
+                ]);
+            })
+        );
+        archiveToggle?.addEventListener('click', () => {
+            const expanded = archiveToggle.getAttribute('aria-expanded') === 'true';
+            archiveToggle.setAttribute('aria-expanded', String(!expanded));
+            archiveList.classList.toggle('is-open', !expanded);
+        });
+    }
 }
 
 function initLightbox() {
