@@ -595,7 +595,18 @@
     ],
     "images": [],
     "overview": "Bhinneka is one of Indonesia's oldest and largest e-commerce platforms — selling electronics, tech, and appliances to consumers, businesses, and government. Over two years I worked across the full product surface: starting as a product designer shipping features across iOS, Android, B2C and B2B web, and a handful of internal dashboards, then growing into a lead role managing a team of four. The scope ranged from defining a new design language system to redesigning the consumer mobile app end-to-end, alongside seller tools and vendor management dashboards.",
-    "outcome": "The redesigned consumer app was featured by Google and Accenture Interactive in their Mobile UX Masters SEA report — recognition for raising the standard of mobile UX across Southeast Asia. It was the first time work I'd led had been cited at that level, and it stuck."
+    "outcome": "The redesigned consumer app was featured by Google and Accenture Interactive in their Mobile UX Masters SEA report — recognition for raising the standard of mobile UX across Southeast Asia. It was the first time work I'd led had been cited at that level, and it stuck.",
+    "outcomeImagesLabel": "Google × Accenture Interactive — Mobile UX Masters SEA 2018",
+    "outcomeImages": [
+      {
+        "src": "assets/work/bhinneka/uxmm-indonesia-benchmark.webp",
+        "caption": "Country Benchmark — Bhinneka.Com ranked #2 in Indonesia Retail & Commerce at 87%"
+      },
+      {
+        "src": "assets/work/bhinneka/uxmm-indonesia-overview.webp",
+        "caption": "Country Overview — Indonesia scores: Findability 76%, Product Pages 83%, Mobile Design 85%, Speed 64%"
+      }
+    ]
   },
   {
     "id": "workmate",

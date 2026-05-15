@@ -326,6 +326,16 @@
                         if (w.outcome) {
                             sections.push(e('h2', null, ['Outcome']));
                             sections.push(e('p', null, [w.outcome]));
+                            if (Array.isArray(w.outcomeImages) && w.outcomeImages.length > 0) {
+                                if (w.outcomeImagesLabel) sections.push(e('h3', 'project-group-label', [w.outcomeImagesLabel]));
+                                const oRow = e('div', 'project-group-row', []);
+                                w.outcomeImages.forEach(im => {
+                                    const oCol = e('div', 'project-group-col', []);
+                                    oCol.appendChild(buildGroupCarousel([im], null));
+                                    oRow.appendChild(oCol);
+                                });
+                                sections.push(oRow);
+                            }
                         }
                         function buildGroupCarousel(groupImages, objectPosition) {
                             const gWrap = e('div', 'project-carousel project-carousel--group', []);
