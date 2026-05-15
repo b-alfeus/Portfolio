@@ -598,29 +598,6 @@
     "outcome": "The redesigned consumer app was featured by Google and Accenture Interactive in their Mobile UX Masters SEA report — recognition for raising the standard of mobile UX across Southeast Asia. It was the first time work I'd led had been cited at that level, and it stuck.",
     "outcomeImagesLabel": "Google × Accenture Interactive — Mobile UX Masters SEA 2018",
     "outcomeImages": [
-      {
-        "src": "assets/work/bhinneka/uxmm-indonesia-benchmark.webp",
-        "caption": "Country Benchmark — Bhinneka.Com ranked #2 in Indonesia Retail & Commerce at 87%"
-      },
-      {
-        "src": "assets/work/bhinneka/uxmm-indonesia-overview.webp",
-        "caption": "Country Overview — Indonesia scores: Findability 76%, Product Pages 83%, Mobile Design 85%, Speed 64%"
-      }
-    ]
-  },
-  {
-    "id": "uxmm-2018",
-    "title": "Masters of Mobile — SEA 2018",
-    "client": "Google × Accenture Interactive",
-    "year": "2018",
-    "tags": [
-      "Publication"
-    ],
-    "thumbnail": "assets/work/uxmm-2018/page-01.webp",
-    "background": "#111418",
-    "aspect": "16/9",
-    "variant": "carousel",
-    "images": [
       { "src": "assets/work/uxmm-2018/page-01.webp", "caption": "Page 1 of 38" },
       { "src": "assets/work/uxmm-2018/page-02.webp", "caption": "Page 2 of 38" },
       { "src": "assets/work/uxmm-2018/page-03.webp", "caption": "Page 3 of 38" },
