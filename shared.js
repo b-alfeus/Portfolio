@@ -576,23 +576,25 @@ async function renderWork() {
             group.items.push(w);
         });
         archiveList.replaceChildren(
-            ...byYear.flatMap(({ year, items }) => [
-                el('li', { class: 'work-archive-group-label' }, year),
-                ...items.map(w => {
+            ...byYear.map(({ year, items }) => {
+                const itemEls = items.map(w => {
                     const href = w.id ? `project.html?id=${encodeURIComponent(w.id)}` : (w.link || 'project.html');
                     const tags = Array.isArray(w.tags) && w.tags.length
                         ? el('div', { class: 'work-card-tags' }, w.tags.map(tag => el('span', { class: 'project-tag' }, tag)))
                         : null;
-                    return el('li', { class: 'work-archive-item' }, [
+                    return el('div', { class: 'work-archive-item' }, [
                         el('a', { href, class: 'work-archive-link' }, [
-                            el('div', { class: 'work-archive-info' }, [
-                                el('span', { class: 'work-archive-title' }, w.title || ''),
-                                tags,
-                            ].filter(Boolean)),
-                        ]),
+                            el('span', { class: 'work-archive-title' }, w.title || ''),
+                            tags,
+                        ].filter(Boolean)),
+                        el('div', { class: 'work-archive-divider' }),
                     ]);
-                }),
-            ])
+                });
+                return el('li', { class: 'work-archive-group' }, [
+                    el('span', { class: 'work-archive-group-year' }, year),
+                    el('div', { class: 'work-archive-group-items' }, itemEls),
+                ]);
+            }))
         );
         archiveList.classList.add('is-open');
         archiveToggle?.addEventListener('click', () => {

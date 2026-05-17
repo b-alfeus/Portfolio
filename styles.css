@@ -570,62 +570,59 @@ header.nav-open .nav-toggle .icon-close {
     list-style: none;
     margin: 0;
     padding: 0;
-    display: grid;
     max-height: 0;
     overflow: hidden;
-    transition: max-height 0.35s ease;
+    transition: max-height 0.4s ease;
 }
 
 .work-archive-list.is-open {
-    max-height: 600px;
+    max-height: 1000px;
 }
 
-.work-archive-item {
-    border-bottom: 1px solid var(--color-border);
+.work-archive-group {
+    display: flex;
+    gap: 32px;
+    margin-top: 24px;
 }
 
-.work-archive-group-label {
+.work-archive-group:first-child {
+    margin-top: 20px;
+}
+
+.work-archive-group-year {
     font-family: var(--font-mono);
     font-size: var(--fs-13);
     color: var(--color-text-secondary);
-    padding-top: 24px;
-    padding-bottom: 4px;
-    border-top: 1px solid var(--color-border);
-    margin-top: 4px;
+    flex-shrink: 0;
+    width: 40px;
+    padding-top: 2px;
 }
 
-.work-archive-group-label:first-child {
-    margin-top: 20px;
+.work-archive-group-items {
+    flex: 1;
+    min-width: 0;
 }
 
-.work-archive-item:first-child {
-    border-top: 1px solid var(--color-border);
-    margin-top: 20px;
+.work-archive-item {
+    padding-bottom: 12px;
 }
 
-.work-archive-group-label + .work-archive-item {
-    border-top: none;
-    margin-top: 0;
+.work-archive-divider {
+    height: 1px;
+    background: var(--color-border);
+    margin-top: 12px;
 }
 
 .work-archive-link {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 16px;
-    padding: 14px 0;
+    flex-direction: column;
+    gap: 6px;
     color: var(--color-text);
     text-decoration: none;
 }
 
 .work-archive-link:hover .work-archive-title {
     color: var(--color-accent);
-}
-
-.work-archive-info {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
 }
 
 .work-archive-title {
