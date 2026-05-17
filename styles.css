@@ -540,6 +540,8 @@ header.nav-open .nav-toggle .icon-close {
 .work-archive-toggle {
     display: flex;
     align-items: center;
+    justify-content: space-between;
+    width: 100%;
     gap: 8px;
     background: none;
     border: none;
