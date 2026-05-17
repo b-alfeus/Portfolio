@@ -568,20 +568,29 @@ async function renderWork() {
     const archiveToggle  = document.getElementById('workArchiveToggle');
     if (archiveSection && archiveList && archived.length) {
         archiveSection.hidden = false;
+        const byYear = [];
+        archived.forEach(w => {
+            const y = String(w.year || '—');
+            let group = byYear.find(g => g.year === y);
+            if (!group) { group = { year: y, items: [] }; byYear.push(group); }
+            group.items.push(w);
+        });
         archiveList.replaceChildren(
-            ...archived.map(w => {
-                const href = w.id ? `project.html?id=${encodeURIComponent(w.id)}` : (w.link || 'project.html');
-                const year = w.year ? el('span', { class: 'work-archive-year' }, String(w.year)) : null;
-                const tags = Array.isArray(w.tags) && w.tags.length
-                    ? el('div', { class: 'work-card-tags' }, w.tags.map(tag => el('span', { class: 'project-tag' }, tag)))
-                    : null;
-                return el('li', { class: 'work-archive-item' }, [
-                    el('a', { href, class: 'work-archive-link' }, [
-                        el('span', { class: 'work-archive-title' }, w.title || ''),
-                        el('div', { class: 'work-archive-meta' }, [year, tags].filter(Boolean)),
-                    ]),
-                ]);
-            })
+            ...byYear.flatMap(({ year, items }) => [
+                el('li', { class: 'work-archive-group-label' }, year),
+                ...items.map(w => {
+                    const href = w.id ? `project.html?id=${encodeURIComponent(w.id)}` : (w.link || 'project.html');
+                    const tags = Array.isArray(w.tags) && w.tags.length
+                        ? el('div', { class: 'work-card-tags' }, w.tags.map(tag => el('span', { class: 'project-tag' }, tag)))
+                        : null;
+                    return el('li', { class: 'work-archive-item' }, [
+                        el('a', { href, class: 'work-archive-link' }, [
+                            el('span', { class: 'work-archive-title' }, w.title || ''),
+                            tags,
+                        ].filter(Boolean)),
+                    ]);
+                }),
+            ])
         );
         archiveList.classList.add('is-open');
         archiveToggle?.addEventListener('click', () => {
