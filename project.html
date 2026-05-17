@@ -458,6 +458,11 @@
                             w.imageGroups.forEach(group => {
                                 if (group.section) {
                                     sections.push(e('h2', null, [group.section]));
+                                    if (group.description) {
+                                        const desc = e('p', null, []);
+                                        desc.innerHTML = group.description;
+                                        sections.push(desc);
+                                    }
                                 } else if (group.columns) {
                                     const row = e('div', 'project-group-row', []);
                                     group.columns.forEach(col => {
