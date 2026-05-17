@@ -594,7 +594,7 @@ async function renderWork() {
                     el('span', { class: 'work-archive-group-year' }, year),
                     el('div', { class: 'work-archive-group-items' }, itemEls),
                 ]);
-            }))
+            })
         );
         archiveList.classList.add('is-open');
         archiveToggle?.addEventListener('click', () => {
