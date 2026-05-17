@@ -549,13 +549,13 @@ header.nav-open .nav-toggle .icon-close {
     cursor: pointer;
     font-family: var(--font-mono);
     font-size: var(--fs-13);
-    color: var(--color-text-secondary);
+    color: var(--color-accent);
     letter-spacing: 0.06em;
     text-transform: uppercase;
 }
 
 .work-archive-toggle:hover {
-    color: var(--color-text);
+    color: var(--color-accent-hover);
 }
 
 .work-archive-chevron {
