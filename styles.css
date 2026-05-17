@@ -760,6 +760,14 @@ header.nav-open .nav-toggle .icon-close {
     margin-top: 0;
 }
 
+.project-body h3 {
+    font-size: var(--fs-15);
+    font-weight: 500;
+    letter-spacing: -0.1px;
+    margin-top: 40px;
+    margin-bottom: 12px;
+}
+
 .project-group-label {
     font-size: var(--fs-12);
     font-weight: 400;
