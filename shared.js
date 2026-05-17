@@ -477,8 +477,8 @@ async function renderWork() {
 
     items.sort((a, b) => (parseInt(b.year) || 0) - (parseInt(a.year) || 0));
 
-    const active   = items.filter(w => !w.archived);
-    const archived = items.filter(w =>  w.archived);
+    const active   = items.filter(w => !w.archived && !w.subProject);
+    const archived = items.filter(w =>  w.archived && !w.subProject);
 
     grid.replaceChildren(
         ...active.map(w => {
@@ -903,8 +903,8 @@ function initJourneyInteractions() {
 
     // ── Filter bar ───────────────────────────────────────────────────────
     const filters = [
-        { key: 'all',  i18n: 'filter.all',    label: 'Life' },
         { key: 'work', i18n: 'filter.career', label: 'Career' },
+        { key: 'all',  i18n: 'filter.all',    label: 'Life' },
     ];
     const filterBtns = filters.map(f =>
         el('button', {
@@ -934,7 +934,7 @@ function initJourneyInteractions() {
     ]);
     target.insertBefore(nav, timeline);
 
-    let currentFilter = 'all';
+    let currentFilter = 'work';
     let visibleEvents = [];
     let idx = 0;
     let open = false;
@@ -1047,7 +1047,7 @@ function initJourneyInteractions() {
         if (e.key === 'End')        { e.preventDefault(); setActive(visibleEvents.length - 1); }
     });
 
-    applyFilter('all');
+    applyFilter('work');
 
     timeline.addEventListener('journey:rendered', () => {
         allEvents = Array.from(timeline.querySelectorAll('.timeline-event'));

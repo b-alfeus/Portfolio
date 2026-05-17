@@ -306,6 +306,17 @@
                             if (w.outcomeImage) sections.push(figure(w.outcomeImage.src, w.outcomeImage.caption));
                             sections.push(e('p', null, [w.overview]));
                         }
+                        if (Array.isArray(w.relatedLinks) && w.relatedLinks.length > 0) {
+                            const relWrap = e('div', 'project-related', []);
+                            w.relatedLinks.forEach(link => {
+                                const a = document.createElement('a');
+                                a.className = 'project-related-link';
+                                a.href = `project.html?id=${encodeURIComponent(link.id)}`;
+                                a.textContent = link.label;
+                                relWrap.appendChild(a);
+                            });
+                            sections.push(relWrap);
+                        }
                         if (w.process) {
                             sections.push(e('h2', null, ['Process']));
                             const list = e('ul', null, []);
@@ -457,7 +468,7 @@
                         if (Array.isArray(w.imageGroups)) {
                             w.imageGroups.forEach(group => {
                                 if (group.section) {
-                                    sections.push(e('h3', null, [group.section]));
+                                    sections.push(e('h2', null, [group.section]));
                                     if (group.description) {
                                         const desc = e('p', null, []);
                                         desc.innerHTML = group.description;

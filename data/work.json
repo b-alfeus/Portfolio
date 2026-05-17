@@ -368,231 +368,10 @@
     "aspect": "4/3",
     "variant": "singlepage",
     "excerpt": "From a single electronics shop to one of Indonesia's largest distributors of official brands — serving consumers, businesses, and government alike.",
-    "imageGroups": [
-      {
-        "section": "Design System",
-        "description": "Tunggal takes its name from <em>Bhinneka Tunggal Ika</em> — Indonesia's national motto, meaning \"Unity in Diversity.\" The name is deliberate: a design system's purpose is to hold many surfaces together under one shared logic. As Bhinneka scaled from a single electronics storefront into a multi-sided platform serving consumers, businesses, and the public sector, the interface surface expanded with it. Tunggal became the thread.<br><br>The system is shaped by one principle: <strong>coherence over consistency.</strong> Consistency is mechanical — it asks whether elements look the same. Coherence is human — it asks whether the user understands. A component that follows the rulebook but confuses the user is a failure. Every decision in Tunggal starts from that premise: if the contextual meaning of an interface isn't clear, the product will never be used at its full potential.<br><br>Headings across consumer-facing products are set in <a href=\"https://www.atipofoundry.com/fonts/geomanist\" target=\"_blank\" rel=\"noopener noreferrer\">Geomanist</a> by Atipo Foundry — Bhinneka's brand identity typeface. The component architecture is built on <a href=\"https://blueprintjs.com\" target=\"_blank\" rel=\"noopener noreferrer\">Blueprint.js</a> by Palantir Technologies, with Bhinneka's colour system and interaction patterns layered on top."
-      },
-      {
-        "label": "Tunggal — Design Language System",
-        "objectPosition": "left",
-        "images": [
-          {
-            "src": "assets/work/bhinneka/ds-intro.jpg",
-            "caption": "Tunggal — Bhinneka's design language system overview"
-          },
-          {
-            "src": "assets/work/bhinneka/ds-colors.jpg",
-            "caption": "Design elements — colour palette across all product surfaces"
-          },
-          {
-            "src": "assets/work/bhinneka/ds-typography.jpg",
-            "caption": "Design elements — type scale, weights, and typeface specimens"
-          },
-          {
-            "src": "assets/work/bhinneka/ds-buttons.jpg",
-            "caption": "UI components — button variants, states, and size scale"
-          },
-          {
-            "src": "assets/work/bhinneka/ds-inputs.jpg",
-            "caption": "UI components — input fields, search, add-ons, and label variants"
-          },
-          {
-            "src": "assets/work/bhinneka/ds-radios.jpg",
-            "caption": "UI components — radios, checkboxes, and toggle switches"
-          },
-          {
-            "src": "assets/work/bhinneka/ds-sliders.jpg",
-            "caption": "UI components — sliders and range sliders"
-          },
-          {
-            "src": "assets/work/bhinneka/ds-elevations.jpg",
-            "caption": "UI components — containers and elevation levels"
-          }
-        ]
-      },
-      {
-        "section": "Consumer-facing App"
-      },
-      {
-        "columns": [
-          {
-            "label": "B2C Homepage — Exploration",
-            "images": [
-              {
-                "src": "assets/work/bhinneka/homepage-alt-3.jpg",
-                "caption": "Homepage — Amazon Echo hero, Daily Deals, and category grid"
-              },
-              {
-                "src": "assets/work/bhinneka/homepage-alt-4.jpg",
-                "caption": "Homepage — Nintendo Switch hero, 25th Anniversary promo"
-              },
-              {
-                "src": "assets/work/bhinneka/browse-menu.jpg",
-                "caption": "Browse mega-menu — product categories with featured items"
-              }
-            ]
-          },
-          {
-            "label": "B2C Mobile App",
-            "images": [
-              {
-                "src": "assets/work/bhinneka/home.jpg",
-                "caption": "Home"
-              },
-              {
-                "src": "assets/work/bhinneka/category-alt01.jpg",
-                "caption": "Category"
-              },
-              {
-                "src": "assets/work/bhinneka/category-alt02-lv1.jpg",
-                "caption": "Category — level 1"
-              },
-              {
-                "src": "assets/work/bhinneka/brand-page-with-banner.jpg",
-                "caption": "Brand page — with banner"
-              },
-              {
-                "src": "assets/work/bhinneka/merchant-page.jpg",
-                "caption": "Merchant page"
-              },
-              {
-                "src": "assets/work/bhinneka/merchant-page-information.jpg",
-                "caption": "Merchant page — information"
-              },
-              {
-                "src": "assets/work/bhinneka/product-list-add-wishlist.jpg",
-                "caption": "Product list — add to wishlist"
-              },
-              {
-                "src": "assets/work/bhinneka/product-details-overview-new.jpg",
-                "caption": "Product details — overview"
-              },
-              {
-                "src": "assets/work/bhinneka/product-details-product-exploration_b.jpg",
-                "caption": "Product details — exploration"
-              },
-              {
-                "src": "assets/work/bhinneka/cart-ideal-error-message.jpg",
-                "caption": "Cart — error state"
-              },
-              {
-                "src": "assets/work/bhinneka/membership-account.jpg",
-                "caption": "Membership — account"
-              },
-              {
-                "src": "assets/work/bhinneka/membership-wishlist.jpg",
-                "caption": "Membership — wishlist"
-              },
-              {
-                "src": "assets/work/bhinneka/membership-wishlist-empty.jpg",
-                "caption": "Membership — wishlist empty"
-              },
-              {
-                "src": "assets/work/bhinneka/sign-in-email-with.jpg",
-                "caption": "Sign in"
-              },
-              {
-                "src": "assets/work/bhinneka/information.jpg",
-                "caption": "Information"
-              },
-              {
-                "src": "assets/work/bhinneka/contact-us.jpg",
-                "caption": "Contact us"
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "section": "Operational Dashboards"
-      },
-      {
-        "columns": [
-          {
-            "label": "Seller Tools",
-            "images": [
-              {
-                "src": "assets/work/bhinneka/flash-sale-filter.jpg",
-                "caption": "Flash sale condition builder — promotional targeting rules"
-              },
-              {
-                "src": "assets/work/bhinneka/plankton.jpg",
-                "caption": "Seller tool — multi-step product listing with SKU and media management"
-              }
-            ]
-          },
-          {
-            "label": "Vendor Management",
-            "images": [
-              {
-                "src": "assets/work/bhinneka/vendor_list.jpg",
-                "caption": "Vendor list"
-              },
-              {
-                "src": "assets/work/bhinneka/vendor_detail_overview.jpg",
-                "caption": "Vendor detail — overview"
-              },
-              {
-                "src": "assets/work/bhinneka/vendor_detail_product.jpg",
-                "caption": "Vendor detail — products"
-              },
-              {
-                "src": "assets/work/bhinneka/vendor-detail_product-table.jpg",
-                "caption": "Vendor detail — product table"
-              },
-              {
-                "src": "assets/work/bhinneka/merge_vendor.jpg",
-                "caption": "Merge vendor"
-              },
-              {
-                "src": "assets/work/bhinneka/merge_vendor_data.jpg",
-                "caption": "Merge vendor — data review"
-              },
-              {
-                "src": "assets/work/bhinneka/PO_List.jpg",
-                "caption": "Purchase order list"
-              },
-              {
-                "src": "assets/work/bhinneka/create_PO.jpg",
-                "caption": "Create purchase order"
-              },
-              {
-                "src": "assets/work/bhinneka/dropdown_details.jpg",
-                "caption": "Dropdown details"
-              },
-              {
-                "src": "assets/work/bhinneka/modal_request-sku.jpg",
-                "caption": "Modal — request SKU"
-              },
-              {
-                "src": "assets/work/bhinneka/modal_request-sku-interaction.jpg",
-                "caption": "Modal — request SKU interaction"
-              },
-              {
-                "src": "assets/work/bhinneka/status_map.jpg",
-                "caption": "Status map"
-              },
-              {
-                "src": "assets/work/bhinneka/all_case_on_admin.jpg",
-                "caption": "All cases — admin view"
-              },
-              {
-                "src": "assets/work/bhinneka/RO_all_tickets_superior.jpg",
-                "caption": "RO — all tickets (superior)"
-              },
-              {
-                "src": "assets/work/bhinneka/RO_Mytickets.jpg",
-                "caption": "RO — my tickets"
-              },
-              {
-                "src": "assets/work/bhinneka/RO_Request_TO.jpg",
-                "caption": "RO — request transfer order"
-              }
-            ]
-          }
-        ]
-      }
+    "relatedLinks": [
+      { "label": "Design System — Tunggal", "id": "bhinneka-tunggal" },
+      { "label": "Consumer-facing App", "id": "bhinneka-b2c" },
+      { "label": "Operational Dashboards", "id": "bhinneka-ops" }
     ],
     "images": [],
     "overview": "Bhinneka is one of Indonesia's oldest and largest e-commerce platforms — selling electronics, tech, and appliances to consumers, businesses, and government. Over two years I worked across the full product surface: starting as a product designer shipping features across iOS, Android, B2C and B2B web, and a handful of internal dashboards, then growing into a lead role managing a team of four. The scope ranged from defining a new design language system to redesigning the consumer mobile app end-to-end, alongside seller tools and vendor management dashboards.",
@@ -638,6 +417,140 @@
       { "src": "assets/work/uxmm-2018/page-37.webp", "caption": "Page 37 of 38" },
       { "src": "assets/work/uxmm-2018/page-38.webp", "caption": "Page 38 of 38" }
     ]
+  },
+  {
+    "id": "bhinneka-tunggal",
+    "subProject": true,
+    "title": "Bhinneka — Design System",
+    "client": "Bhinneka.com",
+    "year": "2017–2018",
+    "tags": ["Product", "Branding"],
+    "background": "#2a3a4a",
+    "aspect": "4/3",
+    "variant": "singlepage",
+    "excerpt": "Tunggal — Bhinneka's design language system, built to unify a growing product surface under one shared logic.",
+    "imageGroups": [
+      {
+        "section": "Design System",
+        "description": "Tunggal takes its name from <em>Bhinneka Tunggal Ika</em> — Indonesia's national motto, meaning \"Unity in Diversity.\" The name is deliberate: a design system's purpose is to hold many surfaces together under one shared logic. As Bhinneka scaled from a single electronics storefront into a multi-sided platform serving consumers, businesses, and the public sector, the interface surface expanded with it. Tunggal became the thread.<br><br>The system is shaped by one principle: <strong>coherence over consistency.</strong> Consistency is mechanical — it asks whether elements look the same. Coherence is human — it asks whether the user understands. A component that follows the rulebook but confuses the user is a failure. Every decision in Tunggal starts from that premise: if the contextual meaning of an interface isn't clear, the product will never be used at its full potential.<br><br>Headings across consumer-facing products are set in <a href=\"https://www.atipofoundry.com/fonts/geomanist\" target=\"_blank\" rel=\"noopener noreferrer\">Geomanist</a> by Atipo Foundry — Bhinneka's brand identity typeface. The component architecture is built on <a href=\"https://blueprintjs.com\" target=\"_blank\" rel=\"noopener noreferrer\">Blueprint.js</a> by Palantir Technologies, with Bhinneka's colour system and interaction patterns layered on top."
+      },
+      {
+        "label": "Tunggal — Design Language System",
+        "objectPosition": "left",
+        "images": [
+          { "src": "assets/work/bhinneka/ds-intro.jpg", "caption": "Tunggal — Bhinneka's design language system overview" },
+          { "src": "assets/work/bhinneka/ds-colors.jpg", "caption": "Design elements — colour palette across all product surfaces" },
+          { "src": "assets/work/bhinneka/ds-typography.jpg", "caption": "Design elements — type scale, weights, and typeface specimens" },
+          { "src": "assets/work/bhinneka/ds-buttons.jpg", "caption": "UI components — button variants, states, and size scale" },
+          { "src": "assets/work/bhinneka/ds-inputs.jpg", "caption": "UI components — input fields, search, add-ons, and label variants" },
+          { "src": "assets/work/bhinneka/ds-radios.jpg", "caption": "UI components — radios, checkboxes, and toggle switches" },
+          { "src": "assets/work/bhinneka/ds-sliders.jpg", "caption": "UI components — sliders and range sliders" },
+          { "src": "assets/work/bhinneka/ds-elevations.jpg", "caption": "UI components — containers and elevation levels" }
+        ]
+      }
+    ],
+    "images": []
+  },
+  {
+    "id": "bhinneka-b2c",
+    "subProject": true,
+    "title": "Bhinneka — Consumer App",
+    "client": "Bhinneka.com",
+    "year": "2017–2018",
+    "tags": ["Product"],
+    "background": "#2a3a4a",
+    "aspect": "4/3",
+    "variant": "singlepage",
+    "excerpt": "B2C web and mobile app redesign — homepage, browsing, product discovery, cart, and membership.",
+    "imageGroups": [
+      {
+        "section": "Consumer-facing App"
+      },
+      {
+        "columns": [
+          {
+            "label": "B2C Homepage — Exploration",
+            "images": [
+              { "src": "assets/work/bhinneka/homepage-alt-3.jpg", "caption": "Homepage — Amazon Echo hero, Daily Deals, and category grid" },
+              { "src": "assets/work/bhinneka/homepage-alt-4.jpg", "caption": "Homepage — Nintendo Switch hero, 25th Anniversary promo" },
+              { "src": "assets/work/bhinneka/browse-menu.jpg", "caption": "Browse mega-menu — product categories with featured items" }
+            ]
+          },
+          {
+            "label": "B2C Mobile App",
+            "images": [
+              { "src": "assets/work/bhinneka/home.jpg", "caption": "Home" },
+              { "src": "assets/work/bhinneka/category-alt01.jpg", "caption": "Category" },
+              { "src": "assets/work/bhinneka/category-alt02-lv1.jpg", "caption": "Category — level 1" },
+              { "src": "assets/work/bhinneka/brand-page-with-banner.jpg", "caption": "Brand page — with banner" },
+              { "src": "assets/work/bhinneka/merchant-page.jpg", "caption": "Merchant page" },
+              { "src": "assets/work/bhinneka/merchant-page-information.jpg", "caption": "Merchant page — information" },
+              { "src": "assets/work/bhinneka/product-list-add-wishlist.jpg", "caption": "Product list — add to wishlist" },
+              { "src": "assets/work/bhinneka/product-details-overview-new.jpg", "caption": "Product details — overview" },
+              { "src": "assets/work/bhinneka/product-details-product-exploration_b.jpg", "caption": "Product details — exploration" },
+              { "src": "assets/work/bhinneka/cart-ideal-error-message.jpg", "caption": "Cart — error state" },
+              { "src": "assets/work/bhinneka/membership-account.jpg", "caption": "Membership — account" },
+              { "src": "assets/work/bhinneka/membership-wishlist.jpg", "caption": "Membership — wishlist" },
+              { "src": "assets/work/bhinneka/membership-wishlist-empty.jpg", "caption": "Membership — wishlist empty" },
+              { "src": "assets/work/bhinneka/sign-in-email-with.jpg", "caption": "Sign in" },
+              { "src": "assets/work/bhinneka/information.jpg", "caption": "Information" },
+              { "src": "assets/work/bhinneka/contact-us.jpg", "caption": "Contact us" }
+            ]
+          }
+        ]
+      }
+    ],
+    "images": []
+  },
+  {
+    "id": "bhinneka-ops",
+    "subProject": true,
+    "title": "Bhinneka — Operational Dashboards",
+    "client": "Bhinneka.com",
+    "year": "2017–2018",
+    "tags": ["Product"],
+    "background": "#2a3a4a",
+    "aspect": "4/3",
+    "variant": "singlepage",
+    "excerpt": "Internal tools for seller management, vendor operations, purchase orders, and returns.",
+    "imageGroups": [
+      {
+        "section": "Operational Dashboards"
+      },
+      {
+        "columns": [
+          {
+            "label": "Seller Tools",
+            "images": [
+              { "src": "assets/work/bhinneka/flash-sale-filter.jpg", "caption": "Flash sale condition builder — promotional targeting rules" },
+              { "src": "assets/work/bhinneka/plankton.jpg", "caption": "Seller tool — multi-step product listing with SKU and media management" }
+            ]
+          },
+          {
+            "label": "Vendor Management",
+            "images": [
+              { "src": "assets/work/bhinneka/vendor_list.jpg", "caption": "Vendor list" },
+              { "src": "assets/work/bhinneka/vendor_detail_overview.jpg", "caption": "Vendor detail — overview" },
+              { "src": "assets/work/bhinneka/vendor_detail_product.jpg", "caption": "Vendor detail — products" },
+              { "src": "assets/work/bhinneka/vendor-detail_product-table.jpg", "caption": "Vendor detail — product table" },
+              { "src": "assets/work/bhinneka/merge_vendor.jpg", "caption": "Merge vendor" },
+              { "src": "assets/work/bhinneka/merge_vendor_data.jpg", "caption": "Merge vendor — data review" },
+              { "src": "assets/work/bhinneka/PO_List.jpg", "caption": "Purchase order list" },
+              { "src": "assets/work/bhinneka/create_PO.jpg", "caption": "Create purchase order" },
+              { "src": "assets/work/bhinneka/dropdown_details.jpg", "caption": "Dropdown details" },
+              { "src": "assets/work/bhinneka/modal_request-sku.jpg", "caption": "Modal — request SKU" },
+              { "src": "assets/work/bhinneka/modal_request-sku-interaction.jpg", "caption": "Modal — request SKU interaction" },
+              { "src": "assets/work/bhinneka/status_map.jpg", "caption": "Status map" },
+              { "src": "assets/work/bhinneka/all_case_on_admin.jpg", "caption": "All cases — admin view" },
+              { "src": "assets/work/bhinneka/RO_all_tickets_superior.jpg", "caption": "RO — all tickets (superior)" },
+              { "src": "assets/work/bhinneka/RO_Mytickets.jpg", "caption": "RO — my tickets" },
+              { "src": "assets/work/bhinneka/RO_Request_TO.jpg", "caption": "RO — request transfer order" }
+            ]
+          }
+        ]
+      }
+    ],
+    "images": []
   },
   {
     "id": "workmate",

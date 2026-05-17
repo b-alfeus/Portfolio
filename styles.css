@@ -760,14 +760,6 @@ header.nav-open .nav-toggle .icon-close {
     margin-top: 0;
 }
 
-.project-body h3 {
-    font-size: var(--fs-15);
-    font-weight: 500;
-    letter-spacing: -0.1px;
-    margin-top: 40px;
-    margin-bottom: 12px;
-}
-
 .project-group-label {
     font-size: var(--fs-12);
     font-weight: 400;
@@ -831,6 +823,30 @@ header.nav-open .nav-toggle .icon-close {
     color: var(--color-accent);
     text-decoration: underline;
     text-underline-offset: 2px;
+}
+
+.project-related {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 24px;
+    margin-bottom: 8px;
+}
+
+.project-related-link {
+    font-size: var(--fs-13);
+    color: var(--color-text);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 4px;
+    padding: 6px 12px;
+    text-decoration: none;
+    transition: border-color 0.15s, color 0.15s;
+}
+
+.project-related-link:hover {
+    color: var(--color-accent);
+    border-color: var(--color-accent);
 }
 
 .project-figure {
