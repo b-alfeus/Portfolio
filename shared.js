@@ -583,6 +583,7 @@ async function renderWork() {
                 ]);
             })
         );
+        archiveList.classList.add('is-open');
         archiveToggle?.addEventListener('click', () => {
             const expanded = archiveToggle.getAttribute('aria-expanded') === 'true';
             archiveToggle.setAttribute('aria-expanded', String(!expanded));
