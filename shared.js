@@ -585,9 +585,11 @@ async function renderWork() {
                         : null;
                     return el('li', { class: 'work-archive-item' }, [
                         el('a', { href, class: 'work-archive-link' }, [
-                            el('span', { class: 'work-archive-title' }, w.title || ''),
-                            tags,
-                        ].filter(Boolean)),
+                            el('div', { class: 'work-archive-info' }, [
+                                el('span', { class: 'work-archive-title' }, w.title || ''),
+                                tags,
+                            ].filter(Boolean)),
+                        ]),
                     ]);
                 }),
             ])

@@ -622,6 +622,12 @@ header.nav-open .nav-toggle .icon-close {
     color: var(--color-accent);
 }
 
+.work-archive-info {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
 .work-archive-title {
     font-size: var(--fs-15);
     transition: color 0.15s ease;
