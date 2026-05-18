@@ -5,7 +5,7 @@
     "order": 1,
     "excerpt": "A new visual identity for Gedung Kesenian Jakarta — drawing from the theatre's ornamental colonial architecture to craft a mark that holds across business cards, event tickets, and printed stationery.",
     "client": "Gedung Kesenian Jakarta",
-    "year": "2014",
+    "year": "2013",
     "tags": [
       "Academic",
       "Branding"
@@ -98,7 +98,7 @@
     "id": "voca",
     "title": "Voca — On-Demand Interpreter Platform",
     "client": "BonAlpha Ltd. (HK)",
-    "year": "2015",
+    "year": "2017",
     "tags": [
       "Branding",
       "Concept",
@@ -267,39 +267,10 @@
     "archived": true
   },
   {
-    "id": "weekend-inc-2015",
-    "title": "Various Work — Weekend Inc.",
-    "order": 3,
-    "excerpt": "A collection of UI/UX and digital product work from Weekend Inc. — a small Jakarta agency running early-stage startups alongside client work for XL Prio, HM Sampoerna, and KapanLagi Network.",
-    "client": "Weekend Inc.",
-    "year": "2015",
-    "tags": [
-      "Concept"
-    ],
-    "thumbnail": "assets/work/weekend-inc-2015/riseup.jpg",
-    "background": "#1e2330",
-    "aspect": "4/3",
-    "variant": "carousel",
-    "link": "project.html",
-    "overview": "Weekend Inc. was a small Jakarta agency that doubled as a startup incubator. During my time there I worked across a range of client briefs — from e-commerce platforms to consumer apps — while also contributing to the agency's own early-stage products. Clients included XL Prio, HM Sampoerna, .NET Mediatama, and KapanLagi Network.",
-    "outcome": "A body of work spanning UI design, interaction flows, and visual communication across web and mobile — the foundation of my digital product practice.",
-    "images": [
-      {
-        "src": "assets/work/weekend-inc-2015/riseup.jpg",
-        "caption": "Rise Up! — typographic artwork, printed on t-shirts for our annual company gathering event."
-      },
-      {
-        "src": "assets/work/weekend-inc-2015/parley.jpg",
-        "caption": "Parley — registration screen. Dark UI with star-trail ambient background."
-      }
-    ],
-    "archived": true
-  },
-  {
     "id": "xl-prio",
     "title": "XL Prio — Choose a Plan",
     "client": "<a href=\"https://www.xl.co.id/\" target=\"_blank\" rel=\"noopener noreferrer\">XL Prio</a>",
-    "year": "2015",
+    "year": "2017",
     "tags": [
       "Consulting",
       "Product"
@@ -333,8 +304,38 @@
     ]
   },
   {
+    "id": "weekend-inc-2015",
+    "title": "Various Work — Weekend Inc.",
+    "order": 3,
+    "excerpt": "A collection of UI/UX and digital product work from Weekend Inc. — a small Jakarta agency running early-stage startups alongside client work for XL Prio, HM Sampoerna, and KapanLagi Network.",
+    "client": "Weekend Inc.",
+    "year": "2017",
+    "tags": [
+      "Concept"
+    ],
+    "thumbnail": "assets/work/weekend-inc-2015/riseup.jpg",
+    "background": "#1e2330",
+    "aspect": "4/3",
+    "variant": "carousel",
+    "link": "project.html",
+    "overview": "Weekend Inc. was a small Jakarta agency that doubled as a startup incubator. During my time there I worked across a range of client briefs — from e-commerce platforms to consumer apps — while also contributing to the agency's own early-stage products. Clients included XL Prio, HM Sampoerna, <a href=\"https://mdtelevision.com/\" target=\"_blank\" rel=\"noopener noreferrer\">.NET Mediatama</a>, and KapanLagi Network.",
+    "outcome": "A body of work spanning UI design, interaction flows, and visual communication across web and mobile — the foundation of my digital product practice.",
+    "images": [
+      {
+        "src": "assets/work/weekend-inc-2015/riseup.jpg",
+        "caption": "Rise Up! — typographic artwork, printed on t-shirts for our annual company gathering event."
+      },
+      {
+        "src": "assets/work/weekend-inc-2015/parley.jpg",
+        "caption": "Parley — registration screen. Dark UI with star-trail ambient background."
+      }
+    ],
+    "archived": true
+  },
+  {
     "id": "portfolio-2015",
-    "title": "\"End of the Horizon\" / \"Stack\" — 2015",
+    "title": "End of the Horizon / Stack",
+    "year": "2015",
     "order": 4,
     "tags": [
       "Artwork"
@@ -358,7 +359,7 @@
     "id": "bhinneka",
     "title": "Bhinneka",
     "client": "Bhinneka.com",
-    "year": "2017–2018",
+    "year": "2018",
     "tags": [
       "Branding",
       "Product"
@@ -375,6 +376,54 @@
     ],
     "images": [],
     "overview": "Bhinneka is one of Indonesia's oldest and largest e-commerce platforms — selling electronics, tech, and appliances to consumers, businesses, and government. Over two years I worked across the full product surface: starting as a product designer shipping features across iOS, Android, B2C and B2B web, and a handful of internal dashboards, then growing into a lead role managing a team of four. The scope ranged from defining a new design language system to redesigning the consumer mobile app end-to-end, alongside seller tools and vendor management dashboards.",
+    "challenge": "My first in-house role — and the contrast with agency work was immediate. I wasn't just collaborating with PMs and engineers; I was working alongside the whole company: legal, operations, procurement, leadership. The products we shipped had to reflect not just user needs but organisational ones, present and future.\n\nThat's where I learned to read an organisation — who holds which decisions, why they're made a certain way, and how they ripple out to everyone, including customers. Office politics stopped being noise and became something worth understanding.\n\nThis is also where I crossed a line I didn't know existed: from designing tangible things to intangible ones. The hardest problems weren't the interfaces — they were the people. Their competing priorities, unspoken constraints, and the gap between what was asked for and what was actually needed."
+  },
+  {
+    "id": "bhinneka-tunggal",
+    "subProject": true,
+    "title": "Bhinneka — Design System",
+    "client": "Bhinneka.com",
+    "year": "2017–2018",
+    "tags": ["Product", "Branding"],
+    "thumbnail": "assets/work/bhinneka/ds-colors.jpg",
+    "background": "#2a3a4a",
+    "aspect": "4/3",
+    "variant": "singlepage",
+    "excerpt": "Tunggal — Bhinneka's design language system, built to unify a growing product surface under one shared logic.",
+    "imageGroups": [
+      {
+        "section": "Design System",
+        "description": "Tunggal takes its name from <em>Bhinneka Tunggal Ika</em> — Indonesia's national motto, meaning \"Unity in Diversity.\" The name is deliberate: a design system's purpose is to hold many surfaces together under one shared logic. As Bhinneka scaled from a single electronics storefront into a multi-sided platform serving consumers, businesses, and the public sector, the interface surface expanded with it. Tunggal became the thread.<br><br>The system is shaped by one principle: <strong>coherence over consistency.</strong> Consistency is mechanical — it asks whether elements look the same. Coherence is human — it asks whether the user understands. A component that follows the rulebook but confuses the user is a failure. Every decision in Tunggal starts from that premise: if the contextual meaning of an interface isn't clear, the product will never be used at its full potential.<br><br>Headings across consumer-facing products are set in <a href=\"https://www.atipofoundry.com/fonts/geomanist\" target=\"_blank\" rel=\"noopener noreferrer\">Geomanist</a> by Atipo Foundry — Bhinneka's brand identity typeface. The component architecture is built on <a href=\"https://blueprintjs.com\" target=\"_blank\" rel=\"noopener noreferrer\">Blueprint.js</a> by Palantir Technologies, with Bhinneka's colour system and interaction patterns layered on top."
+      },
+      {
+        "label": "Tunggal — Design Language System",
+        "objectPosition": "left",
+        "images": [
+          { "src": "assets/work/bhinneka/ds-intro.jpg", "caption": "Tunggal — Bhinneka's design language system overview" },
+          { "src": "assets/work/bhinneka/ds-colors.jpg", "caption": "Design elements — colour palette across all product surfaces" },
+          { "src": "assets/work/bhinneka/ds-typography.jpg", "caption": "Design elements — type scale, weights, and typeface specimens" },
+          { "src": "assets/work/bhinneka/ds-buttons.jpg", "caption": "UI components — button variants, states, and size scale" },
+          { "src": "assets/work/bhinneka/ds-inputs.jpg", "caption": "UI components — input fields, search, add-ons, and label variants" },
+          { "src": "assets/work/bhinneka/ds-radios.jpg", "caption": "UI components — radios, checkboxes, and toggle switches" },
+          { "src": "assets/work/bhinneka/ds-sliders.jpg", "caption": "UI components — sliders and range sliders" },
+          { "src": "assets/work/bhinneka/ds-elevations.jpg", "caption": "UI components — containers and elevation levels" }
+        ]
+      }
+    ],
+    "images": []
+  },
+  {
+    "id": "bhinneka-b2c",
+    "subProject": true,
+    "title": "Bhinneka — Consumer App",
+    "client": "Bhinneka.com",
+    "year": "2017–2018",
+    "tags": ["Product"],
+    "thumbnail": "assets/work/bhinneka/home.jpg",
+    "background": "#2a3a4a",
+    "aspect": "4/3",
+    "variant": "singlepage",
+    "excerpt": "B2C web and mobile app redesign — homepage, browsing, product discovery, cart, and membership.",
     "outcome": "The redesigned consumer app was featured by Google and Accenture Interactive in their Mobile UX Masters SEA report — recognition for raising the standard of mobile UX across Southeast Asia. It was the first time work I'd led had been cited at that level, and it stuck.",
     "outcomeImagesLabel": "Google × Accenture Interactive — Mobile UX Masters SEA 2018",
     "outcomeImages": [
@@ -411,57 +460,12 @@
       { "src": "assets/work/uxmm-2018/page-31.webp", "caption": "Page 31 of 38" },
       { "src": "assets/work/uxmm-2018/page-32.webp", "caption": "Page 32 of 38" },
       { "src": "assets/work/uxmm-2018/page-33.webp", "caption": "Page 33 of 38" },
-      { "src": "assets/work/uxmm-2018/page-34.webp", "caption": "Page 34 of 38 — Indonesia: Bhinneka.Com #2 in Retail & Commerce" },
-      { "src": "assets/work/uxmm-2018/page-35.webp", "caption": "Page 35 of 38 — Indonesia Country Overview" },
+      { "src": "assets/work/uxmm-2018/page-34.webp", "caption": "Page 34 of 38" },
+      { "src": "assets/work/uxmm-2018/page-35.webp", "caption": "Page 35 of 38" },
       { "src": "assets/work/uxmm-2018/page-36.webp", "caption": "Page 36 of 38" },
       { "src": "assets/work/uxmm-2018/page-37.webp", "caption": "Page 37 of 38" },
       { "src": "assets/work/uxmm-2018/page-38.webp", "caption": "Page 38 of 38" }
-    ]
-  },
-  {
-    "id": "bhinneka-tunggal",
-    "subProject": true,
-    "title": "Bhinneka — Design System",
-    "client": "Bhinneka.com",
-    "year": "2017–2018",
-    "tags": ["Product", "Branding"],
-    "background": "#2a3a4a",
-    "aspect": "4/3",
-    "variant": "singlepage",
-    "excerpt": "Tunggal — Bhinneka's design language system, built to unify a growing product surface under one shared logic.",
-    "imageGroups": [
-      {
-        "section": "Design System",
-        "description": "Tunggal takes its name from <em>Bhinneka Tunggal Ika</em> — Indonesia's national motto, meaning \"Unity in Diversity.\" The name is deliberate: a design system's purpose is to hold many surfaces together under one shared logic. As Bhinneka scaled from a single electronics storefront into a multi-sided platform serving consumers, businesses, and the public sector, the interface surface expanded with it. Tunggal became the thread.<br><br>The system is shaped by one principle: <strong>coherence over consistency.</strong> Consistency is mechanical — it asks whether elements look the same. Coherence is human — it asks whether the user understands. A component that follows the rulebook but confuses the user is a failure. Every decision in Tunggal starts from that premise: if the contextual meaning of an interface isn't clear, the product will never be used at its full potential.<br><br>Headings across consumer-facing products are set in <a href=\"https://www.atipofoundry.com/fonts/geomanist\" target=\"_blank\" rel=\"noopener noreferrer\">Geomanist</a> by Atipo Foundry — Bhinneka's brand identity typeface. The component architecture is built on <a href=\"https://blueprintjs.com\" target=\"_blank\" rel=\"noopener noreferrer\">Blueprint.js</a> by Palantir Technologies, with Bhinneka's colour system and interaction patterns layered on top."
-      },
-      {
-        "label": "Tunggal — Design Language System",
-        "objectPosition": "left",
-        "images": [
-          { "src": "assets/work/bhinneka/ds-intro.jpg", "caption": "Tunggal — Bhinneka's design language system overview" },
-          { "src": "assets/work/bhinneka/ds-colors.jpg", "caption": "Design elements — colour palette across all product surfaces" },
-          { "src": "assets/work/bhinneka/ds-typography.jpg", "caption": "Design elements — type scale, weights, and typeface specimens" },
-          { "src": "assets/work/bhinneka/ds-buttons.jpg", "caption": "UI components — button variants, states, and size scale" },
-          { "src": "assets/work/bhinneka/ds-inputs.jpg", "caption": "UI components — input fields, search, add-ons, and label variants" },
-          { "src": "assets/work/bhinneka/ds-radios.jpg", "caption": "UI components — radios, checkboxes, and toggle switches" },
-          { "src": "assets/work/bhinneka/ds-sliders.jpg", "caption": "UI components — sliders and range sliders" },
-          { "src": "assets/work/bhinneka/ds-elevations.jpg", "caption": "UI components — containers and elevation levels" }
-        ]
-      }
     ],
-    "images": []
-  },
-  {
-    "id": "bhinneka-b2c",
-    "subProject": true,
-    "title": "Bhinneka — Consumer App",
-    "client": "Bhinneka.com",
-    "year": "2017–2018",
-    "tags": ["Product"],
-    "background": "#2a3a4a",
-    "aspect": "4/3",
-    "variant": "singlepage",
-    "excerpt": "B2C web and mobile app redesign — homepage, browsing, product discovery, cart, and membership.",
     "imageGroups": [
       {
         "section": "Consumer-facing App"
@@ -509,6 +513,7 @@
     "client": "Bhinneka.com",
     "year": "2017–2018",
     "tags": ["Product"],
+    "thumbnail": "assets/work/bhinneka/vendor_list.jpg",
     "background": "#2a3a4a",
     "aspect": "4/3",
     "variant": "singlepage",
@@ -553,13 +558,27 @@
     "images": []
   },
   {
+    "id": "persol-apac",
+    "title": "PERSOL APAC",
+    "client": "PERSOL APAC",
+    "year": "2026",
+    "tags": ["Product"],
+    "background": "#1a2530",
+    "aspect": "4/3",
+    "variant": "singlepage",
+    "excerpt": "Product design for PERSOL APAC — Japan's second-largest human resources group, operating staffing, recruiting, and HR technology across fourteen Asia-Pacific markets.",
+    "overview": "PERSOL is Japan's second-largest human resources conglomerate, with operations spanning staffing, outsourcing, and HR technology across fourteen markets in the Asia-Pacific region. The work covered digital product design across their APAC platforms — translating complex enterprise HR workflows into interfaces that hold up for recruiters, account managers, and the people looking for work on the other side of them.",
+    "challenge": "Enterprise HR software carries a particular kind of design debt — built first for compliance and data capture, with the human experience somewhere downstream. The challenge at PERSOL was working inside that tension: a large matrix organisation spanning markets with different labour laws, hiring norms, and platform maturity, where the same workflow means something different depending on whether you're in Tokyo, Singapore, or Jakarta.\n\nThe work required navigating a layered stakeholder structure — product, operations, regional leads, and local market teams all with valid but competing definitions of what the platform should do. Getting to a design that held across markets without flattening the genuine differences between them was the core of it.",
+    "images": []
+  },
+  {
     "id": "workmate",
     "title": "Workmate",
+    "year": "2024",
     "tags": [
       "Product"
     ],
     "background": "#1e2e22",
-    "aspect": "4/3",
-    "comingSoon": true
+    "aspect": "4/3"
   }
 ]

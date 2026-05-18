@@ -477,132 +477,63 @@ async function renderWork() {
 
     items.sort((a, b) => (parseInt(b.year) || 0) - (parseInt(a.year) || 0));
 
-    const active   = items.filter(w => !w.archived && !w.subProject);
-    const archived = items.filter(w =>  w.archived && !w.subProject);
+    const visible = items.filter(w => !w.subProject);
+
+    const byYear = [];
+    visible.forEach(w => {
+        const y = String(w.year || '—');
+        let group = byYear.find(g => g.year === y);
+        if (!group) { group = { year: y, items: [] }; byYear.push(group); }
+        group.items.push(w);
+    });
 
     grid.replaceChildren(
-        ...active.map(w => {
-            const aspect = (w.aspect || '4/3').replace('/', ' / ');
-            const thumb = w.thumbnail
-                ? el('img', {
-                    class: 'work-thumb',
-                    src: w.thumbnail,
-                    alt: w.title || '',
-                    loading: 'lazy',
-                    style: { aspectRatio: aspect, objectPosition: w.thumbnailPosition || 'center' },
-                  })
-                : el('div', {
-                    class: 'work-thumb work-thumb--block',
-                    style: { backgroundColor: w.background || 'var(--color-surface)', aspectRatio: aspect },
-                  });
-            const isLightbox = !!w.lightbox;
-            const isCarousel = w.variant === 'carousel';
-            const isComingSoon = !!w.comingSoon;
+        ...byYear.map(({ year, items: groupItems }) => {
+            const entries = groupItems.map(w => {
+                const isComingSoon = !!w.comingSoon;
+                const href = w.id ? `project.html?id=${encodeURIComponent(w.id)}` : (w.link || 'project.html');
 
-            if (isComingSoon) {
                 const tags = Array.isArray(w.tags) && w.tags.length > 0
-                    ? el('div', { class: 'work-card-tags' },
-                        w.tags.map(tag => el('span', { class: 'project-tag' }, tag)))
+                    ? el('div', { class: 'work-card-tags' }, w.tags.map(tag => el('span', { class: 'project-tag' }, tag)))
                     : null;
-                const label = el('div', { class: 'work-card-label' }, [
-                    tags,
-                    el('div', { class: 'work-card-title-row' }, [
-                        el('span', { class: 'work-card-title' }, w.title || ''),
+
+                const titleEl = el('span', { class: 'work-list-title' }, w.title || '');
+
+                const arrowSvg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+                arrowSvg.setAttribute('class', 'work-list-arrow');
+                arrowSvg.setAttribute('width', '14');
+                arrowSvg.setAttribute('height', '14');
+                arrowSvg.setAttribute('viewBox', '0 0 24 24');
+                arrowSvg.setAttribute('fill', 'none');
+                arrowSvg.setAttribute('stroke', 'currentColor');
+                arrowSvg.setAttribute('stroke-width', '2');
+                arrowSvg.setAttribute('stroke-linecap', 'round');
+                arrowSvg.setAttribute('stroke-linejoin', 'round');
+                arrowSvg.setAttribute('aria-hidden', 'true');
+                arrowSvg.innerHTML = '<path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>';
+
+                const row = isComingSoon
+                    ? el('div', { class: 'work-list-row work-list-row--soon' }, [
+                        titleEl,
                         el('span', { class: 'work-card-soon' }, 'Soon'),
-                    ]),
-                ]);
-                return el('li', { class: 'work-card work-card--soon' }, [
-                    el('div', { class: 'work-card-inner' }, [thumb, label]),
-                ]);
-            }
+                      ])
+                    : (() => { const a = el('a', { href, class: 'work-list-row' }, [titleEl]); a.appendChild(arrowSvg); return a; })();
 
-            const href = isLightbox
-                ? w.lightboxSrc
-                : isCarousel
-                ? '#'
-                : (w.id ? `project.html?id=${encodeURIComponent(w.id)}` : (w.link || 'project.html'));
-            const arrowSvg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-            arrowSvg.setAttribute('width', '16');
-            arrowSvg.setAttribute('height', '16');
-            arrowSvg.setAttribute('viewBox', '0 0 24 24');
-            arrowSvg.setAttribute('fill', 'none');
-            arrowSvg.setAttribute('stroke', 'currentColor');
-            arrowSvg.setAttribute('stroke-width', '2');
-            arrowSvg.setAttribute('stroke-linecap', 'round');
-            arrowSvg.setAttribute('stroke-linejoin', 'round');
-            arrowSvg.setAttribute('aria-hidden', 'true');
-            arrowSvg.innerHTML = '<path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>';
+                return el('div', { class: 'work-list-entry' }, [
+                    row,
+                    tags,
+                    el('div', { class: 'work-archive-divider' }),
+                ].filter(Boolean));
+            });
 
-            const tags = Array.isArray(w.tags) && w.tags.length > 0
-                ? el('div', { class: 'work-card-tags' },
-                    w.tags.map(tag => el('span', { class: 'project-tag' }, tag)))
-                : null;
-
-            const titleRow = el('div', { class: 'work-card-title-row' }, [
-                el('span', { class: 'work-card-title' }, w.title || ''),
-                arrowSvg,
-            ]);
-
-            const label = el('div', { class: 'work-card-label' }, [
-                tags,
-                titleRow,
-            ]);
-
-            const linkAttrs = isLightbox
-                ? { href, 'aria-label': w.title || 'Project', 'data-lightbox': w.lightboxSrc, 'data-caption': w.lightboxCaption || '' }
-                : isCarousel
-                ? { href, 'aria-label': w.title || 'Project', 'data-carousel': JSON.stringify(w.images || []) }
-                : { href, 'aria-label': w.title || 'Project' };
-
-            return el('li', { class: 'work-card' }, [
-                el('a', linkAttrs, [thumb, label]),
+            return el('li', { class: 'work-list-item' }, [
+                el('span', { class: 'work-list-year' }, year),
+                el('div', { class: 'work-list-content' }, entries),
             ]);
         })
     );
 
     initLightbox();
-
-    // Archive section
-    const archiveSection = document.getElementById('workArchive');
-    const archiveList    = document.getElementById('workArchiveList');
-    const archiveToggle  = document.getElementById('workArchiveToggle');
-    if (archiveSection && archiveList && archived.length) {
-        archiveSection.hidden = false;
-        const byYear = [];
-        archived.forEach(w => {
-            const y = String(w.year || '—');
-            let group = byYear.find(g => g.year === y);
-            if (!group) { group = { year: y, items: [] }; byYear.push(group); }
-            group.items.push(w);
-        });
-        archiveList.replaceChildren(
-            ...byYear.map(({ year, items }) => {
-                const itemEls = items.map(w => {
-                    const href = w.id ? `project.html?id=${encodeURIComponent(w.id)}` : (w.link || 'project.html');
-                    const tags = Array.isArray(w.tags) && w.tags.length
-                        ? el('div', { class: 'work-card-tags' }, w.tags.map(tag => el('span', { class: 'project-tag' }, tag)))
-                        : null;
-                    return el('div', { class: 'work-archive-item' }, [
-                        el('a', { href, class: 'work-archive-link' }, [
-                            el('span', { class: 'work-archive-title' }, w.title || ''),
-                            tags,
-                        ].filter(Boolean)),
-                        el('div', { class: 'work-archive-divider' }),
-                    ]);
-                });
-                return el('li', { class: 'work-archive-group' }, [
-                    el('span', { class: 'work-archive-group-year' }, year),
-                    el('div', { class: 'work-archive-group-items' }, itemEls),
-                ]);
-            })
-        );
-        archiveList.classList.add('is-open');
-        archiveToggle?.addEventListener('click', () => {
-            const expanded = archiveToggle.getAttribute('aria-expanded') === 'true';
-            archiveToggle.setAttribute('aria-expanded', String(!expanded));
-            archiveList.classList.toggle('is-open', !expanded);
-        });
-    }
 }
 
 function initLightbox() {
