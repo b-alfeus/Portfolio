@@ -1013,9 +1013,9 @@ function initContentProtection() {
         if (e.target.closest('img, canvas')) e.preventDefault();
     });
 
-    // Prevent long-press save on touch devices (skip images inside links to preserve navigation)
+    // Prevent long-press save on touch devices (skip images inside links or lightbox triggers)
     document.addEventListener('touchstart', (e) => {
-        if (e.target.closest('img, canvas') && !e.target.closest('a')) {
+        if (e.target.closest('img, canvas') && !e.target.closest('a') && !e.target.classList.contains('project-carousel-img')) {
             e.target.addEventListener('touchend', (te) => te.preventDefault(), { once: true });
         }
     }, { passive: true });
