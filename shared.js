@@ -477,7 +477,7 @@ async function renderWork() {
 
     items.sort((a, b) => (parseInt(b.year) || 0) - (parseInt(a.year) || 0));
 
-    const visible = items.filter(w => !w.subProject);
+    const visible = items.filter(w => !w.subProject && !w.hidden);
 
     const byYear = [];
     visible.forEach(w => {

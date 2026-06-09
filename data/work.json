@@ -103,7 +103,7 @@
       "Branding",
       "Concept",
       "Consulting",
-      "Product"
+      "Software"
     ],
     "thumbnail": "assets/work/voca/thumbnail.jpg",
     "background": "#1e3a3a",
@@ -273,7 +273,7 @@
     "year": "2017",
     "tags": [
       "Consulting",
-      "Product"
+      "Software"
     ],
     "thumbnail": "assets/work/weekend-inc-2015/xl-prio-thumb.jpg",
     "background": "#1a2a3a",
@@ -362,7 +362,7 @@
     "year": "2018",
     "tags": [
       "Branding",
-      "Product"
+      "Software"
     ],
     "thumbnail": "assets/work/bhinneka/thumbnail.svg",
     "background": "#2a3a4a",
@@ -384,7 +384,7 @@
     "title": "Bhinneka — Design System",
     "client": "Bhinneka.com",
     "year": "2017–2018",
-    "tags": ["Product", "Branding"],
+    "tags": ["Software", "Branding"],
     "thumbnail": "assets/work/bhinneka/ds-colors.jpg",
     "background": "#2a3a4a",
     "aspect": "4/3",
@@ -418,7 +418,7 @@
     "title": "Bhinneka — Consumer App",
     "client": "Bhinneka.com",
     "year": "2017–2018",
-    "tags": ["Product"],
+    "tags": ["Software"],
     "thumbnail": "assets/work/bhinneka/home.jpg",
     "background": "#2a3a4a",
     "aspect": "4/3",
@@ -512,7 +512,7 @@
     "title": "Bhinneka — Operational Dashboards",
     "client": "Bhinneka.com",
     "year": "2017–2018",
-    "tags": ["Product"],
+    "tags": ["Software"],
     "thumbnail": "assets/work/bhinneka/vendor_list.jpg",
     "background": "#2a3a4a",
     "aspect": "4/3",
@@ -559,10 +559,11 @@
   },
   {
     "id": "persol-apac",
+    "hidden": true,
     "title": "PERSOL APAC",
     "client": "PERSOL APAC",
     "year": "2026",
-    "tags": ["Product"],
+    "tags": ["Software"],
     "background": "#1a2530",
     "aspect": "4/3",
     "variant": "singlepage",
@@ -573,10 +574,11 @@
   },
   {
     "id": "workmate",
+    "hidden": true,
     "title": "Workmate",
     "year": "2024",
     "tags": [
-      "Product"
+      "Software"
     ],
     "background": "#1e2e22",
     "aspect": "4/3"
